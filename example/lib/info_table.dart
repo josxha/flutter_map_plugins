@@ -5,12 +5,17 @@ class InfoTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Table(
-      children: const [
-        TableRow(children: [
-          Text('Test'),
-        ],)
-      ],
+    return SafeArea(
+      minimum: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Table(
+        children: const [
+          TableRow(
+            children: [
+              Text('Test'),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

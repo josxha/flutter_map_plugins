@@ -9,8 +9,11 @@ environment:
   sdk: ^3.0.1
 
 dependencies:
+  flutter:
+    sdk: flutter
   dio_cache_interceptor: ^3.4.2
   dio: ^5.2.0+1
+  flutter_map: ^5.0.0
 
 dev_dependencies:
   total_lints: ^3.0.0
