@@ -1,6 +1,6 @@
 # flutter_map_cache
 
-A slim yet powerful caching plugin for flutter_map tile layers using Dio.
+A slim yet powerful caching plugin for flutter_map tile layers.
 
 ![Pub Likes](https://img.shields.io/pub/likes/flutter_map_cache)
 ![Pub Points](https://img.shields.io/pub/points/flutter_map_cache)
@@ -13,25 +13,83 @@ A slim yet powerful caching plugin for flutter_map tile layers using Dio.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+The package is using [dio](https://pub.dev/packages/dio) with the
+[dio_cache_interceptor](https://pub.dev/packages/dio_cache_interceptor) package and supports the storage backend that
+you like.
+
+Supported storage backends are:
+
+- [x] In-Memory (for testing)
+- [x] File System
+- [x] [Drift (SQLite)](https://pub.dev/packages/drift)
+- [x] [Hive](https://pub.dev/packages/hive)
+- [x] [ObjectBox](https://pub.dev/packages/objectbox)
+- [ ] [Isar](https://pub.dev/packages/isar) (planned,
+  see [dio_cache_interceptor#122](https://github.com/llfbandit/dio_cache_interceptor/issues/122))
+- [ ] [Sembast](https://pub.dev/packages/sembast) (currently broken)
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add the packages you want to use to your `pubspec.yaml` file.
+
+**Only add the packages for the backend you want to use.**
+
+```yaml
+dependencies:
+  flutter_map: ^5.0.0 # in case you don't have it yet 
+  flutter_map_cache: ^1.0.0 # this package
+
+  dio_cache_interceptor_db_store: ^5.1.0 # drift
+  sqlite3_flutter_libs: ^0.5.15 # drift
+
+  dio_cache_interceptor_file_store: ^1.2.2 # file system
+
+  dio_cache_interceptor_hive_store: ^3.2.1 # hive
+
+  dio_cache_interceptor_objectbox_store: ^1.1.1 # objectbox
+  objectbox_flutter_libs: ^1.4.1 # objectbox  
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Using the cache is easy. Here is an example how to use the Hive backend:
+
+First get the app data directory (i.e. with the [path_provider](https://pub.dev/packages/path_provider)
+package):
 
 ```dart
+import 'package:path_provider/path_provider.dart';
 
-const like = 'sample';
+final dataDirectory = await
+
+getApplicationDocumentsDirectory();
+
+final path = dataDirectory.path;
+```
+
+Then use the directory path to initialize the `HiveCacheStore`:
+
+```dart
+@override
+Widget build(BuildContext context) {
+  return FlutterMap(
+    options: MapOptions(),
+    children: [
+      TileLayer(
+        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        tileProvider: CachedTileProvider(
+          store: HiveCacheStore(
+            '$path${Platform.pathSeparator}HiveCacheStore',
+            hiveBoxName: 'HiveCacheStore',
+          ),
+        ),
+      ),
+    ],
+  );
+}
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+Pull requests are welcome. If you want to add support for another storage backend you can check out
+[dio_cache_interceptor](https://github.com/llfbandit/dio_cache_interceptor).
