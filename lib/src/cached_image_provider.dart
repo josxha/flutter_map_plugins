@@ -63,7 +63,7 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
         useFallback && fallbackUrl != null ? fallbackUrl! : url,
         options: Options(responseType: ResponseType.bytes),
       );
-      bytes = response.data;
+      bytes = Uint8List.fromList(response.data);
     } catch (_) {
       if (useFallback) rethrow;
       return _loadAsync(key, chunkEvents, decode, useFallback: true);
