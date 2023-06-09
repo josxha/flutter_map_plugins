@@ -60,11 +60,10 @@ package):
 ```dart
 import 'package:path_provider/path_provider.dart';
 
-final dataDirectory = await
-
-getApplicationDocumentsDirectory();
-
-final path = dataDirectory.path;
+Future<String> getPath() async {
+  final dataDirectory = await getApplicationDocumentsDirectory();
+  return dataDirectory.path;
+}
 ```
 
 Then use the directory path to initialize the `HiveCacheStore`:
