@@ -4,15 +4,11 @@ import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_map/flutter_map.dart';
 
 /// Image provider with additional caching functionality
 class CachedImageProvider extends ImageProvider<CachedImageProvider> {
   /// The dio instance
   final Dio dio;
-
-  /// The coordinates of the tile
-  final TileCoordinates coordinates;
 
   /// The tile url
   final String url;
@@ -23,7 +19,6 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
   /// Default constructor for the [CachedImageProvider]
   const CachedImageProvider({
     required this.dio,
-    required this.coordinates,
     required this.url,
     this.fallbackUrl,
   });
@@ -65,7 +60,7 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
     final Uint8List bytes;
     try {
       final response = await dio.get(
-        url,
+        useFallback && fallbackUrl != null ? fallbackUrl! : url,
         options: Options(responseType: ResponseType.bytes),
       );
       bytes = response.data;

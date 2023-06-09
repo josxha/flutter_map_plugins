@@ -7,14 +7,18 @@ import 'package:flutter_map_cache/src/cached_image_provider.dart';
 /// TileProvider with additional caching functionality
 class CachedTileProvider extends TileProvider {
   /// dio http client
-  final Dio dio;
+  final Dio _dio;
 
   /// Default constructor of [CachedTileProvider]
-  CachedTileProvider({bool verbose = false}) : dio = Dio() {
-    dio.interceptors.addAll([
+  CachedTileProvider({
+    Dio? dio,
+    CacheStore? store,
+    bool verbose = false,
+  }) : _dio = dio ?? Dio() {
+    _dio.interceptors.addAll([
       DioCacheInterceptor(
         options: CacheOptions(
-          store: MemCacheStore(),
+          store: store ?? MemCacheStore(),
         ),
       ),
       if (verbose)
@@ -33,9 +37,8 @@ class CachedTileProvider extends TileProvider {
     TileLayer options,
   ) =>
       CachedImageProvider(
-        dio: dio,
+        dio: _dio,
         url: getTileUrl(coordinates, options),
         fallbackUrl: getTileFallbackUrl(coordinates, options),
-        coordinates: coordinates,
       );
 }
