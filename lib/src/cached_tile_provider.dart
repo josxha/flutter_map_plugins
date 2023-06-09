@@ -14,11 +14,17 @@ class CachedTileProvider extends TileProvider {
     Dio? dio,
     CacheStore? store,
     bool verbose = false,
+    Duration? maxStale,
+    CacheKeyBuilder? keyBuilder,
   }) : _dio = dio ?? Dio() {
     _dio.interceptors.addAll([
       DioCacheInterceptor(
         options: CacheOptions(
           store: store ?? MemCacheStore(),
+          allowPostMethod: true,
+          policy: CachePolicy.forceCache,
+          maxStale: maxStale,
+          keyBuilder: keyBuilder ?? CacheOptions.defaultCacheKeyBuilder,
         ),
       ),
       if (verbose)

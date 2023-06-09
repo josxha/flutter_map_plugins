@@ -51,6 +51,7 @@ class _ExampleAppState extends State<ExampleApp> {
                     urlTemplate:
                         'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                     tileProvider: CachedTileProvider(
+                      maxStale: const Duration(days: 30),
                       store: _cacheStore,
                     ),
                     userAgentPackageName: 'com.github.josxha/flutter_map_cache',

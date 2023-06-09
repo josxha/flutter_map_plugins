@@ -77,6 +77,7 @@ Widget build(BuildContext context) {
       TileLayer(
         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
         tileProvider: CachedTileProvider(
+          maxStale: const Duration(days: 30),
           store: HiveCacheStore(
             '$path${Platform.pathSeparator}HiveCacheStore',
             hiveBoxName: 'HiveCacheStore',
