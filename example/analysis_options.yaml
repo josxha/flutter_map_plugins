@@ -1,4 +1,4 @@
-include: package:total_lints/package.yaml
+include: package:total_lints/app.yaml
 
 linter:
   rules:
@@ -17,4 +17,4 @@ linter:
     unnecessary_lambdas: false # changes functionality
     avoid_dynamic_calls: false
     sort_pub_dependencies: false # no automatic fix
-    #lines_longer_than_80_chars: false
+    lines_longer_than_80_chars: false
