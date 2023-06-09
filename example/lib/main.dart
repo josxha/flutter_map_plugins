@@ -75,10 +75,13 @@ class _ExampleAppState extends State<ExampleApp> {
                       final dataPath = snapshot.data!.path;
                       return DropdownMenu<CacheStoreTypes>(
                         initialSelection: CacheStoreTypes.memCache,
-                        onSelected: (value) => setState(() {
+                        onSelected: (value) {
                           if (value == null) return;
-                          _cacheStore = value.getCacheStore(dataPath);
-                        }),
+                          debugPrint('CacheStore changed to ${value.name}');
+                          setState(() {
+                            _cacheStore = value.getCacheStore(dataPath);
+                          });
+                        },
                         dropdownMenuEntries: CacheStoreTypes.values
                             .map(
                               (e) => DropdownMenuEntry(

@@ -5,14 +5,14 @@ import 'package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.da
 import 'package:dio_cache_interceptor_file_store/dio_cache_interceptor_file_store.dart';
 import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:dio_cache_interceptor_objectbox_store/dio_cache_interceptor_objectbox_store.dart';
-import 'package:dio_cache_interceptor_sembast_storage/dio_cache_interceptor_sembast_storage.dart';
 
 enum CacheStoreTypes {
   memCache('MemCache'),
   dbCache('DbCache (Drift)'),
   fileCache('FileCache'),
   hiveCache('HiveCache'),
-  sembastCache('SembastCache'),
+  // throws FormatException: Unexpected extension byte (at offset 0)
+  //sembastCache('SembastCache'),
   objectBoxCache('ObjectBoxCache');
 
   const CacheStoreTypes(this.name);
@@ -24,7 +24,6 @@ enum CacheStoreTypes {
         CacheStoreTypes.dbCache => DbCacheStore(
             databasePath: path,
             databaseName: 'DbCacheStore',
-            logStatements: true,
           ),
         CacheStoreTypes.fileCache => FileCacheStore(
             '$path${Platform.pathSeparator}FileCacheStore',
@@ -36,9 +35,9 @@ enum CacheStoreTypes {
         CacheStoreTypes.objectBoxCache => ObjectBoxCacheStore(
             storePath: '$path${Platform.pathSeparator}ObjectBoxCacheStore',
           ),
-        CacheStoreTypes.sembastCache => SembastCacheStore(
+        /*CacheStoreTypes.sembastCache => SembastCacheStore(
             storePath: '$path${Platform.pathSeparator}SembastCacheStore',
             cacheStore: 'SembastCacheStore',
-          ),
+          ),*/
       };
 }
