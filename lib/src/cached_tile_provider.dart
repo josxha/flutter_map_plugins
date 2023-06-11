@@ -17,24 +17,26 @@ class CachedTileProvider extends TileProvider {
     Duration? maxStale,
     CacheKeyBuilder? keyBuilder,
   }) : _dio = dio ?? Dio() {
-    _dio.interceptors.addAll([
-      DioCacheInterceptor(
-        options: CacheOptions(
-          store: store ?? MemCacheStore(),
-          allowPostMethod: true,
-          policy: CachePolicy.forceCache,
-          maxStale: maxStale,
-          keyBuilder: keyBuilder ?? CacheOptions.defaultCacheKeyBuilder,
+    if (_dio.interceptors.isEmpty) {
+      _dio.interceptors.addAll([
+        DioCacheInterceptor(
+          options: CacheOptions(
+            store: store ?? MemCacheStore(),
+            allowPostMethod: true,
+            policy: CachePolicy.forceCache,
+            maxStale: maxStale,
+            keyBuilder: keyBuilder ?? CacheOptions.defaultCacheKeyBuilder,
+          ),
         ),
-      ),
-      if (verbose)
-        LogInterceptor(
-          logPrint: (object) => debugPrint(object.toString()),
-          responseHeader: false,
-          requestHeader: false,
-          request: false,
-        ),
-    ]);
+        if (verbose)
+          LogInterceptor(
+            logPrint: (object) => debugPrint(object.toString()),
+            responseHeader: false,
+            requestHeader: false,
+            request: false,
+          ),
+      ]);
+    }
   }
 
   @override
@@ -46,5 +48,6 @@ class CachedTileProvider extends TileProvider {
         dio: _dio,
         url: getTileUrl(coordinates, options),
         fallbackUrl: getTileFallbackUrl(coordinates, options),
+        headers: headers,
       );
 }

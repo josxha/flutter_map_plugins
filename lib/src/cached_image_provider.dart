@@ -16,11 +16,15 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
   /// The tile fallback url
   final String? fallbackUrl;
 
+  /// The tile layer headers (i.e. the user agent)
+  final Map<String, String> headers;
+
   /// Default constructor for the [CachedImageProvider]
   const CachedImageProvider({
     required this.dio,
     required this.url,
     this.fallbackUrl,
+    required this.headers,
   });
 
   @override
@@ -61,7 +65,10 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
     try {
       final response = await dio.get(
         useFallback && fallbackUrl != null ? fallbackUrl! : url,
-        options: Options(responseType: ResponseType.bytes),
+        options: Options(
+          responseType: ResponseType.bytes,
+          headers: headers,
+        ),
       );
       bytes = Uint8List.fromList(response.data);
     } catch (_) {
