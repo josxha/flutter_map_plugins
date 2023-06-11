@@ -54,8 +54,8 @@ dependencies:
 
 Using the cache is easy. Here is an example how to use the Hive backend:
 
-First get the app data directory (i.e. with the [path_provider](https://pub.dev/packages/path_provider)
-package):
+First get the cache directory of the app (i.e. with the [path_provider](https://pub.dev/packages/path_provider)
+package).
 
 ```dart
 import 'package:path_provider/path_provider.dart';
