@@ -30,9 +30,7 @@ Supported storage backends are:
 
 ## Getting started
 
-Add the packages you want to use to your `pubspec.yaml` file.
-
-**Only add the packages for the backend you want to use.**
+1. Add the packages you want to use to your `pubspec.yaml` file. Only add the packages for the backend you want to use.
 
 ```yaml
 dependencies:
@@ -50,6 +48,8 @@ dependencies:
   objectbox_flutter_libs: ^1.4.1 # objectbox  
 ```
 
+2. The storage backends might have their own required setups. Please check them out in their package documentations.
+
 ## Usage
 
 Using the cache is easy. Here is an example how to use the Hive backend:
@@ -61,12 +61,13 @@ package):
 import 'package:path_provider/path_provider.dart';
 
 Future<String> getPath() async {
-  final dataDirectory = await getApplicationDocumentsDirectory();
-  return dataDirectory.path;
+  final cacheDirectory = await getTemporaryDirectory();
+  return cacheDirectory.path;
 }
 ```
 
-Then use the directory path to initialize the `HiveCacheStore`:
+Then use the directory path to initialize the `HiveCacheStore`. You can wrap FlutterMap inside a `FutureBuilder` to use
+the getPath() method.
 
 ```dart
 @override

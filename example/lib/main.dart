@@ -68,7 +68,7 @@ class _ExampleAppState extends State<ExampleApp> {
                   const Text('CacheStore Type'),
                   FutureBuilder<Directory>(
                     // ignore: discarded_futures
-                    future: getApplicationDocumentsDirectory(),
+                    future: getTemporaryDirectory(),
                     builder: (context, snapshot) {
                       if (snapshot.data == null) {
                         return const Expanded(child: LinearProgressIndicator());
