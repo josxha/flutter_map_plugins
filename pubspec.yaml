@@ -1,6 +1,6 @@
 name: flutter_map_cache
 description: A slim yet powerful caching plugin for flutter_map tile layers.
-version: 1.1.0
+version: 1.1.1
 repository: https://github.com/josxha/flutter_map_cache
 issue_tracker: https://github.com/josxha/flutter_map_cache/issues
 
