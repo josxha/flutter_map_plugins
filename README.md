@@ -94,3 +94,6 @@ Widget build(BuildContext context) {
 
 Pull requests are welcome. If you want to add support for another storage backend you can check out
 [dio_cache_interceptor](https://github.com/llfbandit/dio_cache_interceptor).
+
+If you need help you can [open an issue](https://github.com/josxha/flutter_map_cache/issues/new/choose) or join
+the [flutter_map discord server](https://discord.gg/BwpEsjqMAH).
