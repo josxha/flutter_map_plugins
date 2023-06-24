@@ -4,6 +4,12 @@ version: 1.1.1
 repository: https://github.com/josxha/flutter_map_cache
 issue_tracker: https://github.com/josxha/flutter_map_cache/issues
 
+topics:
+  - flutter-map
+  - map
+  - dio
+  - cache
+
 environment:
   sdk: ^3.0.1
 

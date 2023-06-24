@@ -80,7 +80,7 @@ Widget build(BuildContext context) {
         tileProvider: CachedTileProvider(
           maxStale: const Duration(days: 30),
           store: HiveCacheStore(
-            '$path${Platform.pathSeparator}HiveCacheStore',
+            path,
             hiveBoxName: 'HiveCacheStore',
           ),
         ),
