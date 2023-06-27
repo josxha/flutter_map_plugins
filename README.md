@@ -78,6 +78,8 @@ Widget build(BuildContext context) {
       TileLayer(
         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
         tileProvider: CachedTileProvider(
+          // maxStale keeps the tile cached for the given Duration and 
+          // tries to revalidate the next time it gets requested
           maxStale: const Duration(days: 30),
           store: HiveCacheStore(
             path,
@@ -88,6 +90,27 @@ Widget build(BuildContext context) {
     ],
   );
 }
+```
+
+## Common use cases
+
+### Remove the api key from the url before it gets used for caching
+
+Commercial tile providers often use an api key that is attached as a parameter to the url. While this shouldn't be a
+problem when the api key stays the same you might want to make it immune to api key changes anyway.
+
+```flutter
+final _uuid = Uuid(); 
+
+CachedTileProvider(
+  keyBuilder: (request) {
+    return _uuid.v5(
+      Uuid.NAMESPACE_URL, 
+      request.uri.replace(queryParameters: {}).toString(),
+    );
+  },
+  ...
+),
 ```
 
 ## Additional information
