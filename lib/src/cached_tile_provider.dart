@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/rendering.dart';
@@ -7,37 +9,39 @@ import 'package:flutter_map_cache/src/cached_image_provider.dart';
 /// TileProvider with additional caching functionality
 class CachedTileProvider extends TileProvider {
   /// dio http client
-  final Dio _dio;
+  final Dio dio;
 
-  /// Default constructor of [CachedTileProvider]
+  /// Create a new [CachedTileProvider]
   CachedTileProvider({
-    Dio? dio,
-    CacheStore? store,
-    bool verbose = false,
+    required CacheStore store,
+    BaseOptions? dioOptions,
+    List<Interceptor>? interceptors,
     Duration? maxStale,
     CacheKeyBuilder? keyBuilder,
-  }) : _dio = dio ?? Dio() {
-    if (_dio.interceptors.isEmpty) {
-      _dio.interceptors.addAll([
-        DioCacheInterceptor(
-          options: CacheOptions(
-            store: store ?? MemCacheStore(),
-            allowPostMethod: true,
-            policy: CachePolicy.forceCache,
-            maxStale: maxStale,
-            keyBuilder: keyBuilder ?? CacheOptions.defaultCacheKeyBuilder,
-          ),
+    List<int>? hitCacheOnErrorExcept = defaultHitCacheOnErrorExcept,
+  }) : dio = Dio(dioOptions) {
+    dio.interceptors.addAll([
+      if (interceptors != null) ...interceptors,
+      DioCacheInterceptor(
+        options: CacheOptions(
+          store: store,
+          allowPostMethod: true,
+          policy: CachePolicy.forceCache,
+          maxStale: maxStale,
+          keyBuilder: keyBuilder ?? CacheOptions.defaultCacheKeyBuilder,
+          hitCacheOnErrorExcept: hitCacheOnErrorExcept,
         ),
-        if (verbose)
-          LogInterceptor(
-            logPrint: (object) => debugPrint(object.toString()),
-            responseHeader: false,
-            requestHeader: false,
-            request: false,
-          ),
-      ]);
-    }
+      ),
+    ]);
   }
+
+  /// list of http status codes that will not hit the cache, e.g. if the user
+  /// needs authentication or the server is currently not able to handle the
+  /// request
+  static const List<int> defaultHitCacheOnErrorExcept = [
+    HttpStatus.unauthorized,
+    HttpStatus.forbidden,
+  ];
 
   @override
   ImageProvider<Object> getImage(
@@ -45,7 +49,7 @@ class CachedTileProvider extends TileProvider {
     TileLayer options,
   ) =>
       CachedImageProvider(
-        dio: _dio,
+        dio: dio,
         url: getTileUrl(coordinates, options),
         fallbackUrl: getTileFallbackUrl(coordinates, options),
         headers: headers,

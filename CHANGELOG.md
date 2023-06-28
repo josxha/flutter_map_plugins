@@ -1,3 +1,19 @@
+## [1.2.0] 2023-06-28
+
+#### CachedTileProvider
+
+- Add the `List<Interceptor>? interceptors` as a Parameter and remove the `verbose` parameter. The interceptors will
+  get applied before the cache interceptor.
+- The `store` parameter is now required.
+- Add the option to override the `hitCacheOnErrorExcept` parameter. By default, a cached request will not get used if
+  the server returns with status code 401 or 403.
+- Remove the `dio` parameter but set dio as a public field variable so that it can get modified after creation.
+- Add `BaseOptions? dioOptions` as a parameter.
+
+#### Fixes
+
+- Use cache when device has no internet connection and a SocketException gets thrown.
+
 ## [1.1.1] 2023-06-22
 
 - Update documentation and example project

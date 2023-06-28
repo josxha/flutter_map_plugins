@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -53,6 +54,14 @@ class _ExampleAppState extends State<ExampleApp> {
                     tileProvider: CachedTileProvider(
                       maxStale: const Duration(days: 30),
                       store: _cacheStore,
+                      interceptors: [
+                        LogInterceptor(
+                          logPrint: (object) => debugPrint(object.toString()),
+                          responseHeader: false,
+                          requestHeader: false,
+                          request: false,
+                        ),
+                      ],
                     ),
                     userAgentPackageName: 'com.github.josxha/flutter_map_cache',
                   ),
