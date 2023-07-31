@@ -40,12 +40,13 @@ class _ExampleAppState extends State<ExampleApp> {
           children: [
             Expanded(
               child: FlutterMap(
-                options: MapOptions(
-                  center: const LatLng(47.141344, 9.553680),
-                  interactiveFlags:
-                      InteractiveFlag.all & ~InteractiveFlag.rotate,
+                options: const MapOptions(
+                  initialCenter: LatLng(47.141344, 9.553680),
+                  interactionOptions: InteractionOptions(
+                    rotationWinGestures: MultiFingerGesture.none,
+                  ),
                   maxZoom: 16,
-                  zoom: 8,
+                  initialZoom: 8,
                 ),
                 children: [
                   TileLayer(
