@@ -79,28 +79,35 @@ class _ExampleAppState extends State<ExampleApp> {
                     // ignore: discarded_futures
                     future: getTemporaryDirectory(),
                     builder: (context, snapshot) {
-                      if (snapshot.data == null) {
-                        return const Expanded(child: LinearProgressIndicator());
+                      if (snapshot.hasData) {
+                        final dataPath = snapshot.data!.path;
+                        return DropdownMenu<CacheStoreTypes>(
+                          initialSelection: CacheStoreTypes.memCache,
+                          onSelected: (value) {
+                            if (value == null) return;
+                            debugPrint('CacheStore changed to ${value.name}');
+                            setState(() {
+                              _cacheStore = value.getCacheStore(dataPath);
+                            });
+                          },
+                          dropdownMenuEntries: CacheStoreTypes.values
+                              .map(
+                                (e) => DropdownMenuEntry(
+                                  value: e,
+                                  label: e.name,
+                                ),
+                              )
+                              .toList(growable: false),
+                        );
                       }
-                      final dataPath = snapshot.data!.path;
-                      return DropdownMenu<CacheStoreTypes>(
-                        initialSelection: CacheStoreTypes.memCache,
-                        onSelected: (value) {
-                          if (value == null) return;
-                          debugPrint('CacheStore changed to ${value.name}');
-                          setState(() {
-                            _cacheStore = value.getCacheStore(dataPath);
-                          });
-                        },
-                        dropdownMenuEntries: CacheStoreTypes.values
-                            .map(
-                              (e) => DropdownMenuEntry(
-                                value: e,
-                                label: e.name,
-                              ),
-                            )
-                            .toList(growable: false),
-                      );
+                      if (snapshot.hasError) {
+                        debugPrint(snapshot.error.toString());
+                        debugPrintStack(stackTrace: snapshot.stackTrace);
+                        return Expanded(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      }
+                      return const Expanded(child: LinearProgressIndicator());
                     },
                   ),
                 ],
