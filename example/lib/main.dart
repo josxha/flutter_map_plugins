@@ -20,7 +20,7 @@ class ExampleApp extends StatefulWidget {
 }
 
 class _ExampleAppState extends State<ExampleApp> {
-  late CacheStore _cacheStore = MemCacheStore();
+  CacheStore _cacheStore = MemCacheStore();
 
   @override
   Widget build(BuildContext context) {

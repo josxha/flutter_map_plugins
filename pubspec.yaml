@@ -3,6 +3,7 @@ description: A slim yet powerful caching plugin for flutter_map tile layers.
 version: 1.2.0
 repository: https://github.com/josxha/flutter_map_cache
 issue_tracker: https://github.com/josxha/flutter_map_cache/issues
+publish_to: none # remove
 
 topics:
   - flutter-map
@@ -18,7 +19,11 @@ dependencies:
     sdk: flutter
   dio_cache_interceptor: ^3.4.2
   dio: ^5.2.0+1
-  flutter_map: ^6.0.0-dev.2
+  #flutter_map: ^6.0.0-dev.2
+  flutter_map:
+    git:
+      url: https://github.com/fleaflet/flutter_map.git
+      ref: tile-provider-improvements
 
 dev_dependencies:
   total_lints: ^3.0.0

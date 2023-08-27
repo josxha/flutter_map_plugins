@@ -19,13 +19,19 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
   /// The tile layer headers (i.e. the user agent)
   final Map<String, String> headers;
 
+  /// The cancellation token that gets provided to dio
+  final cancelToken = CancelToken();
+
   /// Default constructor for the [CachedImageProvider]
-  const CachedImageProvider({
+  CachedImageProvider({
     required this.dio,
     required this.url,
     this.fallbackUrl,
     required this.headers,
-  });
+    required Future<void> cancelLoading,
+  }) {
+    cancelLoading.then((_) => cancelToken.cancel());
+  }
 
   @override
   Future<CachedImageProvider> obtainKey(
@@ -65,6 +71,7 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
     try {
       final response = await dio.get(
         useFallback && fallbackUrl != null ? fallbackUrl! : url,
+        cancelToken: cancelToken,
         options: Options(
           responseType: ResponseType.bytes,
           headers: headers,
