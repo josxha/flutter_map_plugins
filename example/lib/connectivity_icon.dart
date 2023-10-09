@@ -16,14 +16,17 @@ class ConnectivityIcon extends StatelessWidget {
         return StreamBuilder<ConnectivityResult>(
           stream: Connectivity().onConnectivityChanged,
           initialData: snapshot.data,
-          builder: (context, snapshot) => switch (snapshot.data) {
-            ConnectivityResult.none => const Icon(
-                Icons.signal_wifi_connected_no_internet_4_outlined,
-                color: Colors.red,
-              ),
-            null => const SizedBox.shrink(),
-            _ => const SizedBox.shrink(),
-          },
+          builder: (context, snapshot) => Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: switch (snapshot.data) {
+              ConnectivityResult.none => const Icon(
+                  Icons.signal_wifi_connected_no_internet_4_outlined,
+                  color: Colors.red,
+                ),
+              null => const SizedBox.shrink(),
+              _ => const SizedBox.shrink(),
+            },
+          ),
         );
       },
     );
