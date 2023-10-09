@@ -99,12 +99,15 @@ You can find additional example usages for other storage backends here:
 - [In Memory (for testing)](https://github.com/josxha/flutter_map_cache/wiki/Use-the-In%E2%80%90Memory-Store-(for-testing))
 - [File System](https://github.com/josxha/flutter_map_cache/wiki/Use-the-File-System)
 
-## Common use cases & FAQ
+## Common use cases & frequent questions
 
 ### How about web?
 
-This package supports the web as long as you use a storage backend that supports web. For example Hive uses for its web
-support IndexedDB under the hood to support web.
+This package supports the web as long as you use a storage backend that supports web.
+
+- In Memory works out of the box
+- Hive uses for its web support IndexedDB under the hood to support web.
+- Drift (SqLite) requires [additional setup steps for web](https://drift.simonbinder.eu/web/)
 
 Additionally, this package has support to cancel tile requests that are no longer needed like the
 [flutter_map_cancellable_tile_provider](https://pub.dev/packages/flutter_map_cancellable_tile_provider/) plugin.
