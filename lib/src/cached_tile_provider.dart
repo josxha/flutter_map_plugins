@@ -44,14 +44,19 @@ class CachedTileProvider extends TileProvider {
   ];
 
   @override
-  ImageProvider<Object> getImage(
+  bool get supportsCancelLoading => true;
+
+  @override
+  ImageProvider<Object> getImageWithCancelLoadingSupport(
     TileCoordinates coordinates,
     TileLayer options,
+    Future<void> cancelLoading,
   ) =>
       CachedImageProvider(
         dio: dio,
         url: getTileUrl(coordinates, options),
         fallbackUrl: getTileFallbackUrl(coordinates, options),
         headers: headers,
+        cancelLoading: cancelLoading,
       );
 }
