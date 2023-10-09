@@ -24,9 +24,11 @@ Supported storage backends are:
 - [x] [Drift (SQLite)](https://pub.dev/packages/drift)
 - [x] [Hive](https://pub.dev/packages/hive)
 - [x] [ObjectBox](https://pub.dev/packages/objectbox)
-- [ ] [Isar](https://pub.dev/packages/isar) (planned,
-  see [dio_cache_interceptor#122](https://github.com/llfbandit/dio_cache_interceptor/issues/122))
-- [ ] [Sembast](https://pub.dev/packages/sembast) (currently broken)
+
+Support for [Isar](https://pub.dev/packages/isar) and other storage backends will be supported as soon as the
+underlying package [dio_cache_interceptor](https://pub.dev/packages/dio_cache_interceptor) support them. See for
+example issue [dio_cache_interceptor#122](https://github.com/llfbandit/dio_cache_interceptor/issues/122) that tracks
+the support for isar.
 
 ## Getting started
 
@@ -52,7 +54,7 @@ dependencies:
 
 ## Usage
 
-Using the cache is easy. Here is an example how to use the Hive backend:
+Using the cache is easy. Here is an example how to use the **Hive** backend:
 
 First get the cache directory of the app (i.e. with the [path_provider](https://pub.dev/packages/path_provider)
 package).
@@ -92,7 +94,20 @@ Widget build(BuildContext context) {
 }
 ```
 
-## Common use cases
+You can find additional example usages for other storage backends here:
+
+- [In Memory (for testing)](https://github.com/josxha/flutter_map_cache/wiki/Use-the-In%E2%80%90Memory-Store-(for-testing))
+- [File System](https://github.com/josxha/flutter_map_cache/wiki/Use-the-File-System)
+
+## Common use cases & FAQ
+
+### How about web?
+
+This package supports the web as long as you use a storage backend that supports web. For example Hive uses for its web
+support IndexedDB under the hood to support web.
+
+Additionally, this package has support to cancel tile requests that are no longer needed like the
+[flutter_map_cancellable_tile_provider](https://pub.dev/packages/flutter_map_cancellable_tile_provider/) plugin.
 
 ### Remove the api key from the url before it gets used for caching
 

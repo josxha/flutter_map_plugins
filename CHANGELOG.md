@@ -1,3 +1,11 @@
+## [1.3.0]  2023-10-09
+
+- Support for flutter_map version [^6.0.0](https://pub.dev/packages/flutter_map/changelog#600---20231009)
+- Support to [cancel map tiles](https://github.com/fleaflet/flutter_map/pull/1622) if tiles are still loading but no
+  longer needed (
+  like [flutter_map_cancellable_tile_provider](https://pub.dev/packages/flutter_map_cancellable_tile_provider))
+- Update documentation
+
 ## [1.2.0] 2023-06-28
 
 #### CachedTileProvider
