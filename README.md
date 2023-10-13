@@ -36,8 +36,8 @@ the support for isar.
 
 ```yaml
 dependencies:
-  flutter_map: ^5.0.0 # in case you don't have it yet 
-  flutter_map_cache: ^1.0.0 # this package
+  flutter_map: ^6.0.0 # in case you don't have it yet 
+  flutter_map_cache: ^1.3.0 # this package
 
   dio_cache_interceptor_db_store: ^5.1.0 # drift
   sqlite3_flutter_libs: ^0.5.15 # drift
