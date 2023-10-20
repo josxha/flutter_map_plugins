@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_map/flutter_map.dart';
 
 /// Image provider with additional caching functionality
 class CachedImageProvider extends ImageProvider<CachedImageProvider> {
@@ -22,13 +23,16 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
   /// The cancellation token that gets provided to dio
   final cancelToken = CancelToken();
 
+  /// Call this callback to cancel the request
+  final Future<void> cancelLoading;
+
   /// Default constructor for the [CachedImageProvider]
   CachedImageProvider({
     required this.dio,
     required this.url,
     this.fallbackUrl,
     required this.headers,
-    required Future<void> cancelLoading,
+    required this.cancelLoading,
   }) {
     cancelLoading.then((_) => cancelToken.cancel());
   }
@@ -67,7 +71,6 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
     ImageDecoderCallback decode, {
     bool useFallback = false,
   }) async {
-    final Uint8List bytes;
     try {
       final response = await dio.get(
         useFallback && fallbackUrl != null ? fallbackUrl! : url,
@@ -85,12 +88,27 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
           );
         },
       );
-      bytes = Uint8List.fromList(response.data);
-    } catch (_) {
+      final bytes = Uint8List.fromList(response.data);
+      final codec = decode(await ImmutableBuffer.fromUint8List(bytes));
+      cancelLoading.ignore();
+      return codec;
+    } catch (error) {
+      // check if request is cancelled
+      if (error is DioException) {
+        if (error.type == DioExceptionType.cancel) {
+          // request has been cancelled by flutter_map
+          // return an empty image to void this exception
+          return decode(
+            await ImmutableBuffer.fromUint8List(TileProvider.transparentImage),
+          );
+        }
+      }
+      // check if already used fallback
       if (useFallback) rethrow;
+      // check if no fallback url set
+      if (fallbackUrl == null) rethrow;
+      // use fallback url
       return _loadAsync(key, chunkEvents, decode, useFallback: true);
     }
-
-    return decode(await ImmutableBuffer.fromUint8List(bytes));
   }
 }
