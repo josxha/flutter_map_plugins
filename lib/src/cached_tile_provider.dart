@@ -14,13 +14,15 @@ class CachedTileProvider extends TileProvider {
   /// Create a new [CachedTileProvider]
   CachedTileProvider({
     required CacheStore store,
+    Dio? dio,
     BaseOptions? dioOptions,
     List<Interceptor>? interceptors,
     Duration? maxStale,
     CacheKeyBuilder? keyBuilder,
     List<int>? hitCacheOnErrorExcept = defaultHitCacheOnErrorExcept,
-  }) : dio = Dio(dioOptions) {
-    dio.interceptors.addAll([
+  }) : dio = dio ?? Dio(dioOptions) {
+    this.dio.options = dioOptions ?? BaseOptions();
+    this.dio.interceptors.addAll([
       if (interceptors != null) ...interceptors,
       DioCacheInterceptor(
         options: CacheOptions(
