@@ -22,6 +22,7 @@ class ExampleApp extends StatefulWidget {
 
 class _ExampleAppState extends State<ExampleApp> {
   CacheStore _cacheStore = MemCacheStore();
+  final _dio = Dio();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,7 @@ class _ExampleAppState extends State<ExampleApp> {
                 TileLayer(
                   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                   tileProvider: CachedTileProvider(
+                    dio: _dio,
                     maxStale: const Duration(days: 30),
                     store: _cacheStore,
                     interceptors: [

@@ -1,3 +1,9 @@
+## [1.4.0] 2024-01-24
+
+- Add `dio` as a parameter to `CachedTileProvider`. You're now able to provide and reuse your own Dio instance (Thanks to @PatrickWulfe).
+- Deprecate the `dioOptions` parameter. Prefer creating your own Dio instance and provide it to the `dio` parameter.
+- Update the README file (for example add isar to the list of supported storage backends).
+
 ## [1.3.1]  2023-10-20
 
 Remove exception from the console when tile requests get cancelled
