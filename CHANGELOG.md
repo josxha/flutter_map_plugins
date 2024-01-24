@@ -1,3 +1,7 @@
+## [1.4.1] 2024-01-24
+
+Fix description of Isar in the README file.
+
 ## [1.4.0] 2024-01-24
 
 - Add `dio` as a parameter to `CachedTileProvider`. You're now able to provide and reuse your own Dio instance (Thanks to @PatrickWulfe).
