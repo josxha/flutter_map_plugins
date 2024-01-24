@@ -2,8 +2,8 @@
 
 A slim yet powerful caching plugin for flutter_map tile layers.
 
-Many tile providers require users in their tile usage policy to cache 
-tile requests. This lowers the load on those servers and provides a better 
+Many tile providers require users in their tile usage policy to cache
+tile requests. This lowers the load on those servers and provides a better
 experience to users.
 
 ![Pub Likes](https://img.shields.io/pub/likes/flutter_map_cache)
@@ -75,8 +75,8 @@ dependencies:
 Using the cache is easy. Here is an example how to use the **Hive** backend:
 
 1. First get the cache directory of the app (i.e. with
-the [path_provider](https://pub.dev/packages/path_provider)
-package).
+   the [path_provider](https://pub.dev/packages/path_provider)
+   package).
 
 ```dart
 import 'package:path_provider/path_provider.dart';
@@ -88,8 +88,8 @@ Future<String> getPath() async {
 ```
 
 2. Then use the directory path to initialize the `HiveCacheStore`. You can wrap
-FlutterMap inside a `FutureBuilder` to use
-the `getPath()` method.
+   FlutterMap inside a `FutureBuilder` to use
+   the `getPath()` method.
 
 ```dart
 @override
@@ -120,7 +120,7 @@ You can find additional example usages for other storage backends here:
 - [File System](https://github.com/josxha/flutter_map_cache/wiki/Use-the-File-System)
 
 ...or check out
-[the example app](https://github.com/josxha/flutter_map_cache/tree/main/example) 
+[the example app](https://github.com/josxha/flutter_map_cache/tree/main/example)
 on GitHub for a full example implementation of most storage backends.
 
 ## Common use cases & frequent questions
@@ -150,6 +150,7 @@ Yes. This package includes the tile cancellation that would otherwise be
 provided
 by [flutter_map_cancellable_tile_provider](https://pub.dev/packages/flutter_map_cancellable_tile_provider/)
 out of the box.
+
 ---
 </details>
 
@@ -162,21 +163,17 @@ Commercial tile providers often use an api key that is attached as a parameter
 to the url. While this shouldn't be a problem when the api key stays the same
 you might want to make it immune to api key changes anyway.
 
-```dart
-
+```
 final _uuid = Uuid();
 
-CachedTileProvider
-(
-keyBuilder: (request) {
-return _uuid.v5(
-Uuid.NAMESPACE_URL,
-request.uri.replace(queryParameters: {}).toString(),
-);
-},
-...
-)
-,
+CachedTileProvider(
+  keyBuilder: (request) {
+    return _uuid.v5(
+      Uuid.NAMESPACE_URL,
+      request.uri.replace(queryParameters: {}).toString(),
+    );
+  },
+),
 ```
 
 ---
@@ -188,20 +185,20 @@ request.uri.replace(queryParameters: {}).toString(),
   <summary>Click here to expand.</summary>
 
 This package does not provide support to download tiles automatically.
-Only tiles that were previously visited with an active internet connection 
+Only tiles that were previously visited with an active internet connection
 show up on the map.
 
 If you need bulk-downloading functionality you can check out the package
-[flutter_map_tile_caching](https://pub.dev/packages/flutter_map_tile_caching) 
-(Paid license is needed or your project has to be open sourced under the 
+[flutter_map_tile_caching](https://pub.dev/packages/flutter_map_tile_caching)
+(Paid license is needed or your project has to be open sourced under the
 GPL-3.0 license).
 
-Please note that free tile providers such as 
-[OpenStreetMap](https://www.openstreetmap.org/) forbids bulk 
-downloading (more than 250 tiles on a higher zoom level) of tiles in their 
+Please note that free tile providers such as
+[OpenStreetMap](https://www.openstreetmap.org/) forbids bulk
+downloading (more than 250 tiles on a higher zoom level) of tiles in their
 [tile usage policy](https://operations.osmfoundation.org/policies/tiles/).
-If you use a paid tile provider, bulk-downloading can cause high costs if 
-you pay per tile request. Using a proper offline map solution (e.g. MBTiles) 
+If you use a paid tile provider, bulk-downloading can cause high costs if
+you pay per tile request. Using a proper offline map solution (e.g. MBTiles)
 would be my recommendation here.
 
 ---
@@ -212,12 +209,12 @@ would be my recommendation here.
 <details>
   <summary>Click here to expand.</summary>
 
-Because [dio_cache_interceptor](https://github.com/llfbandit/dio_cache_interceptor) 
-already supports Drift as a SQLite solution it's unlikely that sqflite will 
-be supported any day soon. 
+Because [dio_cache_interceptor](https://github.com/llfbandit/dio_cache_interceptor)
+already supports Drift as a SQLite solution it's unlikely that sqflite will
+be supported any day soon.
 
-If you still are required to use only sqflite, I recommend to create your own 
-tile provider by using the 
+If you still are required to use only sqflite, I recommend to create your own
+tile provider by using the
 [cached_network_image](https://pub.dev/packages/cached_network_image) package.
 
 ---
