@@ -31,7 +31,7 @@ Supported storage backends are:
 | [Drift](https://pub.dev/packages/drift)         | - SQLite database<br/>- good platform support                                                                  |
 | [Hive](https://pub.dev/packages/hive)           | - key-value database<br/>- easy to integrate                                                                   |
 | [ObjectBox](https://pub.dev/packages/objectbox) | - NoSQL, ACID compliant<br/>- Fast library<br/>- More complex integration                                      |
-| [Isar](https://pub.dev/packages/isar)           | - NoSQL, ACID compliant<br/>- Fast library<br/>- More complex integration                                      |
+| [Isar](https://pub.dev/packages/isar)           | - NoSQL<br/>- Fast library<br/>- More complex integration                                                      |
 
 Other storage backends will be supported as soon as the underlying package
 [dio_cache_interceptor](https://pub.dev/packages/dio_cache_interceptor) supports
