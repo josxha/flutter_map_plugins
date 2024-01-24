@@ -11,8 +11,6 @@ enum CacheStoreTypes {
   dbCache('DbCache (Drift)'),
   fileCache('FileCache'),
   hiveCache('HiveCache');
-  //sembastCache('SembastCache'),
-  //objectBoxCache('ObjectBoxCache');
 
   const CacheStoreTypes(this.name);
 
@@ -31,13 +29,6 @@ enum CacheStoreTypes {
             '$path${Platform.pathSeparator}HiveCacheStore',
             hiveBoxName: 'HiveCacheStore',
           ),
-        /*CacheStoreTypes.objectBoxCache => ObjectBoxCacheStore(
-            storePath: '$path${Platform.pathSeparator}ObjectBoxCacheStore',
-          ),
-        CacheStoreTypes.sembastCache => SembastCacheStore(
-            storePath: '$path${Platform.pathSeparator}SembastCacheStore',
-            cacheStore: 'SembastCacheStore',
-          ),*/
       };
 
   CacheStore getCacheStoreWeb() => switch (this) {
