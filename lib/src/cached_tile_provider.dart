@@ -14,14 +14,29 @@ class CachedTileProvider extends TileProvider {
   /// Create a new [CachedTileProvider]
   CachedTileProvider({
     required CacheStore store,
+    Dio? dio,
+    @Deprecated(
+      '''
+      This parameter will be removed in version 2.0.0 of flutter_map_cache.
+      
+      Please use the `dio` parameter instead and provide your own Dio instance.
+      
+        CachedTileProvider(
+          dio: Dio(
+            BaseOptions(...),
+          ),
+        ),
+  ''',
+    )
     BaseOptions? dioOptions,
     List<Interceptor>? interceptors,
     Duration? maxStale,
     CacheKeyBuilder? keyBuilder,
     List<int>? hitCacheOnErrorExcept = defaultHitCacheOnErrorExcept,
-  }) : dio = Dio(dioOptions) {
-    dio.interceptors.addAll([
-      if (interceptors != null) ...interceptors,
+  }) : dio = dio ?? Dio(dioOptions) {
+    this.dio.options = dioOptions ?? BaseOptions();
+    this.dio.interceptors.addAll([
+      ...?interceptors,
       DioCacheInterceptor(
         options: CacheOptions(
           store: store,
@@ -41,6 +56,7 @@ class CachedTileProvider extends TileProvider {
   static const List<int> defaultHitCacheOnErrorExcept = [
     HttpStatus.unauthorized,
     HttpStatus.forbidden,
+    HttpStatus.badGateway,
   ];
 
   @override
