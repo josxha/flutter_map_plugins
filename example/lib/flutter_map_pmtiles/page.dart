@@ -3,19 +3,18 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_pmtiles/flutter_map_pmtiles.dart';
 import 'package:latlong2/latlong.dart';
 
-class VectorMapTilesPmTilesPage extends StatefulWidget {
-  const VectorMapTilesPmTilesPage({super.key});
+class FlutterMapPmTilesPage extends StatefulWidget {
+  const FlutterMapPmTilesPage({super.key});
 
   @override
-  State<VectorMapTilesPmTilesPage> createState() =>
-      _VectorMapTilesPmTilesPageState();
+  State<FlutterMapPmTilesPage> createState() => _FlutterMapPmTilesPageState();
 }
 
 // TODO: use your own tile source https://docs.protomaps.com/pmtiles/cloud-storage
 const tileSource =
     'https://raw.githubusercontent.com/protomaps/PMTiles/main/spec/v3/stamen_toner(raster)CC-BY%2BODbL_z3.pmtiles';
 
-class _VectorMapTilesPmTilesPageState extends State<VectorMapTilesPmTilesPage> {
+class _FlutterMapPmTilesPageState extends State<FlutterMapPmTilesPage> {
   final Future<PmTilesTileProvider> _futureTileProvider =
       PmTilesTileProvider.fromSource(tileSource);
 
