@@ -3,14 +3,14 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_mbtiles/flutter_map_mbtiles.dart';
 import 'package:latlong2/latlong.dart';
 
-class FlutterMapPmTilesPage extends StatefulWidget {
-  const FlutterMapPmTilesPage({super.key});
+class FlutterMapMbTilesPage extends StatefulWidget {
+  const FlutterMapMbTilesPage({super.key});
 
   @override
-  State<FlutterMapPmTilesPage> createState() => _FlutterMapPmTilesPageState();
+  State<FlutterMapMbTilesPage> createState() => _FlutterMapMbTilesPageState();
 }
 
-class _FlutterMapPmTilesPageState extends State<FlutterMapPmTilesPage> {
+class _FlutterMapMbTilesPageState extends State<FlutterMapMbTilesPage> {
   final mbtiles = MBTiles(
     mbtilesPath: 'assets/mbtiles/countries-raster.mbtiles',
   );

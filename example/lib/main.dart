@@ -1,8 +1,11 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
+import 'package:flutter_map_plugins_example/flutter_map_mbtiles/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
+import 'package:flutter_map_plugins_example/vector_map_tiles_mbtiles/page.dart';
 import 'package:flutter_map_plugins_example/vector_map_tiles_pmtiles/page.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -96,12 +99,14 @@ class SelectionItemWidget extends StatelessWidget {
   final String title;
   final String desc;
   final String routeName;
+  final bool disabledOnWeb;
 
   const SelectionItemWidget({
     super.key,
     required this.title,
     required this.desc,
     required this.routeName,
+    this.disabledOnWeb = false,
   });
 
   @override

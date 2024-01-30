@@ -6,15 +6,15 @@ import 'package:vector_map_tiles/vector_map_tiles.dart';
 import 'package:vector_map_tiles_mbtiles/vector_map_tiles_pmtiles.dart';
 import 'package:vector_tile_renderer/vector_tile_renderer.dart';
 
-class VectorMapTilesPmTilesPage extends StatefulWidget {
-  const VectorMapTilesPmTilesPage({super.key});
+class VectorMapTilesMbTilesPage extends StatefulWidget {
+  const VectorMapTilesMbTilesPage({super.key});
 
   @override
-  State<VectorMapTilesPmTilesPage> createState() =>
-      _VectorMapTilesPmTilesPageState();
+  State<VectorMapTilesMbTilesPage> createState() =>
+      _VectorMapTilesMbTilesPageState();
 }
 
-class _VectorMapTilesPmTilesPageState extends State<VectorMapTilesPmTilesPage> {
+class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
   final mbtiles = MBTiles(
     mbtilesPath: 'assets/mbtiles/countries-vector.mbtiles',
     isPBF: true, // optional, but small performance benefit
