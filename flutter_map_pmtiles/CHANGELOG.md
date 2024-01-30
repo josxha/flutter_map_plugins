@@ -1,3 +1,8 @@
+## [1.0.2] 2024-01-30
+
+- Improve documentation
+- Fix package score
+
 ## [1.0.1] 2024-01-30
 
 - Fix package links

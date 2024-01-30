@@ -3,10 +3,16 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_map_pmtiles/flutter_map_pmtiles.dart';
 import 'package:pmtiles/pmtiles.dart';
 
+/// The [PmTilesImageProvider] is used by the [PmTilesTileProvider] to load
+/// tile images.
 class PmTilesImageProvider extends ImageProvider<PmTilesImageProvider> {
+  /// Reference to the PMTiles archive instance
   final PmTilesArchive archive;
+
+  /// The calculated tile ID, translated from ZXY coordinates
   final int tileId;
 
   PmTilesImageProvider({
