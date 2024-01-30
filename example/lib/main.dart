@@ -1,110 +1,82 @@
-import 'dart:io';
-
-import 'package:dio/dio.dart';
-import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_cache/flutter_map_cache.dart';
-import 'package:flutter_map_cache_example/cache_store_types.dart';
-import 'package:flutter_map_cache_example/example_app_wrapper.dart';
-import 'package:flutter_map_cache_example/misc.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
+import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
+import 'package:flutter_map_plugins_example/vector_map_tiles_pmtiles/page.dart';
 
-void main() => runApp(const ExampleApp());
-
-class ExampleApp extends StatefulWidget {
-  const ExampleApp({super.key});
-
-  @override
-  State<ExampleApp> createState() => _ExampleAppState();
+void main() {
+  runApp(const MyApp());
 }
 
-class _ExampleAppState extends State<ExampleApp> {
-  CacheStore _cacheStore = MemCacheStore();
-  final _dio = Dio();
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ExampleAppWrapper(
-      child: Column(
+    return MaterialApp(
+      title: 'flutter_map_plugins',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+      ),
+      home: const Material(child: SelectionPage()),
+    );
+  }
+}
+
+class SelectionPage extends StatelessWidget {
+  const SelectionPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: GridView.count(
+        crossAxisCount: 2,
+        childAspectRatio: 5,
         children: [
-          Expanded(
-            child: FlutterMap(
-              options: mapOptions,
-              children: [
-                TileLayer(
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  tileProvider: CachedTileProvider(
-                    dio: _dio,
-                    maxStale: const Duration(days: 30),
-                    store: _cacheStore,
-                    interceptors: [
-                      LogInterceptor(
-                        logPrint: (object) => debugPrint(object.toString()),
-                        responseHeader: false,
-                        requestHeader: false,
-                        request: false,
-                      ),
-                    ],
-                  ),
-                  userAgentPackageName: 'com.github.josxha/flutter_map_cache',
-                ),
-              ],
-            ),
+          SelectionItemWidget(
+            title: 'flutter_map_cache',
+            desc:
+                'A slim yet powerful caching plugin for flutter_map tile layers.',
+            pageBuilder: (context) => const FlutterMapCachePage(),
           ),
-          Container(
-            color: Colors.white,
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const Text('CacheStore Type'),
-                if (kIsWeb)
-                  DropdownMenu<CacheStoreTypes>(
-                    initialSelection: CacheStoreTypes.memCache,
-                    onSelected: (value) {
-                      if (value == null) return;
-                      debugPrint('CacheStore changed to ${value.name}');
-                      setState(() {
-                        _cacheStore = value.getCacheStoreWeb();
-                      });
-                    },
-                    dropdownMenuEntries: CacheStoreTypes.dropdownList,
-                  ),
-                if (!kIsWeb)
-                  FutureBuilder<Directory>(
-                    // ignore: discarded_futures
-                    future: getTemporaryDirectory(), // not available on web
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final dataPath = snapshot.requireData.path;
-                        return DropdownMenu<CacheStoreTypes>(
-                          initialSelection: CacheStoreTypes.memCache,
-                          onSelected: (value) {
-                            if (value == null) return;
-                            debugPrint('CacheStore changed to ${value.name}');
-                            setState(() {
-                              _cacheStore = value.getCacheStore(dataPath);
-                            });
-                          },
-                          dropdownMenuEntries: CacheStoreTypes.dropdownList,
-                        );
-                      }
-                      if (snapshot.hasError) {
-                        debugPrint(snapshot.error.toString());
-                        debugPrintStack(stackTrace: snapshot.stackTrace);
-                        return Expanded(
-                          child: Text(snapshot.error.toString()),
-                        );
-                      }
-                      return const Expanded(child: LinearProgressIndicator());
-                    },
-                  ),
-              ],
-            ),
+          SelectionItemWidget(
+            title: 'flutter_map_pmtiles',
+            desc: 'PMTiles for flutter_map',
+            pageBuilder: (context) => const FlutterMapPmTilesPage(),
+          ),
+          SelectionItemWidget(
+            title: 'vector_map_tiles_pmtiles',
+            desc: 'PMTiles for vector_map_files / flutter_map',
+            pageBuilder: (context) => VectorMapTilesPmTilesPage(),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class SelectionItemWidget extends StatelessWidget {
+  final String title;
+  final String desc;
+  final WidgetBuilder pageBuilder;
+
+  const SelectionItemWidget({
+    super.key,
+    required this.title,
+    required this.desc,
+    required this.pageBuilder,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: InkWell(
+        onTap: () =>
+            Navigator.of(context).push(MaterialPageRoute(builder: pageBuilder)),
+        child: ListTile(
+          title: Text(title),
+          subtitle: Text(desc),
+        ),
       ),
     );
   }
