@@ -15,7 +15,7 @@ dependencies:
 
   # flutter_map_cache
   flutter_map_cache:
-    path: ../
+    path: ../flutter_map_cache
   connectivity_plus: ^5.0.0
   path_provider: ^2.0.15
   dio: ^5.2.0+1
@@ -27,11 +27,11 @@ dependencies:
 
   # flutter_map_pmtiles
   flutter_map_pmtiles:
-    path: ../
+    path: ../flutter_map_pmtiles
   
   # vector_map_tiles_pmtiles
   vector_map_tiles_pmtiles:
-    path: ../
+    path: ../vector_map_tiles_pmtiles
   vector_map_tiles: ^7.0.1
   vector_tile_renderer: ^5.2.0
 
