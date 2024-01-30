@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # commom packages
   flutter_map: ^6.0.0
   latlong2: ^0.9.0
   url_launcher: ^6.2.4
@@ -25,20 +24,26 @@ dependencies:
   dio_cache_interceptor_db_store: ^5.1.0
   dio_cache_interceptor_file_store: ^1.2.2
   dio_cache_interceptor_hive_store: ^3.2.1
-  sqlite3_flutter_libs: ^0.5.15 # Drift
-
-  # flutter_map_pmtiles specific packages
-  flutter_map_pmtiles:
-    path: ../flutter_map_pmtiles
-  
-  # vector_map_tiles_pmtiles specific packages
-  vector_map_tiles_pmtiles:
-    path: ../vector_map_tiles_pmtiles
+  sqlite3_flutter_libs: ^0.5.15
   vector_map_tiles: ^7.0.1
   vector_tile_renderer: ^5.2.0
+  
+  vector_map_tiles_mbtiles:
+    path: ../vector_map_tiles_mbtiles
+  flutter_map_mbtiles:
+    path: ../flutter_map_mbtiles
+  vector_map_tiles_pmtiles:
+    path: ../vector_map_tiles_pmtiles
+  flutter_map_pmtiles:
+    path: ../flutter_map_pmtiles
+  flutter_map_cache:
+    path: ../flutter_map_cache
 
 dev_dependencies:
   total_lints: ^3.0.0
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/mbtiles/
+
