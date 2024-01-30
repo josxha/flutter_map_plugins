@@ -1,46 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_pmtiles/flutter_map_pmtiles.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:vector_map_tiles/vector_map_tiles.dart' as vmt;
-import 'package:vector_map_tiles_pmtiles/vector_map_tiles.dart';
-import 'package:vector_tile_renderer/vector_tile_renderer.dart' as vtr;
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class VectorMapTilesPmTilesPage extends StatefulWidget {
+  const VectorMapTilesPmTilesPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(home: MyHomePage());
-  }
+  State<VectorMapTilesPmTilesPage> createState() =>
+      _VectorMapTilesPmTilesPageState();
 }
 
 // TODO: use your own tile source https://docs.protomaps.com/pmtiles/cloud-storage
 const tileSource =
-    'https://build.protomaps.com/20240128.pmtiles';
+    'https://raw.githubusercontent.com/protomaps/PMTiles/main/spec/v3/stamen_toner(raster)CC-BY%2BODbL_z3.pmtiles';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final Future<PmTilesVectorTileProvider> _futureTileProvider =
-      PmTilesVectorTileProvider.fromSource(tileSource);
+class _VectorMapTilesPmTilesPageState extends State<VectorMapTilesPmTilesPage> {
+  final Future<PmTilesTileProvider> _futureTileProvider =
+      PmTilesTileProvider.fromSource(tileSource);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text('vector_map_tiles_pmtiles'),
+        title: const Text('flutter_map_pmtiles'),
       ),
-      body: FutureBuilder<PmTilesVectorTileProvider>(
+      body: FutureBuilder<PmTilesTileProvider>(
         future: _futureTileProvider,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -52,12 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 maxZoom: 3.49,
               ),
               children: [
-                vmt.VectorTileLayer(
-                  theme: vtr.ProvidedThemes.lightTheme(),
-                  tileProviders: vmt.TileProviders({
-                    'openmaptiles': tileProvider,
-                  }),
-                ),
+                TileLayer(tileProvider: tileProvider),
               ],
             );
           }
