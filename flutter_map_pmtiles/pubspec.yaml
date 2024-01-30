@@ -1,7 +1,7 @@
 name: flutter_map_pmtiles
 description: "PMTiles for flutter_map"
-repository: https://github.com/flutter_map_pmtiles
-issue_tracker: https://github.com/flutter_map_pmtiles/issues
+repository: https://github.com/flutter_map_plugins
+issue_tracker: https://github.com/flutter_map_plugins/issues
 topics: [ flutter-map, map, pmtiles ]
 version: 1.0.0
 
