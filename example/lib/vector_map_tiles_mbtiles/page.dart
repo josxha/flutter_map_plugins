@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
-import 'package:vector_map_tiles_pmtiles/vector_map_tiles_pmtiles.dart';
+import 'package:vector_map_tiles_mbtiles/vector_map_tiles_pmtiles.dart';
 import 'package:vector_tile_renderer/vector_tile_renderer.dart';
 
 // It could be that the hosted PMTiles file is no longer available.
@@ -11,8 +11,8 @@ import 'package:vector_tile_renderer/vector_tile_renderer.dart';
 const tileSource = 'https://build.protomaps.com/20240128.pmtiles';
 
 class VectorMapTilesPmTilesPage extends StatelessWidget {
-  final Future<PmTilesVectorTileProvider> _futureTileProvider =
-      PmTilesVectorTileProvider.fromSource(tileSource);
+  final Future<MbTilesVectorTileProvider> _futureTileProvider =
+      MbTilesVectorTileProvider.fromSource(tileSource);
 
   VectorMapTilesPmTilesPage({super.key});
 
@@ -23,7 +23,7 @@ class VectorMapTilesPmTilesPage extends StatelessWidget {
         backgroundColor: Colors.white,
         title: const Text('vector_map_tiles_pmtiles'),
       ),
-      body: FutureBuilder<PmTilesVectorTileProvider>(
+      body: FutureBuilder<MbTilesVectorTileProvider>(
         future: _futureTileProvider,
         builder: (context, snapshot) {
           if (snapshot.hasData) {

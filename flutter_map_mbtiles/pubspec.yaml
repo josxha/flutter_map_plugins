@@ -15,7 +15,6 @@ dependencies:
   flutter_map: ^6.0.0
   mbtiles: ^0.1.0
   sqlite3_flutter_libs: ^0.5.18
-  vector_map_tiles: ^6.0.2
 
 dev_dependencies:
   total_lints: ^3.2.0

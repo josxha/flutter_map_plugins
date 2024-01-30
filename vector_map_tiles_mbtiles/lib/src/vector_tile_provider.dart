@@ -4,7 +4,7 @@ import 'package:mbtiles/mbtiles.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 
 /// MBTiles raster TileProvider, use for `pbf` tiles.
-class VectorMBTilesProvider extends VectorTileProvider {
+class MbTilesVectorTileProvider extends VectorTileProvider {
   /// MBTiles database
   final MBTiles mbtiles;
 
@@ -14,9 +14,9 @@ class VectorMBTilesProvider extends VectorTileProvider {
   /// The maximum zoom level that is supported by the MBTiles file
   final int maxZoom;
 
-  /// Create a new [VectorMBTilesProvider] and pass it to the flutter_map
+  /// Create a new [MbTilesVectorTileProvider] and pass it to the flutter_map
   /// vector plugin vector_map_tiles.
-  VectorMBTilesProvider({
+  MbTilesVectorTileProvider({
     required this.mbtiles,
     required this.minZoom,
     required this.maxZoom,
@@ -35,7 +35,7 @@ class VectorMBTilesProvider extends VectorTileProvider {
     if (bytes != null) return bytes;
     throw Exception(
       'Tile could not be found in MBTiles '
-      '(z:${tile.z}, x:${tile.x}, y:${tile.y})',
+          '(z:${tile.z}, x:${tile.x}, y:${tile.y})',
     );
   }
 }

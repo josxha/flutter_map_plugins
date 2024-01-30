@@ -1,0 +1,19 @@
+name: vector_map_tiles_mbtiles
+description: PMTiles for vector_map_files / flutter_map
+repository: https://github.com/josxha/flutter_map_plugins
+issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
+topics: [ flutter-map, vector-map-tiles, map, pmtiles ]
+version: 1.0.0
+
+environment:
+  sdk: '>=3.2.5 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  mbtiles: ^0.1.0
+  vector_map_tiles: ^7.0.1
+
+dev_dependencies:
+  flutter_lints: ^3.0.0

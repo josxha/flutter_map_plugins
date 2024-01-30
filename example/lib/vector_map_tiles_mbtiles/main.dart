@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_mbtiles/flutter_map_mbtiles.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
+import 'package:vector_map_tiles_mbtiles/vector_map_tiles_pmtiles.dart';
 import 'package:vector_tile_renderer/vector_tile_renderer.dart';
 
 void main() => runApp(const MyApp());
@@ -85,7 +86,7 @@ class PageContentState extends State<PageContent> {
             children: [
               if (!_useVectorMbtiles)
                 TileLayer(
-                  tileProvider: RasterMBTilesProvider(
+                  tileProvider: MbTilesTilesProvider(
                     mbtiles: rasterMbtiles,
                   ),
                 ),
@@ -93,7 +94,7 @@ class PageContentState extends State<PageContent> {
                 VectorTileLayer(
                   theme: ProvidedThemes.lightTheme(),
                   tileProviders: TileProviders({
-                    'openmaptiles': VectorMBTilesProvider(
+                    'openmaptiles': MbTilesVectorTileProvider(
                       maxZoom: 6,
                       minZoom: 1,
                       mbtiles: vectorMbtiles,
