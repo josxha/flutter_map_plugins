@@ -35,8 +35,8 @@ class SelectionPage extends StatelessWidget {
         children: [
           SelectionItemWidget(
             title: 'flutter_map_cache',
-            desc:
-                'A slim yet powerful caching plugin for flutter_map tile layers.',
+            desc: 'A slim yet powerful caching plugin for flutter_map '
+                'tile layers.',
             pageBuilder: (context) => const FlutterMapCachePage(),
           ),
           SelectionItemWidget(
