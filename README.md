@@ -6,6 +6,14 @@ A combined example app can be found under
 
 ### [flutter_map_cache](https://pub.dev/packages/flutter_map_cache)
 
+A slim yet powerful caching plugin for flutter_map tile layers. Supports any
+storage backend you would possibly want.
+
+- This package fills the gap
+  between [dio_cache_interceptor](https://pub.dev/packages/dio_cache_interceptor)
+  and flutter_map.
+- Support for tile cancellation
+
 ### [flutter_map_pmtiles](https://pub.dev/packages/flutter_map_pmtiles)
 
 This package provides the `PmTilesTileProvider` that can be used with

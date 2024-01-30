@@ -5,8 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pmtiles/pmtiles.dart';
 
-class PmTilesImageProvider
-    extends ImageProvider<PmTilesImageProvider> {
+class PmTilesImageProvider extends ImageProvider<PmTilesImageProvider> {
   final PmTilesArchive archive;
   final int tileId;
 

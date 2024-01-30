@@ -1,39 +1,67 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# flutter_map_pmtiles
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+A TileProvider for flutter_map that adds support for PMTiles.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+![Pub Likes](https://img.shields.io/pub/likes/flutter_map_pmtiles)
+![Pub Points](https://img.shields.io/pub/points/flutter_map_pmtiles)
+![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_pmtiles)
+![Pub Version](https://img.shields.io/pub/v/flutter_map_pmtiles)
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)
+![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)
+![GitHub Repo stars](https://img.shields.io/github/stars/josxha/flutter_map_plugins?style=social)
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add the following packages to your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  flutter_map: ^6.0.0         # in case you don't have it yet 
+  flutter_map_pmtiles: ^1.0.0 # this package
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+1. Initiate the TileProvider
 
 ```dart
-const like = 'sample';
+// ...from an URL
+final Future<PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
+    .fromSource('https://example.com/useYourOwnHostedPMTilesFile.pmtiles');
+// ...from an local file on the file system
+final Future<PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
+    .fromSource('some/file/system/path.pmtiles');
+// ...or provide a PmTilesArchive directly 
+// (you'll need to add pmtiles as direct dependency to your project)
+final Future<PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
+    .fromArchive(somePmTilesArchive);
+```
+
+2. Await the response of the future, e.g. by using a `FutureBuilder`.
+
+3. Provide your `PmTilesVectorTileProvider` to your `TileLayer`
+
+```dart
+@override
+Widget build(BuildContext context) {
+  return FlutterMap(
+    options: MapOptions(),
+    children: [
+      VectorTileLayer(
+        theme: ProvidedThemes.lightTheme(),
+        tileProviders: TileProviders({
+          'openmaptiles': tileProvider,
+        }),
+      ),
+    ],
+  );
+}
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+If you need help you
+can [open an issue](https://github.com/josxha/flutter_map_plugins/issues/new/choose)
+or join
+the [`flutter_map` discord server](https://discord.gg/BwpEsjqMAH).

@@ -11,9 +11,9 @@ experience to users.
 ![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_cache)
 ![Pub Version](https://img.shields.io/pub/v/flutter_map_cache)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_cache)
-![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_cache)
-![GitHub Repo stars](https://img.shields.io/github/stars/josxha/flutter_map_cache?style=social)
+![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)
+![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)
+![GitHub Repo stars](https://img.shields.io/github/stars/josxha/flutter_map_plugins?style=social)
 
 ## Features
 
@@ -116,11 +116,11 @@ Widget build(BuildContext context) {
 
 You can find additional example usages for other storage backends here:
 
-- [In Memory (for testing)](https://github.com/josxha/flutter_map_cache/wiki/Use-the-In%E2%80%90Memory-Store-(for-testing))
-- [File System](https://github.com/josxha/flutter_map_cache/wiki/Use-the-File-System)
+- [In Memory (for testing)](https://github.com/josxha/flutter_map_plugins/wiki/Use-the-In%E2%80%90Memory-Store-(for-testing))
+- [File System](https://github.com/josxha/flutter_map_plugins/wiki/Use-the-File-System)
 
 ...or check out
-[the example app](https://github.com/josxha/flutter_map_cache/tree/main/example)
+[the example app](https://github.com/josxha/flutter_map_plugins/tree/main/example)
 on GitHub for a full example implementation of most storage backends.
 
 ## Common use cases & frequent questions
@@ -227,6 +227,6 @@ backend you can check out
 [dio_cache_interceptor](https://github.com/llfbandit/dio_cache_interceptor).
 
 If you need help you
-can [open an issue](https://github.com/josxha/flutter_map_cache/issues/new/choose)
+can [open an issue](https://github.com/josxha/flutter_map_plugins/issues/new/choose)
 or join
 the [`flutter_map` discord server](https://discord.gg/BwpEsjqMAH).

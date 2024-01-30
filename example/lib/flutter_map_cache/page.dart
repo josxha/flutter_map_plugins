@@ -57,7 +57,7 @@ class _FlutterMapCachePageState extends State<FlutterMapCachePage> {
                       ),
                     ],
                   ),
-                  userAgentPackageName: 'com.github.josxha/flutter_map_cache',
+                  userAgentPackageName: 'com.github.josxha/flutter_map_plugins',
                 ),
               ],
             ),

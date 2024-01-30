@@ -1,5 +1,5 @@
 name: flutter_map_pmtiles
-description: "PMTiles for flutter_map"
+description: PMTiles for flutter_map
 repository: https://github.com/flutter_map_plugins
 issue_tracker: https://github.com/flutter_map_plugins/issues
 topics: [ flutter-map, map, pmtiles ]

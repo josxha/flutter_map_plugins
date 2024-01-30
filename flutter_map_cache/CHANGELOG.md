@@ -11,7 +11,7 @@ Fix description of Isar in the README file.
 ## [1.3.1]  2023-10-20
 
 Remove exception from the console when tile requests get cancelled
-(see https://github.com/josxha/flutter_map_cache/issues/3).
+(see https://github.com/josxha/flutter_map_plugins/issues/3).
 
 ## [1.3.0]  2023-10-09
 

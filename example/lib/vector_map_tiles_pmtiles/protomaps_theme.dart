@@ -5,7 +5,8 @@ const theme = {
   "sources": {
     "protomaps": {
       "type": "vector",
-      "attribution": "<a href=\"https://github.com/protomaps/basemaps\">Protomaps</a> © <a href=\"https://openstreetmap.org\">OpenStreetMap</a>",
+      "attribution":
+          "<a href=\"https://github.com/protomaps/basemaps\">Protomaps</a> © <a href=\"https://openstreetmap.org\">OpenStreetMap</a>",
       "url": "https://example.com/tiles.json"
     }
   },
@@ -13,18 +14,14 @@ const theme = {
     {
       "id": "background",
       "type": "background",
-      "paint": {
-        "background-color": "#cccccc"
-      }
+      "paint": {"background-color": "#cccccc"}
     },
     {
       "id": "earth",
       "type": "fill",
       "source": "protomaps",
       "source-layer": "earth",
-      "paint": {
-        "fill-color": "#e0e0e0"
-      }
+      "paint": {"fill-color": "#e0e0e0"}
     },
     {
       "id": "landuse_park",
@@ -48,12 +45,8 @@ const theme = {
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           0,
           "#cfddd5",
           12,
@@ -68,15 +61,9 @@ const theme = {
       "source-layer": "landuse",
       "filter": [
         "any",
-        [
-          "==",
-          "pmap:kind",
-          "hospital"
-        ]
+        ["==", "pmap:kind", "hospital"]
       ],
-      "paint": {
-        "fill-color": "#e4dad9"
-      }
+      "paint": {"fill-color": "#e4dad9"}
     },
     {
       "id": "landuse_industrial",
@@ -85,15 +72,9 @@ const theme = {
       "source-layer": "landuse",
       "filter": [
         "any",
-        [
-          "==",
-          "pmap:kind",
-          "industrial"
-        ]
+        ["==", "pmap:kind", "industrial"]
       ],
-      "paint": {
-        "fill-color": "#d1dde1"
-      }
+      "paint": {"fill-color": "#d1dde1"}
     },
     {
       "id": "landuse_school",
@@ -102,17 +83,9 @@ const theme = {
       "source-layer": "landuse",
       "filter": [
         "any",
-        [
-          "in",
-          "pmap:kind",
-          "school",
-          "university",
-          "college"
-        ]
+        ["in", "pmap:kind", "school", "university", "college"]
       ],
-      "paint": {
-        "fill-color": "#e4ded7"
-      }
+      "paint": {"fill-color": "#e4ded7"}
     },
     {
       "id": "landuse_beach",
@@ -121,15 +94,9 @@ const theme = {
       "source-layer": "landuse",
       "filter": [
         "any",
-        [
-          "in",
-          "pmap:kind",
-          "beach"
-        ]
+        ["in", "pmap:kind", "beach"]
       ],
-      "paint": {
-        "fill-color": "#e8e4d0"
-      }
+      "paint": {"fill-color": "#e8e4d0"}
     },
     {
       "id": "landuse_zoo",
@@ -138,15 +105,9 @@ const theme = {
       "source-layer": "landuse",
       "filter": [
         "any",
-        [
-          "in",
-          "pmap:kind",
-          "zoo"
-        ]
+        ["in", "pmap:kind", "zoo"]
       ],
-      "paint": {
-        "fill-color": "#c6dcdc"
-      }
+      "paint": {"fill-color": "#c6dcdc"}
     },
     {
       "id": "landuse_military",
@@ -155,17 +116,9 @@ const theme = {
       "source-layer": "landuse",
       "filter": [
         "any",
-        [
-          "in",
-          "pmap:kind",
-          "military",
-          "naval_base",
-          "airfield"
-        ]
+        ["in", "pmap:kind", "military", "naval_base", "airfield"]
       ],
-      "paint": {
-        "fill-color": "#c6dcdc"
-      }
+      "paint": {"fill-color": "#c6dcdc"}
     },
     {
       "id": "natural_wood",
@@ -174,23 +127,13 @@ const theme = {
       "source-layer": "natural",
       "filter": [
         "any",
-        [
-          "in",
-          "pmap:kind",
-          "wood",
-          "nature_reserve",
-          "forest"
-        ]
+        ["in", "pmap:kind", "wood", "nature_reserve", "forest"]
       ],
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           0,
           "#d0ded0",
           12,
@@ -203,22 +146,12 @@ const theme = {
       "type": "fill",
       "source": "protomaps",
       "source-layer": "natural",
-      "filter": [
-        "in",
-        "pmap:kind",
-        "scrub",
-        "grassland",
-        "grass"
-      ],
+      "filter": ["in", "pmap:kind", "scrub", "grassland", "grass"],
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           0,
           "#cedcd7",
           12,
@@ -231,28 +164,16 @@ const theme = {
       "type": "fill",
       "source": "protomaps",
       "source-layer": "natural",
-      "filter": [
-        "==",
-        "pmap:kind",
-        "glacier"
-      ],
-      "paint": {
-        "fill-color": "#e7e7e7"
-      }
+      "filter": ["==", "pmap:kind", "glacier"],
+      "paint": {"fill-color": "#e7e7e7"}
     },
     {
       "id": "natural_sand",
       "type": "fill",
       "source": "protomaps",
       "source-layer": "natural",
-      "filter": [
-        "==",
-        "pmap:kind",
-        "sand"
-      ],
-      "paint": {
-        "fill-color": "#e2e0d7"
-      }
+      "filter": ["==", "pmap:kind", "sand"],
+      "paint": {"fill-color": "#e2e0d7"}
     },
     {
       "id": "landuse_aerodrome",
@@ -261,15 +182,9 @@ const theme = {
       "source-layer": "landuse",
       "filter": [
         "any",
-        [
-          "in",
-          "pmap:kind",
-          "aerodrome"
-        ]
+        ["in", "pmap:kind", "aerodrome"]
       ],
-      "paint": {
-        "fill-color": "#dadbdf"
-      }
+      "paint": {"fill-color": "#dadbdf"}
     },
     {
       "id": "transit_runway",
@@ -278,23 +193,14 @@ const theme = {
       "source-layer": "transit",
       "filter": [
         "any",
-        [
-          "in",
-          "pmap:kind_detail",
-          "runway"
-        ]
+        ["in", "pmap:kind_detail", "runway"]
       ],
       "paint": {
         "line-color": "#e9e9ed",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           10,
           0,
           12,
@@ -312,23 +218,14 @@ const theme = {
       "minzoom": 13,
       "filter": [
         "any",
-        [
-          "in",
-          "pmap:kind_detail",
-          "taxiway"
-        ]
+        ["in", "pmap:kind_detail", "taxiway"]
       ],
       "paint": {
         "line-color": "#e9e9ed",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           13.5,
@@ -343,9 +240,7 @@ const theme = {
       "type": "fill",
       "source": "protomaps",
       "source-layer": "water",
-      "paint": {
-        "fill-color": "#80deea"
-      }
+      "paint": {"fill-color": "#80deea"}
     },
     {
       "id": "physical_line_stream",
@@ -355,16 +250,9 @@ const theme = {
       "minzoom": 14,
       "filter": [
         "all",
-        [
-          "in",
-          "pmap:kind",
-          "stream"
-        ]
+        ["in", "pmap:kind", "stream"]
       ],
-      "paint": {
-        "line-color": "#80deea",
-        "line-width": 0.5
-      }
+      "paint": {"line-color": "#80deea", "line-width": 0.5}
     },
     {
       "id": "physical_line_river",
@@ -374,23 +262,14 @@ const theme = {
       "minzoom": 9,
       "filter": [
         "all",
-        [
-          "in",
-          "pmap:kind",
-          "river"
-        ]
+        ["in", "pmap:kind", "river"]
       ],
       "paint": {
         "line-color": "#80deea",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           9,
           0,
           9.5,
@@ -407,15 +286,9 @@ const theme = {
       "source-layer": "landuse",
       "filter": [
         "any",
-        [
-          "==",
-          "pmap:kind",
-          "pedestrian"
-        ]
+        ["==", "pmap:kind", "pedestrian"]
       ],
-      "paint": {
-        "fill-color": "#e3e0d4"
-      }
+      "paint": {"fill-color": "#e3e0d4"}
     },
     {
       "id": "landuse_pier",
@@ -424,15 +297,9 @@ const theme = {
       "source-layer": "landuse",
       "filter": [
         "any",
-        [
-          "==",
-          "pmap:kind",
-          "pier"
-        ]
+        ["==", "pmap:kind", "pier"]
       ],
-      "paint": {
-        "fill-color": "#e0e0e0"
-      }
+      "paint": {"fill-color": "#e0e0e0"}
     },
     {
       "id": "roads_tunnels_other_casing",
@@ -441,29 +308,15 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "in",
-          "pmap:kind",
-          "other",
-          "path"
-        ]
+        ["<", "pmap:level", 0],
+        ["in", "pmap:kind", "other", "path"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           14,
           0,
           20,
@@ -478,32 +331,16 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "minor_road"
-        ]
+        ["<", "pmap:level", 0],
+        ["==", "pmap:kind", "minor_road"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
-        "line-dasharray": [
-          3,
-          2
-        ],
+        "line-dasharray": [3, 2],
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           11,
           0,
           12.5,
@@ -515,13 +352,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           12,
           0,
           12.5,
@@ -536,32 +368,16 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:link",
-          1
-        ]
+        ["<", "pmap:level", 0],
+        ["==", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#e0e0e0",
-        "line-dasharray": [
-          3,
-          2
-        ],
+        "line-dasharray": [3, 2],
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           13.5,
@@ -571,13 +387,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           12,
           0,
           12.5,
@@ -592,32 +403,16 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "medium_road"
-        ]
+        ["<", "pmap:level", 0],
+        ["==", "pmap:kind", "medium_road"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
-        "line-dasharray": [
-          3,
-          2
-        ],
+        "line-dasharray": [3, 2],
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           7.5,
@@ -627,13 +422,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           10,
           0,
           10.5,
@@ -648,32 +438,16 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "major_road"
-        ]
+        ["<", "pmap:level", 0],
+        ["==", "pmap:kind", "major_road"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
-        "line-dasharray": [
-          3,
-          2
-        ],
+        "line-dasharray": [3, 2],
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           7.5,
@@ -683,13 +457,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           9,
           0,
           9.5,
@@ -704,37 +473,17 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "highway"
-        ],
-        [
-          "!=",
-          "pmap:link",
-          1
-        ]
+        ["<", "pmap:level", 0],
+        ["==", "pmap:kind", "highway"],
+        ["!=", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#e0e0e0",
-        "line-dasharray": [
-          6,
-          0.5
-        ],
+        "line-dasharray": [6, 0.5],
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           3,
           0,
           3.5,
@@ -744,13 +493,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           7.5,
@@ -767,33 +511,16 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "in",
-          "pmap:kind",
-          "other",
-          "path"
-        ]
+        ["<", "pmap:level", 0],
+        ["in", "pmap:kind", "other", "path"]
       ],
       "paint": {
         "line-color": "#d5d5d5",
-        "line-dasharray": [
-          4.5,
-          0.5
-        ],
+        "line-dasharray": [4.5, 0.5],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           14,
           0,
           20,
@@ -808,28 +535,15 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "minor_road"
-        ]
+        ["<", "pmap:level", 0],
+        ["==", "pmap:kind", "minor_road"]
       ],
       "paint": {
         "line-color": "#d5d5d5",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           11,
           0,
           12.5,
@@ -848,28 +562,15 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:link",
-          1
-        ]
+        ["<", "pmap:level", 0],
+        ["==", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#d5d5d5",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           13.5,
@@ -886,28 +587,15 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "medium_road"
-        ]
+        ["<", "pmap:level", 0],
+        ["==", "pmap:kind", "medium_road"]
       ],
       "paint": {
         "line-color": "#d5d5d5",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           12,
@@ -926,28 +614,15 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "major_road"
-        ]
+        ["<", "pmap:level", 0],
+        ["==", "pmap:kind", "major_road"]
       ],
       "paint": {
         "line-color": "#d5d5d5",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           6,
           0,
           12,
@@ -966,33 +641,16 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "<",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "highway"
-        ],
-        [
-          "!=",
-          "pmap:link",
-          1
-        ]
+        ["<", "pmap:level", 0],
+        ["==", "pmap:kind", "highway"],
+        ["!=", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#d5d5d5",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           3,
           0,
           6,
@@ -1011,10 +669,7 @@ const theme = {
       "type": "fill",
       "source": "protomaps",
       "source-layer": "buildings",
-      "paint": {
-        "fill-color": "#cccccc",
-        "fill-opacity": 0.5
-      }
+      "paint": {"fill-color": "#cccccc", "fill-opacity": 0.5}
     },
     {
       "id": "transit_pier",
@@ -1023,23 +678,14 @@ const theme = {
       "source-layer": "transit",
       "filter": [
         "any",
-        [
-          "==",
-          "pmap:kind",
-          "pier"
-        ]
+        ["==", "pmap:kind", "pier"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           12,
           0,
           12.5,
@@ -1057,33 +703,16 @@ const theme = {
       "minzoom": 13,
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "minor_road"
-        ],
-        [
-          "==",
-          "pmap:kind_detail",
-          "service"
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "minor_road"],
+        ["==", "pmap:kind_detail", "service"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           18,
@@ -1091,13 +720,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           13.5,
@@ -1112,33 +736,16 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "minor_road"
-        ],
-        [
-          "!=",
-          "pmap:kind_detail",
-          "service"
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "minor_road"],
+        ["!=", "pmap:kind_detail", "service"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           11,
           0,
           12.5,
@@ -1150,13 +757,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           12,
           0,
           12.5,
@@ -1172,23 +774,14 @@ const theme = {
       "minzoom": 13,
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:link",
-          1
-        ]
+        ["==", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           13.5,
@@ -1198,13 +791,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           13.5,
@@ -1219,28 +807,15 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "medium_road"
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "medium_road"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           12,
@@ -1252,13 +827,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           10,
           0,
           10.5,
@@ -1274,28 +844,15 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "major_road"
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "major_road"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           6,
           0,
           12,
@@ -1307,13 +864,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           9,
           0,
           9.5,
@@ -1329,33 +881,16 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "highway"
-        ],
-        [
-          "!=",
-          "pmap:link",
-          1
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "highway"],
+        ["!=", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           3,
           0,
           3.5,
@@ -1365,13 +900,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           7.5,
@@ -1388,33 +918,16 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "in",
-          "pmap:kind",
-          "other",
-          "path"
-        ]
+        ["==", "pmap:level", 0],
+        ["in", "pmap:kind", "other", "path"]
       ],
       "paint": {
         "line-color": "#ebebeb",
-        "line-dasharray": [
-          3,
-          1
-        ],
+        "line-dasharray": [3, 1],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           14,
           0,
           20,
@@ -1429,23 +942,14 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:link",
-          1
-        ]
+        ["==", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#ffffff",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           13.5,
@@ -1462,33 +966,16 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "minor_road"
-        ],
-        [
-          "==",
-          "pmap:kind_detail",
-          "service"
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "minor_road"],
+        ["==", "pmap:kind_detail", "service"]
       ],
       "paint": {
         "line-color": "#ebebeb",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           18,
@@ -1503,32 +990,15 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "minor_road"
-        ],
-        [
-          "!=",
-          "pmap:kind_detail",
-          "service"
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "minor_road"],
+        ["!=", "pmap:kind_detail", "service"]
       ],
       "paint": {
         "line-color": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           11,
           "#ebebeb",
           16,
@@ -1536,13 +1006,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           11,
           0,
           12.5,
@@ -1561,28 +1026,15 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "medium_road"
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "medium_road"]
       ],
       "paint": {
         "line-color": "#f5f5f5",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           12,
@@ -1602,28 +1054,15 @@ const theme = {
       "maxzoom": 12,
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "major_road"
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "major_road"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           7.5,
@@ -1633,13 +1072,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           9,
           0,
           9.5,
@@ -1654,28 +1088,15 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "major_road"
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "major_road"]
       ],
       "paint": {
         "line-color": "#ffffff",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           6,
           0,
           12,
@@ -1695,33 +1116,16 @@ const theme = {
       "maxzoom": 12,
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "highway"
-        ],
-        [
-          "!=",
-          "pmap:link",
-          1
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "highway"],
+        ["!=", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           3,
           0,
           3.5,
@@ -1731,13 +1135,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           7.5,
@@ -1752,33 +1151,16 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "highway"
-        ],
-        [
-          "!=",
-          "pmap:link",
-          1
-        ]
+        ["==", "pmap:level", 0],
+        ["==", "pmap:kind", "highway"],
+        ["!=", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#ffffff",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           3,
           0,
           6,
@@ -1799,28 +1181,16 @@ const theme = {
       "source-layer": "transit",
       "filter": [
         "all",
-        [
-          "==",
-          "pmap:kind",
-          "rail"
-        ]
+        ["==", "pmap:kind", "rail"]
       ],
       "paint": {
-        "line-dasharray": [
-          0.3,
-          0.75
-        ],
+        "line-dasharray": [0.3, 0.75],
         "line-opacity": 0.5,
         "line-color": "#a7b1b3",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           3,
           0,
           6,
@@ -1835,18 +1205,11 @@ const theme = {
       "type": "line",
       "source": "protomaps",
       "source-layer": "boundaries",
-      "filter": [
-        "<=",
-        "pmap:min_admin_level",
-        2
-      ],
+      "filter": ["<=", "pmap:min_admin_level", 2],
       "paint": {
         "line-color": "#adadad",
         "line-width": 1,
-        "line-dasharray": [
-          3,
-          2
-        ]
+        "line-dasharray": [3, 2]
       }
     },
     {
@@ -1854,18 +1217,11 @@ const theme = {
       "type": "line",
       "source": "protomaps",
       "source-layer": "boundaries",
-      "filter": [
-        ">",
-        "pmap:min_admin_level",
-        2
-      ],
+      "filter": [">", "pmap:min_admin_level", 2],
       "paint": {
         "line-color": "#adadad",
         "line-width": 0.5,
-        "line-dasharray": [
-          3,
-          2
-        ]
+        "line-dasharray": [3, 2]
       }
     },
     {
@@ -1876,29 +1232,15 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "in",
-          "pmap:kind",
-          "other",
-          "path"
-        ]
+        [">", "pmap:level", 0],
+        ["in", "pmap:kind", "other", "path"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           14,
           0,
           20,
@@ -1914,28 +1256,15 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:link",
-          1
-        ]
+        [">", "pmap:level", 0],
+        ["==", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           13.5,
@@ -1945,13 +1274,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           12,
           0,
           12.5,
@@ -1967,28 +1291,15 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "minor_road"
-        ]
+        [">", "pmap:level", 0],
+        ["==", "pmap:kind", "minor_road"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           11,
           0,
           12.5,
@@ -2000,13 +1311,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           13.5,
@@ -2022,28 +1328,15 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "medium_road"
-        ]
+        [">", "pmap:level", 0],
+        ["==", "pmap:kind", "medium_road"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           12,
@@ -2055,13 +1348,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           10,
           0,
           10.5,
@@ -2077,28 +1365,15 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "major_road"
-        ]
+        [">", "pmap:level", 0],
+        ["==", "pmap:kind", "major_road"]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           7.5,
@@ -2108,13 +1383,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           9,
           0,
           9.5,
@@ -2130,33 +1400,16 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "in",
-          "pmap:kind",
-          "other",
-          "path"
-        ]
+        [">", "pmap:level", 0],
+        ["in", "pmap:kind", "other", "path"]
       ],
       "paint": {
         "line-color": "#ebebeb",
-        "line-dasharray": [
-          2,
-          1
-        ],
+        "line-dasharray": [2, 1],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           14,
           0,
           20,
@@ -2172,28 +1425,15 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "minor_road"
-        ]
+        [">", "pmap:level", 0],
+        ["==", "pmap:kind", "minor_road"]
       ],
       "paint": {
         "line-color": "#ffffff",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           11,
           0,
           12.5,
@@ -2213,28 +1453,15 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:link",
-          1
-        ]
+        [">", "pmap:level", 0],
+        ["==", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#ffffff",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           13,
           0,
           13.5,
@@ -2252,28 +1479,15 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "medium_road"
-        ]
+        [">", "pmap:level", 0],
+        ["==", "pmap:kind", "medium_road"]
       ],
       "paint": {
         "line-color": "#f0eded",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           12,
@@ -2293,28 +1507,15 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "major_road"
-        ]
+        [">", "pmap:level", 0],
+        ["==", "pmap:kind", "major_road"]
       ],
       "paint": {
         "line-color": "#f5f5f5",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           6,
           0,
           12,
@@ -2334,33 +1535,16 @@ const theme = {
       "minzoom": 12,
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "highway"
-        ],
-        [
-          "!=",
-          "pmap:link",
-          1
-        ]
+        [">", "pmap:level", 0],
+        ["==", "pmap:kind", "highway"],
+        ["!=", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#e0e0e0",
         "line-gap-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           3,
           0,
           3.5,
@@ -2370,13 +1554,8 @@ const theme = {
         ],
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           7,
           0,
           7.5,
@@ -2393,33 +1572,16 @@ const theme = {
       "source-layer": "roads",
       "filter": [
         "all",
-        [
-          ">",
-          "pmap:level",
-          0
-        ],
-        [
-          "==",
-          "pmap:kind",
-          "highway"
-        ],
-        [
-          "!=",
-          "pmap:link",
-          1
-        ]
+        [">", "pmap:level", 0],
+        ["==", "pmap:kind", "highway"],
+        ["!=", "pmap:link", 1]
       ],
       "paint": {
         "line-color": "#ffffff",
         "line-width": [
           "interpolate",
-          [
-            "exponential",
-            1.6
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.6],
+          ["zoom"],
           3,
           0,
           6,
@@ -2441,28 +1603,16 @@ const theme = {
       "minzoom": 13,
       "filter": [
         "all",
-        [
-          "in",
-          "pmap:kind",
-          "river",
-          "stream"
-        ]
+        ["in", "pmap:kind", "river", "stream"]
       ],
       "layout": {
         "symbol-placement": "line",
-        "text-font": [
-          "Noto Sans Regular"
-        ],
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-font": ["Noto Sans Regular"],
+        "text-field": ["get", "name"],
         "text-size": 12,
         "text-letter-spacing": 0.3
       },
-      "paint": {
-        "text-color": "#ffffff"
-      }
+      "paint": {"text-color": "#ffffff"}
     },
     {
       "id": "physical_point_peak",
@@ -2471,28 +1621,15 @@ const theme = {
       "source-layer": "physical_point",
       "filter": [
         "any",
-        [
-          "==",
-          "pmap:kind",
-          "peak"
-        ]
+        ["==", "pmap:kind", "peak"]
       ],
       "layout": {
-        "text-font": [
-          "Noto Sans Italic"
-        ],
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-font": ["Noto Sans Italic"],
+        "text-field": ["get", "name"],
         "text-size": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           10,
           8,
           16,
@@ -2501,10 +1638,7 @@ const theme = {
         "text-letter-spacing": 0.1,
         "text-max-width": 9
       },
-      "paint": {
-        "text-color": "#7e9aa0",
-        "text-halo-width": 1.5
-      }
+      "paint": {"text-color": "#7e9aa0", "text-halo-width": 1.5}
     },
     {
       "id": "roads_labels_minor",
@@ -2514,27 +1648,13 @@ const theme = {
       "minzoom": 15,
       "filter": [
         "any",
-        [
-          "in",
-          "pmap:kind",
-          "minor_road",
-          "other",
-          "path"
-        ]
+        ["in", "pmap:kind", "minor_road", "other", "path"]
       ],
       "layout": {
-        "symbol-sort-key": [
-          "get",
-          "pmap:min_zoom"
-        ],
+        "symbol-sort-key": ["get", "pmap:min_zoom"],
         "symbol-placement": "line",
-        "text-font": [
-          "Noto Sans Regular"
-        ],
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-font": ["Noto Sans Regular"],
+        "text-field": ["get", "name"],
         "text-size": 12
       },
       "paint": {
@@ -2563,21 +1683,12 @@ const theme = {
         ]
       ],
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-font": ["Noto Sans Medium"],
+        "text-field": ["get", "name"],
         "text-size": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           3,
           10,
           10,
@@ -2587,9 +1698,7 @@ const theme = {
         "text-max-width": 9,
         "text-transform": "uppercase"
       },
-      "paint": {
-        "text-color": "#ffffff"
-      }
+      "paint": {"text-color": "#ffffff"}
     },
     {
       "id": "physical_point_lakes",
@@ -2598,29 +1707,15 @@ const theme = {
       "source-layer": "physical_point",
       "filter": [
         "any",
-        [
-          "in",
-          "pmap:kind",
-          "lake",
-          "water"
-        ]
+        ["in", "pmap:kind", "lake", "water"]
       ],
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-font": ["Noto Sans Medium"],
+        "text-field": ["get", "name"],
         "text-size": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           3,
           0,
           6,
@@ -2631,9 +1726,7 @@ const theme = {
         "text-letter-spacing": 0.1,
         "text-max-width": 9
       },
-      "paint": {
-        "text-color": "#ffffff"
-      }
+      "paint": {"text-color": "#ffffff"}
     },
     {
       "id": "roads_labels_major",
@@ -2643,27 +1736,13 @@ const theme = {
       "minzoom": 11,
       "filter": [
         "any",
-        [
-          "in",
-          "pmap:kind",
-          "highway",
-          "major_road",
-          "medium_road"
-        ]
+        ["in", "pmap:kind", "highway", "major_road", "medium_road"]
       ],
       "layout": {
-        "symbol-sort-key": [
-          "get",
-          "pmap:min_zoom"
-        ],
+        "symbol-sort-key": ["get", "pmap:min_zoom"],
         "symbol-placement": "line",
-        "text-font": [
-          "Noto Sans Regular"
-        ],
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-font": ["Noto Sans Regular"],
+        "text-field": ["get", "name"],
         "text-size": 12
       },
       "paint": {
@@ -2677,30 +1756,17 @@ const theme = {
       "type": "symbol",
       "source": "protomaps",
       "source-layer": "places",
-      "filter": [
-        "==",
-        "pmap:kind",
-        "neighbourhood"
-      ],
+      "filter": ["==", "pmap:kind", "neighbourhood"],
       "layout": {
-        "symbol-sort-key": [
-          "get",
-          "pmap:min_zoom"
-        ],
+        "symbol-sort-key": ["get", "pmap:min_zoom"],
         "text-field": "{name}",
-        "text-font": [
-          "Noto Sans Regular"
-        ],
+        "text-font": ["Noto Sans Regular"],
         "text-max-width": 7,
         "text-letter-spacing": 0.1,
         "text-padding": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           5,
           2,
           8,
@@ -2712,13 +1778,8 @@ const theme = {
         ],
         "text-size": [
           "interpolate",
-          [
-            "exponential",
-            1.2
-          ],
-          [
-            "zoom"
-          ],
+          ["exponential", 1.2],
+          ["zoom"],
           11,
           8,
           14,
@@ -2743,35 +1804,20 @@ const theme = {
         "any",
         [
           "<",
-          [
-            "get",
-            "pmap:min_zoom"
-          ],
+          ["get", "pmap:min_zoom"],
           13
         ]
       ],
       "layout": {
-        "symbol-sort-key": [
-          "get",
-          "pmap:min_zoom"
-        ],
-        "text-font": [
-          "Noto Sans Regular"
-        ],
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "symbol-sort-key": ["get", "pmap:min_zoom"],
+        "text-font": ["Noto Sans Regular"],
+        "text-field": ["get", "name"],
         "text-size": 11,
         "text-max-width": 9,
         "icon-padding": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           0,
           2,
           14,
@@ -2795,20 +1841,13 @@ const theme = {
       "type": "circle",
       "source": "protomaps",
       "source-layer": "places",
-      "filter": [
-        "==",
-        "pmap:kind",
-        "locality"
-      ],
+      "filter": ["==", "pmap:kind", "locality"],
       "paint": {
         "circle-radius": 2,
         "circle-stroke-width": 1.5,
         "circle-stroke-color": "#a3a3a3",
         "circle-color": "#ffffff",
-        "circle-translate": [
-          -6,
-          0
-        ]
+        "circle-translate": [-6, 0]
       },
       "maxzoom": 8
     },
@@ -2817,44 +1856,29 @@ const theme = {
       "type": "symbol",
       "source": "protomaps",
       "source-layer": "places",
-      "filter": [
-        "==",
-        "pmap:kind",
-        "locality"
-      ],
+      "filter": ["==", "pmap:kind", "locality"],
       "layout": {
         "text-field": "{name}",
         "text-font": [
           "case",
           [
             "<=",
-            [
-              "get",
-              "pmap:min_zoom"
-            ],
+            ["get", "pmap:min_zoom"],
             5
           ],
           [
             "literal",
-            [
-              "Noto Sans Medium"
-            ]
+            ["Noto Sans Medium"]
           ],
           [
             "literal",
-            [
-              "Noto Sans Regular"
-            ]
+            ["Noto Sans Regular"]
           ]
         ],
         "text-padding": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           5,
           3,
           8,
@@ -2864,30 +1888,20 @@ const theme = {
         ],
         "text-size": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           2,
           [
             "case",
             [
               "<",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               13
             ],
             8,
             [
               ">=",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               13
             ],
             13,
@@ -2898,19 +1912,13 @@ const theme = {
             "case",
             [
               "<",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               13
             ],
             10,
             [
               ">=",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               13
             ],
             15,
@@ -2921,19 +1929,13 @@ const theme = {
             "case",
             [
               "<",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               12
             ],
             11,
             [
               ">=",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               12
             ],
             17,
@@ -2944,19 +1946,13 @@ const theme = {
             "case",
             [
               "<",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               11
             ],
             11,
             [
               ">=",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               11
             ],
             18,
@@ -2967,19 +1963,13 @@ const theme = {
             "case",
             [
               "<",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               9
             ],
             12,
             [
               ">=",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               9
             ],
             20,
@@ -2990,19 +1980,13 @@ const theme = {
             "case",
             [
               "<",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               8
             ],
             12,
             [
               ">=",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               8
             ],
             22,
@@ -3011,12 +1995,8 @@ const theme = {
         ],
         "icon-padding": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           0,
           2,
           8,
@@ -3030,9 +2010,7 @@ const theme = {
         ],
         "text-anchor": [
           "step",
-          [
-            "zoom"
-          ],
+          ["zoom"],
           "left",
           8,
           "center"
@@ -3050,42 +2028,21 @@ const theme = {
       "type": "symbol",
       "source": "protomaps",
       "source-layer": "places",
-      "filter": [
-        "==",
-        "pmap:kind",
-        "region"
-      ],
+      "filter": ["==", "pmap:kind", "region"],
       "layout": {
-        "symbol-sort-key": [
-          "get",
-          "pmap:min_zoom"
-        ],
+        "symbol-sort-key": ["get", "pmap:min_zoom"],
         "text-field": [
           "step",
-          [
-            "zoom"
-          ],
-          [
-            "get",
-            "name:short"
-          ],
+          ["zoom"],
+          ["get", "name:short"],
           6,
-          [
-            "get",
-            "name"
-          ]
+          ["get", "name"]
         ],
-        "text-font": [
-          "Noto Sans Regular"
-        ],
+        "text-font": ["Noto Sans Regular"],
         "text-size": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           3,
           11,
           7,
@@ -3106,46 +2063,27 @@ const theme = {
       "type": "symbol",
       "source": "protomaps",
       "source-layer": "places",
-      "filter": [
-        "==",
-        "pmap:kind",
-        "country"
-      ],
+      "filter": ["==", "pmap:kind", "country"],
       "layout": {
-        "symbol-sort-key": [
-          "get",
-          "pmap:min_zoom"
-        ],
+        "symbol-sort-key": ["get", "pmap:min_zoom"],
         "text-field": "{name}",
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-size": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           2,
           [
             "case",
             [
               "<",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               10
             ],
             8,
             [
               ">=",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               10
             ],
             12,
@@ -3156,19 +2094,13 @@ const theme = {
             "case",
             [
               "<",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               8
             ],
             10,
             [
               ">=",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               8
             ],
             18,
@@ -3179,19 +2111,13 @@ const theme = {
             "case",
             [
               "<",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               7
             ],
             11,
             [
               ">=",
-              [
-                "get",
-                "pmap:population_rank"
-              ],
+              ["get", "pmap:population_rank"],
               7
             ],
             20,
@@ -3200,12 +2126,8 @@ const theme = {
         ],
         "icon-padding": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           0,
           2,
           14,
@@ -3219,10 +2141,9 @@ const theme = {
         ],
         "text-transform": "uppercase"
       },
-      "paint": {
-        "text-color": "#a3a3a3"
-      }
+      "paint": {"text-color": "#a3a3a3"}
     }
   ],
-  "glyphs": "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf"
+  "glyphs":
+      "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf"
 };
