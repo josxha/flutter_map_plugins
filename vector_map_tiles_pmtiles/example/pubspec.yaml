@@ -1,0 +1,17 @@
+name: example
+description: "Example app for flutter_map_pmtiles"
+publish_to: 'none'
+version: 1.0.0
+
+environment:
+  sdk: '>=3.2.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true

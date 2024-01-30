@@ -1,0 +1,19 @@
+name: flutter_map_pmtiles
+description: "PMTiles for flutter_map"
+repository: https://github.com/flutter_map_pmtiles
+issue_tracker: https://github.com/flutter_map_pmtiles/issues
+topics: [ flutter-map, map, pmtiles ]
+version: 1.0.0
+
+environment:
+  sdk: '>=3.2.5 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_map: ^6.1.0
+  pmtiles: ^1.2.0
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
