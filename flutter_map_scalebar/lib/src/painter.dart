@@ -37,7 +37,7 @@ class ScalebarPainter extends CustomPainter {
   final double width;
   final EdgeInsets padding;
   final String text;
-  final double lineWidth;
+  final double strokeWidth;
   final double lineHeight;
   final Color lineColor;
   final TextStyle? textStyle;
@@ -49,20 +49,20 @@ class ScalebarPainter extends CustomPainter {
     required this.text,
     required this.padding,
     required this.textStyle,
-    required this.lineWidth,
+    required this.strokeWidth,
     required this.lineHeight,
     required this.lineColor,
   }) : _linePaint = Paint()
           ..color = lineColor
           ..strokeCap = StrokeCap.square
-          ..strokeWidth = lineWidth;
+          ..strokeWidth = strokeWidth;
 
   @override
   void paint(Canvas canvas, Size size) {
     const topPaddingCorr = -5;
     final paddingLeft = padding.left;
     var paddingTop = padding.top + topPaddingCorr;
-    final halfLineWidth = lineWidth / 2;
+    final halfStrokeWidth = strokeWidth / 2;
 
     // draw text label
     final textSpan = TextSpan(style: textStyle, text: text);
@@ -73,18 +73,18 @@ class ScalebarPainter extends CustomPainter {
     textPainter.paint(
       canvas,
       Offset(
-        width / 2 - textPainter.width / 2 + paddingLeft + halfLineWidth,
+        width / 2 - textPainter.width / 2 + paddingLeft + halfStrokeWidth,
         paddingTop,
       ),
     );
 
     paddingTop += textPainter.height;
     final leftLineBottom = Offset(
-      paddingLeft + halfLineWidth,
+      paddingLeft + halfStrokeWidth,
       lineHeight + paddingTop,
     );
     final rightLineBottom = Offset(
-      paddingLeft + width + halfLineWidth,
+      paddingLeft + width + halfStrokeWidth,
       lineHeight + paddingTop,
     );
 

@@ -41,7 +41,7 @@ import 'package:flutter_map_scalebar/src/utils.dart';
 class Scalebar extends StatelessWidget {
   final TextStyle? textStyle;
   final Color lineColor;
-  final double lineWidth;
+  final double strokeWidth;
   final double lineHeight;
   final EdgeInsets padding;
 
@@ -49,7 +49,7 @@ class Scalebar extends StatelessWidget {
     super.key,
     this.textStyle = const TextStyle(color: Colors.black, fontSize: 14),
     this.lineColor = Colors.black,
-    this.lineWidth = 2,
+    this.strokeWidth = 2,
     this.lineHeight = 5,
     this.padding = const EdgeInsets.all(10),
   });
@@ -74,7 +74,7 @@ class Scalebar extends StatelessWidget {
             ? '${(distance / 1000.0).toStringAsFixed(0)} km'
             : '$distance m',
         lineColor: lineColor,
-        lineWidth: lineWidth,
+        strokeWidth: strokeWidth,
         padding: padding,
         lineHeight: lineHeight,
         textStyle: textStyle,

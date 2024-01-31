@@ -1,6 +1,8 @@
-# flutter_map_pmtiles
+# flutter_map_scalebar
 
-A TileProvider for flutter_map that adds support for PMTiles.
+### A scalebar for [`flutter_map`](https://pub.dev/packages/flutter_map).
+This package is based on the scalebar example from the flutter_map example 
+plugin but has some fixes and improved customizability.
 
 ![Pub Likes](https://img.shields.io/pub/likes/flutter_map_pmtiles)
 ![Pub Points](https://img.shields.io/pub/points/flutter_map_pmtiles)
@@ -23,6 +25,8 @@ dependencies:
 
 ## Usage
 
+Just add the `Scalebar()` to your list of map layers and that's it.
+
 ```dart
 @override
 Widget build(BuildContext context) {
@@ -34,6 +38,26 @@ Widget build(BuildContext context) {
       ),
       // place the ScalebarLayer as the last list item, to have it on top
       const Scalebar(),
+    ],
+  );
+}
+```
+
+However, you can use its parameters to further customize the scalebar:
+
+```dart
+@override
+Widget build(BuildContext context) {
+  return FlutterMap(
+    options: MapOptions(),
+    children: [
+      const Scalebar(
+        textStyle: TextStyle(color: Colors.pink, fontSize: 20),
+        padding: EdgeInsets.all(20),
+        lineColor: Colors.pink,
+        lineHeight: 10,
+        strokeWidth: 1,
+      ),
     ],
   );
 }
