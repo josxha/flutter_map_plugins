@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_scalebar/flutter_map_scalebar.dart';
+import 'package:latlong2/latlong.dart';
 
 class FlutterMapScalebar extends StatelessWidget {
   const FlutterMapScalebar({super.key});
@@ -13,7 +14,10 @@ class FlutterMapScalebar extends StatelessWidget {
         title: const Text('flutter_map_scalebar'),
       ),
       body: FlutterMap(
-        options: const MapOptions(),
+        options: const MapOptions(
+          initialCenter: LatLng(48, 9),
+          initialZoom: 8,
+        ),
         children: [
           TileLayer(
             urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
