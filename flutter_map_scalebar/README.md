@@ -52,10 +52,10 @@ Widget build(BuildContext context) {
     options: MapOptions(),
     children: [
       const Scalebar(
-        textStyle: TextStyle(color: Colors.pink, fontSize: 20),
-        padding: EdgeInsets.all(20),
-        lineColor: Colors.pink,
-        lineHeight: 10,
+        textStyle: TextStyle(color: Colors.black),
+        padding: EdgeInsets.all(10),
+        lineColor: Colors.black,
+        lineHeight: 5,
         strokeWidth: 1,
         relativeWidth: 3,
       ),
