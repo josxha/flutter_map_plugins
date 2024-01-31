@@ -1,0 +1,18 @@
+name: flutter_map_compass
+description: A simple compass for flutter_map. It shows the rotation of the map and resets the rotation back to 0 on tap.
+repository: https://github.com/josxha/flutter_map_plugins
+issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
+topics: [ flutter-map, map ]
+version: 1.0.0
+
+environment:
+  sdk: '>=3.2.5 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_map: ^6.1.0
+
+dev_dependencies:
+  flutter_lints: ^3.0.0

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
+import 'package:flutter_map_plugins_example/flutter_map_compass/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
 import 'package:flutter_map_plugins_example/vector_map_tiles_pmtiles/page.dart';
 
@@ -48,6 +49,13 @@ class SelectionPage extends StatelessWidget {
             title: 'vector_map_tiles_pmtiles',
             desc: 'PMTiles for vector_map_files / flutter_map',
             pageBuilder: (context) => VectorMapTilesPmTilesPage(),
+          ),
+          SelectionItemWidget(
+            title: 'flutter_map_compass',
+            desc:
+                'A simple compass layer to indicate the map rotation and '
+                    'reset the rotation on click',
+            pageBuilder: (context) => const FlutterMapCompassPage(),
           ),
         ],
       ),
