@@ -35,7 +35,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_scalebar/src/scale_painter.dart';
+import 'package:flutter_map_scalebar/src/painter.dart';
 import 'package:flutter_map_scalebar/src/utils.dart';
 
 class Scalebar extends StatelessWidget {
@@ -50,42 +50,35 @@ class Scalebar extends StatelessWidget {
     this.textStyle = const TextStyle(color: Colors.black, fontSize: 14),
     this.lineColor = Colors.black,
     this.lineWidth = 2,
-    this.lineHeight = 4,
+    this.lineHeight = 5,
     this.padding = const EdgeInsets.all(10),
   });
 
   @override
   Widget build(BuildContext context) {
     final camera = MapCamera.of(context);
-    final distance =
-        _scale[max(0, min(20, camera.zoom.round() + 2))].toDouble();
+    final int distance = _scale[max(0, min(20, camera.zoom.round() + 2))];
     final center = camera.center;
     final start = camera.project(center);
     final targetPoint = calculateEndingGlobalCoordinates(
       start: center,
       startBearing: 90,
-      distance: distance,
+      distance: distance.toDouble(),
     );
     final end = camera.project(targetPoint);
-    final displayDistance = distance > 999
-        ? '${(distance / 1000).toStringAsFixed(0)} km'
-        : '${distance.toStringAsFixed(0)} m';
-    final width = end.x - start.x;
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return CustomPaint(
-          painter: ScalePainter(
-            width: width,
-            text: displayDistance,
-            lineColor: lineColor,
-            lineWidth: lineWidth,
-            padding: padding,
-            lineHeight: lineHeight,
-            textStyle: textStyle,
-          ),
-        );
-      },
+    return CustomPaint(
+      painter: ScalebarPainter(
+        width: end.x - start.x,
+        text: distance > 999
+            ? '${(distance / 1000.0).toStringAsFixed(0)} km'
+            : '$distance m',
+        lineColor: lineColor,
+        lineWidth: lineWidth,
+        padding: padding,
+        lineHeight: lineHeight,
+        textStyle: textStyle,
+      ),
     );
   }
 }
