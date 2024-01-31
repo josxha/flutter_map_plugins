@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
+import 'package:flutter_map_plugins_example/flutter_map_scalebar/page.dart';
 import 'package:flutter_map_plugins_example/vector_map_tiles_pmtiles/page.dart';
 
 void main() {
@@ -48,6 +49,12 @@ class SelectionPage extends StatelessWidget {
             title: 'vector_map_tiles_pmtiles',
             desc: 'PMTiles for vector_map_files / flutter_map',
             pageBuilder: (context) => VectorMapTilesPmTilesPage(),
+          ),
+          SelectionItemWidget(
+            title: 'vector_map_scalebar',
+            desc: 'A scalebar for the map, based on the '
+                'flutter_map plugin example',
+            pageBuilder: (context) => const FlutterMapScalebar(),
           ),
         ],
       ),
