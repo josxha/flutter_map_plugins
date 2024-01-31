@@ -1,0 +1,20 @@
+name: flutter_map_scalebar
+description: A scalebar plugin, based on the scalebar example plugin but fully customizable.
+repository: https://github.com/josxha/flutter_map_plugins
+issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
+topics: [ flutter-map, map ]
+version: 1.0.0
+
+environment:
+  sdk: '>=3.2.5 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.0
+  vector_math: ^2.1.0
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
