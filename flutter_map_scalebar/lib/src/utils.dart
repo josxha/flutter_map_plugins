@@ -127,10 +127,12 @@ LatLng calculateEndingGlobalCoordinates({
 
   // eq. 8
   final phi2 = atan2(
-      sinU1 * cosSigma + cosU1 * sinSigma * cosAlpha1,
-      (1.0 - f) *
-          sqrt(sin2Alpha +
-              pow(sinU1 * sinSigma - cosU1 * cosSigma * cosAlpha1, 2.0)));
+    sinU1 * cosSigma + cosU1 * sinSigma * cosAlpha1,
+    (1.0 - f) *
+        sqrt(
+          sin2Alpha + pow(sinU1 * sinSigma - cosU1 * cosSigma * cosAlpha1, 2.0),
+        ),
+  );
 
   // eq. 9
   // This fixes the pole crossing defect spotted by Matt Feemster. When a

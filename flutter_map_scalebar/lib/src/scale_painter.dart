@@ -34,33 +34,35 @@
 import 'package:flutter/material.dart';
 
 class ScalePainter extends CustomPainter {
+  final double width;
+  final EdgeInsets padding;
+  final String text;
+  final double lineWidth;
+  final double lineHeight;
+  final Color lineColor;
+  final TextStyle? textStyle;
+
+  final Paint _paint;
+
   ScalePainter({
     required this.width,
     required this.text,
-    this.padding,
-    this.textStyle,
+    required this.padding,
+    required this.textStyle,
     required this.lineWidth,
+    required this.lineHeight,
     required this.lineColor,
-  });
-
-  final double width;
-  final EdgeInsets? padding;
-  final String text;
-  final double lineWidth;
-  final Color lineColor;
-  TextStyle? textStyle;
+  }) : _paint = Paint()
+          ..color = lineColor
+          ..strokeCap = StrokeCap.square
+          ..strokeWidth = lineWidth;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = lineColor
-      ..strokeCap = StrokeCap.square
-      ..strokeWidth = lineWidth;
+    final paddingLeft = padding.left;
+    var paddingTop = padding.top;
 
-    const sizeForStartEnd = 4;
-    final paddingLeft =
-        padding == null ? 0.0 : padding!.left + sizeForStartEnd / 2;
-    var paddingTop = padding?.top ?? 0.0;
+    // draw text label
     final textSpan = TextSpan(style: textStyle, text: text);
     final textPainter = TextPainter(
       text: textSpan,
@@ -70,31 +72,30 @@ class ScalePainter extends CustomPainter {
       canvas,
       Offset(width / 2 - textPainter.width / 2 + paddingLeft, paddingTop),
     );
+
     paddingTop += textPainter.height;
-    final p1 = Offset(paddingLeft, sizeForStartEnd + paddingTop);
-    final p2 = Offset(paddingLeft + width, sizeForStartEnd + paddingTop);
+    final pLeft = Offset(paddingLeft, lineHeight + paddingTop);
+    final pRight = Offset(paddingLeft + width, lineHeight + paddingTop);
 
     // draw start line
-    canvas.drawLine(
-      Offset(paddingLeft, paddingTop),
-      Offset(paddingLeft, sizeForStartEnd + paddingTop),
-      paint,
-    );
+    canvas.drawLine(Offset(paddingLeft, paddingTop), pLeft, _paint);
+
     // draw middle line
     final middleX = width / 2 + paddingLeft - lineWidth / 2;
     canvas.drawLine(
-      Offset(middleX, paddingTop + sizeForStartEnd / 2),
-      Offset(middleX, sizeForStartEnd + paddingTop),
-      paint,
+      Offset(middleX, paddingTop + lineHeight / 2),
+      Offset(middleX, lineHeight + paddingTop),
+      _paint,
     );
+
     // draw end line
     canvas.drawLine(
       Offset(width + paddingLeft, paddingTop),
-      Offset(width + paddingLeft, sizeForStartEnd + paddingTop),
-      paint,
+      Offset(width + paddingLeft, lineHeight + paddingTop),
+      _paint,
     );
     // draw bottom line
-    canvas.drawLine(p1, p2, paint);
+    canvas.drawLine(pLeft, pRight, _paint);
   }
 
   @override

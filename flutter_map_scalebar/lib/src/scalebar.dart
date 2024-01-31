@@ -42,20 +42,23 @@ class Scalebar extends StatelessWidget {
   final TextStyle? textStyle;
   final Color lineColor;
   final double lineWidth;
-  final EdgeInsets? padding;
+  final double lineHeight;
+  final EdgeInsets padding;
 
   const Scalebar({
     super.key,
-    this.textStyle,
+    this.textStyle = const TextStyle(color: Colors.black, fontSize: 14),
     this.lineColor = Colors.black,
     this.lineWidth = 2,
-    this.padding,
+    this.lineHeight = 4,
+    this.padding = const EdgeInsets.all(10),
   });
 
   @override
   Widget build(BuildContext context) {
     final camera = MapCamera.of(context);
-    final distance = _scale[max(0, min(20, camera.zoom.round() + 2))].toDouble();
+    final distance =
+        _scale[max(0, min(20, camera.zoom.round() + 2))].toDouble();
     final center = camera.center;
     final start = camera.project(center);
     final targetPoint = calculateEndingGlobalCoordinates(
@@ -78,6 +81,7 @@ class Scalebar extends StatelessWidget {
             lineColor: lineColor,
             lineWidth: lineWidth,
             padding: padding,
+            lineHeight: lineHeight,
             textStyle: textStyle,
           ),
         );
@@ -109,5 +113,5 @@ const _scale = <int>[
   50,
   25,
   10,
-  5
+  5,
 ];
