@@ -57,6 +57,7 @@ Widget build(BuildContext context) {
         lineColor: Colors.pink,
         lineHeight: 10,
         strokeWidth: 1,
+        relativeWidth: 3,
       ),
     ],
   );

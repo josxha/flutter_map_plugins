@@ -44,6 +44,7 @@ class Scalebar extends StatelessWidget {
   final double strokeWidth;
   final double lineHeight;
   final EdgeInsets padding;
+  final int _relWidth;
 
   const Scalebar({
     super.key,
@@ -52,12 +53,19 @@ class Scalebar extends StatelessWidget {
     this.strokeWidth = 2,
     this.lineHeight = 5,
     this.padding = const EdgeInsets.all(10),
-  });
+    int relativeWidth = 3,
+  }) : assert(
+          relativeWidth >= 1 && relativeWidth <= 6,
+          'The Scalebar `relativeWidth` parameter value is not allowed. '
+          'The min is 0 and the max value 6.',
+        ), _relWidth = relativeWidth - 4;
 
   @override
   Widget build(BuildContext context) {
     final camera = MapCamera.of(context);
-    final int distance = _scale[max(0, min(20, camera.zoom.round() + 2))];
+    final index =
+        max(0, min(_scale.length - 1, camera.zoom.round() - _relWidth));
+    final distance = _scale[index];
     final center = camera.center;
     final start = camera.project(center);
     final targetPoint = calculateEndingGlobalCoordinates(
@@ -84,7 +92,6 @@ class Scalebar extends StatelessWidget {
 }
 
 const _scale = <int>[
-  25000000,
   15000000,
   8000000,
   4000000,
@@ -107,4 +114,5 @@ const _scale = <int>[
   25,
   10,
   5,
+  1,
 ];
