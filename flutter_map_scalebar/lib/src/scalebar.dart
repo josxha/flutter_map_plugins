@@ -38,38 +38,13 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_scalebar/src/scale_painter.dart';
 import 'package:flutter_map_scalebar/src/utils.dart';
 
-class ScalebarLayer extends StatelessWidget {
-  static const scale = <int>[
-    25000000,
-    15000000,
-    8000000,
-    4000000,
-    2000000,
-    1000000,
-    500000,
-    250000,
-    100000,
-    50000,
-    25000,
-    15000,
-    8000,
-    4000,
-    2000,
-    1000,
-    500,
-    250,
-    100,
-    50,
-    25,
-    10,
-    5
-  ];
+class Scalebar extends StatelessWidget {
   final TextStyle? textStyle;
   final Color lineColor;
   final double lineWidth;
   final EdgeInsets? padding;
 
-  const ScalebarLayer({
+  const Scalebar({
     super.key,
     this.textStyle,
     this.lineColor = Colors.black,
@@ -80,10 +55,14 @@ class ScalebarLayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final camera = MapCamera.of(context);
-    final distance = scale[max(0, min(20, camera.zoom.round() + 2))].toDouble();
+    final distance = _scale[max(0, min(20, camera.zoom.round() + 2))].toDouble();
     final center = camera.center;
     final start = camera.project(center);
-    final targetPoint = calculateEndingGlobalCoordinates(center, 90, distance);
+    final targetPoint = calculateEndingGlobalCoordinates(
+      start: center,
+      startBearing: 90,
+      distance: distance,
+    );
     final end = camera.project(targetPoint);
     final displayDistance = distance > 999
         ? '${(distance / 1000).toStringAsFixed(0)} km'
@@ -94,8 +73,8 @@ class ScalebarLayer extends StatelessWidget {
       builder: (context, constraints) {
         return CustomPaint(
           painter: ScalePainter(
-            width,
-            displayDistance,
+            width: width,
+            text: displayDistance,
             lineColor: lineColor,
             lineWidth: lineWidth,
             padding: padding,
@@ -106,3 +85,29 @@ class ScalebarLayer extends StatelessWidget {
     );
   }
 }
+
+const _scale = <int>[
+  25000000,
+  15000000,
+  8000000,
+  4000000,
+  2000000,
+  1000000,
+  500000,
+  250000,
+  100000,
+  50000,
+  25000,
+  15000,
+  8000,
+  4000,
+  2000,
+  1000,
+  500,
+  250,
+  100,
+  50,
+  25,
+  10,
+  5
+];

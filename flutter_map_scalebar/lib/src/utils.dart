@@ -37,8 +37,11 @@ import 'dart:ui';
 import 'package:latlong2/latlong.dart';
 import 'package:vector_math/vector_math_64.dart';
 
-LatLng calculateEndingGlobalCoordinates(
-    LatLng start, double startBearing, double distance) {
+LatLng calculateEndingGlobalCoordinates({
+  required LatLng start,
+  required double startBearing,
+  required double distance,
+}) {
   const mSemiMajorAxis = 6378137.0; //WGS84 major axis
   const mSemiMinorAxis = (1.0 - 1.0 / 298.257223563) * 6378137.0;
   const mFlattening = 1.0 / 298.257223563;
