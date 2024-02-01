@@ -56,6 +56,7 @@ class _FlutterMapMbTilesPageState extends State<FlutterMapMbTilesPage> {
 
   @override
   void dispose() {
+    // close the open database connection
     mbtiles.dispose();
     super.dispose();
   }

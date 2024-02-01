@@ -66,6 +66,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
 
   @override
   void dispose() {
+    // close the open database connection
     mbtiles.dispose();
     super.dispose();
   }
