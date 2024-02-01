@@ -17,6 +17,8 @@ class FlutterMapScalebar extends StatelessWidget {
         options: const MapOptions(
           initialCenter: LatLng(48, 9),
           initialZoom: 8,
+          minZoom: 0,
+          maxZoom: 24,
         ),
         children: [
           TileLayer(
