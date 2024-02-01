@@ -1,6 +1,11 @@
+## [1.4.2] 2024-02-01
+
+- Migrate GitHub repository to a multi-package repo.
+- Update README and package links.
+
 ## [1.4.1] 2024-01-24
 
-Fix description of Isar in the README file.
+- Fix description of Isar in the README file.
 
 ## [1.4.0] 2024-01-24
 
@@ -10,7 +15,7 @@ Fix description of Isar in the README file.
 
 ## [1.3.1]  2023-10-20
 
-Remove exception from the console when tile requests get cancelled
+- Remove exception from the console when tile requests get cancelled
 (see https://github.com/josxha/flutter_map_plugins/issues/3).
 
 ## [1.3.0]  2023-10-09

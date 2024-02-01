@@ -28,35 +28,47 @@ class SelectionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final children = [
+      SelectionItemWidget(
+        title: 'flutter_map_cache',
+        desc: 'A slim yet powerful caching plugin for flutter_map '
+            'tile layers.',
+        pageBuilder: (context) => const FlutterMapCachePage(),
+      ),
+      SelectionItemWidget(
+        title: 'flutter_map_pmtiles',
+        desc: 'PMTiles for flutter_map',
+        pageBuilder: (context) => const FlutterMapPmTilesPage(),
+      ),
+      SelectionItemWidget(
+        title: 'vector_map_tiles_pmtiles',
+        desc: 'PMTiles for vector_map_files / flutter_map',
+        pageBuilder: (context) => VectorMapTilesPmTilesPage(),
+      ),
+      SelectionItemWidget(
+        title: 'vector_map_scalebar',
+        desc: 'A scalebar for the map, based on the '
+            'flutter_map plugin example',
+        pageBuilder: (context) => const FlutterMapScalebar(),
+      ),
+    ];
+
+    final size = MediaQuery.sizeOf(context);
+
+    if (size.width > 900) {
+      return Padding(
+        padding: const EdgeInsets.all(8),
+        child: GridView.count(
+          crossAxisCount: 2,
+          childAspectRatio: 5,
+          children: children,
+        ),
+      );
+    }
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 5,
-        children: [
-          SelectionItemWidget(
-            title: 'flutter_map_cache',
-            desc: 'A slim yet powerful caching plugin for flutter_map '
-                'tile layers.',
-            pageBuilder: (context) => const FlutterMapCachePage(),
-          ),
-          SelectionItemWidget(
-            title: 'flutter_map_pmtiles',
-            desc: 'PMTiles for flutter_map',
-            pageBuilder: (context) => const FlutterMapPmTilesPage(),
-          ),
-          SelectionItemWidget(
-            title: 'vector_map_tiles_pmtiles',
-            desc: 'PMTiles for vector_map_files / flutter_map',
-            pageBuilder: (context) => VectorMapTilesPmTilesPage(),
-          ),
-          SelectionItemWidget(
-            title: 'vector_map_scalebar',
-            desc: 'A scalebar for the map, based on the '
-                'flutter_map plugin example',
-            pageBuilder: (context) => const FlutterMapScalebar(),
-          ),
-        ],
+      child: ListView(
+        children: children,
       ),
     );
   }

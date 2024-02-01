@@ -2,10 +2,6 @@
 
 A slim yet powerful caching plugin for flutter_map tile layers.
 
-Many tile providers require users in their tile usage policy to cache
-tile requests. This lowers the load on those servers and provides a better
-experience to users.
-
 ![Pub Likes](https://img.shields.io/pub/likes/flutter_map_cache)
 ![Pub Points](https://img.shields.io/pub/points/flutter_map_cache)
 ![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_cache)
@@ -14,6 +10,19 @@ experience to users.
 ![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)
 ![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)
 ![GitHub Repo stars](https://img.shields.io/github/stars/josxha/flutter_map_plugins?style=social)
+
+## Motivation
+
+- Many tile providers **require users in their tile usage policy** to cache
+  tile requests. This decreases the load on those servers and is important
+  especially if they are donation based like the OpenStreetMap.
+- Caching map tiles provides a **better user experience** since the region the
+  user visited **loads nearby instantly**. Most of the time a user visits the
+  same regions often, e.g. because it is the region he lives in.
+- Especially raster tiles that are used by default on flutter_map, the data
+  consumption can be high really fast. Caching tiles **lowers the amount of used
+  mobile data and bandwidth** with itself is an enthusiasm factor you don't want
+  to miss out on.
 
 ## Features
 
@@ -72,7 +81,13 @@ dependencies:
 
 ## Usage
 
-Using the cache is easy. Here is an example how to use the **Hive** backend:
+Using the cache is easy. Here are examples how to use some of the storage 
+backends:
+
+### Hive
+
+<details open>
+  <summary>Click here to expand / hide.</summary>
 
 1. First get the cache directory of the app (i.e. with
    the [path_provider](https://pub.dev/packages/path_provider)
@@ -114,21 +129,128 @@ Widget build(BuildContext context) {
 }
 ```
 
-You can find additional example usages for other storage backends here:
+---
+</details>
 
-- [In Memory (for testing)](https://github.com/josxha/flutter_map_plugins/wiki/Use-the-In%E2%80%90Memory-Store-(for-testing))
-- [File System](https://github.com/josxha/flutter_map_plugins/wiki/Use-the-File-System)
+### In Memory (for testing)
 
-...or check out
+<details>
+  <summary>Click here to expand / hide.</summary>
+
+```dart
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_cache/flutter_map_cache.dart';
+
+class MyMap extends StatelessWidget {
+  MyMap({super.key});
+
+  // create the cache store as a field variable
+  final _cacheStore = MemCacheStore();
+
+  @override
+  Widget build(BuildContext context) {
+    return FlutterMap(
+      options: MapOptions(),
+      children: [
+        TileLayer(
+          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          tileProvider: CachedTileProvider(
+            // use the store for your CachedTileProvider instance
+            store: _cacheStore,
+          ),
+        ),
+      ],
+    );
+  }
+}
+```
+
+---
+</details>
+
+### File System
+
+<details>
+  <summary>Click here to expand / hide.</summary>
+
+```dart
+import 'dart:io';
+
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:dio_cache_interceptor_file_store/dio_cache_interceptor_file_store.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_cache/flutter_map_cache.dart';
+import 'package:path_provider/path_provider.dart';
+
+class MyMap extends StatefulWidget {
+  const MyMap({super.key});
+
+  @override
+  State<MyMap> createState() => _MyMapState();
+}
+
+class _MyMapState extends State<MyMap> {
+  // create the cache store as a field variable
+  final Future<CacheStore> _cacheStoreFuture = _getCacheStore();
+
+  /// Get the CacheStore as a Future. This method needs to be static so that it
+  /// can be used to initialize a field variable.
+  static Future<CacheStore> _getCacheStore() async {
+    final dir = await getTemporaryDirectory();
+    // Note, that Platform.pathSeparator from dart:io does not work on web,
+    // import it from dart:html instead.
+    return FileCacheStore('${dir.path}${Platform.pathSeparator}MapTiles');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // show a loading screen when _cacheStore hasn't been set yet
+    return FutureBuilder<CacheStore>(
+      future: _cacheStoreFuture,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final cacheStore = snapshot.data!;
+          return FlutterMap(
+            options: MapOptions(),
+            children: [
+              TileLayer(
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                tileProvider: CachedTileProvider(
+                  // use the store for your CachedTileProvider instance
+                  store: cacheStore,
+                ),
+              ),
+            ],
+          );
+        }
+        if (snapshot.hasError) {
+          return Center(child: Text(snapshot.error.toString()));
+        }
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+  }
+}
+```
+
+---
+</details>
+
+### More examples
+
+You can find additional example implementations for other storage backends in
 [the example app](https://github.com/josxha/flutter_map_plugins/tree/main/example)
-on GitHub for a full example implementation of most storage backends.
+on GitHub.
 
 ## Common use cases & frequent questions
 
 ### How about web?
 
 <details>
-  <summary>Click here to expand.</summary>
+  <summary>Click here to expand / hide.</summary>
 
 This package supports the web as long as you use a storage backend that supports
 web.
@@ -144,12 +266,11 @@ web.
 ### Does this package support cancellation of tile requests?
 
 <details>
-  <summary>Click here to expand.</summary>
+  <summary>Click here to expand / hide.</summary>
 
-Yes. This package includes the tile cancellation that would otherwise be
-provided
-by [flutter_map_cancellable_tile_provider](https://pub.dev/packages/flutter_map_cancellable_tile_provider/)
-out of the box.
+Yes. This package includes the tile cancellation out of the box.
+There is no need for [flutter_map_cancellable_tile_provider](https://pub.dev/packages/flutter_map_cancellable_tile_provider/) when using 
+this package.
 
 ---
 </details>
@@ -157,7 +278,7 @@ out of the box.
 ### Remove the api key from the url before it gets used for caching
 
 <details>
-  <summary>Click here to expand.</summary>
+  <summary>Click here to expand / hide.</summary>
 
 Commercial tile providers often use an api key that is attached as a parameter
 to the url. While this shouldn't be a problem when the api key stays the same
@@ -182,24 +303,24 @@ CachedTileProvider(
 ### How about pre-downloading, bulk-downloading or offline map?
 
 <details>
-  <summary>Click here to expand.</summary>
+  <summary>Click here to expand / hide.</summary>
 
 This package does not provide support to download tiles automatically.
 Only tiles that were previously visited with an active internet connection
 show up on the map.
 
-If you need bulk-downloading functionality you can check out the package
-[flutter_map_tile_caching](https://pub.dev/packages/flutter_map_tile_caching)
-(Paid license is needed or your project has to be open sourced under the
-GPL-3.0 license).
-
-Please note that free tile providers such as
+⚠️ Please note that free tile providers such as
 [OpenStreetMap](https://www.openstreetmap.org/) forbids bulk
 downloading (more than 250 tiles on a higher zoom level) of tiles in their
 [tile usage policy](https://operations.osmfoundation.org/policies/tiles/).
 If you use a paid tile provider, bulk-downloading can cause high costs if
-you pay per tile request. Using a proper offline map solution (e.g. MBTiles)
-would be my recommendation here.
+you pay per tile request. Using a proper offline map solution 
+(e.g. MBTiles or PMTiles) would be my recommendation here.
+
+If you still need bulk-downloading functionality you can check out the package
+[flutter_map_tile_caching](https://pub.dev/packages/flutter_map_tile_caching)
+(Paid license is needed or your project has to be open sourced under the
+GPL-3.0 license).
 
 ---
 </details>
@@ -207,10 +328,10 @@ would be my recommendation here.
 ### What if I want to use sqflite?
 
 <details>
-  <summary>Click here to expand.</summary>
+  <summary>Click here to expand / hide.</summary>
 
 Because [dio_cache_interceptor](https://github.com/llfbandit/dio_cache_interceptor)
-already supports Drift as a SQLite solution it's unlikely that sqflite will
+already supports Drift as a SQLite solution it's unlikely that `sqflite` will
 be supported any day soon.
 
 If you still are required to use only sqflite, I recommend to create your own
