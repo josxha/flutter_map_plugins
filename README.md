@@ -26,6 +26,15 @@ flutter_map tile layers.
   learn more about
   PMTiles.
 
+### [flutter_map_scalebar](https://pub.dev/packages/flutter_map_scalebar)
+
+This package provides the `Scalebar` that is a layer for FlutterMap and renders
+a scalebar onto the map.
+
+- This package is based on the scalebar plugin example of flutter_map.
+- It is completely customizable (see the example) and has some additional
+  improvements and fixes.
+
 ### [vector_map_tiles_pmtiles](https://pub.dev/packages/vector_map_tiles_pmtiles)
 
 This package provides the `PmTilesVectorTileProvider` that can be used with

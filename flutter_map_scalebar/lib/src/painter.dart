@@ -32,7 +32,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_map_scalebar/flutter_map_scalebar.dart';
 
+/// This is the [CustomPainter] that draws the scalebar label and lines
+/// onto the canvas.
 class ScalebarPainter extends CustomPainter {
   final double width;
   final EdgeInsets padding;
@@ -44,6 +47,7 @@ class ScalebarPainter extends CustomPainter {
 
   final Paint _linePaint;
 
+  /// Create a new [ScalebarPainter], internally used in the [Scalebar].
   ScalebarPainter({
     required this.width,
     required this.text,

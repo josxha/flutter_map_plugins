@@ -38,6 +38,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_scalebar/src/painter.dart';
 import 'package:flutter_map_scalebar/src/utils.dart';
 
+/// The [Scalebar] widget is a map layer for [FlutterMap].
 class Scalebar extends StatelessWidget {
   final TextStyle? textStyle;
   final Color lineColor;
@@ -46,6 +47,10 @@ class Scalebar extends StatelessWidget {
   final EdgeInsets padding;
   final int _relWidth;
 
+  /// Create a new [Scalebar].
+  ///
+  /// This widget needs to be placed in the [FlutterMap.children] list of
+  /// the `flutter_map` package.
   const Scalebar({
     super.key,
     this.textStyle = const TextStyle(color: Colors.black, fontSize: 14),

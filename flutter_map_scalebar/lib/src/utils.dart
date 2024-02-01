@@ -37,6 +37,7 @@ import 'dart:ui';
 import 'package:latlong2/latlong.dart';
 import 'package:vector_math/vector_math_64.dart';
 
+/// Calculates the length of the scalebar
 LatLng calculateEndingGlobalCoordinates({
   required LatLng start,
   required double startBearing,
