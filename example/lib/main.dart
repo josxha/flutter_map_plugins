@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_mbtiles/page.dart';
@@ -30,7 +29,10 @@ class MyApp extends StatelessWidget {
         '/': (context) => const SelectionPage(),
         'flutter_map_cache': (context) => const FlutterMapCachePage(),
         'flutter_map_pmtiles': (context) => const FlutterMapPmTilesPage(),
-        'vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
+        'vector_map_tiles_pmtiles': (context) => const FlutterMapMbTilesPage(),
+        'flutter_map_mbtiles': (context) => VectorMapTilesPmTilesPage(),
+        'vector_map_tiles_mbtiles': (context) =>
+            const VectorMapTilesMbTilesPage(),
       },
     );
   }
@@ -57,6 +59,18 @@ class SelectionPage extends StatelessWidget {
         title: 'vector_map_tiles_pmtiles',
         desc: 'PMTiles for vector_map_files / flutter_map',
         routeName: 'vector_map_tiles_pmtiles',
+      ),
+      SelectionItemWidget(
+        title: 'flutter_map_mbtiles',
+        desc: 'MBTiles for flutter_map',
+        routeName: 'flutter_map_mbtiles',
+        disabledOnWeb: true,
+      ),
+      SelectionItemWidget(
+        title: 'vector_map_tiles_mbtiles',
+        desc: 'MBTiles for vector_map_files / flutter_map',
+        routeName: 'vector_map_tiles_mbtiles',
+        disabledOnWeb: true,
       ),
     ];
 
