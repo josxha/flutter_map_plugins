@@ -14,6 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_map: ^6.1.0
+  vector_tile: ^2.0.0
 
 dev_dependencies:
   total_lints: ^3.0.0

@@ -19,3 +19,4 @@ linter:
     sort_pub_dependencies: false # no automatic fix
     discarded_futures: false # does not work properly
     public_member_api_docs: false # disabled for now, add before release
+    avoid_print: false # disabled for now, add before release
