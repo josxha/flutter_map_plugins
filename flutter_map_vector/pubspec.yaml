@@ -1,0 +1,19 @@
+name: flutter_map_vector
+description: Just another vector tiles provider for flutter_map with focus on performance.
+version: 0.1.0
+repository: https://github.com/josxha/flutter_map_plugins
+issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
+
+topics: [ flutter-map, map, vector-tiles, mvt, pbf ]
+
+environment:
+  flutter: ^3.16.0
+  sdk: ^3.2.6
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_map: ^6.1.0
+
+dev_dependencies:
+  total_lints: ^3.0.0
