@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 @Freezed()
-abstract class ThemeSource {
+abstract interface class ThemeSource {
   ThemeSourceType get type;
 }
 
