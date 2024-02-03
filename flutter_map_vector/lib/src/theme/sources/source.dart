@@ -3,8 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'source.freezed.dart';
 part 'source.g.dart';
 
-@Freezed()
-class ThemeSource {
+@Freezed(copyWith: false)
+class ThemeSource with _$ThemeSource {
   const factory ThemeSource({
     required ThemeSourceType type,
   }) = _ThemeSource;

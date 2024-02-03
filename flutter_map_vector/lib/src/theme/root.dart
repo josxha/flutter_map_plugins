@@ -1,4 +1,5 @@
 import 'package:flutter_map_vector/src/theme/layer.dart';
+import 'package:flutter_map_vector/src/theme/parser/source_converter.dart';
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -19,7 +20,7 @@ class VectorTheme with _$VectorTheme {
     required List<ThemeLayer> layers,
 
     /// Sources supply the data that will be displayed on the map.
-    //TODO required Map<String, ThemeSource> sources,
+    @SourceConverter() required Map<String, ThemeSource> sources,
 
     /// Style specification version number. Must be 8.
     @Assert('version == 8', 'Must be 8.') required int version,

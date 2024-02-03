@@ -11,6 +11,8 @@ _$ThemeRootImpl _$$ThemeRootImplFromJson(Map<String, dynamic> json) =>
       layers: (json['layers'] as List<dynamic>)
           .map((e) => ThemeLayer.fromJson(e as Map<String, dynamic>))
           .toList(),
+      sources: const SourceConverter()
+          .fromJson(json['sources'] as Map<String, Object?>),
       version: json['version'] as int,
       bearing: (json['bearing'] as num?)?.toDouble() ?? 0,
       camera: json['camera'],
@@ -46,6 +48,7 @@ _$ThemeRootImpl _$$ThemeRootImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ThemeRootImplToJson(_$ThemeRootImpl instance) =>
     <String, dynamic>{
       'layers': instance.layers,
+      'sources': const SourceConverter().toJson(instance.sources),
       'version': instance.version,
       'bearing': instance.bearing,
       'camera': instance.camera,

@@ -23,75 +23,6 @@ mixin _$ThemeSource {
   ThemeSourceType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ThemeSourceCopyWith<ThemeSource> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ThemeSourceCopyWith<$Res> {
-  factory $ThemeSourceCopyWith(
-          ThemeSource value, $Res Function(ThemeSource) then) =
-      _$ThemeSourceCopyWithImpl<$Res, ThemeSource>;
-  @useResult
-  $Res call({ThemeSourceType type});
-}
-
-/// @nodoc
-class _$ThemeSourceCopyWithImpl<$Res, $Val extends ThemeSource>
-    implements $ThemeSourceCopyWith<$Res> {
-  _$ThemeSourceCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ThemeSourceType,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ThemeSourceImplCopyWith<$Res>
-    implements $ThemeSourceCopyWith<$Res> {
-  factory _$$ThemeSourceImplCopyWith(
-          _$ThemeSourceImpl value, $Res Function(_$ThemeSourceImpl) then) =
-      __$$ThemeSourceImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({ThemeSourceType type});
-}
-
-/// @nodoc
-class __$$ThemeSourceImplCopyWithImpl<$Res>
-    extends _$ThemeSourceCopyWithImpl<$Res, _$ThemeSourceImpl>
-    implements _$$ThemeSourceImplCopyWith<$Res> {
-  __$$ThemeSourceImplCopyWithImpl(
-      _$ThemeSourceImpl _value, $Res Function(_$ThemeSourceImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(_$ThemeSourceImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ThemeSourceType,
-    ));
-  }
 }
 
 /// @nodoc
@@ -122,12 +53,6 @@ class _$ThemeSourceImpl implements _ThemeSource {
   @override
   int get hashCode => Object.hash(runtimeType, type);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ThemeSourceImplCopyWith<_$ThemeSourceImpl> get copyWith =>
-      __$$ThemeSourceImplCopyWithImpl<_$ThemeSourceImpl>(this, _$identity);
-
   @override
   Map<String, dynamic> toJson() {
     return _$$ThemeSourceImplToJson(
@@ -145,8 +70,4 @@ abstract class _ThemeSource implements ThemeSource {
 
   @override
   ThemeSourceType get type;
-  @override
-  @JsonKey(ignore: true)
-  _$$ThemeSourceImplCopyWith<_$ThemeSourceImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
