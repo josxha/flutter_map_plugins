@@ -24,8 +24,7 @@ mixin _$VectorTheme {
   List<ThemeLayer> get layers => throw _privateConstructorUsedError;
 
   /// Sources supply the data that will be displayed on the map.
-  Map<String, ThemeSource> get sources => throw _privateConstructorUsedError;
-
+//TODO required Map<String, ThemeSource> sources,
   /// Style specification version number. Must be 8.
   @Assert('version == 8', 'Must be 8.')
   int get version => throw _privateConstructorUsedError;
@@ -184,7 +183,6 @@ abstract class $VectorThemeCopyWith<$Res> {
   @useResult
   $Res call(
       {List<ThemeLayer> layers,
-      Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') int version,
       double bearing,
       dynamic camera,
@@ -231,7 +229,6 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
   @override
   $Res call({
     Object? layers = null,
-    Object? sources = null,
     Object? version = null,
     Object? bearing = null,
     Object? camera = freezed,
@@ -265,10 +262,6 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
           ? _value.layers
           : layers // ignore: cast_nullable_to_non_nullable
               as List<ThemeLayer>,
-      sources: null == sources
-          ? _value.sources
-          : sources // ignore: cast_nullable_to_non_nullable
-              as Map<String, ThemeSource>,
       version: null == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
@@ -391,7 +384,6 @@ abstract class _$$ThemeRootImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<ThemeLayer> layers,
-      Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') int version,
       double bearing,
       dynamic camera,
@@ -436,7 +428,6 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? layers = null,
-    Object? sources = null,
     Object? version = null,
     Object? bearing = null,
     Object? camera = freezed,
@@ -470,10 +461,6 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
           ? _value._layers
           : layers // ignore: cast_nullable_to_non_nullable
               as List<ThemeLayer>,
-      sources: null == sources
-          ? _value._sources
-          : sources // ignore: cast_nullable_to_non_nullable
-              as Map<String, ThemeSource>,
       version: null == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
@@ -591,7 +578,6 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
 class _$ThemeRootImpl implements _ThemeRoot {
   const _$ThemeRootImpl(
       {required final List<ThemeLayer> layers,
-      required final Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') required this.version,
       this.bearing = 0,
       this.camera,
@@ -623,7 +609,6 @@ class _$ThemeRootImpl implements _ThemeRoot {
       this.protected,
       this.draft})
       : _layers = layers,
-        _sources = sources,
         _center = center,
         _imports = imports,
         _lights = lights,
@@ -644,16 +629,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
   }
 
   /// Sources supply the data that will be displayed on the map.
-  final Map<String, ThemeSource> _sources;
-
-  /// Sources supply the data that will be displayed on the map.
-  @override
-  Map<String, ThemeSource> get sources {
-    if (_sources is EqualUnmodifiableMapView) return _sources;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_sources);
-  }
-
+//TODO required Map<String, ThemeSource> sources,
   /// Style specification version number. Must be 8.
   @override
   @Assert('version == 8', 'Must be 8.')
@@ -871,7 +847,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
 
   @override
   String toString() {
-    return 'VectorTheme(layers: $layers, sources: $sources, version: $version, bearing: $bearing, camera: $camera, center: $center, fog: $fog, fragment: $fragment, glyphs: $glyphs, imports: $imports, light: $light, lights: $lights, metadata: $metadata, models: $models, name: $name, pitch: $pitch, projection: $projection, schema: $schema, sprite: $sprite, terrain: $terrain, transition: $transition, zoom: $zoom, created: $created, id: $id, modified: $modified, owner: $owner, visibility: $visibility, protected: $protected, draft: $draft)';
+    return 'VectorTheme(layers: $layers, version: $version, bearing: $bearing, camera: $camera, center: $center, fog: $fog, fragment: $fragment, glyphs: $glyphs, imports: $imports, light: $light, lights: $lights, metadata: $metadata, models: $models, name: $name, pitch: $pitch, projection: $projection, schema: $schema, sprite: $sprite, terrain: $terrain, transition: $transition, zoom: $zoom, created: $created, id: $id, modified: $modified, owner: $owner, visibility: $visibility, protected: $protected, draft: $draft)';
   }
 
   @override
@@ -880,7 +856,6 @@ class _$ThemeRootImpl implements _ThemeRoot {
         (other.runtimeType == runtimeType &&
             other is _$ThemeRootImpl &&
             const DeepCollectionEquality().equals(other._layers, _layers) &&
-            const DeepCollectionEquality().equals(other._sources, _sources) &&
             (identical(other.version, version) || other.version == version) &&
             (identical(other.bearing, bearing) || other.bearing == bearing) &&
             const DeepCollectionEquality().equals(other.camera, camera) &&
@@ -921,7 +896,6 @@ class _$ThemeRootImpl implements _ThemeRoot {
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(_layers),
-        const DeepCollectionEquality().hash(_sources),
         version,
         bearing,
         const DeepCollectionEquality().hash(camera),
@@ -968,7 +942,6 @@ class _$ThemeRootImpl implements _ThemeRoot {
 abstract class _ThemeRoot implements VectorTheme {
   const factory _ThemeRoot(
       {required final List<ThemeLayer> layers,
-      required final Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') required final int version,
       final double bearing,
       final dynamic camera,
@@ -1010,9 +983,7 @@ abstract class _ThemeRoot implements VectorTheme {
   @override
 
   /// Sources supply the data that will be displayed on the map.
-  Map<String, ThemeSource> get sources;
-  @override
-
+//TODO required Map<String, ThemeSource> sources,
   /// Style specification version number. Must be 8.
   @Assert('version == 8', 'Must be 8.')
   int get version;

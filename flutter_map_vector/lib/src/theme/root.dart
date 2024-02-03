@@ -2,9 +2,9 @@ import 'package:flutter_map_vector/src/theme/layer.dart';
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'style_osm_bright.dart';
 part 'root.freezed.dart';
 part 'root.g.dart';
+part 'style_osm_bright.dart';
 
 /// Root level properties of a Mapbox style specify the map's layers, tile
 /// sources and other resources, and default values for the initial camera
@@ -19,11 +19,10 @@ class VectorTheme with _$VectorTheme {
     required List<ThemeLayer> layers,
 
     /// Sources supply the data that will be displayed on the map.
-    required Map<String, ThemeSource> sources,
+    //TODO required Map<String, ThemeSource> sources,
 
     /// Style specification version number. Must be 8.
-    @Assert('version == 8', 'Must be 8.')
-    required int version,
+    @Assert('version == 8', 'Must be 8.') required int version,
 
     /// Default bearing, in degrees. The bearing is the compass direction that
     /// is "up"; for example, a bearing of 90° orients the map so that east is

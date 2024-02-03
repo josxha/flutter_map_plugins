@@ -6,7 +6,7 @@ part 'source.g.dart';
 @Freezed()
 class ThemeSource {
   const factory ThemeSource({
-    ThemeSourceType type,
+    required ThemeSourceType type,
   }) = _ThemeSource;
 
   factory ThemeSource.fromJson(Map<String, Object?> json) =>
