@@ -1,5 +1,6 @@
+import 'package:flutter_map_vector/src/theme/converter/layer_converter.dart';
+import 'package:flutter_map_vector/src/theme/converter/source_converter.dart';
 import 'package:flutter_map_vector/src/theme/layer/layer.dart';
-import 'package:flutter_map_vector/src/theme/parser/source_converter.dart';
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,7 +18,7 @@ class VectorTheme with _$VectorTheme {
 
   const factory VectorTheme({
     /// Layers will be created in the order of this array.
-    required List<ThemeLayer> layers,
+    @LayerConverter() required List<ThemeLayer> layers,
 
     /// Sources supply the data that will be displayed on the map.
     @SourceConverter() required Map<String, ThemeSource> sources,

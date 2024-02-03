@@ -21,6 +21,7 @@ VectorTheme _$VectorThemeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$VectorTheme {
   /// Layers will be created in the order of this array.
+  @LayerConverter()
   List<ThemeLayer> get layers => throw _privateConstructorUsedError;
 
   /// Sources supply the data that will be displayed on the map.
@@ -184,7 +185,7 @@ abstract class $VectorThemeCopyWith<$Res> {
       _$VectorThemeCopyWithImpl<$Res, VectorTheme>;
   @useResult
   $Res call(
-      {List<ThemeLayer> layers,
+      {@LayerConverter() List<ThemeLayer> layers,
       @SourceConverter() Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') int version,
       double bearing,
@@ -391,7 +392,7 @@ abstract class _$$ThemeRootImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<ThemeLayer> layers,
+      {@LayerConverter() List<ThemeLayer> layers,
       @SourceConverter() Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') int version,
       double bearing,
@@ -591,7 +592,7 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ThemeRootImpl implements _ThemeRoot {
   const _$ThemeRootImpl(
-      {required final List<ThemeLayer> layers,
+      {@LayerConverter() required final List<ThemeLayer> layers,
       @SourceConverter() required final Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') required this.version,
       this.bearing = 0,
@@ -638,6 +639,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
 
   /// Layers will be created in the order of this array.
   @override
+  @LayerConverter()
   List<ThemeLayer> get layers {
     if (_layers is EqualUnmodifiableListView) return _layers;
     // ignore: implicit_dynamic_type
@@ -969,7 +971,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
 
 abstract class _ThemeRoot implements VectorTheme {
   const factory _ThemeRoot(
-      {required final List<ThemeLayer> layers,
+      {@LayerConverter() required final List<ThemeLayer> layers,
       @SourceConverter() required final Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') required final int version,
       final double bearing,
@@ -1008,6 +1010,7 @@ abstract class _ThemeRoot implements VectorTheme {
   @override
 
   /// Layers will be created in the order of this array.
+  @LayerConverter()
   List<ThemeLayer> get layers;
   @override
 
