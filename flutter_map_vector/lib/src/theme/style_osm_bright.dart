@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_single_quotes, require_trailing_commas
 
-const Map<String, dynamic> styleOsmBright = {
+part of 'root.dart';
+
+const Map<String, dynamic> _styleOsmBright = {
   "version": 8,
   "name": "Bright",
   "metadata": {

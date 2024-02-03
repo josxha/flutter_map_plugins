@@ -1,5 +1,9 @@
 include: package:total_lints/package.yaml
 
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
+
 linter:
   rules:
     avoid_types_on_closure_parameters: true

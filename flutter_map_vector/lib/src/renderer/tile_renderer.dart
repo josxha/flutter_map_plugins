@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:vector_tile/vector_tile.dart';
 
-class TileRenderer {
-  const TileRenderer();
-}
+//class TileRenderer {
+//  const TileRenderer();
+//}
 
 Future<void> main() async {
   final tileData = await File('../data/sample-12-3262-1923.pbf').readAsBytes();

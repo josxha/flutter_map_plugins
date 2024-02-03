@@ -20,10 +20,14 @@ class FlutterMapVectorPage extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final byteData = snapshot.data!;
+            final bytes = byteData.buffer.asUint8List(
+              byteData.offsetInBytes,
+              byteData.lengthInBytes,
+            );
             return Center(
               child: SizedBox.square(
                 dimension: 256,
-                child: Text(byteData.lengthInBytes.toString()),
+                child: Text('${bytes.lengthInBytes} bytes'),
               ),
             );
           }
