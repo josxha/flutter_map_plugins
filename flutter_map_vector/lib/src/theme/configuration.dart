@@ -75,6 +75,7 @@ class ThemeConfigOption with _$ThemeConfigOption {
       _$ThemeConfigOptionFromJson(json);
 }
 
+@JsonEnum()
 enum ThemeConfigOptionType {
   /// The result will be coerced to a string.
   string,

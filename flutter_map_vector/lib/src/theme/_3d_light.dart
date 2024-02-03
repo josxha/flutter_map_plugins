@@ -51,6 +51,7 @@ class Theme3dLight with _$Theme3dLight {
       _$Theme3dLightFromJson(json);
 }
 
+@JsonEnum()
 enum Theme3dLightType {
   /// An indirect light affecting all objects in the map adding a constant
   /// amount of light on them. It has no explicit direction and cannot

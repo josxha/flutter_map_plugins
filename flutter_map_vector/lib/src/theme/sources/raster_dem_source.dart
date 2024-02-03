@@ -52,9 +52,11 @@ class ThemeRasterDemSource with _$ThemeRasterDemSource {
 }
 
 /// The encoding used by this source.
+@JsonEnum()
 enum RasterDemEncoding {
   /// Terrarium format PNG tiles. See https://aws.amazon.com/es/public-datasets/terrain/ for more info.
   terrarium,
+
   /// Mapbox Terrain RGB tiles. See https://www.mapbox.com/help/access-elevation-data/#mapbox-terrain-rgb for more info.
   mapbox;
 }

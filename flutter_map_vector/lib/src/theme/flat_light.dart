@@ -46,6 +46,7 @@ class ThemeFlatLight with _$ThemeFlatLight {
       _$ThemeFlatLightFromJson(json);
 }
 
+@JsonEnum()
 enum ThemeFlatLightAnchor {
   /// The position of the light source is aligned to the rotation of the map.
   map,

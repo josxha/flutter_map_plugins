@@ -15,6 +15,7 @@ part 'video_source.g.dart';
 /// https://docs.mapbox.com/style-spec/reference/sources/#video
 @Freezed()
 class ThemeVideoSource with _$ThemeVideoSource {
+  @Implements<ThemeSource>()
   const factory ThemeVideoSource({
     /// Corners of image specified in longitude, latitude pairs. Note: When
     /// using globe projection, the image will be centered at the North or

@@ -206,7 +206,7 @@ class _$ThemeVideoSourceImpl implements _ThemeVideoSource {
   }
 }
 
-abstract class _ThemeVideoSource implements ThemeVideoSource {
+abstract class _ThemeVideoSource implements ThemeVideoSource, ThemeSource {
   const factory _ThemeVideoSource(
       {@Assert('coordinates.length == 4',
           'The coordinates array needs to have exactly 4 items.')

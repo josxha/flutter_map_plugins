@@ -1,15 +1,19 @@
-import 'package:flutter_map_vector/src/theme/sources/vector_source.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-sealed class ThemeSource {
-  const ThemeSource();
+part 'source.freezed.dart';
+part 'source.g.dart';
 
-  ThemeSource fromJson(Map<String, Object?> json) =>
-      switch (json['type']) {
-        'vector' => ThemeVectorSource.fromJson(json),
-        _ => throw AssertionError("Can't parse the source: $json"),
-      };
+@Freezed()
+class ThemeSource {
+  const factory ThemeSource({
+    ThemeSourceType type,
+  }) = _ThemeSource;
+
+  factory ThemeSource.fromJson(Map<String, Object?> json) =>
+      _$ThemeSourceFromJson(json);
 }
 
+@JsonEnum()
 enum ThemeSourceType {
   vector,
   raster,
@@ -19,6 +23,7 @@ enum ThemeSourceType {
   video;
 }
 
+@JsonEnum()
 enum ThemeSourceScheme {
   /// Slippy map tilenames scheme.
   xyz,

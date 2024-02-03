@@ -57,6 +57,7 @@ class ThemeProjection with _$ThemeProjection {
       _$ThemeProjectionFromJson(json);
 }
 
+@JsonEnum()
 enum ThemeProjectionName {
   /// An Albers equal-area projection centered on the continental
   /// United States. You can configure the projection for a different region
