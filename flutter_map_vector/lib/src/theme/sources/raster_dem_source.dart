@@ -1,3 +1,4 @@
+import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'raster_dem_source.freezed.dart';
@@ -8,8 +9,11 @@ part 'raster_dem_source.g.dart';
 ///
 /// https://docs.mapbox.com/style-spec/reference/sources/#raster-dem
 @Freezed()
-class ThemeRasterDemSource with _$ThemeRasterDemSource {
+class ThemeRasterDemSource with _$ThemeRasterDemSource implements ThemeSource {
+  @Implements<ThemeSource>()
   const factory ThemeRasterDemSource({
+    required ThemeSourceType type,
+
     /// Contains an attribution to be displayed when the map is shown to a user.
     String? attribution,
 

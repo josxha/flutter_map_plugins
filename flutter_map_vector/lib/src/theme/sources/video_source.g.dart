@@ -9,6 +9,7 @@ part of 'video_source.dart';
 _$ThemeVideoSourceImpl _$$ThemeVideoSourceImplFromJson(
         Map<String, dynamic> json) =>
     _$ThemeVideoSourceImpl(
+      type: $enumDecode(_$ThemeSourceTypeEnumMap, json['type']),
       coordinates: (json['coordinates'] as List<dynamic>)
           .map((e) =>
               (e as List<dynamic>).map((e) => (e as num).toDouble()).toList())
@@ -19,6 +20,16 @@ _$ThemeVideoSourceImpl _$$ThemeVideoSourceImplFromJson(
 Map<String, dynamic> _$$ThemeVideoSourceImplToJson(
         _$ThemeVideoSourceImpl instance) =>
     <String, dynamic>{
+      'type': _$ThemeSourceTypeEnumMap[instance.type]!,
       'coordinates': instance.coordinates,
       'url': instance.url,
     };
+
+const _$ThemeSourceTypeEnumMap = {
+  ThemeSourceType.vector: 'vector',
+  ThemeSourceType.raster: 'raster',
+  ThemeSourceType.rasterDem: 'rasterDem',
+  ThemeSourceType.geojson: 'geojson',
+  ThemeSourceType.image: 'image',
+  ThemeSourceType.video: 'video',
+};

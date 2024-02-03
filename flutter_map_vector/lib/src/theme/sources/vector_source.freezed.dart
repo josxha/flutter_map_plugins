@@ -20,6 +20,8 @@ ThemeVectorSource _$ThemeVectorSourceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ThemeVectorSource {
+  ThemeSourceType get type => throw _privateConstructorUsedError;
+
   /// Contains an attribution to be displayed when the map is shown to a user.
   String? get attribution => throw _privateConstructorUsedError;
 
@@ -74,7 +76,8 @@ abstract class $ThemeVectorSourceCopyWith<$Res> {
       _$ThemeVectorSourceCopyWithImpl<$Res, ThemeVectorSource>;
   @useResult
   $Res call(
-      {String? attribution,
+      {ThemeSourceType type,
+      String? attribution,
       List<double> bounds,
       int maxZoom,
       int minZoom,
@@ -98,6 +101,7 @@ class _$ThemeVectorSourceCopyWithImpl<$Res, $Val extends ThemeVectorSource>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? attribution = freezed,
     Object? bounds = null,
     Object? maxZoom = null,
@@ -109,6 +113,10 @@ class _$ThemeVectorSourceCopyWithImpl<$Res, $Val extends ThemeVectorSource>
     Object? volatile = null,
   }) {
     return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ThemeSourceType,
       attribution: freezed == attribution
           ? _value.attribution
           : attribution // ignore: cast_nullable_to_non_nullable
@@ -158,7 +166,8 @@ abstract class _$$ThemeVectorSourceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? attribution,
+      {ThemeSourceType type,
+      String? attribution,
       List<double> bounds,
       int maxZoom,
       int minZoom,
@@ -180,6 +189,7 @@ class __$$ThemeVectorSourceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? attribution = freezed,
     Object? bounds = null,
     Object? maxZoom = null,
@@ -191,6 +201,10 @@ class __$$ThemeVectorSourceImplCopyWithImpl<$Res>
     Object? volatile = null,
   }) {
     return _then(_$ThemeVectorSourceImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ThemeSourceType,
       attribution: freezed == attribution
           ? _value.attribution
           : attribution // ignore: cast_nullable_to_non_nullable
@@ -235,7 +249,8 @@ class __$$ThemeVectorSourceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ThemeVectorSourceImpl implements _ThemeVectorSource {
   const _$ThemeVectorSourceImpl(
-      {this.attribution,
+      {required this.type,
+      this.attribution,
       final List<double> bounds = const [-180, -85.051129, 180, 85.051129],
       this.maxZoom = 22,
       this.minZoom = 0,
@@ -249,6 +264,9 @@ class _$ThemeVectorSourceImpl implements _ThemeVectorSource {
 
   factory _$ThemeVectorSourceImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThemeVectorSourceImplFromJson(json);
+
+  @override
+  final ThemeSourceType type;
 
   /// Contains an attribution to be displayed when the map is shown to a user.
   @override
@@ -327,7 +345,7 @@ class _$ThemeVectorSourceImpl implements _ThemeVectorSource {
 
   @override
   String toString() {
-    return 'ThemeVectorSource(attribution: $attribution, bounds: $bounds, maxZoom: $maxZoom, minZoom: $minZoom, promoteId: $promoteId, scheme: $scheme, tiles: $tiles, url: $url, volatile: $volatile)';
+    return 'ThemeVectorSource(type: $type, attribution: $attribution, bounds: $bounds, maxZoom: $maxZoom, minZoom: $minZoom, promoteId: $promoteId, scheme: $scheme, tiles: $tiles, url: $url, volatile: $volatile)';
   }
 
   @override
@@ -335,6 +353,7 @@ class _$ThemeVectorSourceImpl implements _ThemeVectorSource {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ThemeVectorSourceImpl &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.attribution, attribution) ||
                 other.attribution == attribution) &&
             const DeepCollectionEquality().equals(other._bounds, _bounds) &&
@@ -352,6 +371,7 @@ class _$ThemeVectorSourceImpl implements _ThemeVectorSource {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      type,
       attribution,
       const DeepCollectionEquality().hash(_bounds),
       maxZoom,
@@ -377,9 +397,10 @@ class _$ThemeVectorSourceImpl implements _ThemeVectorSource {
   }
 }
 
-abstract class _ThemeVectorSource implements ThemeVectorSource {
+abstract class _ThemeVectorSource implements ThemeVectorSource, ThemeSource {
   const factory _ThemeVectorSource(
-      {final String? attribution,
+      {required final ThemeSourceType type,
+      final String? attribution,
       final List<double> bounds,
       final int maxZoom,
       final int minZoom,
@@ -392,6 +413,8 @@ abstract class _ThemeVectorSource implements ThemeVectorSource {
   factory _ThemeVectorSource.fromJson(Map<String, dynamic> json) =
       _$ThemeVectorSourceImpl.fromJson;
 
+  @override
+  ThemeSourceType get type;
   @override
 
   /// Contains an attribution to be displayed when the map is shown to a user.

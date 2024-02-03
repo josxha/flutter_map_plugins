@@ -1,3 +1,4 @@
+import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'image_source.freezed.dart';
@@ -7,8 +8,11 @@ part 'image_source.g.dart';
 ///
 /// https://docs.mapbox.com/style-spec/reference/sources/#image
 @Freezed()
-class ThemeImageSource with _$ThemeImageSource {
+class ThemeImageSource with _$ThemeImageSource implements ThemeSource {
+  @Implements<ThemeSource>()
   const factory ThemeImageSource({
+    required ThemeSourceType type,
+
     /// Corners of image specified in longitude, latitude pairs. Note: When
     /// using globe projection, the image will be centered at the North or
     /// South Pole in the respective hemisphere if the average latitude value

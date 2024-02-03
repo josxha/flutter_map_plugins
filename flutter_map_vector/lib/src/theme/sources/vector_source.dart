@@ -12,8 +12,11 @@ part 'vector_source.g.dart';
 ///
 /// https://docs.mapbox.com/style-spec/reference/sources/#vector
 @Freezed()
-class ThemeVectorSource with _$ThemeVectorSource {
+class ThemeVectorSource with _$ThemeVectorSource implements ThemeSource {
+  @Implements<ThemeSource>()
   const factory ThemeVectorSource({
+    required ThemeSourceType type,
+
     /// Contains an attribution to be displayed when the map is shown to a user.
     String? attribution,
 

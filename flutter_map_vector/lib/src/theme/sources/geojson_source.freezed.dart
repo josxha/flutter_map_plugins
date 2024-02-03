@@ -20,6 +20,8 @@ ThemeGeoJsonSource _$ThemeGeoJsonSourceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ThemeGeoJsonSource {
+  ThemeSourceType get type => throw _privateConstructorUsedError;
+
   /// Contains an attribution to be displayed when the map is shown to a user.
   String? get attribution => throw _privateConstructorUsedError;
 
@@ -112,7 +114,8 @@ abstract class $ThemeGeoJsonSourceCopyWith<$Res> {
       _$ThemeGeoJsonSourceCopyWithImpl<$Res, ThemeGeoJsonSource>;
   @useResult
   $Res call(
-      {String? attribution,
+      {ThemeSourceType type,
+      String? attribution,
       @Assert('buffer >= 0 && buffer <= 512',
           'Buffer value must be between 0 and 512 inclusive.')
       int buffer,
@@ -144,6 +147,7 @@ class _$ThemeGeoJsonSourceCopyWithImpl<$Res, $Val extends ThemeGeoJsonSource>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? attribution = freezed,
     Object? buffer = null,
     Object? cluster = null,
@@ -160,6 +164,10 @@ class _$ThemeGeoJsonSourceCopyWithImpl<$Res, $Val extends ThemeGeoJsonSource>
     Object? tolerance = null,
   }) {
     return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ThemeSourceType,
       attribution: freezed == attribution
           ? _value.attribution
           : attribution // ignore: cast_nullable_to_non_nullable
@@ -229,7 +237,8 @@ abstract class _$$ThemeGeoJsonSourceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? attribution,
+      {ThemeSourceType type,
+      String? attribution,
       @Assert('buffer >= 0 && buffer <= 512',
           'Buffer value must be between 0 and 512 inclusive.')
       int buffer,
@@ -259,6 +268,7 @@ class __$$ThemeGeoJsonSourceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? attribution = freezed,
     Object? buffer = null,
     Object? cluster = null,
@@ -275,6 +285,10 @@ class __$$ThemeGeoJsonSourceImplCopyWithImpl<$Res>
     Object? tolerance = null,
   }) {
     return _then(_$ThemeGeoJsonSourceImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ThemeSourceType,
       attribution: freezed == attribution
           ? _value.attribution
           : attribution // ignore: cast_nullable_to_non_nullable
@@ -339,7 +353,8 @@ class __$$ThemeGeoJsonSourceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ThemeGeoJsonSourceImpl implements _ThemeGeoJsonSource {
   const _$ThemeGeoJsonSourceImpl(
-      {this.attribution,
+      {required this.type,
+      this.attribution,
       @Assert('buffer >= 0 && buffer <= 512',
           'Buffer value must be between 0 and 512 inclusive.')
       this.buffer = 128,
@@ -359,6 +374,9 @@ class _$ThemeGeoJsonSourceImpl implements _ThemeGeoJsonSource {
 
   factory _$ThemeGeoJsonSourceImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThemeGeoJsonSourceImplFromJson(json);
+
+  @override
+  final ThemeSourceType type;
 
   /// Contains an attribution to be displayed when the map is shown to a user.
   @override
@@ -463,7 +481,7 @@ class _$ThemeGeoJsonSourceImpl implements _ThemeGeoJsonSource {
 
   @override
   String toString() {
-    return 'ThemeGeoJsonSource(attribution: $attribution, buffer: $buffer, cluster: $cluster, clusterMaxZoom: $clusterMaxZoom, clusterMinPoints: $clusterMinPoints, clusterProperties: $clusterProperties, clusterRadius: $clusterRadius, data: $data, filter: $filter, generateId: $generateId, lineMetrics: $lineMetrics, maxZoom: $maxZoom, promoteId: $promoteId, tolerance: $tolerance)';
+    return 'ThemeGeoJsonSource(type: $type, attribution: $attribution, buffer: $buffer, cluster: $cluster, clusterMaxZoom: $clusterMaxZoom, clusterMinPoints: $clusterMinPoints, clusterProperties: $clusterProperties, clusterRadius: $clusterRadius, data: $data, filter: $filter, generateId: $generateId, lineMetrics: $lineMetrics, maxZoom: $maxZoom, promoteId: $promoteId, tolerance: $tolerance)';
   }
 
   @override
@@ -471,6 +489,7 @@ class _$ThemeGeoJsonSourceImpl implements _ThemeGeoJsonSource {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ThemeGeoJsonSourceImpl &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.attribution, attribution) ||
                 other.attribution == attribution) &&
             (identical(other.buffer, buffer) || other.buffer == buffer) &&
@@ -499,6 +518,7 @@ class _$ThemeGeoJsonSourceImpl implements _ThemeGeoJsonSource {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      type,
       attribution,
       buffer,
       cluster,
@@ -529,9 +549,10 @@ class _$ThemeGeoJsonSourceImpl implements _ThemeGeoJsonSource {
   }
 }
 
-abstract class _ThemeGeoJsonSource implements ThemeGeoJsonSource {
+abstract class _ThemeGeoJsonSource implements ThemeGeoJsonSource, ThemeSource {
   const factory _ThemeGeoJsonSource(
-      {final String? attribution,
+      {required final ThemeSourceType type,
+      final String? attribution,
       @Assert('buffer >= 0 && buffer <= 512',
           'Buffer value must be between 0 and 512 inclusive.')
       final int buffer,
@@ -552,6 +573,8 @@ abstract class _ThemeGeoJsonSource implements ThemeGeoJsonSource {
   factory _ThemeGeoJsonSource.fromJson(Map<String, dynamic> json) =
       _$ThemeGeoJsonSourceImpl.fromJson;
 
+  @override
+  ThemeSourceType get type;
   @override
 
   /// Contains an attribution to be displayed when the map is shown to a user.

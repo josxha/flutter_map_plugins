@@ -20,6 +20,8 @@ ThemeRasterDemSource _$ThemeRasterDemSourceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ThemeRasterDemSource {
+  ThemeSourceType get type => throw _privateConstructorUsedError;
+
   /// Contains an attribution to be displayed when the map is shown to a user.
   String? get attribution => throw _privateConstructorUsedError;
 
@@ -69,7 +71,8 @@ abstract class $ThemeRasterDemSourceCopyWith<$Res> {
       _$ThemeRasterDemSourceCopyWithImpl<$Res, ThemeRasterDemSource>;
   @useResult
   $Res call(
-      {String? attribution,
+      {ThemeSourceType type,
+      String? attribution,
       List<double> bounds,
       RasterDemEncoding encoding,
       int maxZoom,
@@ -94,6 +97,7 @@ class _$ThemeRasterDemSourceCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? attribution = freezed,
     Object? bounds = null,
     Object? encoding = null,
@@ -105,6 +109,10 @@ class _$ThemeRasterDemSourceCopyWithImpl<$Res,
     Object? volatile = null,
   }) {
     return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ThemeSourceType,
       attribution: freezed == attribution
           ? _value.attribution
           : attribution // ignore: cast_nullable_to_non_nullable
@@ -154,7 +162,8 @@ abstract class _$$ThemeRasterDemSourceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? attribution,
+      {ThemeSourceType type,
+      String? attribution,
       List<double> bounds,
       RasterDemEncoding encoding,
       int maxZoom,
@@ -176,6 +185,7 @@ class __$$ThemeRasterDemSourceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? attribution = freezed,
     Object? bounds = null,
     Object? encoding = null,
@@ -187,6 +197,10 @@ class __$$ThemeRasterDemSourceImplCopyWithImpl<$Res>
     Object? volatile = null,
   }) {
     return _then(_$ThemeRasterDemSourceImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ThemeSourceType,
       attribution: freezed == attribution
           ? _value.attribution
           : attribution // ignore: cast_nullable_to_non_nullable
@@ -231,7 +245,8 @@ class __$$ThemeRasterDemSourceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ThemeRasterDemSourceImpl implements _ThemeRasterDemSource {
   const _$ThemeRasterDemSourceImpl(
-      {this.attribution,
+      {required this.type,
+      this.attribution,
       final List<double> bounds = const [-180, -85.051129, 180, 85.051129],
       this.encoding = RasterDemEncoding.mapbox,
       this.maxZoom = 22,
@@ -245,6 +260,9 @@ class _$ThemeRasterDemSourceImpl implements _ThemeRasterDemSource {
 
   factory _$ThemeRasterDemSourceImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThemeRasterDemSourceImplFromJson(json);
+
+  @override
+  final ThemeSourceType type;
 
   /// Contains an attribution to be displayed when the map is shown to a user.
   @override
@@ -319,7 +337,7 @@ class _$ThemeRasterDemSourceImpl implements _ThemeRasterDemSource {
 
   @override
   String toString() {
-    return 'ThemeRasterDemSource(attribution: $attribution, bounds: $bounds, encoding: $encoding, maxZoom: $maxZoom, minZoom: $minZoom, tiles: $tiles, tileSize: $tileSize, url: $url, volatile: $volatile)';
+    return 'ThemeRasterDemSource(type: $type, attribution: $attribution, bounds: $bounds, encoding: $encoding, maxZoom: $maxZoom, minZoom: $minZoom, tiles: $tiles, tileSize: $tileSize, url: $url, volatile: $volatile)';
   }
 
   @override
@@ -327,6 +345,7 @@ class _$ThemeRasterDemSourceImpl implements _ThemeRasterDemSource {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ThemeRasterDemSourceImpl &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.attribution, attribution) ||
                 other.attribution == attribution) &&
             const DeepCollectionEquality().equals(other._bounds, _bounds) &&
@@ -346,6 +365,7 @@ class _$ThemeRasterDemSourceImpl implements _ThemeRasterDemSource {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      type,
       attribution,
       const DeepCollectionEquality().hash(_bounds),
       encoding,
@@ -372,9 +392,11 @@ class _$ThemeRasterDemSourceImpl implements _ThemeRasterDemSource {
   }
 }
 
-abstract class _ThemeRasterDemSource implements ThemeRasterDemSource {
+abstract class _ThemeRasterDemSource
+    implements ThemeRasterDemSource, ThemeSource {
   const factory _ThemeRasterDemSource(
-      {final String? attribution,
+      {required final ThemeSourceType type,
+      final String? attribution,
       final List<double> bounds,
       final RasterDemEncoding encoding,
       final int maxZoom,
@@ -387,6 +409,8 @@ abstract class _ThemeRasterDemSource implements ThemeRasterDemSource {
   factory _ThemeRasterDemSource.fromJson(Map<String, dynamic> json) =
       _$ThemeRasterDemSourceImpl.fromJson;
 
+  @override
+  ThemeSourceType get type;
   @override
 
   /// Contains an attribution to be displayed when the map is shown to a user.

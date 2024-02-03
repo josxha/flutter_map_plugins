@@ -9,6 +9,7 @@ part of 'raster_source.dart';
 _$ThemeRasterSourceImpl _$$ThemeRasterSourceImplFromJson(
         Map<String, dynamic> json) =>
     _$ThemeRasterSourceImpl(
+      type: $enumDecode(_$ThemeSourceTypeEnumMap, json['type']),
       attribution: json['attribution'] as String?,
       bounds: (json['bounds'] as List<dynamic>?)
               ?.map((e) => (e as num).toDouble())
@@ -28,6 +29,7 @@ _$ThemeRasterSourceImpl _$$ThemeRasterSourceImplFromJson(
 Map<String, dynamic> _$$ThemeRasterSourceImplToJson(
         _$ThemeRasterSourceImpl instance) =>
     <String, dynamic>{
+      'type': _$ThemeSourceTypeEnumMap[instance.type]!,
       'attribution': instance.attribution,
       'bounds': instance.bounds,
       'maxZoom': instance.maxZoom,
@@ -38,6 +40,15 @@ Map<String, dynamic> _$$ThemeRasterSourceImplToJson(
       'url': instance.url,
       'volatile': instance.volatile,
     };
+
+const _$ThemeSourceTypeEnumMap = {
+  ThemeSourceType.vector: 'vector',
+  ThemeSourceType.raster: 'raster',
+  ThemeSourceType.rasterDem: 'rasterDem',
+  ThemeSourceType.geojson: 'geojson',
+  ThemeSourceType.image: 'image',
+  ThemeSourceType.video: 'video',
+};
 
 const _$ThemeSourceSchemeEnumMap = {
   ThemeSourceScheme.xyz: 'xyz',

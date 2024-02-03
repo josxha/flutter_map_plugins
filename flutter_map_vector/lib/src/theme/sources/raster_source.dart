@@ -9,8 +9,11 @@ part 'raster_source.g.dart';
 ///
 /// https://docs.mapbox.com/style-spec/reference/sources/#raster
 @Freezed()
-class ThemeRasterSource with _$ThemeRasterSource {
+class ThemeRasterSource with _$ThemeRasterSource implements ThemeSource {
+  @Implements<ThemeSource>()
   const factory ThemeRasterSource({
+    required ThemeSourceType type,
+
     /// Contains an attribution to be displayed when the map is shown to a user.
     String? attribution,
 

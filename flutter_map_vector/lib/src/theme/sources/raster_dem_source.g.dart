@@ -9,6 +9,7 @@ part of 'raster_dem_source.dart';
 _$ThemeRasterDemSourceImpl _$$ThemeRasterDemSourceImplFromJson(
         Map<String, dynamic> json) =>
     _$ThemeRasterDemSourceImpl(
+      type: $enumDecode(_$ThemeSourceTypeEnumMap, json['type']),
       attribution: json['attribution'] as String?,
       bounds: (json['bounds'] as List<dynamic>?)
               ?.map((e) => (e as num).toDouble())
@@ -29,6 +30,7 @@ _$ThemeRasterDemSourceImpl _$$ThemeRasterDemSourceImplFromJson(
 Map<String, dynamic> _$$ThemeRasterDemSourceImplToJson(
         _$ThemeRasterDemSourceImpl instance) =>
     <String, dynamic>{
+      'type': _$ThemeSourceTypeEnumMap[instance.type]!,
       'attribution': instance.attribution,
       'bounds': instance.bounds,
       'encoding': _$RasterDemEncodingEnumMap[instance.encoding]!,
@@ -39,6 +41,15 @@ Map<String, dynamic> _$$ThemeRasterDemSourceImplToJson(
       'url': instance.url,
       'volatile': instance.volatile,
     };
+
+const _$ThemeSourceTypeEnumMap = {
+  ThemeSourceType.vector: 'vector',
+  ThemeSourceType.raster: 'raster',
+  ThemeSourceType.rasterDem: 'rasterDem',
+  ThemeSourceType.geojson: 'geojson',
+  ThemeSourceType.image: 'image',
+  ThemeSourceType.video: 'video',
+};
 
 const _$RasterDemEncodingEnumMap = {
   RasterDemEncoding.terrarium: 'terrarium',

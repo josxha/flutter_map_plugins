@@ -20,6 +20,8 @@ ThemeVideoSource _$ThemeVideoSourceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ThemeVideoSource {
+  ThemeSourceType get type => throw _privateConstructorUsedError;
+
   /// Corners of image specified in longitude, latitude pairs. Note: When
   /// using globe projection, the image will be centered at the North or
   /// South Pole in the respective hemisphere if the average latitude value
@@ -49,7 +51,8 @@ abstract class $ThemeVideoSourceCopyWith<$Res> {
       _$ThemeVideoSourceCopyWithImpl<$Res, ThemeVideoSource>;
   @useResult
   $Res call(
-      {@Assert('coordinates.length == 4',
+      {ThemeSourceType type,
+      @Assert('coordinates.length == 4',
           'The coordinates array needs to have exactly 4 items.')
       List<List<double>> coordinates,
       String? url});
@@ -68,10 +71,15 @@ class _$ThemeVideoSourceCopyWithImpl<$Res, $Val extends ThemeVideoSource>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? coordinates = null,
     Object? url = freezed,
   }) {
     return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ThemeSourceType,
       coordinates: null == coordinates
           ? _value.coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
@@ -93,7 +101,8 @@ abstract class _$$ThemeVideoSourceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@Assert('coordinates.length == 4',
+      {ThemeSourceType type,
+      @Assert('coordinates.length == 4',
           'The coordinates array needs to have exactly 4 items.')
       List<List<double>> coordinates,
       String? url});
@@ -110,10 +119,15 @@ class __$$ThemeVideoSourceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? coordinates = null,
     Object? url = freezed,
   }) {
     return _then(_$ThemeVideoSourceImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ThemeSourceType,
       coordinates: null == coordinates
           ? _value._coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
@@ -130,7 +144,8 @@ class __$$ThemeVideoSourceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ThemeVideoSourceImpl implements _ThemeVideoSource {
   const _$ThemeVideoSourceImpl(
-      {@Assert('coordinates.length == 4',
+      {required this.type,
+      @Assert('coordinates.length == 4',
           'The coordinates array needs to have exactly 4 items.')
       required final List<List<double>> coordinates,
       this.url})
@@ -138,6 +153,9 @@ class _$ThemeVideoSourceImpl implements _ThemeVideoSource {
 
   factory _$ThemeVideoSourceImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThemeVideoSourceImplFromJson(json);
+
+  @override
+  final ThemeSourceType type;
 
   /// Corners of image specified in longitude, latitude pairs. Note: When
   /// using globe projection, the image will be centered at the North or
@@ -173,7 +191,7 @@ class _$ThemeVideoSourceImpl implements _ThemeVideoSource {
 
   @override
   String toString() {
-    return 'ThemeVideoSource(coordinates: $coordinates, url: $url)';
+    return 'ThemeVideoSource(type: $type, coordinates: $coordinates, url: $url)';
   }
 
   @override
@@ -181,6 +199,7 @@ class _$ThemeVideoSourceImpl implements _ThemeVideoSource {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ThemeVideoSourceImpl &&
+            (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality()
                 .equals(other._coordinates, _coordinates) &&
             (identical(other.url, url) || other.url == url));
@@ -188,8 +207,8 @@ class _$ThemeVideoSourceImpl implements _ThemeVideoSource {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_coordinates), url);
+  int get hashCode => Object.hash(runtimeType, type,
+      const DeepCollectionEquality().hash(_coordinates), url);
 
   @JsonKey(ignore: true)
   @override
@@ -206,9 +225,10 @@ class _$ThemeVideoSourceImpl implements _ThemeVideoSource {
   }
 }
 
-abstract class _ThemeVideoSource implements ThemeVideoSource {
+abstract class _ThemeVideoSource implements ThemeVideoSource, ThemeSource {
   const factory _ThemeVideoSource(
-      {@Assert('coordinates.length == 4',
+      {required final ThemeSourceType type,
+      @Assert('coordinates.length == 4',
           'The coordinates array needs to have exactly 4 items.')
       required final List<List<double>> coordinates,
       final String? url}) = _$ThemeVideoSourceImpl;
@@ -216,6 +236,8 @@ abstract class _ThemeVideoSource implements ThemeVideoSource {
   factory _ThemeVideoSource.fromJson(Map<String, dynamic> json) =
       _$ThemeVideoSourceImpl.fromJson;
 
+  @override
+  ThemeSourceType get type;
   @override
 
   /// Corners of image specified in longitude, latitude pairs. Note: When

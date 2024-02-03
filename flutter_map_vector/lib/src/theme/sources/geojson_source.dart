@@ -1,3 +1,4 @@
+import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'geojson_source.freezed.dart';
@@ -8,8 +9,11 @@ part 'geojson_source.g.dart';
 ///
 /// https://docs.mapbox.com/style-spec/reference/sources/#geojson
 @Freezed()
-class ThemeGeoJsonSource with _$ThemeGeoJsonSource {
+class ThemeGeoJsonSource with _$ThemeGeoJsonSource implements ThemeSource {
+  @Implements<ThemeSource>()
   const factory ThemeGeoJsonSource({
+    required ThemeSourceType type,
+
     /// Contains an attribution to be displayed when the map is shown to a user.
     String? attribution,
 

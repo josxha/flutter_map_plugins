@@ -9,6 +9,7 @@ part of 'geojson_source.dart';
 _$ThemeGeoJsonSourceImpl _$$ThemeGeoJsonSourceImplFromJson(
         Map<String, dynamic> json) =>
     _$ThemeGeoJsonSourceImpl(
+      type: $enumDecode(_$ThemeSourceTypeEnumMap, json['type']),
       attribution: json['attribution'] as String?,
       buffer: json['buffer'] as int? ?? 128,
       cluster: json['cluster'] as bool? ?? false,
@@ -28,6 +29,7 @@ _$ThemeGeoJsonSourceImpl _$$ThemeGeoJsonSourceImplFromJson(
 Map<String, dynamic> _$$ThemeGeoJsonSourceImplToJson(
         _$ThemeGeoJsonSourceImpl instance) =>
     <String, dynamic>{
+      'type': _$ThemeSourceTypeEnumMap[instance.type]!,
       'attribution': instance.attribution,
       'buffer': instance.buffer,
       'cluster': instance.cluster,
@@ -43,3 +45,12 @@ Map<String, dynamic> _$$ThemeGeoJsonSourceImplToJson(
       'promoteId': instance.promoteId,
       'tolerance': instance.tolerance,
     };
+
+const _$ThemeSourceTypeEnumMap = {
+  ThemeSourceType.vector: 'vector',
+  ThemeSourceType.raster: 'raster',
+  ThemeSourceType.rasterDem: 'rasterDem',
+  ThemeSourceType.geojson: 'geojson',
+  ThemeSourceType.image: 'image',
+  ThemeSourceType.video: 'video',
+};
