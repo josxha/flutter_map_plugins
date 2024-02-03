@@ -1,4 +1,4 @@
-import 'package:flutter_map_vector/src/theme/layer.dart';
+import 'package:flutter_map_vector/src/theme/layer/layer.dart';
 import 'package:flutter_map_vector/src/theme/parser/source_converter.dart';
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
