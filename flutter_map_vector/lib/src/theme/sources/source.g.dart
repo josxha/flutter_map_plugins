@@ -6,21 +6,38 @@ part of 'source.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ThemeSourceImpl _$$ThemeSourceImplFromJson(Map<String, dynamic> json) =>
-    _$ThemeSourceImpl(
-      type: $enumDecode(_$ThemeSourceTypeEnumMap, json['type']),
+_$ThemeSourceVectorImpl<T> _$$ThemeSourceVectorImplFromJson<T>(
+  Map<String, dynamic> json,
+  T Function(Object? json) fromJsonT,
+) =>
+    _$ThemeSourceVectorImpl<T>(
+      fromJsonT(json['data']),
+      $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ThemeSourceImplToJson(_$ThemeSourceImpl instance) =>
+Map<String, dynamic> _$$ThemeSourceVectorImplToJson<T>(
+  _$ThemeSourceVectorImpl<T> instance,
+  Object? Function(T value) toJsonT,
+) =>
     <String, dynamic>{
-      'type': _$ThemeSourceTypeEnumMap[instance.type]!,
+      'data': toJsonT(instance.data),
+      'runtimeType': instance.$type,
     };
 
-const _$ThemeSourceTypeEnumMap = {
-  ThemeSourceType.vector: 'vector',
-  ThemeSourceType.raster: 'raster',
-  ThemeSourceType.rasterDem: 'rasterDem',
-  ThemeSourceType.geojson: 'geojson',
-  ThemeSourceType.image: 'image',
-  ThemeSourceType.video: 'video',
-};
+_$ThemeSourceRasterImpl<T> _$$ThemeSourceRasterImplFromJson<T>(
+  Map<String, dynamic> json,
+  T Function(Object? json) fromJsonT,
+) =>
+    _$ThemeSourceRasterImpl<T>(
+      json['message'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$ThemeSourceRasterImplToJson<T>(
+  _$ThemeSourceRasterImpl<T> instance,
+  Object? Function(T value) toJsonT,
+) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'runtimeType': instance.$type,
+    };

@@ -9,8 +9,10 @@ class SourceConverter
   Map<String, ThemeSource> fromJson(Map<String, Object?> json) {
     final data = <String, ThemeSource>{};
     for (final entry in json.entries) {
-      data[entry.key] =
-          ThemeSource.fromJson(entry.value! as Map<String, Object?>);
+      data[entry.key] = ThemeSource.fromJson(
+        entry.value! as Map<String, Object?>,
+        (p0) {},
+      );
     }
     return data;
   }

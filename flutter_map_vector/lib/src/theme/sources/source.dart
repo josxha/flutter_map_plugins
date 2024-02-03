@@ -3,14 +3,17 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'source.freezed.dart';
 part 'source.g.dart';
 
-@Freezed(copyWith: false)
-class ThemeSource with _$ThemeSource {
-  const factory ThemeSource({
-    required ThemeSourceType type,
-  }) = _ThemeSource;
+@Freezed(genericArgumentFactories: true)
+sealed class ThemeSource<T> with _$ThemeSource<T> {
+  const factory ThemeSource.vector(T data) = _ThemeSourceVector;
 
-  factory ThemeSource.fromJson(Map<String, Object?> json) =>
-      _$ThemeSourceFromJson(json);
+  const factory ThemeSource.raster(String message) = _ThemeSourceRaster;
+
+  factory ThemeSource.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) =>
+      _$ThemeSourceFromJson(json, fromJsonT);
 }
 
 @JsonEnum()
