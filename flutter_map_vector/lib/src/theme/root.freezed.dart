@@ -55,7 +55,7 @@ mixin _$VectorTheme {
   dynamic get fog => throw _privateConstructorUsedError;
 
   /// Indicates that a style is a fragment style.
-  bool get fragment => throw _privateConstructorUsedError;
+  bool? get fragment => throw _privateConstructorUsedError;
 
   /// A URL template for loading signed-distance-field glyph sets in PBF
   /// format. The URL must include {fontstack} and {range} tokens. This
@@ -190,7 +190,7 @@ abstract class $VectorThemeCopyWith<$Res> {
       @Assert('center.length == 2', 'longitude and latitude')
       List<double>? center,
       dynamic fog,
-      bool fragment,
+      bool? fragment,
       String glyphs,
       List<dynamic>? imports,
       @Deprecated('This API is deprecated. Prefer using flat light type '
@@ -235,7 +235,7 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
     Object? camera = freezed,
     Object? center = freezed,
     Object? fog = freezed,
-    Object? fragment = null,
+    Object? fragment = freezed,
     Object? glyphs = null,
     Object? imports = freezed,
     Object? light = freezed,
@@ -283,10 +283,10 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
           ? _value.fog
           : fog // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      fragment: null == fragment
+      fragment: freezed == fragment
           ? _value.fragment
           : fragment // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       glyphs: null == glyphs
           ? _value.glyphs
           : glyphs // ignore: cast_nullable_to_non_nullable
@@ -391,7 +391,7 @@ abstract class _$$ThemeRootImplCopyWith<$Res>
       @Assert('center.length == 2', 'longitude and latitude')
       List<double>? center,
       dynamic fog,
-      bool fragment,
+      bool? fragment,
       String glyphs,
       List<dynamic>? imports,
       @Deprecated('This API is deprecated. Prefer using flat light type '
@@ -434,7 +434,7 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
     Object? camera = freezed,
     Object? center = freezed,
     Object? fog = freezed,
-    Object? fragment = null,
+    Object? fragment = freezed,
     Object? glyphs = null,
     Object? imports = freezed,
     Object? light = freezed,
@@ -482,10 +482,10 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
           ? _value.fog
           : fog // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      fragment: null == fragment
+      fragment: freezed == fragment
           ? _value.fragment
           : fragment // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       glyphs: null == glyphs
           ? _value.glyphs
           : glyphs // ignore: cast_nullable_to_non_nullable
@@ -585,7 +585,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
       @Assert('center.length == 2', 'longitude and latitude')
       final List<double>? center,
       required this.fog,
-      required this.fragment,
+      this.fragment,
       this.glyphs = 'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
       final List<dynamic>? imports,
       @Deprecated('This API is deprecated. Prefer using flat light type '
@@ -681,7 +681,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
 
   /// Indicates that a style is a fragment style.
   @override
-  final bool fragment;
+  final bool? fragment;
 
   /// A URL template for loading signed-distance-field glyph sets in PBF
   /// format. The URL must include {fontstack} and {range} tokens. This
@@ -952,7 +952,7 @@ abstract class _ThemeRoot implements VectorTheme {
       @Assert('center.length == 2', 'longitude and latitude')
       final List<double>? center,
       required final dynamic fog,
-      required final bool fragment,
+      final bool? fragment,
       final String glyphs,
       final List<dynamic>? imports,
       @Deprecated('This API is deprecated. Prefer using flat light type '
@@ -1023,7 +1023,7 @@ abstract class _ThemeRoot implements VectorTheme {
   @override
 
   /// Indicates that a style is a fragment style.
-  bool get fragment;
+  bool? get fragment;
   @override
 
   /// A URL template for loading signed-distance-field glyph sets in PBF

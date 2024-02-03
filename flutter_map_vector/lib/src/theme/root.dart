@@ -1,6 +1,4 @@
-import 'package:flutter_map_vector/src/theme/converter/layer_converter.dart';
 import 'package:flutter_map_vector/src/theme/converter/source_converter.dart';
-import 'package:flutter_map_vector/src/theme/layer/layer.dart';
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -52,7 +50,7 @@ class VectorTheme with _$VectorTheme {
     required dynamic fog,
 
     /// Indicates that a style is a fragment style.
-    required bool fragment,
+    bool? fragment,
 
     /// A URL template for loading signed-distance-field glyph sets in PBF
     /// format. The URL must include {fontstack} and {range} tokens. This

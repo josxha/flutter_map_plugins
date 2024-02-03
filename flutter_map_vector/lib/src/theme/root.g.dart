@@ -17,7 +17,7 @@ _$ThemeRootImpl _$$ThemeRootImplFromJson(Map<String, dynamic> json) =>
           ?.map((e) => (e as num).toDouble())
           .toList(),
       fog: json['fog'],
-      fragment: json['fragment'] as bool,
+      fragment: json['fragment'] as bool?,
       glyphs: json['glyphs'] as String? ??
           'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
       imports: json['imports'] as List<dynamic>?,
