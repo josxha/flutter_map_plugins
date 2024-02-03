@@ -21,9 +21,7 @@ VectorTheme _$VectorThemeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$VectorTheme {
   /// Layers will be created in the order of this array.
-  @LayerConverter()
-  List<ThemeLayer> get layers => throw _privateConstructorUsedError;
-
+//todo @LayerConverter() required List<ThemeLayer> layers,
   /// Sources supply the data that will be displayed on the map.
   @SourceConverter()
   Map<String, ThemeSource> get sources => throw _privateConstructorUsedError;
@@ -185,8 +183,7 @@ abstract class $VectorThemeCopyWith<$Res> {
       _$VectorThemeCopyWithImpl<$Res, VectorTheme>;
   @useResult
   $Res call(
-      {@LayerConverter() List<ThemeLayer> layers,
-      @SourceConverter() Map<String, ThemeSource> sources,
+      {@SourceConverter() Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') int version,
       double bearing,
       dynamic camera,
@@ -232,7 +229,6 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? layers = null,
     Object? sources = null,
     Object? version = null,
     Object? bearing = null,
@@ -263,10 +259,6 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
     Object? draft = freezed,
   }) {
     return _then(_value.copyWith(
-      layers: null == layers
-          ? _value.layers
-          : layers // ignore: cast_nullable_to_non_nullable
-              as List<ThemeLayer>,
       sources: null == sources
           ? _value.sources
           : sources // ignore: cast_nullable_to_non_nullable
@@ -392,8 +384,7 @@ abstract class _$$ThemeRootImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@LayerConverter() List<ThemeLayer> layers,
-      @SourceConverter() Map<String, ThemeSource> sources,
+      {@SourceConverter() Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') int version,
       double bearing,
       dynamic camera,
@@ -437,7 +428,6 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? layers = null,
     Object? sources = null,
     Object? version = null,
     Object? bearing = null,
@@ -468,10 +458,6 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
     Object? draft = freezed,
   }) {
     return _then(_$ThemeRootImpl(
-      layers: null == layers
-          ? _value._layers
-          : layers // ignore: cast_nullable_to_non_nullable
-              as List<ThemeLayer>,
       sources: null == sources
           ? _value._sources
           : sources // ignore: cast_nullable_to_non_nullable
@@ -592,8 +578,7 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ThemeRootImpl implements _ThemeRoot {
   const _$ThemeRootImpl(
-      {@LayerConverter() required final List<ThemeLayer> layers,
-      @SourceConverter() required final Map<String, ThemeSource> sources,
+      {@SourceConverter() required final Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') required this.version,
       this.bearing = 0,
       this.camera,
@@ -624,8 +609,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
       this.visibility,
       this.protected,
       this.draft})
-      : _layers = layers,
-        _sources = sources,
+      : _sources = sources,
         _center = center,
         _imports = imports,
         _lights = lights,
@@ -635,20 +619,12 @@ class _$ThemeRootImpl implements _ThemeRoot {
       _$$ThemeRootImplFromJson(json);
 
   /// Layers will be created in the order of this array.
-  final List<ThemeLayer> _layers;
-
-  /// Layers will be created in the order of this array.
-  @override
-  @LayerConverter()
-  List<ThemeLayer> get layers {
-    if (_layers is EqualUnmodifiableListView) return _layers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_layers);
-  }
-
+//todo @LayerConverter() required List<ThemeLayer> layers,
   /// Sources supply the data that will be displayed on the map.
   final Map<String, ThemeSource> _sources;
 
+  /// Layers will be created in the order of this array.
+//todo @LayerConverter() required List<ThemeLayer> layers,
   /// Sources supply the data that will be displayed on the map.
   @override
   @SourceConverter()
@@ -875,7 +851,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
 
   @override
   String toString() {
-    return 'VectorTheme(layers: $layers, sources: $sources, version: $version, bearing: $bearing, camera: $camera, center: $center, fog: $fog, fragment: $fragment, glyphs: $glyphs, imports: $imports, light: $light, lights: $lights, metadata: $metadata, models: $models, name: $name, pitch: $pitch, projection: $projection, schema: $schema, sprite: $sprite, terrain: $terrain, transition: $transition, zoom: $zoom, created: $created, id: $id, modified: $modified, owner: $owner, visibility: $visibility, protected: $protected, draft: $draft)';
+    return 'VectorTheme(sources: $sources, version: $version, bearing: $bearing, camera: $camera, center: $center, fog: $fog, fragment: $fragment, glyphs: $glyphs, imports: $imports, light: $light, lights: $lights, metadata: $metadata, models: $models, name: $name, pitch: $pitch, projection: $projection, schema: $schema, sprite: $sprite, terrain: $terrain, transition: $transition, zoom: $zoom, created: $created, id: $id, modified: $modified, owner: $owner, visibility: $visibility, protected: $protected, draft: $draft)';
   }
 
   @override
@@ -883,7 +859,6 @@ class _$ThemeRootImpl implements _ThemeRoot {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ThemeRootImpl &&
-            const DeepCollectionEquality().equals(other._layers, _layers) &&
             const DeepCollectionEquality().equals(other._sources, _sources) &&
             (identical(other.version, version) || other.version == version) &&
             (identical(other.bearing, bearing) || other.bearing == bearing) &&
@@ -924,7 +899,6 @@ class _$ThemeRootImpl implements _ThemeRoot {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(_layers),
         const DeepCollectionEquality().hash(_sources),
         version,
         bearing,
@@ -971,8 +945,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
 
 abstract class _ThemeRoot implements VectorTheme {
   const factory _ThemeRoot(
-      {@LayerConverter() required final List<ThemeLayer> layers,
-      @SourceConverter() required final Map<String, ThemeSource> sources,
+      {@SourceConverter() required final Map<String, ThemeSource> sources,
       @Assert('version == 8', 'Must be 8.') required final int version,
       final double bearing,
       final dynamic camera,
@@ -1010,10 +983,7 @@ abstract class _ThemeRoot implements VectorTheme {
   @override
 
   /// Layers will be created in the order of this array.
-  @LayerConverter()
-  List<ThemeLayer> get layers;
-  @override
-
+//todo @LayerConverter() required List<ThemeLayer> layers,
   /// Sources supply the data that will be displayed on the map.
   @SourceConverter()
   Map<String, ThemeSource> get sources;

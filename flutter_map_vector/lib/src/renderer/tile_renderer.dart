@@ -7,7 +7,8 @@ import 'package:vector_tile/vector_tile.dart';
 //}
 
 Future<void> main() async {
-  final tileData = await File('../data/sample-12-3262-1923.pbf').readAsBytes();
+  final tileData =
+      await File('../example/assets/pbf/streets-tile.pbf').readAsBytes();
   final tile = VectorTile.fromBytes(bytes: tileData);
   final layer =
       tile.layers.firstWhere((layer) => layer.name == 'transportation');
@@ -15,6 +16,7 @@ Future<void> main() async {
   for (final feature in layer.features) {
     // Geometry will be decode on-demand to avoid redundant calculating
     feature.decodeGeometry();
+    print(feature.geometryType);
 
     // Each GeometryType will have different geometry data format
     // So we must explicit check GeometryType and specific generic type here

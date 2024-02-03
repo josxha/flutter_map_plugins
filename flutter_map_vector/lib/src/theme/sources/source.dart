@@ -9,6 +9,7 @@ abstract interface class ThemeSource {
 enum ThemeSourceType {
   vector,
   raster,
+  @JsonKey(name: 'raster-dem')
   rasterDem,
   geojson,
   image,

@@ -11,6 +11,7 @@ part 'style_osm_bright.dart';
 /// Root level properties of a Mapbox style specify the map's layers, tile
 /// sources and other resources, and default values for the initial camera
 /// position when not specified elsewhere.
+///
 /// https://docs.mapbox.com/style-spec/reference/root/
 @Freezed()
 class VectorTheme with _$VectorTheme {
@@ -18,7 +19,7 @@ class VectorTheme with _$VectorTheme {
 
   const factory VectorTheme({
     /// Layers will be created in the order of this array.
-    @LayerConverter() required List<ThemeLayer> layers,
+    //todo @LayerConverter() required List<ThemeLayer> layers,
 
     /// Sources supply the data that will be displayed on the map.
     @SourceConverter() required Map<String, ThemeSource> sources,

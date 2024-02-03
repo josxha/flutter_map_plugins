@@ -15,17 +15,20 @@ class SourceConverter
   Map<String, ThemeSource> fromJson(Map<String, Object?> json) {
     final data = <String, ThemeSource>{};
     for (final entry in json.entries) {
-      final type = json['type'];
+      final jsonSource = entry.value! as Map<String, Object?>;
+      final type = jsonSource['type'];
       if (type is! String) {
-        throw Exception("Couldn't parse theme source '${entry.key}': $entry");
+        throw Exception(
+          "Couldn't parse theme source '${entry.key}': ${entry.value}",
+        );
       }
-      data[entry.key] = switch (json['type']) {
-        'vector' => ThemeVectorSource.fromJson(json),
-        'raster' => ThemeRasterSource.fromJson(json),
-        'rasterDem' => ThemeRasterDemSource.fromJson(json),
-        'geojson' => ThemeGeoJsonSource.fromJson(json),
-        'image' => ThemeImageSource.fromJson(json),
-        'video' => ThemeVideoSource.fromJson(json),
+      data[entry.key] = switch (type) {
+        'vector' => ThemeVectorSource.fromJson(jsonSource),
+        'raster' => ThemeRasterSource.fromJson(jsonSource),
+        'rasterDem' => ThemeRasterDemSource.fromJson(jsonSource),
+        'geojson' => ThemeGeoJsonSource.fromJson(jsonSource),
+        'image' => ThemeImageSource.fromJson(jsonSource),
+        'video' => ThemeVideoSource.fromJson(jsonSource),
         _ =>
           throw Exception("Couldn't parse theme source '${entry.key}': $entry"),
       };
