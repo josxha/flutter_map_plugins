@@ -1,8 +1,8 @@
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'raster_source.freezed.dart';
-part 'raster_source.g.dart';
+part 'raster.freezed.dart';
+part 'raster.g.dart';
 
 /// A raster tile source. For raster tiles hosted by Mapbox, the "url" value
 /// should be of the form mapbox://tilesetid.

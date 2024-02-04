@@ -1,8 +1,8 @@
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'geojson_source.freezed.dart';
-part 'geojson_source.g.dart';
+part 'geojson.freezed.dart';
+part 'geojson.g.dart';
 
 /// A GeoJSON source. Data must be provided via a "data" property, whose value
 /// can be a URL or inline GeoJSON.

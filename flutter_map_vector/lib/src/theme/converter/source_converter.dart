@@ -1,10 +1,4 @@
-import 'package:flutter_map_vector/src/theme/sources/geojson_source.dart';
-import 'package:flutter_map_vector/src/theme/sources/image_source.dart';
-import 'package:flutter_map_vector/src/theme/sources/raster_dem_source.dart';
-import 'package:flutter_map_vector/src/theme/sources/raster_source.dart';
-import 'package:flutter_map_vector/src/theme/sources/source.dart';
-import 'package:flutter_map_vector/src/theme/sources/vector_source.dart';
-import 'package:flutter_map_vector/src/theme/sources/video_source.dart';
+import 'package:flutter_map_vector/flutter_map_vector.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 class SourceConverter

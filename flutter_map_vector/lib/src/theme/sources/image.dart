@@ -1,8 +1,8 @@
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'image_source.freezed.dart';
-part 'image_source.g.dart';
+part 'image.freezed.dart';
+part 'image.g.dart';
 
 /// An image source. The "url" value contains the image location.
 ///

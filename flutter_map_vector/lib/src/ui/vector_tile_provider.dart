@@ -11,6 +11,10 @@ abstract class VectorTileProvider {
 }
 
 class NetworkVectorTileProvider extends VectorTileProvider {
+  final String urlTemplate;
+
+  NetworkVectorTileProvider({required this.urlTemplate});
+
   @override
   Uint8List getTile({required int z, required int x, required int y}) {
     // TODO: implement getTile

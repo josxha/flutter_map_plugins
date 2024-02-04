@@ -32,3 +32,5 @@ build/
 
 # ignore coverage info
 **/coverage/lcov.info
+
+/example/lib/flutter_map_vector/config.dart

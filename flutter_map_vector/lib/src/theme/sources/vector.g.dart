@@ -1,43 +1,42 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'raster_dem_source.dart';
+part of 'vector.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ThemeRasterDemSourceImpl _$$ThemeRasterDemSourceImplFromJson(
+_$ThemeVectorSourceImpl _$$ThemeVectorSourceImplFromJson(
         Map<String, dynamic> json) =>
-    _$ThemeRasterDemSourceImpl(
+    _$ThemeVectorSourceImpl(
       type: $enumDecode(_$ThemeSourceTypeEnumMap, json['type']),
       attribution: json['attribution'] as String?,
       bounds: (json['bounds'] as List<dynamic>?)
               ?.map((e) => (e as num).toDouble())
               .toList() ??
           const [-180, -85.051129, 180, 85.051129],
-      encoding:
-          $enumDecodeNullable(_$RasterDemEncodingEnumMap, json['encoding']) ??
-              RasterDemEncoding.mapbox,
       maxZoom: json['maxZoom'] as int? ?? 22,
       minZoom: json['minZoom'] as int? ?? 0,
+      promoteId: json['promoteId'],
+      scheme: $enumDecodeNullable(_$ThemeSourceSchemeEnumMap, json['scheme']) ??
+          ThemeSourceScheme.xyz,
       tiles:
           (json['tiles'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      tileSize: (json['tileSize'] as num?)?.toDouble() ?? 512,
       url: json['url'] as String?,
       volatile: json['volatile'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$ThemeRasterDemSourceImplToJson(
-        _$ThemeRasterDemSourceImpl instance) =>
+Map<String, dynamic> _$$ThemeVectorSourceImplToJson(
+        _$ThemeVectorSourceImpl instance) =>
     <String, dynamic>{
       'type': _$ThemeSourceTypeEnumMap[instance.type]!,
       'attribution': instance.attribution,
       'bounds': instance.bounds,
-      'encoding': _$RasterDemEncodingEnumMap[instance.encoding]!,
       'maxZoom': instance.maxZoom,
       'minZoom': instance.minZoom,
+      'promoteId': instance.promoteId,
+      'scheme': _$ThemeSourceSchemeEnumMap[instance.scheme]!,
       'tiles': instance.tiles,
-      'tileSize': instance.tileSize,
       'url': instance.url,
       'volatile': instance.volatile,
     };
@@ -51,7 +50,7 @@ const _$ThemeSourceTypeEnumMap = {
   ThemeSourceType.video: 'video',
 };
 
-const _$RasterDemEncodingEnumMap = {
-  RasterDemEncoding.terrarium: 'terrarium',
-  RasterDemEncoding.mapbox: 'mapbox',
+const _$ThemeSourceSchemeEnumMap = {
+  ThemeSourceScheme.xyz: 'xyz',
+  ThemeSourceScheme.tms: 'tms',
 };

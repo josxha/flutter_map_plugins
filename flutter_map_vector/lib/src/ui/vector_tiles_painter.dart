@@ -4,7 +4,9 @@ import 'package:flutter_map/flutter_map.dart';
 class VectorTilesPainter extends CustomPainter {
   final MapCamera camera;
 
-  const VectorTilesPainter({required this.camera});
+  const VectorTilesPainter({
+    required this.camera,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {

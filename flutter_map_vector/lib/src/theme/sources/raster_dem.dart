@@ -1,8 +1,8 @@
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'raster_dem_source.freezed.dart';
-part 'raster_dem_source.g.dart';
+part 'raster_dem.freezed.dart';
+part 'raster_dem.g.dart';
 
 /// A raster DEM source. Only supports Mapbox Terrain-DEM
 /// (mapbox://mapbox.mapbox-terrain-dem-v1):

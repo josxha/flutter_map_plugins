@@ -19,7 +19,8 @@ part 'style_osm_bright.dart';
 /// https://docs.mapbox.com/style-spec/reference/root/
 @Freezed()
 class VectorTheme with _$VectorTheme {
-  static const osmBright = _styleOsmBright;
+  static const osmBrightJson = _styleOsmBright;
+  static VectorTheme osmBright = VectorTheme.fromJson(_styleOsmBright);
 
   const factory VectorTheme({
     /// Layers will be created in the order of this array.

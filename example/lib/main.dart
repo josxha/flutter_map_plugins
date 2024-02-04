@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
       ),
-      home: Material(child: FlutterMapVectorPage()),
+      home: const Material(child: FlutterMapVectorPage()),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'video_source.freezed.dart';
-part 'video_source.g.dart';
+part 'video.freezed.dart';
+part 'video.g.dart';
 
 /// A video source. The "urls" value is an array. For each URL in the array, a
 /// video element source will be created. To support the video across
