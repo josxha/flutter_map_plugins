@@ -2,6 +2,8 @@ import 'package:flutter_map_vector/src/theme/converter/source_converter.dart';
 import 'package:flutter_map_vector/src/theme/fog.dart';
 import 'package:flutter_map_vector/src/theme/import.dart';
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
+import 'package:flutter_map_vector/src/theme/terrain.dart';
+import 'package:flutter_map_vector/src/theme/transition.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'root.freezed.dart';
@@ -49,7 +51,7 @@ class VectorTheme with _$VectorTheme {
     /// map when used with terrain or 3D features. Note: fog is renamed to
     /// atmosphere in the Android and iOS SDKs and planned to be changed in
     /// GL-JS v.3.0.0.
-    required ThemeFog fog,
+    ThemeFog? fog,
 
     /// Indicates that a style is a fragment style.
     bool? fragment,
@@ -116,13 +118,13 @@ class VectorTheme with _$VectorTheme {
 
     /// A global modifier that elevates layers and markers based on a DEM
     /// data source.
-    dynamic terrain,
+    ThemeTerrain? terrain,
 
     /// A global transition definition to use as a default across properties,
     /// to be used for timing transitions between one value and the next when
     /// no property-specific transition is set. Collision-based symbol fading
     /// is controlled independently of the style's transition property.
-    dynamic transition,
+    ThemeTransition? transition,
 
     /// Default zoom level. The style zoom will be used only if the map has not
     /// been positioned by other means (e.g. map options or user interaction).

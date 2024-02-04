@@ -52,7 +52,7 @@ mixin _$VectorTheme {
   /// map when used with terrain or 3D features. Note: fog is renamed to
   /// atmosphere in the Android and iOS SDKs and planned to be changed in
   /// GL-JS v.3.0.0.
-  ThemeFog get fog => throw _privateConstructorUsedError;
+  ThemeFog? get fog => throw _privateConstructorUsedError;
 
   /// Indicates that a style is a fragment style.
   bool? get fragment => throw _privateConstructorUsedError;
@@ -117,13 +117,13 @@ mixin _$VectorTheme {
 
   /// A global modifier that elevates layers and markers based on a DEM
   /// data source.
-  dynamic get terrain => throw _privateConstructorUsedError;
+  ThemeTerrain? get terrain => throw _privateConstructorUsedError;
 
   /// A global transition definition to use as a default across properties,
   /// to be used for timing transitions between one value and the next when
   /// no property-specific transition is set. Collision-based symbol fading
   /// is controlled independently of the style's transition property.
-  dynamic get transition => throw _privateConstructorUsedError;
+  ThemeTransition? get transition => throw _privateConstructorUsedError;
 
   /// Default zoom level. The style zoom will be used only if the map has not
   /// been positioned by other means (e.g. map options or user interaction).
@@ -189,7 +189,7 @@ abstract class $VectorThemeCopyWith<$Res> {
       dynamic camera,
       @Assert('center.length == 2', 'longitude and latitude')
       List<double>? center,
-      ThemeFog fog,
+      ThemeFog? fog,
       bool? fragment,
       String glyphs,
       List<ThemeImport>? imports,
@@ -204,8 +204,8 @@ abstract class $VectorThemeCopyWith<$Res> {
       dynamic projection,
       dynamic schema,
       String? sprite,
-      dynamic terrain,
-      dynamic transition,
+      ThemeTerrain? terrain,
+      ThemeTransition? transition,
       double? zoom,
       String? created,
       String? id,
@@ -215,7 +215,9 @@ abstract class $VectorThemeCopyWith<$Res> {
       bool? protected,
       bool? draft});
 
-  $ThemeFogCopyWith<$Res> get fog;
+  $ThemeFogCopyWith<$Res>? get fog;
+  $ThemeTerrainCopyWith<$Res>? get terrain;
+  $ThemeTransitionCopyWith<$Res>? get transition;
 }
 
 /// @nodoc
@@ -236,7 +238,7 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
     Object? bearing = null,
     Object? camera = freezed,
     Object? center = freezed,
-    Object? fog = null,
+    Object? fog = freezed,
     Object? fragment = freezed,
     Object? glyphs = null,
     Object? imports = freezed,
@@ -281,10 +283,10 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
           ? _value.center
           : center // ignore: cast_nullable_to_non_nullable
               as List<double>?,
-      fog: null == fog
+      fog: freezed == fog
           ? _value.fog
           : fog // ignore: cast_nullable_to_non_nullable
-              as ThemeFog,
+              as ThemeFog?,
       fragment: freezed == fragment
           ? _value.fragment
           : fragment // ignore: cast_nullable_to_non_nullable
@@ -336,11 +338,11 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
       terrain: freezed == terrain
           ? _value.terrain
           : terrain // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as ThemeTerrain?,
       transition: freezed == transition
           ? _value.transition
           : transition // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as ThemeTransition?,
       zoom: freezed == zoom
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
@@ -378,9 +380,37 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
 
   @override
   @pragma('vm:prefer-inline')
-  $ThemeFogCopyWith<$Res> get fog {
-    return $ThemeFogCopyWith<$Res>(_value.fog, (value) {
+  $ThemeFogCopyWith<$Res>? get fog {
+    if (_value.fog == null) {
+      return null;
+    }
+
+    return $ThemeFogCopyWith<$Res>(_value.fog!, (value) {
       return _then(_value.copyWith(fog: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ThemeTerrainCopyWith<$Res>? get terrain {
+    if (_value.terrain == null) {
+      return null;
+    }
+
+    return $ThemeTerrainCopyWith<$Res>(_value.terrain!, (value) {
+      return _then(_value.copyWith(terrain: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ThemeTransitionCopyWith<$Res>? get transition {
+    if (_value.transition == null) {
+      return null;
+    }
+
+    return $ThemeTransitionCopyWith<$Res>(_value.transition!, (value) {
+      return _then(_value.copyWith(transition: value) as $Val);
     });
   }
 }
@@ -400,7 +430,7 @@ abstract class _$$ThemeRootImplCopyWith<$Res>
       dynamic camera,
       @Assert('center.length == 2', 'longitude and latitude')
       List<double>? center,
-      ThemeFog fog,
+      ThemeFog? fog,
       bool? fragment,
       String glyphs,
       List<ThemeImport>? imports,
@@ -415,8 +445,8 @@ abstract class _$$ThemeRootImplCopyWith<$Res>
       dynamic projection,
       dynamic schema,
       String? sprite,
-      dynamic terrain,
-      dynamic transition,
+      ThemeTerrain? terrain,
+      ThemeTransition? transition,
       double? zoom,
       String? created,
       String? id,
@@ -427,7 +457,11 @@ abstract class _$$ThemeRootImplCopyWith<$Res>
       bool? draft});
 
   @override
-  $ThemeFogCopyWith<$Res> get fog;
+  $ThemeFogCopyWith<$Res>? get fog;
+  @override
+  $ThemeTerrainCopyWith<$Res>? get terrain;
+  @override
+  $ThemeTransitionCopyWith<$Res>? get transition;
 }
 
 /// @nodoc
@@ -446,7 +480,7 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
     Object? bearing = null,
     Object? camera = freezed,
     Object? center = freezed,
-    Object? fog = null,
+    Object? fog = freezed,
     Object? fragment = freezed,
     Object? glyphs = null,
     Object? imports = freezed,
@@ -491,10 +525,10 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
           ? _value._center
           : center // ignore: cast_nullable_to_non_nullable
               as List<double>?,
-      fog: null == fog
+      fog: freezed == fog
           ? _value.fog
           : fog // ignore: cast_nullable_to_non_nullable
-              as ThemeFog,
+              as ThemeFog?,
       fragment: freezed == fragment
           ? _value.fragment
           : fragment // ignore: cast_nullable_to_non_nullable
@@ -546,11 +580,11 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
       terrain: freezed == terrain
           ? _value.terrain
           : terrain // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as ThemeTerrain?,
       transition: freezed == transition
           ? _value.transition
           : transition // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as ThemeTransition?,
       zoom: freezed == zoom
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
@@ -597,7 +631,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
       this.camera,
       @Assert('center.length == 2', 'longitude and latitude')
       final List<double>? center,
-      required this.fog,
+      this.fog,
       this.fragment,
       this.glyphs = 'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
       final List<ThemeImport>? imports,
@@ -690,7 +724,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
   /// atmosphere in the Android and iOS SDKs and planned to be changed in
   /// GL-JS v.3.0.0.
   @override
-  final ThemeFog fog;
+  final ThemeFog? fog;
 
   /// Indicates that a style is a fragment style.
   @override
@@ -800,14 +834,14 @@ class _$ThemeRootImpl implements _ThemeRoot {
   /// A global modifier that elevates layers and markers based on a DEM
   /// data source.
   @override
-  final dynamic terrain;
+  final ThemeTerrain? terrain;
 
   /// A global transition definition to use as a default across properties,
   /// to be used for timing transitions between one value and the next when
   /// no property-specific transition is set. Collision-based symbol fading
   /// is controlled independently of the style's transition property.
   @override
-  final dynamic transition;
+  final ThemeTransition? transition;
 
   /// Default zoom level. The style zoom will be used only if the map has not
   /// been positioned by other means (e.g. map options or user interaction).
@@ -892,9 +926,9 @@ class _$ThemeRootImpl implements _ThemeRoot {
                 .equals(other.projection, projection) &&
             const DeepCollectionEquality().equals(other.schema, schema) &&
             (identical(other.sprite, sprite) || other.sprite == sprite) &&
-            const DeepCollectionEquality().equals(other.terrain, terrain) &&
-            const DeepCollectionEquality()
-                .equals(other.transition, transition) &&
+            (identical(other.terrain, terrain) || other.terrain == terrain) &&
+            (identical(other.transition, transition) ||
+                other.transition == transition) &&
             (identical(other.zoom, zoom) || other.zoom == zoom) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.id, id) || other.id == id) &&
@@ -930,8 +964,8 @@ class _$ThemeRootImpl implements _ThemeRoot {
         const DeepCollectionEquality().hash(projection),
         const DeepCollectionEquality().hash(schema),
         sprite,
-        const DeepCollectionEquality().hash(terrain),
-        const DeepCollectionEquality().hash(transition),
+        terrain,
+        transition,
         zoom,
         created,
         id,
@@ -964,7 +998,7 @@ abstract class _ThemeRoot implements VectorTheme {
       final dynamic camera,
       @Assert('center.length == 2', 'longitude and latitude')
       final List<double>? center,
-      required final ThemeFog fog,
+      final ThemeFog? fog,
       final bool? fragment,
       final String glyphs,
       final List<ThemeImport>? imports,
@@ -979,8 +1013,8 @@ abstract class _ThemeRoot implements VectorTheme {
       final dynamic projection,
       final dynamic schema,
       final String? sprite,
-      final dynamic terrain,
-      final dynamic transition,
+      final ThemeTerrain? terrain,
+      final ThemeTransition? transition,
       final double? zoom,
       final String? created,
       final String? id,
@@ -1032,7 +1066,7 @@ abstract class _ThemeRoot implements VectorTheme {
   /// map when used with terrain or 3D features. Note: fog is renamed to
   /// atmosphere in the Android and iOS SDKs and planned to be changed in
   /// GL-JS v.3.0.0.
-  ThemeFog get fog;
+  ThemeFog? get fog;
   @override
 
   /// Indicates that a style is a fragment style.
@@ -1110,14 +1144,14 @@ abstract class _ThemeRoot implements VectorTheme {
 
   /// A global modifier that elevates layers and markers based on a DEM
   /// data source.
-  dynamic get terrain;
+  ThemeTerrain? get terrain;
   @override
 
   /// A global transition definition to use as a default across properties,
   /// to be used for timing transitions between one value and the next when
   /// no property-specific transition is set. Collision-based symbol fading
   /// is controlled independently of the style's transition property.
-  dynamic get transition;
+  ThemeTransition? get transition;
   @override
 
   /// Default zoom level. The style zoom will be used only if the map has not

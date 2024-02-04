@@ -31,7 +31,7 @@ class LayerListConverter
         'fill-extrusion' => ThemeFillExtrusionLayer.fromJson(entry),
         'heatmap' => ThemeHeatmapLayer.fromJson(entry),
         'hillshade' => ThemeHillshadeLayer.fromJson(entry),
-        'layer' => ThemeLineLayer.fromJson(entry),
+        'line' => ThemeLineLayer.fromJson(entry),
         'model' => ThemeModelLayer.fromJson(entry),
         'raster' => ThemeRasterLayer.fromJson(entry),
         'sky' => ThemeSkyLayer.fromJson(entry),

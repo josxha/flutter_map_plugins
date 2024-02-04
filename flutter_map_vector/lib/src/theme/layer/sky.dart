@@ -27,13 +27,13 @@ class ThemeSkyLayer with _$ThemeSkyLayer implements ThemeLayer {
       'number between 0 and 24 inclusive.',
     )
     @JsonKey(name: 'maxzoom')
-    int? maxZoom,
+    double? maxZoom,
     @Assert(
       'minZoom >= 0 && minZoom <= 24',
       'number between 0 and 24 inclusive.',
     )
     @JsonKey(name: 'minzoom')
-    int? minZoom,
+    double? minZoom,
     dynamic paint,
     String? slot,
     String? source,

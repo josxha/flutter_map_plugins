@@ -26,10 +26,10 @@ mixin _$ThemeBackgroundLayer {
   dynamic get layout => throw _privateConstructorUsedError;
   @Assert('maxZoom >= 0 && maxZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'maxzoom')
-  int? get maxZoom => throw _privateConstructorUsedError;
+  double? get maxZoom => throw _privateConstructorUsedError;
   @Assert('minZoom >= 0 && minZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'minzoom')
-  int? get minZoom => throw _privateConstructorUsedError;
+  double? get minZoom => throw _privateConstructorUsedError;
   dynamic get paint => throw _privateConstructorUsedError;
   String? get slot => throw _privateConstructorUsedError;
   String? get source => throw _privateConstructorUsedError;
@@ -82,11 +82,11 @@ abstract class $ThemeBackgroundLayerCopyWith<$Res> {
       @Assert(
           'maxZoom >= 0 && maxZoom <= 24', 'number between 0 and 24 inclusive.')
       @JsonKey(name: 'maxzoom')
-      int? maxZoom,
+      double? maxZoom,
       @Assert(
           'minZoom >= 0 && minZoom <= 24', 'number between 0 and 24 inclusive.')
       @JsonKey(name: 'minzoom')
-      int? minZoom,
+      double? minZoom,
       dynamic paint,
       String? slot,
       String? source,
@@ -154,11 +154,11 @@ class _$ThemeBackgroundLayerCopyWithImpl<$Res,
       maxZoom: freezed == maxZoom
           ? _value.maxZoom
           : maxZoom // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       minZoom: freezed == minZoom
           ? _value.minZoom
           : minZoom // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       paint: freezed == paint
           ? _value.paint
           : paint // ignore: cast_nullable_to_non_nullable
@@ -215,11 +215,11 @@ abstract class _$$ThemeBackgroundLayerImplCopyWith<$Res>
       @Assert(
           'maxZoom >= 0 && maxZoom <= 24', 'number between 0 and 24 inclusive.')
       @JsonKey(name: 'maxzoom')
-      int? maxZoom,
+      double? maxZoom,
       @Assert(
           'minZoom >= 0 && minZoom <= 24', 'number between 0 and 24 inclusive.')
       @JsonKey(name: 'minzoom')
-      int? minZoom,
+      double? minZoom,
       dynamic paint,
       String? slot,
       String? source,
@@ -284,11 +284,11 @@ class __$$ThemeBackgroundLayerImplCopyWithImpl<$Res>
       maxZoom: freezed == maxZoom
           ? _value.maxZoom
           : maxZoom // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       minZoom: freezed == minZoom
           ? _value.minZoom
           : minZoom // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       paint: freezed == paint
           ? _value.paint
           : paint // ignore: cast_nullable_to_non_nullable
@@ -375,11 +375,11 @@ class _$ThemeBackgroundLayerImpl implements _ThemeBackgroundLayer {
   @override
   @Assert('maxZoom >= 0 && maxZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'maxzoom')
-  final int? maxZoom;
+  final double? maxZoom;
   @override
   @Assert('minZoom >= 0 && minZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'minzoom')
-  final int? minZoom;
+  final double? minZoom;
   @override
   final dynamic paint;
   @override
@@ -503,11 +503,11 @@ abstract class _ThemeBackgroundLayer
       @Assert(
           'maxZoom >= 0 && maxZoom <= 24', 'number between 0 and 24 inclusive.')
       @JsonKey(name: 'maxzoom')
-      final int? maxZoom,
+      final double? maxZoom,
       @Assert(
           'minZoom >= 0 && minZoom <= 24', 'number between 0 and 24 inclusive.')
       @JsonKey(name: 'minzoom')
-      final int? minZoom,
+      final double? minZoom,
       final dynamic paint,
       final String? slot,
       final String? source,
@@ -538,11 +538,11 @@ abstract class _ThemeBackgroundLayer
   @override
   @Assert('maxZoom >= 0 && maxZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'maxzoom')
-  int? get maxZoom;
+  double? get maxZoom;
   @override
   @Assert('minZoom >= 0 && minZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'minzoom')
-  int? get minZoom;
+  double? get minZoom;
   @override
   dynamic get paint;
   @override

@@ -16,7 +16,9 @@ _$ThemeRootImpl _$$ThemeRootImplFromJson(Map<String, dynamic> json) =>
       center: (json['center'] as List<dynamic>?)
           ?.map((e) => (e as num).toDouble())
           .toList(),
-      fog: ThemeFog.fromJson(json['fog'] as Map<String, dynamic>),
+      fog: json['fog'] == null
+          ? null
+          : ThemeFog.fromJson(json['fog'] as Map<String, dynamic>),
       fragment: json['fragment'] as bool?,
       glyphs: json['glyphs'] as String? ??
           'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
@@ -32,8 +34,13 @@ _$ThemeRootImpl _$$ThemeRootImplFromJson(Map<String, dynamic> json) =>
       projection: json['projection'],
       schema: json['schema'],
       sprite: json['sprite'] as String?,
-      terrain: json['terrain'],
-      transition: json['transition'],
+      terrain: json['terrain'] == null
+          ? null
+          : ThemeTerrain.fromJson(json['terrain'] as Map<String, dynamic>),
+      transition: json['transition'] == null
+          ? null
+          : ThemeTransition.fromJson(
+              json['transition'] as Map<String, dynamic>),
       zoom: (json['zoom'] as num?)?.toDouble(),
       created: json['created'] as String?,
       id: json['id'] as String?,

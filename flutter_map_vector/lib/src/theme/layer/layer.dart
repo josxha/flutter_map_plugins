@@ -31,11 +31,11 @@ abstract interface class ThemeLayer {
 
   /// The maximum zoom level for the layer. At zoom levels equal to or
   /// greater than the maxzoom, the layer will be hidden.
-  int? get maxZoom;
+  double? get maxZoom;
 
   /// The minimum zoom level for the layer. At zoom levels less than the
   /// minzoom, the layer will be hidden.
-  int? get minZoom;
+  double? get minZoom;
 
   /// Default paint properties for this layer.
   Object? get paint;
