@@ -3,6 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('parse theme', () {
-    final _ = VectorTheme.fromJson(VectorTheme.osmBright);
+    final theme = VectorTheme.fromJson(VectorTheme.osmBright);
+    expect(theme.layers.length, isNot(0));
   });
 }

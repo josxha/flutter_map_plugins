@@ -3,7 +3,9 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_vector/src/ui/vector_tiles_painter.dart';
 
 class VectorTileLayer extends StatelessWidget {
-  const VectorTileLayer({super.key});
+  final Map<String, VectorTileLayer> providers;
+
+  const VectorTileLayer({super.key, required this.providers});
 
   @override
   Widget build(BuildContext context) {

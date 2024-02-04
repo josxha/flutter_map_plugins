@@ -8,6 +8,8 @@ part of 'root.dart';
 
 _$ThemeRootImpl _$$ThemeRootImplFromJson(Map<String, dynamic> json) =>
     _$ThemeRootImpl(
+      layers: const LayerListConverter()
+          .fromJson(json['layers'] as List<Map<String, Object>>),
       sources: const SourceConverter()
           .fromJson(json['sources'] as Map<String, Object?>),
       version: json['version'] as int,
@@ -53,6 +55,7 @@ _$ThemeRootImpl _$$ThemeRootImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ThemeRootImplToJson(_$ThemeRootImpl instance) =>
     <String, dynamic>{
+      'layers': const LayerListConverter().toJson(instance.layers),
       'sources': const SourceConverter().toJson(instance.sources),
       'version': instance.version,
       'bearing': instance.bearing,

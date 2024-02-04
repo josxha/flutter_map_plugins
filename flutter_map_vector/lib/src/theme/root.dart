@@ -1,6 +1,8 @@
+import 'package:flutter_map_vector/src/theme/converter/layer_converter.dart';
 import 'package:flutter_map_vector/src/theme/converter/source_converter.dart';
 import 'package:flutter_map_vector/src/theme/fog.dart';
 import 'package:flutter_map_vector/src/theme/import.dart';
+import 'package:flutter_map_vector/src/theme/layer/layer.dart';
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:flutter_map_vector/src/theme/terrain.dart';
 import 'package:flutter_map_vector/src/theme/transition.dart';
@@ -21,7 +23,7 @@ class VectorTheme with _$VectorTheme {
 
   const factory VectorTheme({
     /// Layers will be created in the order of this array.
-    //@LayerListConverter() required List<ThemeLayer> layers,
+    @LayerListConverter() required List<ThemeLayer> layers,
 
     /// Sources supply the data that will be displayed on the map.
     @SourceConverter() required Map<String, ThemeSource> sources,

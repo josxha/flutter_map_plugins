@@ -22,5 +22,6 @@ linter:
     avoid_dynamic_calls: false
     sort_pub_dependencies: false # no automatic fix
     discarded_futures: false # does not work properly
+    diagnostic_describe_all_properties: false
     public_member_api_docs: false # disabled for now, add before release
     avoid_print: false # disabled for now, add before release

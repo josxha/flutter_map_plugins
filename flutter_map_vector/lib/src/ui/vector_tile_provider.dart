@@ -24,5 +24,4 @@ class NetworkVectorTileProvider extends VectorTileProvider {
   @override
   // TODO: implement minZoom
   int get minZoom => throw UnimplementedError();
-
 }
