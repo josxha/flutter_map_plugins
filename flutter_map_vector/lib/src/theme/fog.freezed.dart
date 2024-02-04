@@ -24,13 +24,15 @@ mixin _$ThemeFog {
   /// within the range and above the horizon and within horizon-blend. Using
   /// opacity is recommended only for smoothly transitioning fog on/off as
   /// anything less than 100% opacity results in more tiles loaded and drawn.
-  String get color => throw _privateConstructorUsedError;
+  @ColorConverter()
+  Color get color => throw _privateConstructorUsedError;
 
   /// The color of the atmosphere region above the horizon, high-color
   /// extends further above the horizon than the color property and its
   /// spread can be controlled with horizon-blend. The opacity can be set to
   /// 0 to remove the high atmosphere color contribution.
-  String get highColor => throw _privateConstructorUsedError;
+  @ColorConverter()
+  Color get highColor => throw _privateConstructorUsedError;
 
   /// Horizon blend applies a smooth fade from the color of the atmosphere
   /// to the color of space. A value of zero leaves a sharp transition from
@@ -82,8 +84,8 @@ abstract class $ThemeFogCopyWith<$Res> {
       _$ThemeFogCopyWithImpl<$Res, ThemeFog>;
   @useResult
   $Res call(
-      {String color,
-      String highColor,
+      {@ColorConverter() Color color,
+      @ColorConverter() Color highColor,
       double? horizonBlend,
       @Assert('range.all((e) => e >= -20 && e <= 20)') List<double> range,
       @Assert('verticalRange.all((e) => e >= 0)',
@@ -115,11 +117,11 @@ class _$ThemeFogCopyWithImpl<$Res, $Val extends ThemeFog>
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       highColor: null == highColor
           ? _value.highColor
           : highColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       horizonBlend: freezed == horizonBlend
           ? _value.horizonBlend
           : horizonBlend // ignore: cast_nullable_to_non_nullable
@@ -145,8 +147,8 @@ abstract class _$$ThemeFogImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String color,
-      String highColor,
+      {@ColorConverter() Color color,
+      @ColorConverter() Color highColor,
       double? horizonBlend,
       @Assert('range.all((e) => e >= -20 && e <= 20)') List<double> range,
       @Assert('verticalRange.all((e) => e >= 0)',
@@ -176,11 +178,11 @@ class __$$ThemeFogImplCopyWithImpl<$Res>
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       highColor: null == highColor
           ? _value.highColor
           : highColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       horizonBlend: freezed == horizonBlend
           ? _value.horizonBlend
           : horizonBlend // ignore: cast_nullable_to_non_nullable
@@ -201,8 +203,8 @@ class __$$ThemeFogImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ThemeFogImpl implements _ThemeFog {
   const _$ThemeFogImpl(
-      {this.color = '0xffffffff',
-      this.highColor = '0xff245cdf',
+      {@ColorConverter() this.color = const Color(0xffffffff),
+      @ColorConverter() this.highColor = const Color(0xff245cdf),
       this.horizonBlend,
       @Assert('range.all((e) => e >= -20 && e <= 20)')
       final List<double> range = const [0.5, 10],
@@ -222,7 +224,8 @@ class _$ThemeFogImpl implements _ThemeFog {
   /// anything less than 100% opacity results in more tiles loaded and drawn.
   @override
   @JsonKey()
-  final String color;
+  @ColorConverter()
+  final Color color;
 
   /// The color of the atmosphere region above the horizon, high-color
   /// extends further above the horizon than the color property and its
@@ -230,7 +233,8 @@ class _$ThemeFogImpl implements _ThemeFog {
   /// 0 to remove the high atmosphere color contribution.
   @override
   @JsonKey()
-  final String highColor;
+  @ColorConverter()
+  final Color highColor;
 
   /// Horizon blend applies a smooth fade from the color of the atmosphere
   /// to the color of space. A value of zero leaves a sharp transition from
@@ -352,8 +356,8 @@ class _$ThemeFogImpl implements _ThemeFog {
 
 abstract class _ThemeFog implements ThemeFog {
   const factory _ThemeFog(
-      {final String color,
-      final String highColor,
+      {@ColorConverter() final Color color,
+      @ColorConverter() final Color highColor,
       final double? horizonBlend,
       @Assert('range.all((e) => e >= -20 && e <= 20)') final List<double> range,
       @Assert('verticalRange.all((e) => e >= 0)',
@@ -370,14 +374,16 @@ abstract class _ThemeFog implements ThemeFog {
   /// within the range and above the horizon and within horizon-blend. Using
   /// opacity is recommended only for smoothly transitioning fog on/off as
   /// anything less than 100% opacity results in more tiles loaded and drawn.
-  String get color;
+  @ColorConverter()
+  Color get color;
   @override
 
   /// The color of the atmosphere region above the horizon, high-color
   /// extends further above the horizon than the color property and its
   /// spread can be controlled with horizon-blend. The opacity can be set to
   /// 0 to remove the high atmosphere color contribution.
-  String get highColor;
+  @ColorConverter()
+  Color get highColor;
   @override
 
   /// Horizon blend applies a smooth fade from the color of the atmosphere

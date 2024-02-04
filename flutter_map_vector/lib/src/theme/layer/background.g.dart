@@ -19,7 +19,9 @@ _$ThemeBackgroundLayerImpl _$$ThemeBackgroundLayerImplFromJson(
       slot: json['slot'] as String?,
       source: json['source'] as String?,
       sourceLayer: json['source-layer'] as String?,
-      backgroundColor: json['background-color'] as String? ?? '#000000',
+      backgroundColor: json['background-color'] == null
+          ? const Color(0xff000000)
+          : const ColorConverter().fromJson(json['background-color'] as String),
       backgroundEmissiveStrength:
           (json['background-emissive-strength'] as num?)?.toDouble() ?? 0,
       backgroundOpacity: (json['background-opacity'] as num?)?.toDouble() ?? 1,
@@ -42,7 +44,8 @@ Map<String, dynamic> _$$ThemeBackgroundLayerImplToJson(
       'slot': instance.slot,
       'source': instance.source,
       'source-layer': instance.sourceLayer,
-      'background-color': instance.backgroundColor,
+      'background-color':
+          const ColorConverter().toJson(instance.backgroundColor),
       'background-emissive-strength': instance.backgroundEmissiveStrength,
       'background-opacity': instance.backgroundOpacity,
       'background-pattern': instance.backgroundPattern,

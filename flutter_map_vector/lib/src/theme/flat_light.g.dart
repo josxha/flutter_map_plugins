@@ -11,7 +11,9 @@ _$ThemeFlatLightImpl _$$ThemeFlatLightImplFromJson(Map<String, dynamic> json) =>
       anchor:
           $enumDecodeNullable(_$ThemeFlatLightAnchorEnumMap, json['anchor']) ??
               ThemeFlatLightAnchor.viewport,
-      color: json['color'] ?? const Color(0x00ffffff),
+      color: json['color'] == null
+          ? const Color(0xffffffff)
+          : const ColorConverter().fromJson(json['color'] as String),
       intensity: (json['intensity'] as num?)?.toDouble() ?? 0.5,
       position: (json['position'] as List<dynamic>?)
               ?.map((e) => (e as num).toDouble())
@@ -23,7 +25,7 @@ Map<String, dynamic> _$$ThemeFlatLightImplToJson(
         _$ThemeFlatLightImpl instance) =>
     <String, dynamic>{
       'anchor': _$ThemeFlatLightAnchorEnumMap[instance.anchor]!,
-      'color': instance.color,
+      'color': const ColorConverter().toJson(instance.color),
       'intensity': instance.intensity,
       'position': instance.position,
     };

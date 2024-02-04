@@ -38,7 +38,8 @@ mixin _$ThemeBackgroundLayer {
 
   /// The color with which the background will be drawn.
   @JsonKey(name: 'background-color')
-  String get backgroundColor => throw _privateConstructorUsedError;
+  @ColorConverter()
+  Color get backgroundColor => throw _privateConstructorUsedError;
 
   /// Controls the intensity of light emitted on the source features.
   @JsonKey(name: 'background-emissive-strength')
@@ -91,7 +92,9 @@ abstract class $ThemeBackgroundLayerCopyWith<$Res> {
       String? slot,
       String? source,
       @JsonKey(name: 'source-layer') String? sourceLayer,
-      @JsonKey(name: 'background-color') String backgroundColor,
+      @JsonKey(name: 'background-color')
+      @ColorConverter()
+      Color backgroundColor,
       @JsonKey(name: 'background-emissive-strength')
       @Assert('backgroundEmissiveStrength >= 0',
           'background-emissive-strength needs to be >=0')
@@ -178,7 +181,7 @@ class _$ThemeBackgroundLayerCopyWithImpl<$Res,
       backgroundColor: null == backgroundColor
           ? _value.backgroundColor
           : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       backgroundEmissiveStrength: null == backgroundEmissiveStrength
           ? _value.backgroundEmissiveStrength
           : backgroundEmissiveStrength // ignore: cast_nullable_to_non_nullable
@@ -224,7 +227,9 @@ abstract class _$$ThemeBackgroundLayerImplCopyWith<$Res>
       String? slot,
       String? source,
       @JsonKey(name: 'source-layer') String? sourceLayer,
-      @JsonKey(name: 'background-color') String backgroundColor,
+      @JsonKey(name: 'background-color')
+      @ColorConverter()
+      Color backgroundColor,
       @JsonKey(name: 'background-emissive-strength')
       @Assert('backgroundEmissiveStrength >= 0',
           'background-emissive-strength needs to be >=0')
@@ -308,7 +313,7 @@ class __$$ThemeBackgroundLayerImplCopyWithImpl<$Res>
       backgroundColor: null == backgroundColor
           ? _value.backgroundColor
           : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       backgroundEmissiveStrength: null == backgroundEmissiveStrength
           ? _value.backgroundEmissiveStrength
           : backgroundEmissiveStrength // ignore: cast_nullable_to_non_nullable
@@ -349,7 +354,9 @@ class _$ThemeBackgroundLayerImpl implements _ThemeBackgroundLayer {
       this.slot,
       this.source,
       @JsonKey(name: 'source-layer') this.sourceLayer,
-      @JsonKey(name: 'background-color') this.backgroundColor = '#000000',
+      @JsonKey(name: 'background-color')
+      @ColorConverter()
+      this.backgroundColor = const Color(0xff000000),
       @JsonKey(name: 'background-emissive-strength')
       @Assert('backgroundEmissiveStrength >= 0',
           'background-emissive-strength needs to be >=0')
@@ -393,7 +400,8 @@ class _$ThemeBackgroundLayerImpl implements _ThemeBackgroundLayer {
   /// The color with which the background will be drawn.
   @override
   @JsonKey(name: 'background-color')
-  final String backgroundColor;
+  @ColorConverter()
+  final Color backgroundColor;
 
   /// Controls the intensity of light emitted on the source features.
   @override
@@ -512,7 +520,9 @@ abstract class _ThemeBackgroundLayer
       final String? slot,
       final String? source,
       @JsonKey(name: 'source-layer') final String? sourceLayer,
-      @JsonKey(name: 'background-color') final String backgroundColor,
+      @JsonKey(name: 'background-color')
+      @ColorConverter()
+      final Color backgroundColor,
       @JsonKey(name: 'background-emissive-strength')
       @Assert('backgroundEmissiveStrength >= 0',
           'background-emissive-strength needs to be >=0')
@@ -556,7 +566,8 @@ abstract class _ThemeBackgroundLayer
 
   /// The color with which the background will be drawn.
   @JsonKey(name: 'background-color')
-  String get backgroundColor;
+  @ColorConverter()
+  Color get backgroundColor;
   @override
 
   /// Controls the intensity of light emitted on the source features.

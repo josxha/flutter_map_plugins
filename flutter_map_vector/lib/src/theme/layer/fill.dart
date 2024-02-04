@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter_map_vector/src/theme/converter/color_converter.dart';
 import 'package:flutter_map_vector/src/theme/flat_light.dart';
 import 'package:flutter_map_vector/src/theme/layer/layer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -41,7 +44,10 @@ class ThemeFillLayer with _$ThemeFillLayer implements ThemeLayer {
     /// The color of the filled part of this layer. This color can be
     /// specified as rgba with an alpha component and the color's opacity will
     /// not affect the opacity of the 1px stroke, if it is used.
-    @JsonKey(name: 'fill-color') @Default('#000000') String fillColor,
+    @ColorConverter()
+    @JsonKey(name: 'fill-color')
+    @Default(Color(0xff000000))
+    Color fillColor,
 
     /// Controls the intensity of light emitted on the source features.
     @Default(0)
@@ -61,7 +67,9 @@ class ThemeFillLayer with _$ThemeFillLayer implements ThemeLayer {
 
     /// The outline color of the fill. Matches the value of fill-color
     /// if unspecified.
-    @JsonKey(name: 'fill-outline-color') String? fillOutlineColor,
+    @ColorConverter()
+    @JsonKey(name: 'fill-outline-color')
+    Color? fillOutlineColor,
 
     /// Name of image in sprite to use for drawing image fills. For seamless
     /// patterns, image width and height must be a factor of two

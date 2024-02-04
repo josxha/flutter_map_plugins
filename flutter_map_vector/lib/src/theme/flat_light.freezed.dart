@@ -24,7 +24,8 @@ mixin _$ThemeFlatLight {
   ThemeFlatLightAnchor get anchor => throw _privateConstructorUsedError;
 
   /// Color tint for lighting extruded geometries.
-  dynamic get color => throw _privateConstructorUsedError;
+  @ColorConverter()
+  Color get color => throw _privateConstructorUsedError;
 
   /// Intensity of lighting (on a scale from 0 to 1). Higher numbers will
   /// present as more extreme contrast.
@@ -59,7 +60,7 @@ abstract class $ThemeFlatLightCopyWith<$Res> {
   @useResult
   $Res call(
       {ThemeFlatLightAnchor anchor,
-      dynamic color,
+      @ColorConverter() Color color,
       @Assert('intensity >= 0 && intensity <= 1') double intensity,
       @Assert('position.length == 3',
           '[r radial coordinate, a azimuthal angle, p polar angle]')
@@ -80,7 +81,7 @@ class _$ThemeFlatLightCopyWithImpl<$Res, $Val extends ThemeFlatLight>
   @override
   $Res call({
     Object? anchor = null,
-    Object? color = freezed,
+    Object? color = null,
     Object? intensity = null,
     Object? position = null,
   }) {
@@ -89,10 +90,10 @@ class _$ThemeFlatLightCopyWithImpl<$Res, $Val extends ThemeFlatLight>
           ? _value.anchor
           : anchor // ignore: cast_nullable_to_non_nullable
               as ThemeFlatLightAnchor,
-      color: freezed == color
+      color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as Color,
       intensity: null == intensity
           ? _value.intensity
           : intensity // ignore: cast_nullable_to_non_nullable
@@ -115,7 +116,7 @@ abstract class _$$ThemeFlatLightImplCopyWith<$Res>
   @useResult
   $Res call(
       {ThemeFlatLightAnchor anchor,
-      dynamic color,
+      @ColorConverter() Color color,
       @Assert('intensity >= 0 && intensity <= 1') double intensity,
       @Assert('position.length == 3',
           '[r radial coordinate, a azimuthal angle, p polar angle]')
@@ -134,7 +135,7 @@ class __$$ThemeFlatLightImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? anchor = null,
-    Object? color = freezed,
+    Object? color = null,
     Object? intensity = null,
     Object? position = null,
   }) {
@@ -143,10 +144,10 @@ class __$$ThemeFlatLightImplCopyWithImpl<$Res>
           ? _value.anchor
           : anchor // ignore: cast_nullable_to_non_nullable
               as ThemeFlatLightAnchor,
-      color: freezed == color
+      color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as Color,
       intensity: null == intensity
           ? _value.intensity
           : intensity // ignore: cast_nullable_to_non_nullable
@@ -164,7 +165,7 @@ class __$$ThemeFlatLightImplCopyWithImpl<$Res>
 class _$ThemeFlatLightImpl implements _ThemeFlatLight {
   const _$ThemeFlatLightImpl(
       {this.anchor = ThemeFlatLightAnchor.viewport,
-      this.color = const Color(0x00ffffff),
+      @ColorConverter() this.color = const Color(0xffffffff),
       @Assert('intensity >= 0 && intensity <= 1') this.intensity = 0.5,
       @Assert('position.length == 3',
           '[r radial coordinate, a azimuthal angle, p polar angle]')
@@ -182,7 +183,8 @@ class _$ThemeFlatLightImpl implements _ThemeFlatLight {
   /// Color tint for lighting extruded geometries.
   @override
   @JsonKey()
-  final dynamic color;
+  @ColorConverter()
+  final Color color;
 
   /// Intensity of lighting (on a scale from 0 to 1). Higher numbers will
   /// present as more extreme contrast.
@@ -234,7 +236,7 @@ class _$ThemeFlatLightImpl implements _ThemeFlatLight {
         (other.runtimeType == runtimeType &&
             other is _$ThemeFlatLightImpl &&
             (identical(other.anchor, anchor) || other.anchor == anchor) &&
-            const DeepCollectionEquality().equals(other.color, color) &&
+            (identical(other.color, color) || other.color == color) &&
             (identical(other.intensity, intensity) ||
                 other.intensity == intensity) &&
             const DeepCollectionEquality().equals(other._position, _position));
@@ -242,11 +244,7 @@ class _$ThemeFlatLightImpl implements _ThemeFlatLight {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      anchor,
-      const DeepCollectionEquality().hash(color),
-      intensity,
+  int get hashCode => Object.hash(runtimeType, anchor, color, intensity,
       const DeepCollectionEquality().hash(_position));
 
   @JsonKey(ignore: true)
@@ -267,7 +265,7 @@ class _$ThemeFlatLightImpl implements _ThemeFlatLight {
 abstract class _ThemeFlatLight implements ThemeFlatLight {
   const factory _ThemeFlatLight(
       {final ThemeFlatLightAnchor anchor,
-      final dynamic color,
+      @ColorConverter() final Color color,
       @Assert('intensity >= 0 && intensity <= 1') final double intensity,
       @Assert('position.length == 3',
           '[r radial coordinate, a azimuthal angle, p polar angle]')
@@ -283,7 +281,8 @@ abstract class _ThemeFlatLight implements ThemeFlatLight {
   @override
 
   /// Color tint for lighting extruded geometries.
-  dynamic get color;
+  @ColorConverter()
+  Color get color;
   @override
 
   /// Intensity of lighting (on a scale from 0 to 1). Higher numbers will

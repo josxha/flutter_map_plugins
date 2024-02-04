@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter_map_vector/src/theme/converter/color_converter.dart';
 import 'package:flutter_map_vector/src/theme/layer/layer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -36,9 +39,10 @@ class ThemeBackgroundLayer with _$ThemeBackgroundLayer implements ThemeLayer {
     @JsonKey(name: 'source-layer') String? sourceLayer,
 
     /// The color with which the background will be drawn.
-    @Default('#000000')
+    @Default(Color(0xff000000))
     @JsonKey(name: 'background-color')
-    String backgroundColor,
+    @ColorConverter()
+    Color backgroundColor,
 
     /// Controls the intensity of light emitted on the source features.
     @Default(0)

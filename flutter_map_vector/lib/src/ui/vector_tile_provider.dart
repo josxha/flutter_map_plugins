@@ -1,31 +1,44 @@
 import 'dart:typed_data';
 
+import 'package:http/http.dart';
+
 abstract class VectorTileProvider {
   const VectorTileProvider();
 
-  dynamic getTile({required int z, required int x, required int y});
+  Future<Uint8List> getTile({required int z, required int x, required int y});
 
-  int get minZoom;
+  int? get minZoom;
 
-  int get maxZoom;
+  int? get maxZoom;
 }
 
 class NetworkVectorTileProvider extends VectorTileProvider {
   final String urlTemplate;
-
-  NetworkVectorTileProvider({required this.urlTemplate});
-
   @override
-  Uint8List getTile({required int z, required int x, required int y}) {
-    // TODO: implement getTile
-    throw UnimplementedError();
+  final int? maxZoom;
+  @override
+  final int? minZoom;
+  late final Client client;
+
+  NetworkVectorTileProvider({
+    required this.urlTemplate,
+    this.minZoom,
+    this.maxZoom,
+  }) {
+    client = Client();
   }
 
   @override
-  // TODO: implement maxZoom
-  int get maxZoom => throw UnimplementedError();
-
-  @override
-  // TODO: implement minZoom
-  int get minZoom => throw UnimplementedError();
+  Future<Uint8List> getTile({
+    required int z,
+    required int x,
+    required int y,
+  }) async {
+    final url = urlTemplate
+        .replaceFirst('{z}', z.toString())
+        .replaceFirst('{x}', x.toString())
+        .replaceFirst('{y}', y.toString());
+    final response = await client.get(Uri.parse(url));
+    return response.bodyBytes;
+  }
 }

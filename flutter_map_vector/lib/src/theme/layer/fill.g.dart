@@ -19,11 +19,14 @@ _$ThemeFillLayerImpl _$$ThemeFillLayerImplFromJson(Map<String, dynamic> json) =>
       source: json['source'] as String?,
       sourceLayer: json['source-layer'] as String?,
       fillAntialias: json['fill-antialias'] as bool? ?? true,
-      fillColor: json['fill-color'] as String? ?? '#000000',
+      fillColor: json['fill-color'] == null
+          ? const Color(0xff000000)
+          : const ColorConverter().fromJson(json['fill-color'] as String),
       fillEmissiveStrength:
           (json['fill-emissive-strength'] as num?)?.toDouble() ?? 0,
       fillOpacity: (json['fill-opacity'] as num?)?.toDouble() ?? 1,
-      fillOutlineColor: json['fill-outline-color'] as String?,
+      fillOutlineColor: _$JsonConverterFromJson<String, Color>(
+          json['fill-outline-color'], const ColorConverter().fromJson),
       fillPattern: json['fill-pattern'] as String?,
       fillSortKey: (json['fill-sort-key'] as num?)?.toDouble(),
       fillTranslate: (json['fill-translate'] as List<dynamic>?)
@@ -52,10 +55,11 @@ Map<String, dynamic> _$$ThemeFillLayerImplToJson(
       'source': instance.source,
       'source-layer': instance.sourceLayer,
       'fill-antialias': instance.fillAntialias,
-      'fill-color': instance.fillColor,
+      'fill-color': const ColorConverter().toJson(instance.fillColor),
       'fill-emissive-strength': instance.fillEmissiveStrength,
       'fill-opacity': instance.fillOpacity,
-      'fill-outline-color': instance.fillOutlineColor,
+      'fill-outline-color': _$JsonConverterToJson<String, Color>(
+          instance.fillOutlineColor, const ColorConverter().toJson),
       'fill-pattern': instance.fillPattern,
       'fill-sort-key': instance.fillSortKey,
       'fill-translate': instance.fillTranslate,
@@ -79,6 +83,12 @@ const _$ThemeLayerTypeEnumMap = {
   ThemeLayerType.slot: 'slot',
 };
 
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
 const _$ThemeFlatLightAnchorEnumMap = {
   ThemeFlatLightAnchor.map: 'map',
   ThemeFlatLightAnchor.viewport: 'viewport',
@@ -88,3 +98,9 @@ const _$ThemeLayerVisibilityEnumMap = {
   ThemeLayerVisibility.visible: 'visible',
   ThemeLayerVisibility.none: 'none',
 };
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

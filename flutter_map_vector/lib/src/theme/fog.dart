@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter_map_vector/src/theme/converter/color_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'fog.freezed.dart';
@@ -19,13 +22,13 @@ class ThemeFog with _$ThemeFog {
     /// within the range and above the horizon and within horizon-blend. Using
     /// opacity is recommended only for smoothly transitioning fog on/off as
     /// anything less than 100% opacity results in more tiles loaded and drawn.
-    @Default('0xffffffff') String color,
+    @ColorConverter() @Default(Color(0xffffffff)) Color color,
 
     /// The color of the atmosphere region above the horizon, high-color
     /// extends further above the horizon than the color property and its
     /// spread can be controlled with horizon-blend. The opacity can be set to
     /// 0 to remove the high atmosphere color contribution.
-    @Default('0xff245cdf') String highColor,
+    @ColorConverter() @Default(Color(0xff245cdf)) Color highColor,
 
     /// Horizon blend applies a smooth fade from the color of the atmosphere
     /// to the color of space. A value of zero leaves a sharp transition from

@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_map_vector/src/theme/converter/color_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part '_3d_light.freezed.dart';
@@ -33,7 +34,7 @@ class Theme3dLight with _$Theme3dLight {
     @JsonKey(name: 'cast-shadows') @Default(false) bool castShadows,
 
     /// Color of the directional light.
-    @Default(Color(0x00ffffff)) dynamic color,
+    @ColorConverter() @Default(Color(0xffffffff)) Color color,
 
     /// Direction of the light source specified as
     /// [0] a azimuthal angle

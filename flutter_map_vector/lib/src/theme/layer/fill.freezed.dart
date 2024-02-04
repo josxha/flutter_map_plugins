@@ -43,8 +43,9 @@ mixin _$ThemeFillLayer {
   /// The color of the filled part of this layer. This color can be
   /// specified as rgba with an alpha component and the color's opacity will
   /// not affect the opacity of the 1px stroke, if it is used.
+  @ColorConverter()
   @JsonKey(name: 'fill-color')
-  String get fillColor => throw _privateConstructorUsedError;
+  Color get fillColor => throw _privateConstructorUsedError;
 
   /// Controls the intensity of light emitted on the source features.
   @JsonKey(name: 'fill-emissive-strength')
@@ -60,8 +61,9 @@ mixin _$ThemeFillLayer {
 
   /// The outline color of the fill. Matches the value of fill-color
   /// if unspecified.
+  @ColorConverter()
   @JsonKey(name: 'fill-outline-color')
-  String? get fillOutlineColor => throw _privateConstructorUsedError;
+  Color? get fillOutlineColor => throw _privateConstructorUsedError;
 
   /// Name of image in sprite to use for drawing image fills. For seamless
   /// patterns, image width and height must be a factor of two
@@ -120,13 +122,15 @@ abstract class $ThemeFillLayerCopyWith<$Res> {
       String? source,
       @JsonKey(name: 'source-layer') String? sourceLayer,
       @JsonKey(name: 'fill-antialias') bool fillAntialias,
-      @JsonKey(name: 'fill-color') String fillColor,
+      @ColorConverter() @JsonKey(name: 'fill-color') Color fillColor,
       @JsonKey(name: 'fill-emissive-strength') double fillEmissiveStrength,
       @Assert('fillOpacity >= 0 && fillOpacity <= 1',
           'fill-opacity has to be between 0 and 1 inclusive.')
       @JsonKey(name: 'fill-opacity')
       double fillOpacity,
-      @JsonKey(name: 'fill-outline-color') String? fillOutlineColor,
+      @ColorConverter()
+      @JsonKey(name: 'fill-outline-color')
+      Color? fillOutlineColor,
       @JsonKey(name: 'fill-pattern') String? fillPattern,
       @JsonKey(name: 'fill-sort-key') double? fillSortKey,
       @Assert('fillTranslate == null || fillTranslate!.length == 2',
@@ -220,7 +224,7 @@ class _$ThemeFillLayerCopyWithImpl<$Res, $Val extends ThemeFillLayer>
       fillColor: null == fillColor
           ? _value.fillColor
           : fillColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       fillEmissiveStrength: null == fillEmissiveStrength
           ? _value.fillEmissiveStrength
           : fillEmissiveStrength // ignore: cast_nullable_to_non_nullable
@@ -232,7 +236,7 @@ class _$ThemeFillLayerCopyWithImpl<$Res, $Val extends ThemeFillLayer>
       fillOutlineColor: freezed == fillOutlineColor
           ? _value.fillOutlineColor
           : fillOutlineColor // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Color?,
       fillPattern: freezed == fillPattern
           ? _value.fillPattern
           : fillPattern // ignore: cast_nullable_to_non_nullable
@@ -283,13 +287,15 @@ abstract class _$$ThemeFillLayerImplCopyWith<$Res>
       String? source,
       @JsonKey(name: 'source-layer') String? sourceLayer,
       @JsonKey(name: 'fill-antialias') bool fillAntialias,
-      @JsonKey(name: 'fill-color') String fillColor,
+      @ColorConverter() @JsonKey(name: 'fill-color') Color fillColor,
       @JsonKey(name: 'fill-emissive-strength') double fillEmissiveStrength,
       @Assert('fillOpacity >= 0 && fillOpacity <= 1',
           'fill-opacity has to be between 0 and 1 inclusive.')
       @JsonKey(name: 'fill-opacity')
       double fillOpacity,
-      @JsonKey(name: 'fill-outline-color') String? fillOutlineColor,
+      @ColorConverter()
+      @JsonKey(name: 'fill-outline-color')
+      Color? fillOutlineColor,
       @JsonKey(name: 'fill-pattern') String? fillPattern,
       @JsonKey(name: 'fill-sort-key') double? fillSortKey,
       @Assert('fillTranslate == null || fillTranslate!.length == 2',
@@ -381,7 +387,7 @@ class __$$ThemeFillLayerImplCopyWithImpl<$Res>
       fillColor: null == fillColor
           ? _value.fillColor
           : fillColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       fillEmissiveStrength: null == fillEmissiveStrength
           ? _value.fillEmissiveStrength
           : fillEmissiveStrength // ignore: cast_nullable_to_non_nullable
@@ -393,7 +399,7 @@ class __$$ThemeFillLayerImplCopyWithImpl<$Res>
       fillOutlineColor: freezed == fillOutlineColor
           ? _value.fillOutlineColor
           : fillOutlineColor // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Color?,
       fillPattern: freezed == fillPattern
           ? _value.fillPattern
           : fillPattern // ignore: cast_nullable_to_non_nullable
@@ -439,13 +445,17 @@ class _$ThemeFillLayerImpl implements _ThemeFillLayer {
       this.source,
       @JsonKey(name: 'source-layer') this.sourceLayer,
       @JsonKey(name: 'fill-antialias') this.fillAntialias = true,
-      @JsonKey(name: 'fill-color') this.fillColor = '#000000',
+      @ColorConverter()
+      @JsonKey(name: 'fill-color')
+      this.fillColor = const Color(0xff000000),
       @JsonKey(name: 'fill-emissive-strength') this.fillEmissiveStrength = 0,
       @Assert('fillOpacity >= 0 && fillOpacity <= 1',
           'fill-opacity has to be between 0 and 1 inclusive.')
       @JsonKey(name: 'fill-opacity')
       this.fillOpacity = 1,
-      @JsonKey(name: 'fill-outline-color') this.fillOutlineColor,
+      @ColorConverter()
+      @JsonKey(name: 'fill-outline-color')
+      this.fillOutlineColor,
       @JsonKey(name: 'fill-pattern') this.fillPattern,
       @JsonKey(name: 'fill-sort-key') this.fillSortKey,
       @Assert('fillTranslate == null || fillTranslate!.length == 2',
@@ -495,8 +505,9 @@ class _$ThemeFillLayerImpl implements _ThemeFillLayer {
   /// specified as rgba with an alpha component and the color's opacity will
   /// not affect the opacity of the 1px stroke, if it is used.
   @override
+  @ColorConverter()
   @JsonKey(name: 'fill-color')
-  final String fillColor;
+  final Color fillColor;
 
   /// Controls the intensity of light emitted on the source features.
   @override
@@ -515,8 +526,9 @@ class _$ThemeFillLayerImpl implements _ThemeFillLayer {
   /// The outline color of the fill. Matches the value of fill-color
   /// if unspecified.
   @override
+  @ColorConverter()
   @JsonKey(name: 'fill-outline-color')
-  final String? fillOutlineColor;
+  final Color? fillOutlineColor;
 
   /// Name of image in sprite to use for drawing image fills. For seamless
   /// patterns, image width and height must be a factor of two
@@ -661,14 +673,16 @@ abstract class _ThemeFillLayer implements ThemeFillLayer, ThemeLayer {
       final String? source,
       @JsonKey(name: 'source-layer') final String? sourceLayer,
       @JsonKey(name: 'fill-antialias') final bool fillAntialias,
-      @JsonKey(name: 'fill-color') final String fillColor,
+      @ColorConverter() @JsonKey(name: 'fill-color') final Color fillColor,
       @JsonKey(name: 'fill-emissive-strength')
       final double fillEmissiveStrength,
       @Assert('fillOpacity >= 0 && fillOpacity <= 1',
           'fill-opacity has to be between 0 and 1 inclusive.')
       @JsonKey(name: 'fill-opacity')
       final double fillOpacity,
-      @JsonKey(name: 'fill-outline-color') final String? fillOutlineColor,
+      @ColorConverter()
+      @JsonKey(name: 'fill-outline-color')
+      final Color? fillOutlineColor,
       @JsonKey(name: 'fill-pattern') final String? fillPattern,
       @JsonKey(name: 'fill-sort-key') final double? fillSortKey,
       @Assert('fillTranslate == null || fillTranslate!.length == 2',
@@ -717,8 +731,9 @@ abstract class _ThemeFillLayer implements ThemeFillLayer, ThemeLayer {
   /// The color of the filled part of this layer. This color can be
   /// specified as rgba with an alpha component and the color's opacity will
   /// not affect the opacity of the 1px stroke, if it is used.
+  @ColorConverter()
   @JsonKey(name: 'fill-color')
-  String get fillColor;
+  Color get fillColor;
   @override
 
   /// Controls the intensity of light emitted on the source features.
@@ -737,8 +752,9 @@ abstract class _ThemeFillLayer implements ThemeFillLayer, ThemeLayer {
 
   /// The outline color of the fill. Matches the value of fill-color
   /// if unspecified.
+  @ColorConverter()
   @JsonKey(name: 'fill-outline-color')
-  String? get fillOutlineColor;
+  Color? get fillOutlineColor;
   @override
 
   /// Name of image in sprite to use for drawing image fills. For seamless

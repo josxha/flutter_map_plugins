@@ -39,7 +39,8 @@ mixin _$Theme3dLight {
   bool get castShadows => throw _privateConstructorUsedError;
 
   /// Color of the directional light.
-  dynamic get color => throw _privateConstructorUsedError;
+  @ColorConverter()
+  Color get color => throw _privateConstructorUsedError;
 
   /// Direction of the light source specified as
   /// [0] a azimuthal angle
@@ -70,7 +71,7 @@ abstract class $Theme3dLightCopyWith<$Res> {
       Theme3dLightType? type,
       @JsonKey(name: 'measure-light') dynamic measureLight,
       @JsonKey(name: 'cast-shadows') bool castShadows,
-      dynamic color,
+      @ColorConverter() Color color,
       List<double>? direction,
       @Assert('intensity >= 0 && intensity <= 1') double intensity});
 }
@@ -93,7 +94,7 @@ class _$Theme3dLightCopyWithImpl<$Res, $Val extends Theme3dLight>
     Object? type = freezed,
     Object? measureLight = freezed,
     Object? castShadows = null,
-    Object? color = freezed,
+    Object? color = null,
     Object? direction = freezed,
     Object? intensity = null,
   }) {
@@ -118,10 +119,10 @@ class _$Theme3dLightCopyWithImpl<$Res, $Val extends Theme3dLight>
           ? _value.castShadows
           : castShadows // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: freezed == color
+      color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as Color,
       direction: freezed == direction
           ? _value.direction
           : direction // ignore: cast_nullable_to_non_nullable
@@ -148,7 +149,7 @@ abstract class _$$Theme3dLightImplCopyWith<$Res>
       Theme3dLightType? type,
       @JsonKey(name: 'measure-light') dynamic measureLight,
       @JsonKey(name: 'cast-shadows') bool castShadows,
-      dynamic color,
+      @ColorConverter() Color color,
       List<double>? direction,
       @Assert('intensity >= 0 && intensity <= 1') double intensity});
 }
@@ -169,7 +170,7 @@ class __$$Theme3dLightImplCopyWithImpl<$Res>
     Object? type = freezed,
     Object? measureLight = freezed,
     Object? castShadows = null,
-    Object? color = freezed,
+    Object? color = null,
     Object? direction = freezed,
     Object? intensity = null,
   }) {
@@ -194,10 +195,10 @@ class __$$Theme3dLightImplCopyWithImpl<$Res>
           ? _value.castShadows
           : castShadows // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: freezed == color
+      color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as Color,
       direction: freezed == direction
           ? _value._direction
           : direction // ignore: cast_nullable_to_non_nullable
@@ -219,7 +220,7 @@ class _$Theme3dLightImpl implements _Theme3dLight {
       this.type,
       @JsonKey(name: 'measure-light') this.measureLight,
       @JsonKey(name: 'cast-shadows') this.castShadows = false,
-      this.color = const Color(0x00ffffff),
+      @ColorConverter() this.color = const Color(0xffffffff),
       final List<double>? direction,
       @Assert('intensity >= 0 && intensity <= 1') this.intensity = 0.5})
       : _direction = direction;
@@ -253,7 +254,8 @@ class _$Theme3dLightImpl implements _Theme3dLight {
   /// Color of the directional light.
   @override
   @JsonKey()
-  final dynamic color;
+  @ColorConverter()
+  final Color color;
 
   /// Direction of the light source specified as
   /// [0] a azimuthal angle
@@ -302,7 +304,7 @@ class _$Theme3dLightImpl implements _Theme3dLight {
                 .equals(other.measureLight, measureLight) &&
             (identical(other.castShadows, castShadows) ||
                 other.castShadows == castShadows) &&
-            const DeepCollectionEquality().equals(other.color, color) &&
+            (identical(other.color, color) || other.color == color) &&
             const DeepCollectionEquality()
                 .equals(other._direction, _direction) &&
             (identical(other.intensity, intensity) ||
@@ -318,7 +320,7 @@ class _$Theme3dLightImpl implements _Theme3dLight {
       type,
       const DeepCollectionEquality().hash(measureLight),
       castShadows,
-      const DeepCollectionEquality().hash(color),
+      color,
       const DeepCollectionEquality().hash(_direction),
       intensity);
 
@@ -343,7 +345,7 @@ abstract class _Theme3dLight implements Theme3dLight {
           final Theme3dLightType? type,
           @JsonKey(name: 'measure-light') final dynamic measureLight,
           @JsonKey(name: 'cast-shadows') final bool castShadows,
-          final dynamic color,
+          @ColorConverter() final Color color,
           final List<double>? direction,
           @Assert('intensity >= 0 && intensity <= 1') final double intensity}) =
       _$Theme3dLightImpl;
@@ -377,7 +379,8 @@ abstract class _Theme3dLight implements Theme3dLight {
   @override
 
   /// Color of the directional light.
-  dynamic get color;
+  @ColorConverter()
+  Color get color;
   @override
 
   /// Direction of the light source specified as

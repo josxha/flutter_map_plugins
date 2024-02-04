@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter_map_vector/src/theme/converter/color_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'flat_light.freezed.dart';
@@ -18,7 +19,7 @@ class ThemeFlatLight with _$ThemeFlatLight {
     @Default(ThemeFlatLightAnchor.viewport) ThemeFlatLightAnchor anchor,
 
     /// Color tint for lighting extruded geometries.
-    @Default(Color(0x00ffffff)) dynamic color,
+    @ColorConverter() @Default(Color(0xffffffff)) Color color,
 
     /// Intensity of lighting (on a scale from 0 to 1). Higher numbers will
     /// present as more extreme contrast.

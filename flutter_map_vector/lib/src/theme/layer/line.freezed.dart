@@ -45,8 +45,9 @@ mixin _$ThemeLineLayer {
   ThemeLineCap get lineCap => throw _privateConstructorUsedError;
 
   /// The color with which the line will be drawn.
+  @ColorConverter()
   @JsonKey(name: 'line-color')
-  String get lineColor => throw _privateConstructorUsedError;
+  Color get lineColor => throw _privateConstructorUsedError;
 
   /// Specifies the lengths of the alternating dashes and gaps that form the
   /// dash pattern. The lengths are later scaled by the line width. To
@@ -179,7 +180,7 @@ abstract class $ThemeLineLayerCopyWith<$Res> {
       @JsonKey(name: 'source-layer') String? sourceLayer,
       @JsonKey(name: 'line-blur') double lineBlur,
       @JsonKey(name: 'line-cap') ThemeLineCap lineCap,
-      @JsonKey(name: 'line-color') String lineColor,
+      @ColorConverter() @JsonKey(name: 'line-color') Color lineColor,
       @JsonKey(name: 'line-dasharray')
       @Assert('lineDashArray.all((e) => e >= 0)',
           'line-dasharray has to be greater than or equal to 0')
@@ -311,7 +312,7 @@ class _$ThemeLineLayerCopyWithImpl<$Res, $Val extends ThemeLineLayer>
       lineColor: null == lineColor
           ? _value.lineColor
           : lineColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       lineDashArray: freezed == lineDashArray
           ? _value.lineDashArray
           : lineDashArray // ignore: cast_nullable_to_non_nullable
@@ -407,7 +408,7 @@ abstract class _$$ThemeLineLayerImplCopyWith<$Res>
       @JsonKey(name: 'source-layer') String? sourceLayer,
       @JsonKey(name: 'line-blur') double lineBlur,
       @JsonKey(name: 'line-cap') ThemeLineCap lineCap,
-      @JsonKey(name: 'line-color') String lineColor,
+      @ColorConverter() @JsonKey(name: 'line-color') Color lineColor,
       @JsonKey(name: 'line-dasharray')
       @Assert('lineDashArray.all((e) => e >= 0)',
           'line-dasharray has to be greater than or equal to 0')
@@ -537,7 +538,7 @@ class __$$ThemeLineLayerImplCopyWithImpl<$Res>
       lineColor: null == lineColor
           ? _value.lineColor
           : lineColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       lineDashArray: freezed == lineDashArray
           ? _value._lineDashArray
           : lineDashArray // ignore: cast_nullable_to_non_nullable
@@ -626,7 +627,9 @@ class _$ThemeLineLayerImpl implements _ThemeLineLayer {
       @JsonKey(name: 'source-layer') this.sourceLayer,
       @JsonKey(name: 'line-blur') this.lineBlur = 0,
       @JsonKey(name: 'line-cap') this.lineCap = ThemeLineCap.butt,
-      @JsonKey(name: 'line-color') this.lineColor = '#000000',
+      @ColorConverter()
+      @JsonKey(name: 'line-color')
+      this.lineColor = const Color(0xff000000),
       @JsonKey(name: 'line-dasharray')
       @Assert('lineDashArray.all((e) => e >= 0)',
           'line-dasharray has to be greater than or equal to 0')
@@ -640,8 +643,8 @@ class _$ThemeLineLayerImpl implements _ThemeLineLayer {
       @JsonKey(name: 'line-miter-limit') this.lineMiterLimit = 2,
       @JsonKey(name: 'line-offset') this.lineOffset = 0,
       @JsonKey(name: 'line-opacity')
-      @Assert('lineOpacity >= 0 && lineOpacity <= 1',
-          'line-opacity has to be between 0 and 1')
+      @Assert(
+          'lineOpacity >= 0 && lineOpacity <= 1', 'line-opacity has to be between 0 and 1')
       this.lineOpacity = 1,
       @JsonKey(name: 'line-pattern') this.linePattern,
       @JsonKey(name: 'line-round-limit') this.lineRoundLimit = 1.05,
@@ -703,8 +706,9 @@ class _$ThemeLineLayerImpl implements _ThemeLineLayer {
 
   /// The color with which the line will be drawn.
   @override
+  @ColorConverter()
   @JsonKey(name: 'line-color')
-  final String lineColor;
+  final Color lineColor;
 
   /// Specifies the lengths of the alternating dashes and gaps that form the
   /// dash pattern. The lengths are later scaled by the line width. To
@@ -983,7 +987,7 @@ abstract class _ThemeLineLayer implements ThemeLineLayer, ThemeLayer {
       @JsonKey(name: 'source-layer') final String? sourceLayer,
       @JsonKey(name: 'line-blur') final double lineBlur,
       @JsonKey(name: 'line-cap') final ThemeLineCap lineCap,
-      @JsonKey(name: 'line-color') final String lineColor,
+      @ColorConverter() @JsonKey(name: 'line-color') final Color lineColor,
       @JsonKey(name: 'line-dasharray')
       @Assert('lineDashArray.all((e) => e >= 0)',
           'line-dasharray has to be greater than or equal to 0')
@@ -1061,8 +1065,9 @@ abstract class _ThemeLineLayer implements ThemeLineLayer, ThemeLayer {
   @override
 
   /// The color with which the line will be drawn.
+  @ColorConverter()
   @JsonKey(name: 'line-color')
-  String get lineColor;
+  Color get lineColor;
   @override
 
   /// Specifies the lengths of the alternating dashes and gaps that form the

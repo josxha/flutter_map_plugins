@@ -13,7 +13,9 @@ _$Theme3dLightImpl _$$Theme3dLightImplFromJson(Map<String, dynamic> json) =>
       type: $enumDecodeNullable(_$Theme3dLightTypeEnumMap, json['type']),
       measureLight: json['measure-light'],
       castShadows: json['cast-shadows'] as bool? ?? false,
-      color: json['color'] ?? const Color(0x00ffffff),
+      color: json['color'] == null
+          ? const Color(0xffffffff)
+          : const ColorConverter().fromJson(json['color'] as String),
       direction: (json['direction'] as List<dynamic>?)
           ?.map((e) => (e as num).toDouble())
           .toList(),
@@ -27,7 +29,7 @@ Map<String, dynamic> _$$Theme3dLightImplToJson(_$Theme3dLightImpl instance) =>
       'type': _$Theme3dLightTypeEnumMap[instance.type],
       'measure-light': instance.measureLight,
       'cast-shadows': instance.castShadows,
-      'color': instance.color,
+      'color': const ColorConverter().toJson(instance.color),
       'direction': instance.direction,
       'intensity': instance.intensity,
     };

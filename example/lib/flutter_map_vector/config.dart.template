@@ -1,1 +1,2 @@
 const mapboxKey = 'insert_your_token';
+const stadiamapsKey = 'insert_your_token';

@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter_map_vector/src/theme/converter/color_converter.dart';
 import 'package:flutter_map_vector/src/theme/flat_light.dart';
 import 'package:flutter_map_vector/src/theme/layer/layer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -42,7 +45,10 @@ class ThemeLineLayer with _$ThemeLineLayer implements ThemeLayer {
     @Default(ThemeLineCap.butt) @JsonKey(name: 'line-cap') ThemeLineCap lineCap,
 
     /// The color with which the line will be drawn.
-    @JsonKey(name: 'line-color') @Default('#000000') String lineColor,
+    @ColorConverter()
+    @JsonKey(name: 'line-color')
+    @Default(Color(0xff000000))
+    Color lineColor,
 
     /// Specifies the lengths of the alternating dashes and gaps that form the
     /// dash pattern. The lengths are later scaled by the line width. To

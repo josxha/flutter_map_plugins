@@ -21,7 +21,9 @@ _$ThemeLineLayerImpl _$$ThemeLineLayerImplFromJson(Map<String, dynamic> json) =>
       lineBlur: (json['line-blur'] as num?)?.toDouble() ?? 0,
       lineCap: $enumDecodeNullable(_$ThemeLineCapEnumMap, json['line-cap']) ??
           ThemeLineCap.butt,
-      lineColor: json['line-color'] as String? ?? '#000000',
+      lineColor: json['line-color'] == null
+          ? const Color(0xff000000)
+          : const ColorConverter().fromJson(json['line-color'] as String),
       lineDashArray: (json['line-dasharray'] as List<dynamic>?)
           ?.map((e) => (e as num).toDouble())
           .toList(),
@@ -70,7 +72,7 @@ Map<String, dynamic> _$$ThemeLineLayerImplToJson(
       'source-layer': instance.sourceLayer,
       'line-blur': instance.lineBlur,
       'line-cap': _$ThemeLineCapEnumMap[instance.lineCap]!,
-      'line-color': instance.lineColor,
+      'line-color': const ColorConverter().toJson(instance.lineColor),
       'line-dasharray': instance.lineDashArray,
       'line-emissive-strength': instance.lineEmissiveStrength,
       'line-gap-width': instance.lineGapWidth,

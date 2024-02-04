@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_plugins_example/flutter_map_vector/config.dart';
 import 'package:flutter_map_vector/flutter_map_vector.dart';
 
 class FlutterMapVectorPage extends StatelessWidget {
@@ -20,6 +21,12 @@ class FlutterMapVectorPage extends StatelessWidget {
           ),
           VectorTileLayer(
             style: VectorTheme.osmBright,
+            providers: {
+              'openmaptiles': NetworkVectorTileProvider(
+                urlTemplate:
+                    'https://tiles.stadiamaps.com/data/openmaptiles/{z}/{x}/{y}.pbf?api_key=$stadiamapsKey',
+              ),
+            },
           ),
         ],
       ),
