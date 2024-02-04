@@ -19,6 +19,14 @@ _$ThemeBackgroundLayerImpl _$$ThemeBackgroundLayerImplFromJson(
       slot: json['slot'] as String?,
       source: json['source'] as String?,
       sourceLayer: json['source-layer'] as String?,
+      backgroundColor: json['background-color'] as String? ?? '#000000',
+      backgroundEmissiveStrength:
+          (json['background-emissive-strength'] as num?)?.toDouble() ?? 0,
+      backgroundOpacity: (json['background-opacity'] as num?)?.toDouble() ?? 1,
+      backgroundPattern: json['background-pattern'] as String?,
+      visibility: $enumDecodeNullable(
+              _$ThemeLayerVisibilityEnumMap, json['visibility']) ??
+          ThemeLayerVisibility.visible,
     );
 
 Map<String, dynamic> _$$ThemeBackgroundLayerImplToJson(
@@ -34,6 +42,11 @@ Map<String, dynamic> _$$ThemeBackgroundLayerImplToJson(
       'slot': instance.slot,
       'source': instance.source,
       'source-layer': instance.sourceLayer,
+      'background-color': instance.backgroundColor,
+      'background-emissive-strength': instance.backgroundEmissiveStrength,
+      'background-opacity': instance.backgroundOpacity,
+      'background-pattern': instance.backgroundPattern,
+      'visibility': _$ThemeLayerVisibilityEnumMap[instance.visibility]!,
     };
 
 const _$ThemeLayerTypeEnumMap = {
@@ -49,4 +62,9 @@ const _$ThemeLayerTypeEnumMap = {
   ThemeLayerType.background: 'background',
   ThemeLayerType.sky: 'sky',
   ThemeLayerType.slot: 'slot',
+};
+
+const _$ThemeLayerVisibilityEnumMap = {
+  ThemeLayerVisibility.visible: 'visible',
+  ThemeLayerVisibility.none: 'none',
 };

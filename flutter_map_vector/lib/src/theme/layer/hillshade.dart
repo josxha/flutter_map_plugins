@@ -4,6 +4,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'hillshade.freezed.dart';
 part 'hillshade.g.dart';
 
+/// A hillshade style layer renders digital elevation model (DEM) data on the
+/// client-side. The implementation only supports Mapbox Terrain RGB and
+/// Mapzen Terrarium tiles.
+///
+/// https://docs.mapbox.com/style-spec/reference/layers/#hillshade
 @Freezed()
 class ThemeHillshadeLayer with _$ThemeHillshadeLayer implements ThemeLayer {
   @Implements<ThemeLayer>()

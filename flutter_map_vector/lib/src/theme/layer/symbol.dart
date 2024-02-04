@@ -4,6 +4,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'symbol.freezed.dart';
 part 'symbol.g.dart';
 
+/// A symbol style layer renders icon and text labels at points or along lines
+/// on a map. You can use a symbol layer to configure the visual appearance of
+/// labels for features in vector tiles.
+///
+/// https://docs.mapbox.com/style-spec/reference/layers/#symbol
 @Freezed()
 class ThemeSymbolLayer with _$ThemeSymbolLayer implements ThemeLayer {
   @Implements<ThemeLayer>()
@@ -28,6 +33,7 @@ class ThemeSymbolLayer with _$ThemeSymbolLayer implements ThemeLayer {
     String? slot,
     String? source,
     @JsonKey(name: 'source-layer') String? sourceLayer,
+    // TODO add parameters
   }) = _ThemeSymbolLayer;
 
   factory ThemeSymbolLayer.fromJson(Map<String, Object?> json) =>

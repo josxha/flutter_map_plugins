@@ -97,3 +97,12 @@ enum ThemeLayerType {
   /// Marks the position of a slot.
   slot;
 }
+
+/// Whether this layer is displayed.
+enum ThemeLayerVisibility {
+  /// The layer is shown.
+  visible,
+
+  /// The layer is not shown.
+  none;
+}

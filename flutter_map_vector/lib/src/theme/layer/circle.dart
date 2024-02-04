@@ -4,6 +4,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'circle.freezed.dart';
 part 'circle.g.dart';
 
+/// A circle style layer renders one or more filled circles on a map. You can
+/// use a circle layer to configure the visual appearance of point or point
+/// collection features in vector tiles. A circle layer renders circles whose
+/// radii are measured in screen units.
+///
+/// https://docs.mapbox.com/style-spec/reference/layers/#circle
 @Freezed()
 class ThemeCircleLayer with _$ThemeCircleLayer implements ThemeLayer {
   @Implements<ThemeLayer>()

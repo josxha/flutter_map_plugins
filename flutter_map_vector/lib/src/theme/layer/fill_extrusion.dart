@@ -4,6 +4,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'fill_extrusion.freezed.dart';
 part 'fill_extrusion.g.dart';
 
+/// A fill-extrusion style layer renders one or more filled (and optionally
+/// stroked) extruded (3D) polygons on a map. You can use a fill-extrusion
+/// layer to configure the extrusion and visual appearance of polygon or
+/// multipolygon features.
+///
+/// https://docs.mapbox.com/style-spec/reference/layers/#fill-extrusion
 @Freezed()
 class ThemeFillExtrusionLayer
     with _$ThemeFillExtrusionLayer

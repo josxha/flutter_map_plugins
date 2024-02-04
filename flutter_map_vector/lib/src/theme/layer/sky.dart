@@ -4,8 +4,23 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'sky.freezed.dart';
 part 'sky.g.dart';
 
+/// A sky style layer renders a stylized spherical dome that encompasses the
+/// entire map and is automatically rendered behind all layers. This can be
+/// used to fill the area above the horizon with a simulated sky that
+/// represents a particular time-of-day, or stylized custom gradients.
+/// https://docs.mapbox.com/style-spec/reference/layers/#sky
+@Deprecated(
+  'As of v2.9.0, fog is the preferred method for atmospheric styling. '
+  'Sky layer is not supported by the globe projection, and will be phased '
+  'out in a future release.',
+)
 @Freezed()
 class ThemeSkyLayer with _$ThemeSkyLayer implements ThemeLayer {
+  @Deprecated(
+    'As of v2.9.0, fog is the preferred method for atmospheric styling. '
+    'Sky layer is not supported by the globe projection, and will be phased '
+    'out in a future release.',
+  )
   @Implements<ThemeLayer>()
   const factory ThemeSkyLayer({
     required ThemeLayerType type,

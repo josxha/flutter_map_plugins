@@ -36,6 +36,60 @@ mixin _$ThemeFillLayer {
   @JsonKey(name: 'source-layer')
   String? get sourceLayer => throw _privateConstructorUsedError;
 
+  /// Whether or not the fill should be antialiased.
+  @JsonKey(name: 'fill-antialias')
+  bool get fillAntialias => throw _privateConstructorUsedError;
+
+  /// The color of the filled part of this layer. This color can be
+  /// specified as rgba with an alpha component and the color's opacity will
+  /// not affect the opacity of the 1px stroke, if it is used.
+  @JsonKey(name: 'fill-color')
+  String get fillColor => throw _privateConstructorUsedError;
+
+  /// Controls the intensity of light emitted on the source features.
+  @JsonKey(name: 'fill-emissive-strength')
+  double get fillEmissiveStrength => throw _privateConstructorUsedError;
+
+  /// The opacity of the entire fill layer. In contrast to the fill-color,
+  /// this value will also affect the 1px stroke around the fill, if the
+  /// stroke is used.
+  @Assert('fillOpacity >= 0 && fillOpacity <= 1',
+      'fill-opacity has to be between 0 and 1 inclusive.')
+  @JsonKey(name: 'fill-opacity')
+  double get fillOpacity => throw _privateConstructorUsedError;
+
+  /// The outline color of the fill. Matches the value of fill-color
+  /// if unspecified.
+  @JsonKey(name: 'fill-outline-color')
+  String? get fillOutlineColor => throw _privateConstructorUsedError;
+
+  /// Name of image in sprite to use for drawing image fills. For seamless
+  /// patterns, image width and height must be a factor of two
+  /// (2, 4, 8, ..., 512). Note that zoom-dependent expressions will be
+  /// evaluated only at integer zoom levels.
+  @JsonKey(name: 'fill-pattern')
+  String? get fillPattern => throw _privateConstructorUsedError;
+
+  /// Sorts features in ascending order based on this value. Features with a
+  /// higher sort key will appear above features with a lower sort key.
+  @JsonKey(name: 'fill-sort-key')
+  double? get fillSortKey => throw _privateConstructorUsedError;
+
+  /// The geometry's offset. Values are [x, y] where negatives indicate
+  /// left and up, respectively.
+  @Assert('fillTranslate == null || fillTranslate!.length == 2',
+      'fill-opacity has to be between 0 and 1 inclusive.')
+  @JsonKey(name: 'fill-translate')
+  List<double> get fillTranslate => throw _privateConstructorUsedError;
+
+  /// Controls the frame of reference for fill-translate.
+  @JsonKey(name: 'fill-translate-anchor')
+  ThemeFlatLightAnchor get fillTranslateAnchor =>
+      throw _privateConstructorUsedError;
+
+  /// Controls the frame of reference for fill-translate.
+  ThemeLayerVisibility get visibility => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ThemeFillLayerCopyWith<ThemeFillLayer> get copyWith =>
@@ -64,7 +118,24 @@ abstract class $ThemeFillLayerCopyWith<$Res> {
       dynamic paint,
       String? slot,
       String? source,
-      @JsonKey(name: 'source-layer') String? sourceLayer});
+      @JsonKey(name: 'source-layer') String? sourceLayer,
+      @JsonKey(name: 'fill-antialias') bool fillAntialias,
+      @JsonKey(name: 'fill-color') String fillColor,
+      @JsonKey(name: 'fill-emissive-strength') double fillEmissiveStrength,
+      @Assert('fillOpacity >= 0 && fillOpacity <= 1',
+          'fill-opacity has to be between 0 and 1 inclusive.')
+      @JsonKey(name: 'fill-opacity')
+      double fillOpacity,
+      @JsonKey(name: 'fill-outline-color') String? fillOutlineColor,
+      @JsonKey(name: 'fill-pattern') String? fillPattern,
+      @JsonKey(name: 'fill-sort-key') double? fillSortKey,
+      @Assert('fillTranslate == null || fillTranslate!.length == 2',
+          'fill-opacity has to be between 0 and 1 inclusive.')
+      @JsonKey(name: 'fill-translate')
+      List<double> fillTranslate,
+      @JsonKey(name: 'fill-translate-anchor')
+      ThemeFlatLightAnchor fillTranslateAnchor,
+      ThemeLayerVisibility visibility});
 }
 
 /// @nodoc
@@ -90,6 +161,16 @@ class _$ThemeFillLayerCopyWithImpl<$Res, $Val extends ThemeFillLayer>
     Object? slot = freezed,
     Object? source = freezed,
     Object? sourceLayer = freezed,
+    Object? fillAntialias = null,
+    Object? fillColor = null,
+    Object? fillEmissiveStrength = null,
+    Object? fillOpacity = null,
+    Object? fillOutlineColor = freezed,
+    Object? fillPattern = freezed,
+    Object? fillSortKey = freezed,
+    Object? fillTranslate = null,
+    Object? fillTranslateAnchor = null,
+    Object? visibility = null,
   }) {
     return _then(_value.copyWith(
       type: null == type
@@ -132,6 +213,46 @@ class _$ThemeFillLayerCopyWithImpl<$Res, $Val extends ThemeFillLayer>
           ? _value.sourceLayer
           : sourceLayer // ignore: cast_nullable_to_non_nullable
               as String?,
+      fillAntialias: null == fillAntialias
+          ? _value.fillAntialias
+          : fillAntialias // ignore: cast_nullable_to_non_nullable
+              as bool,
+      fillColor: null == fillColor
+          ? _value.fillColor
+          : fillColor // ignore: cast_nullable_to_non_nullable
+              as String,
+      fillEmissiveStrength: null == fillEmissiveStrength
+          ? _value.fillEmissiveStrength
+          : fillEmissiveStrength // ignore: cast_nullable_to_non_nullable
+              as double,
+      fillOpacity: null == fillOpacity
+          ? _value.fillOpacity
+          : fillOpacity // ignore: cast_nullable_to_non_nullable
+              as double,
+      fillOutlineColor: freezed == fillOutlineColor
+          ? _value.fillOutlineColor
+          : fillOutlineColor // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fillPattern: freezed == fillPattern
+          ? _value.fillPattern
+          : fillPattern // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fillSortKey: freezed == fillSortKey
+          ? _value.fillSortKey
+          : fillSortKey // ignore: cast_nullable_to_non_nullable
+              as double?,
+      fillTranslate: null == fillTranslate
+          ? _value.fillTranslate
+          : fillTranslate // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+      fillTranslateAnchor: null == fillTranslateAnchor
+          ? _value.fillTranslateAnchor
+          : fillTranslateAnchor // ignore: cast_nullable_to_non_nullable
+              as ThemeFlatLightAnchor,
+      visibility: null == visibility
+          ? _value.visibility
+          : visibility // ignore: cast_nullable_to_non_nullable
+              as ThemeLayerVisibility,
     ) as $Val);
   }
 }
@@ -160,7 +281,24 @@ abstract class _$$ThemeFillLayerImplCopyWith<$Res>
       dynamic paint,
       String? slot,
       String? source,
-      @JsonKey(name: 'source-layer') String? sourceLayer});
+      @JsonKey(name: 'source-layer') String? sourceLayer,
+      @JsonKey(name: 'fill-antialias') bool fillAntialias,
+      @JsonKey(name: 'fill-color') String fillColor,
+      @JsonKey(name: 'fill-emissive-strength') double fillEmissiveStrength,
+      @Assert('fillOpacity >= 0 && fillOpacity <= 1',
+          'fill-opacity has to be between 0 and 1 inclusive.')
+      @JsonKey(name: 'fill-opacity')
+      double fillOpacity,
+      @JsonKey(name: 'fill-outline-color') String? fillOutlineColor,
+      @JsonKey(name: 'fill-pattern') String? fillPattern,
+      @JsonKey(name: 'fill-sort-key') double? fillSortKey,
+      @Assert('fillTranslate == null || fillTranslate!.length == 2',
+          'fill-opacity has to be between 0 and 1 inclusive.')
+      @JsonKey(name: 'fill-translate')
+      List<double> fillTranslate,
+      @JsonKey(name: 'fill-translate-anchor')
+      ThemeFlatLightAnchor fillTranslateAnchor,
+      ThemeLayerVisibility visibility});
 }
 
 /// @nodoc
@@ -184,6 +322,16 @@ class __$$ThemeFillLayerImplCopyWithImpl<$Res>
     Object? slot = freezed,
     Object? source = freezed,
     Object? sourceLayer = freezed,
+    Object? fillAntialias = null,
+    Object? fillColor = null,
+    Object? fillEmissiveStrength = null,
+    Object? fillOpacity = null,
+    Object? fillOutlineColor = freezed,
+    Object? fillPattern = freezed,
+    Object? fillSortKey = freezed,
+    Object? fillTranslate = null,
+    Object? fillTranslateAnchor = null,
+    Object? visibility = null,
   }) {
     return _then(_$ThemeFillLayerImpl(
       type: null == type
@@ -226,6 +374,46 @@ class __$$ThemeFillLayerImplCopyWithImpl<$Res>
           ? _value.sourceLayer
           : sourceLayer // ignore: cast_nullable_to_non_nullable
               as String?,
+      fillAntialias: null == fillAntialias
+          ? _value.fillAntialias
+          : fillAntialias // ignore: cast_nullable_to_non_nullable
+              as bool,
+      fillColor: null == fillColor
+          ? _value.fillColor
+          : fillColor // ignore: cast_nullable_to_non_nullable
+              as String,
+      fillEmissiveStrength: null == fillEmissiveStrength
+          ? _value.fillEmissiveStrength
+          : fillEmissiveStrength // ignore: cast_nullable_to_non_nullable
+              as double,
+      fillOpacity: null == fillOpacity
+          ? _value.fillOpacity
+          : fillOpacity // ignore: cast_nullable_to_non_nullable
+              as double,
+      fillOutlineColor: freezed == fillOutlineColor
+          ? _value.fillOutlineColor
+          : fillOutlineColor // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fillPattern: freezed == fillPattern
+          ? _value.fillPattern
+          : fillPattern // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fillSortKey: freezed == fillSortKey
+          ? _value.fillSortKey
+          : fillSortKey // ignore: cast_nullable_to_non_nullable
+              as double?,
+      fillTranslate: null == fillTranslate
+          ? _value._fillTranslate
+          : fillTranslate // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+      fillTranslateAnchor: null == fillTranslateAnchor
+          ? _value.fillTranslateAnchor
+          : fillTranslateAnchor // ignore: cast_nullable_to_non_nullable
+              as ThemeFlatLightAnchor,
+      visibility: null == visibility
+          ? _value.visibility
+          : visibility // ignore: cast_nullable_to_non_nullable
+              as ThemeLayerVisibility,
     ));
   }
 }
@@ -249,7 +437,25 @@ class _$ThemeFillLayerImpl implements _ThemeFillLayer {
       this.paint,
       this.slot,
       this.source,
-      @JsonKey(name: 'source-layer') this.sourceLayer});
+      @JsonKey(name: 'source-layer') this.sourceLayer,
+      @JsonKey(name: 'fill-antialias') this.fillAntialias = true,
+      @JsonKey(name: 'fill-color') this.fillColor = '#000000',
+      @JsonKey(name: 'fill-emissive-strength') this.fillEmissiveStrength = 0,
+      @Assert('fillOpacity >= 0 && fillOpacity <= 1',
+          'fill-opacity has to be between 0 and 1 inclusive.')
+      @JsonKey(name: 'fill-opacity')
+      this.fillOpacity = 1,
+      @JsonKey(name: 'fill-outline-color') this.fillOutlineColor,
+      @JsonKey(name: 'fill-pattern') this.fillPattern,
+      @JsonKey(name: 'fill-sort-key') this.fillSortKey,
+      @Assert('fillTranslate == null || fillTranslate!.length == 2',
+          'fill-opacity has to be between 0 and 1 inclusive.')
+      @JsonKey(name: 'fill-translate')
+      final List<double> fillTranslate = const [0.0],
+      @JsonKey(name: 'fill-translate-anchor')
+      this.fillTranslateAnchor = ThemeFlatLightAnchor.map,
+      this.visibility = ThemeLayerVisibility.visible})
+      : _fillTranslate = fillTranslate;
 
   factory _$ThemeFillLayerImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThemeFillLayerImplFromJson(json);
@@ -280,9 +486,81 @@ class _$ThemeFillLayerImpl implements _ThemeFillLayer {
   @JsonKey(name: 'source-layer')
   final String? sourceLayer;
 
+  /// Whether or not the fill should be antialiased.
+  @override
+  @JsonKey(name: 'fill-antialias')
+  final bool fillAntialias;
+
+  /// The color of the filled part of this layer. This color can be
+  /// specified as rgba with an alpha component and the color's opacity will
+  /// not affect the opacity of the 1px stroke, if it is used.
+  @override
+  @JsonKey(name: 'fill-color')
+  final String fillColor;
+
+  /// Controls the intensity of light emitted on the source features.
+  @override
+  @JsonKey(name: 'fill-emissive-strength')
+  final double fillEmissiveStrength;
+
+  /// The opacity of the entire fill layer. In contrast to the fill-color,
+  /// this value will also affect the 1px stroke around the fill, if the
+  /// stroke is used.
+  @override
+  @Assert('fillOpacity >= 0 && fillOpacity <= 1',
+      'fill-opacity has to be between 0 and 1 inclusive.')
+  @JsonKey(name: 'fill-opacity')
+  final double fillOpacity;
+
+  /// The outline color of the fill. Matches the value of fill-color
+  /// if unspecified.
+  @override
+  @JsonKey(name: 'fill-outline-color')
+  final String? fillOutlineColor;
+
+  /// Name of image in sprite to use for drawing image fills. For seamless
+  /// patterns, image width and height must be a factor of two
+  /// (2, 4, 8, ..., 512). Note that zoom-dependent expressions will be
+  /// evaluated only at integer zoom levels.
+  @override
+  @JsonKey(name: 'fill-pattern')
+  final String? fillPattern;
+
+  /// Sorts features in ascending order based on this value. Features with a
+  /// higher sort key will appear above features with a lower sort key.
+  @override
+  @JsonKey(name: 'fill-sort-key')
+  final double? fillSortKey;
+
+  /// The geometry's offset. Values are [x, y] where negatives indicate
+  /// left and up, respectively.
+  final List<double> _fillTranslate;
+
+  /// The geometry's offset. Values are [x, y] where negatives indicate
+  /// left and up, respectively.
+  @override
+  @Assert('fillTranslate == null || fillTranslate!.length == 2',
+      'fill-opacity has to be between 0 and 1 inclusive.')
+  @JsonKey(name: 'fill-translate')
+  List<double> get fillTranslate {
+    if (_fillTranslate is EqualUnmodifiableListView) return _fillTranslate;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_fillTranslate);
+  }
+
+  /// Controls the frame of reference for fill-translate.
+  @override
+  @JsonKey(name: 'fill-translate-anchor')
+  final ThemeFlatLightAnchor fillTranslateAnchor;
+
+  /// Controls the frame of reference for fill-translate.
+  @override
+  @JsonKey()
+  final ThemeLayerVisibility visibility;
+
   @override
   String toString() {
-    return 'ThemeFillLayer(type: $type, id: $id, filter: $filter, layout: $layout, maxZoom: $maxZoom, minZoom: $minZoom, paint: $paint, slot: $slot, source: $source, sourceLayer: $sourceLayer)';
+    return 'ThemeFillLayer(type: $type, id: $id, filter: $filter, layout: $layout, maxZoom: $maxZoom, minZoom: $minZoom, paint: $paint, slot: $slot, source: $source, sourceLayer: $sourceLayer, fillAntialias: $fillAntialias, fillColor: $fillColor, fillEmissiveStrength: $fillEmissiveStrength, fillOpacity: $fillOpacity, fillOutlineColor: $fillOutlineColor, fillPattern: $fillPattern, fillSortKey: $fillSortKey, fillTranslate: $fillTranslate, fillTranslateAnchor: $fillTranslateAnchor, visibility: $visibility)';
   }
 
   @override
@@ -300,23 +578,54 @@ class _$ThemeFillLayerImpl implements _ThemeFillLayer {
             (identical(other.slot, slot) || other.slot == slot) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.sourceLayer, sourceLayer) ||
-                other.sourceLayer == sourceLayer));
+                other.sourceLayer == sourceLayer) &&
+            (identical(other.fillAntialias, fillAntialias) ||
+                other.fillAntialias == fillAntialias) &&
+            (identical(other.fillColor, fillColor) ||
+                other.fillColor == fillColor) &&
+            (identical(other.fillEmissiveStrength, fillEmissiveStrength) ||
+                other.fillEmissiveStrength == fillEmissiveStrength) &&
+            (identical(other.fillOpacity, fillOpacity) ||
+                other.fillOpacity == fillOpacity) &&
+            (identical(other.fillOutlineColor, fillOutlineColor) ||
+                other.fillOutlineColor == fillOutlineColor) &&
+            (identical(other.fillPattern, fillPattern) ||
+                other.fillPattern == fillPattern) &&
+            (identical(other.fillSortKey, fillSortKey) ||
+                other.fillSortKey == fillSortKey) &&
+            const DeepCollectionEquality()
+                .equals(other._fillTranslate, _fillTranslate) &&
+            (identical(other.fillTranslateAnchor, fillTranslateAnchor) ||
+                other.fillTranslateAnchor == fillTranslateAnchor) &&
+            (identical(other.visibility, visibility) ||
+                other.visibility == visibility));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      type,
-      id,
-      const DeepCollectionEquality().hash(filter),
-      const DeepCollectionEquality().hash(layout),
-      maxZoom,
-      minZoom,
-      const DeepCollectionEquality().hash(paint),
-      slot,
-      source,
-      sourceLayer);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        type,
+        id,
+        const DeepCollectionEquality().hash(filter),
+        const DeepCollectionEquality().hash(layout),
+        maxZoom,
+        minZoom,
+        const DeepCollectionEquality().hash(paint),
+        slot,
+        source,
+        sourceLayer,
+        fillAntialias,
+        fillColor,
+        fillEmissiveStrength,
+        fillOpacity,
+        fillOutlineColor,
+        fillPattern,
+        fillSortKey,
+        const DeepCollectionEquality().hash(_fillTranslate),
+        fillTranslateAnchor,
+        visibility
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -350,8 +659,25 @@ abstract class _ThemeFillLayer implements ThemeFillLayer, ThemeLayer {
       final dynamic paint,
       final String? slot,
       final String? source,
-      @JsonKey(name: 'source-layer')
-      final String? sourceLayer}) = _$ThemeFillLayerImpl;
+      @JsonKey(name: 'source-layer') final String? sourceLayer,
+      @JsonKey(name: 'fill-antialias') final bool fillAntialias,
+      @JsonKey(name: 'fill-color') final String fillColor,
+      @JsonKey(name: 'fill-emissive-strength')
+      final double fillEmissiveStrength,
+      @Assert('fillOpacity >= 0 && fillOpacity <= 1',
+          'fill-opacity has to be between 0 and 1 inclusive.')
+      @JsonKey(name: 'fill-opacity')
+      final double fillOpacity,
+      @JsonKey(name: 'fill-outline-color') final String? fillOutlineColor,
+      @JsonKey(name: 'fill-pattern') final String? fillPattern,
+      @JsonKey(name: 'fill-sort-key') final double? fillSortKey,
+      @Assert('fillTranslate == null || fillTranslate!.length == 2',
+          'fill-opacity has to be between 0 and 1 inclusive.')
+      @JsonKey(name: 'fill-translate')
+      final List<double> fillTranslate,
+      @JsonKey(name: 'fill-translate-anchor')
+      final ThemeFlatLightAnchor fillTranslateAnchor,
+      final ThemeLayerVisibility visibility}) = _$ThemeFillLayerImpl;
 
   factory _ThemeFillLayer.fromJson(Map<String, dynamic> json) =
       _$ThemeFillLayerImpl.fromJson;
@@ -381,6 +707,69 @@ abstract class _ThemeFillLayer implements ThemeFillLayer, ThemeLayer {
   @override
   @JsonKey(name: 'source-layer')
   String? get sourceLayer;
+  @override
+
+  /// Whether or not the fill should be antialiased.
+  @JsonKey(name: 'fill-antialias')
+  bool get fillAntialias;
+  @override
+
+  /// The color of the filled part of this layer. This color can be
+  /// specified as rgba with an alpha component and the color's opacity will
+  /// not affect the opacity of the 1px stroke, if it is used.
+  @JsonKey(name: 'fill-color')
+  String get fillColor;
+  @override
+
+  /// Controls the intensity of light emitted on the source features.
+  @JsonKey(name: 'fill-emissive-strength')
+  double get fillEmissiveStrength;
+  @override
+
+  /// The opacity of the entire fill layer. In contrast to the fill-color,
+  /// this value will also affect the 1px stroke around the fill, if the
+  /// stroke is used.
+  @Assert('fillOpacity >= 0 && fillOpacity <= 1',
+      'fill-opacity has to be between 0 and 1 inclusive.')
+  @JsonKey(name: 'fill-opacity')
+  double get fillOpacity;
+  @override
+
+  /// The outline color of the fill. Matches the value of fill-color
+  /// if unspecified.
+  @JsonKey(name: 'fill-outline-color')
+  String? get fillOutlineColor;
+  @override
+
+  /// Name of image in sprite to use for drawing image fills. For seamless
+  /// patterns, image width and height must be a factor of two
+  /// (2, 4, 8, ..., 512). Note that zoom-dependent expressions will be
+  /// evaluated only at integer zoom levels.
+  @JsonKey(name: 'fill-pattern')
+  String? get fillPattern;
+  @override
+
+  /// Sorts features in ascending order based on this value. Features with a
+  /// higher sort key will appear above features with a lower sort key.
+  @JsonKey(name: 'fill-sort-key')
+  double? get fillSortKey;
+  @override
+
+  /// The geometry's offset. Values are [x, y] where negatives indicate
+  /// left and up, respectively.
+  @Assert('fillTranslate == null || fillTranslate!.length == 2',
+      'fill-opacity has to be between 0 and 1 inclusive.')
+  @JsonKey(name: 'fill-translate')
+  List<double> get fillTranslate;
+  @override
+
+  /// Controls the frame of reference for fill-translate.
+  @JsonKey(name: 'fill-translate-anchor')
+  ThemeFlatLightAnchor get fillTranslateAnchor;
+  @override
+
+  /// Controls the frame of reference for fill-translate.
+  ThemeLayerVisibility get visibility;
   @override
   @JsonKey(ignore: true)
   _$$ThemeFillLayerImplCopyWith<_$ThemeFillLayerImpl> get copyWith =>

@@ -4,6 +4,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'raster.freezed.dart';
 part 'raster.g.dart';
 
+/// A raster style layer renders raster tiles on a map. You can use a raster
+/// layer to configure the color parameters of raster tiles.
+///
+/// https://docs.mapbox.com/style-spec/reference/layers/#background
 @Freezed()
 class ThemeRasterLayer with _$ThemeRasterLayer implements ThemeLayer {
   @Implements<ThemeLayer>()
@@ -28,6 +32,7 @@ class ThemeRasterLayer with _$ThemeRasterLayer implements ThemeLayer {
     String? slot,
     String? source,
     @JsonKey(name: 'source-layer') String? sourceLayer,
+    // TODO add parameters
   }) = _ThemeRasterLayer;
 
   factory ThemeRasterLayer.fromJson(Map<String, Object?> json) =>

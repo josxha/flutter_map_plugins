@@ -36,6 +36,32 @@ mixin _$ThemeBackgroundLayer {
   @JsonKey(name: 'source-layer')
   String? get sourceLayer => throw _privateConstructorUsedError;
 
+  /// The color with which the background will be drawn.
+  @JsonKey(name: 'background-color')
+  String get backgroundColor => throw _privateConstructorUsedError;
+
+  /// Controls the intensity of light emitted on the source features.
+  @JsonKey(name: 'background-emissive-strength')
+  @Assert('backgroundEmissiveStrength >= 0',
+      'background-emissive-strength needs to be >=0')
+  double get backgroundEmissiveStrength => throw _privateConstructorUsedError;
+
+  /// The opacity at which the background will be drawn.
+  @Assert('backgroundOpacity >= 0 && backgroundOpacity <= 0',
+      'background-opacity needs to between 0 and 1 inclusive')
+  @JsonKey(name: 'background-opacity')
+  double get backgroundOpacity => throw _privateConstructorUsedError;
+
+  /// Name of image in sprite to use for drawing an image background. For
+  /// seamless patterns, image width and height must be a factor of two
+  /// (2, 4, 8, ..., 512). Note that zoom-dependent expressions will be
+  /// evaluated only at integer zoom levels.
+  @JsonKey(name: 'background-pattern')
+  String? get backgroundPattern => throw _privateConstructorUsedError;
+
+  /// Whether this layer is displayed.
+  ThemeLayerVisibility get visibility => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ThemeBackgroundLayerCopyWith<ThemeBackgroundLayer> get copyWith =>
@@ -64,7 +90,18 @@ abstract class $ThemeBackgroundLayerCopyWith<$Res> {
       dynamic paint,
       String? slot,
       String? source,
-      @JsonKey(name: 'source-layer') String? sourceLayer});
+      @JsonKey(name: 'source-layer') String? sourceLayer,
+      @JsonKey(name: 'background-color') String backgroundColor,
+      @JsonKey(name: 'background-emissive-strength')
+      @Assert('backgroundEmissiveStrength >= 0',
+          'background-emissive-strength needs to be >=0')
+      double backgroundEmissiveStrength,
+      @Assert('backgroundOpacity >= 0 && backgroundOpacity <= 0',
+          'background-opacity needs to between 0 and 1 inclusive')
+      @JsonKey(name: 'background-opacity')
+      double backgroundOpacity,
+      @JsonKey(name: 'background-pattern') String? backgroundPattern,
+      ThemeLayerVisibility visibility});
 }
 
 /// @nodoc
@@ -91,6 +128,11 @@ class _$ThemeBackgroundLayerCopyWithImpl<$Res,
     Object? slot = freezed,
     Object? source = freezed,
     Object? sourceLayer = freezed,
+    Object? backgroundColor = null,
+    Object? backgroundEmissiveStrength = null,
+    Object? backgroundOpacity = null,
+    Object? backgroundPattern = freezed,
+    Object? visibility = null,
   }) {
     return _then(_value.copyWith(
       type: null == type
@@ -133,6 +175,26 @@ class _$ThemeBackgroundLayerCopyWithImpl<$Res,
           ? _value.sourceLayer
           : sourceLayer // ignore: cast_nullable_to_non_nullable
               as String?,
+      backgroundColor: null == backgroundColor
+          ? _value.backgroundColor
+          : backgroundColor // ignore: cast_nullable_to_non_nullable
+              as String,
+      backgroundEmissiveStrength: null == backgroundEmissiveStrength
+          ? _value.backgroundEmissiveStrength
+          : backgroundEmissiveStrength // ignore: cast_nullable_to_non_nullable
+              as double,
+      backgroundOpacity: null == backgroundOpacity
+          ? _value.backgroundOpacity
+          : backgroundOpacity // ignore: cast_nullable_to_non_nullable
+              as double,
+      backgroundPattern: freezed == backgroundPattern
+          ? _value.backgroundPattern
+          : backgroundPattern // ignore: cast_nullable_to_non_nullable
+              as String?,
+      visibility: null == visibility
+          ? _value.visibility
+          : visibility // ignore: cast_nullable_to_non_nullable
+              as ThemeLayerVisibility,
     ) as $Val);
   }
 }
@@ -161,7 +223,18 @@ abstract class _$$ThemeBackgroundLayerImplCopyWith<$Res>
       dynamic paint,
       String? slot,
       String? source,
-      @JsonKey(name: 'source-layer') String? sourceLayer});
+      @JsonKey(name: 'source-layer') String? sourceLayer,
+      @JsonKey(name: 'background-color') String backgroundColor,
+      @JsonKey(name: 'background-emissive-strength')
+      @Assert('backgroundEmissiveStrength >= 0',
+          'background-emissive-strength needs to be >=0')
+      double backgroundEmissiveStrength,
+      @Assert('backgroundOpacity >= 0 && backgroundOpacity <= 0',
+          'background-opacity needs to between 0 and 1 inclusive')
+      @JsonKey(name: 'background-opacity')
+      double backgroundOpacity,
+      @JsonKey(name: 'background-pattern') String? backgroundPattern,
+      ThemeLayerVisibility visibility});
 }
 
 /// @nodoc
@@ -185,6 +258,11 @@ class __$$ThemeBackgroundLayerImplCopyWithImpl<$Res>
     Object? slot = freezed,
     Object? source = freezed,
     Object? sourceLayer = freezed,
+    Object? backgroundColor = null,
+    Object? backgroundEmissiveStrength = null,
+    Object? backgroundOpacity = null,
+    Object? backgroundPattern = freezed,
+    Object? visibility = null,
   }) {
     return _then(_$ThemeBackgroundLayerImpl(
       type: null == type
@@ -227,6 +305,26 @@ class __$$ThemeBackgroundLayerImplCopyWithImpl<$Res>
           ? _value.sourceLayer
           : sourceLayer // ignore: cast_nullable_to_non_nullable
               as String?,
+      backgroundColor: null == backgroundColor
+          ? _value.backgroundColor
+          : backgroundColor // ignore: cast_nullable_to_non_nullable
+              as String,
+      backgroundEmissiveStrength: null == backgroundEmissiveStrength
+          ? _value.backgroundEmissiveStrength
+          : backgroundEmissiveStrength // ignore: cast_nullable_to_non_nullable
+              as double,
+      backgroundOpacity: null == backgroundOpacity
+          ? _value.backgroundOpacity
+          : backgroundOpacity // ignore: cast_nullable_to_non_nullable
+              as double,
+      backgroundPattern: freezed == backgroundPattern
+          ? _value.backgroundPattern
+          : backgroundPattern // ignore: cast_nullable_to_non_nullable
+              as String?,
+      visibility: null == visibility
+          ? _value.visibility
+          : visibility // ignore: cast_nullable_to_non_nullable
+              as ThemeLayerVisibility,
     ));
   }
 }
@@ -250,7 +348,18 @@ class _$ThemeBackgroundLayerImpl implements _ThemeBackgroundLayer {
       this.paint,
       this.slot,
       this.source,
-      @JsonKey(name: 'source-layer') this.sourceLayer});
+      @JsonKey(name: 'source-layer') this.sourceLayer,
+      @JsonKey(name: 'background-color') this.backgroundColor = '#000000',
+      @JsonKey(name: 'background-emissive-strength')
+      @Assert('backgroundEmissiveStrength >= 0',
+          'background-emissive-strength needs to be >=0')
+      this.backgroundEmissiveStrength = 0,
+      @Assert('backgroundOpacity >= 0 && backgroundOpacity <= 0',
+          'background-opacity needs to between 0 and 1 inclusive')
+      @JsonKey(name: 'background-opacity')
+      this.backgroundOpacity = 1,
+      @JsonKey(name: 'background-pattern') this.backgroundPattern,
+      this.visibility = ThemeLayerVisibility.visible});
 
   factory _$ThemeBackgroundLayerImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThemeBackgroundLayerImplFromJson(json);
@@ -281,9 +390,41 @@ class _$ThemeBackgroundLayerImpl implements _ThemeBackgroundLayer {
   @JsonKey(name: 'source-layer')
   final String? sourceLayer;
 
+  /// The color with which the background will be drawn.
+  @override
+  @JsonKey(name: 'background-color')
+  final String backgroundColor;
+
+  /// Controls the intensity of light emitted on the source features.
+  @override
+  @JsonKey(name: 'background-emissive-strength')
+  @Assert('backgroundEmissiveStrength >= 0',
+      'background-emissive-strength needs to be >=0')
+  final double backgroundEmissiveStrength;
+
+  /// The opacity at which the background will be drawn.
+  @override
+  @Assert('backgroundOpacity >= 0 && backgroundOpacity <= 0',
+      'background-opacity needs to between 0 and 1 inclusive')
+  @JsonKey(name: 'background-opacity')
+  final double backgroundOpacity;
+
+  /// Name of image in sprite to use for drawing an image background. For
+  /// seamless patterns, image width and height must be a factor of two
+  /// (2, 4, 8, ..., 512). Note that zoom-dependent expressions will be
+  /// evaluated only at integer zoom levels.
+  @override
+  @JsonKey(name: 'background-pattern')
+  final String? backgroundPattern;
+
+  /// Whether this layer is displayed.
+  @override
+  @JsonKey()
+  final ThemeLayerVisibility visibility;
+
   @override
   String toString() {
-    return 'ThemeBackgroundLayer(type: $type, id: $id, filter: $filter, layout: $layout, maxZoom: $maxZoom, minZoom: $minZoom, paint: $paint, slot: $slot, source: $source, sourceLayer: $sourceLayer)';
+    return 'ThemeBackgroundLayer(type: $type, id: $id, filter: $filter, layout: $layout, maxZoom: $maxZoom, minZoom: $minZoom, paint: $paint, slot: $slot, source: $source, sourceLayer: $sourceLayer, backgroundColor: $backgroundColor, backgroundEmissiveStrength: $backgroundEmissiveStrength, backgroundOpacity: $backgroundOpacity, backgroundPattern: $backgroundPattern, visibility: $visibility)';
   }
 
   @override
@@ -301,7 +442,19 @@ class _$ThemeBackgroundLayerImpl implements _ThemeBackgroundLayer {
             (identical(other.slot, slot) || other.slot == slot) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.sourceLayer, sourceLayer) ||
-                other.sourceLayer == sourceLayer));
+                other.sourceLayer == sourceLayer) &&
+            (identical(other.backgroundColor, backgroundColor) ||
+                other.backgroundColor == backgroundColor) &&
+            (identical(other.backgroundEmissiveStrength,
+                    backgroundEmissiveStrength) ||
+                other.backgroundEmissiveStrength ==
+                    backgroundEmissiveStrength) &&
+            (identical(other.backgroundOpacity, backgroundOpacity) ||
+                other.backgroundOpacity == backgroundOpacity) &&
+            (identical(other.backgroundPattern, backgroundPattern) ||
+                other.backgroundPattern == backgroundPattern) &&
+            (identical(other.visibility, visibility) ||
+                other.visibility == visibility));
   }
 
   @JsonKey(ignore: true)
@@ -317,7 +470,12 @@ class _$ThemeBackgroundLayerImpl implements _ThemeBackgroundLayer {
       const DeepCollectionEquality().hash(paint),
       slot,
       source,
-      sourceLayer);
+      sourceLayer,
+      backgroundColor,
+      backgroundEmissiveStrength,
+      backgroundOpacity,
+      backgroundPattern,
+      visibility);
 
   @JsonKey(ignore: true)
   @override
@@ -353,8 +511,18 @@ abstract class _ThemeBackgroundLayer
       final dynamic paint,
       final String? slot,
       final String? source,
-      @JsonKey(name: 'source-layer')
-      final String? sourceLayer}) = _$ThemeBackgroundLayerImpl;
+      @JsonKey(name: 'source-layer') final String? sourceLayer,
+      @JsonKey(name: 'background-color') final String backgroundColor,
+      @JsonKey(name: 'background-emissive-strength')
+      @Assert('backgroundEmissiveStrength >= 0',
+          'background-emissive-strength needs to be >=0')
+      final double backgroundEmissiveStrength,
+      @Assert('backgroundOpacity >= 0 && backgroundOpacity <= 0',
+          'background-opacity needs to between 0 and 1 inclusive')
+      @JsonKey(name: 'background-opacity')
+      final double backgroundOpacity,
+      @JsonKey(name: 'background-pattern') final String? backgroundPattern,
+      final ThemeLayerVisibility visibility}) = _$ThemeBackgroundLayerImpl;
 
   factory _ThemeBackgroundLayer.fromJson(Map<String, dynamic> json) =
       _$ThemeBackgroundLayerImpl.fromJson;
@@ -384,6 +552,37 @@ abstract class _ThemeBackgroundLayer
   @override
   @JsonKey(name: 'source-layer')
   String? get sourceLayer;
+  @override
+
+  /// The color with which the background will be drawn.
+  @JsonKey(name: 'background-color')
+  String get backgroundColor;
+  @override
+
+  /// Controls the intensity of light emitted on the source features.
+  @JsonKey(name: 'background-emissive-strength')
+  @Assert('backgroundEmissiveStrength >= 0',
+      'background-emissive-strength needs to be >=0')
+  double get backgroundEmissiveStrength;
+  @override
+
+  /// The opacity at which the background will be drawn.
+  @Assert('backgroundOpacity >= 0 && backgroundOpacity <= 0',
+      'background-opacity needs to between 0 and 1 inclusive')
+  @JsonKey(name: 'background-opacity')
+  double get backgroundOpacity;
+  @override
+
+  /// Name of image in sprite to use for drawing an image background. For
+  /// seamless patterns, image width and height must be a factor of two
+  /// (2, 4, 8, ..., 512). Note that zoom-dependent expressions will be
+  /// evaluated only at integer zoom levels.
+  @JsonKey(name: 'background-pattern')
+  String? get backgroundPattern;
+  @override
+
+  /// Whether this layer is displayed.
+  ThemeLayerVisibility get visibility;
   @override
   @JsonKey(ignore: true)
   _$$ThemeBackgroundLayerImplCopyWith<_$ThemeBackgroundLayerImpl>
