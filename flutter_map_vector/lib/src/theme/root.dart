@@ -1,4 +1,6 @@
 import 'package:flutter_map_vector/src/theme/converter/source_converter.dart';
+import 'package:flutter_map_vector/src/theme/fog.dart';
+import 'package:flutter_map_vector/src/theme/import.dart';
 import 'package:flutter_map_vector/src/theme/sources/source.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,7 +19,7 @@ class VectorTheme with _$VectorTheme {
 
   const factory VectorTheme({
     /// Layers will be created in the order of this array.
-    //todo @LayerConverter() required List<ThemeLayer> layers,
+    //@LayerListConverter() required List<ThemeLayer> layers,
 
     /// Sources supply the data that will be displayed on the map.
     @SourceConverter() required Map<String, ThemeSource> sources,
@@ -47,7 +49,7 @@ class VectorTheme with _$VectorTheme {
     /// map when used with terrain or 3D features. Note: fog is renamed to
     /// atmosphere in the Android and iOS SDKs and planned to be changed in
     /// GL-JS v.3.0.0.
-    required dynamic fog,
+    required ThemeFog fog,
 
     /// Indicates that a style is a fragment style.
     bool? fragment,
@@ -62,7 +64,7 @@ class VectorTheme with _$VectorTheme {
     @Default('mapbox://fonts/mapbox/{fontstack}/{range}.pbf') String glyphs,
 
     /// Imports other styles into this style.
-    List<dynamic>? imports,
+    List<ThemeImport>? imports,
 
     /// The global light source. Note: This API is deprecated. Prefer using
     /// flat light type instead in the lights API.

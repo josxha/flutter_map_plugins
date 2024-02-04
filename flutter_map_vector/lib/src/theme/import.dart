@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'imports.freezed.dart';
-part 'imports.g.dart';
+part 'import.freezed.dart';
+part 'import.g.dart';
 
 /// Imports can be used to add the contents of other styles to the current
 /// style. Instead of copying the individual layers, only the other style URL
@@ -24,8 +24,8 @@ part 'imports.g.dart';
 /// A style can import multiple other styles, which in turn can import other
 /// styles (up to 5 levels deep).
 @Freezed()
-class ThemeImports with _$ThemeImports {
-  const factory ThemeImports({
+class ThemeImport with _$ThemeImport {
+  const factory ThemeImport({
     /// Unique import name.
     required String id,
 
@@ -40,6 +40,6 @@ class ThemeImports with _$ThemeImports {
     dynamic data,
   }) = _ThemeImports;
 
-  factory ThemeImports.fromJson(Map<String, Object?> json) =>
-      _$ThemeImportsFromJson(json);
+  factory ThemeImport.fromJson(Map<String, Object?> json) =>
+      _$ThemeImportFromJson(json);
 }

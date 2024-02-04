@@ -232,10 +232,6 @@ class __$$ThemeSkyLayerImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Deprecated(
-    'As of v2.9.0, fog is the preferred method for atmospheric styling. '
-    'Sky layer is not supported by the globe projection, and will be phased '
-    'out in a future release.')
 class _$ThemeSkyLayerImpl implements _ThemeSkyLayer {
   const _$ThemeSkyLayerImpl(
       {required this.type,

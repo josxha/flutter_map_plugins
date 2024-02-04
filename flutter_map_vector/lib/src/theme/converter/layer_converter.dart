@@ -12,39 +12,39 @@ import 'package:flutter_map_vector/src/theme/layer/sky.dart';
 import 'package:flutter_map_vector/src/theme/layer/symbol.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-class LayerConverter
-    implements JsonConverter<Map<String, ThemeLayer>, Map<String, Object?>> {
-  const LayerConverter();
+class LayerListConverter
+    implements JsonConverter<List<ThemeLayer>, List<Map<String, Object>>> {
+  const LayerListConverter();
 
   @override
-  Map<String, ThemeLayer> fromJson(Map<String, Object?> json) {
-    final data = <String, ThemeLayer>{};
-    for (final entry in json.entries) {
-      final type = json['type'];
+  List<ThemeLayer> fromJson(List<Map<String, Object>> jsonArray) {
+    final data = <ThemeLayer>[];
+    for (final entry in jsonArray) {
+      final type = entry['type'];
       if (type is! String) {
-        throw Exception("Couldn't parse theme Layer '${entry.key}': $entry");
+        throw Exception("Couldn't parse theme Layer '$type': $entry");
       }
-      data[entry.key] = switch (json['type']) {
-        'background' => ThemeBackgroundLayer.fromJson(json),
-        'circle' => ThemeCircleLayer.fromJson(json),
-        'fill' => ThemeFillLayer.fromJson(json),
-        'fill-extrusion' => ThemeFillExtrusionLayer.fromJson(json),
-        'heatmap' => ThemeHeatmapLayer.fromJson(json),
-        'hillshade' => ThemeHillshadeLayer.fromJson(json),
-        'layer' => ThemeLineLayer.fromJson(json),
-        'model' => ThemeModelLayer.fromJson(json),
-        'raster' => ThemeRasterLayer.fromJson(json),
-        'sky' => ThemeSkyLayer.fromJson(json),
-        'symbol' => ThemeSymbolLayer.fromJson(json),
-        _ =>
-          throw Exception("Couldn't parse theme Layer '${entry.key}': $entry"),
+      final layer = switch (type) {
+        'background' => ThemeBackgroundLayer.fromJson(entry),
+        'circle' => ThemeCircleLayer.fromJson(entry),
+        'fill' => ThemeFillLayer.fromJson(entry),
+        'fill-extrusion' => ThemeFillExtrusionLayer.fromJson(entry),
+        'heatmap' => ThemeHeatmapLayer.fromJson(entry),
+        'hillshade' => ThemeHillshadeLayer.fromJson(entry),
+        'layer' => ThemeLineLayer.fromJson(entry),
+        'model' => ThemeModelLayer.fromJson(entry),
+        'raster' => ThemeRasterLayer.fromJson(entry),
+        'sky' => ThemeSkyLayer.fromJson(entry),
+        'symbol' => ThemeSymbolLayer.fromJson(entry),
+        _ => throw Exception("Couldn't parse theme Layer '$type': $entry"),
       };
+      data.add(layer);
     }
     return data;
   }
 
   @override
-  Map<String, Object?> toJson(Map<String, ThemeLayer> data) {
+  List<Map<String, Object>> toJson(List<ThemeLayer> data) {
     throw UnimplementedError();
   }
 }

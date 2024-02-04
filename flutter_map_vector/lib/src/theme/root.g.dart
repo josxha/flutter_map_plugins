@@ -16,11 +16,13 @@ _$ThemeRootImpl _$$ThemeRootImplFromJson(Map<String, dynamic> json) =>
       center: (json['center'] as List<dynamic>?)
           ?.map((e) => (e as num).toDouble())
           .toList(),
-      fog: json['fog'],
+      fog: ThemeFog.fromJson(json['fog'] as Map<String, dynamic>),
       fragment: json['fragment'] as bool?,
       glyphs: json['glyphs'] as String? ??
           'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
-      imports: json['imports'] as List<dynamic>?,
+      imports: (json['imports'] as List<dynamic>?)
+          ?.map((e) => ThemeImport.fromJson(e as Map<String, dynamic>))
+          .toList(),
       light: json['light'],
       lights: json['lights'] as List<dynamic>?,
       metadata: json['metadata'] as Map<String, dynamic>?,

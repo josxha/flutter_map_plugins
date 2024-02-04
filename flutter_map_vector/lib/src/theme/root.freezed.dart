@@ -21,7 +21,7 @@ VectorTheme _$VectorThemeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$VectorTheme {
   /// Layers will be created in the order of this array.
-//todo @LayerConverter() required List<ThemeLayer> layers,
+//@LayerListConverter() required List<ThemeLayer> layers,
   /// Sources supply the data that will be displayed on the map.
   @SourceConverter()
   Map<String, ThemeSource> get sources => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ mixin _$VectorTheme {
   /// map when used with terrain or 3D features. Note: fog is renamed to
   /// atmosphere in the Android and iOS SDKs and planned to be changed in
   /// GL-JS v.3.0.0.
-  dynamic get fog => throw _privateConstructorUsedError;
+  ThemeFog get fog => throw _privateConstructorUsedError;
 
   /// Indicates that a style is a fragment style.
   bool? get fragment => throw _privateConstructorUsedError;
@@ -67,7 +67,7 @@ mixin _$VectorTheme {
   String get glyphs => throw _privateConstructorUsedError;
 
   /// Imports other styles into this style.
-  List<dynamic>? get imports => throw _privateConstructorUsedError;
+  List<ThemeImport>? get imports => throw _privateConstructorUsedError;
 
   /// The global light source. Note: This API is deprecated. Prefer using
   /// flat light type instead in the lights API.
@@ -189,10 +189,10 @@ abstract class $VectorThemeCopyWith<$Res> {
       dynamic camera,
       @Assert('center.length == 2', 'longitude and latitude')
       List<double>? center,
-      dynamic fog,
+      ThemeFog fog,
       bool? fragment,
       String glyphs,
-      List<dynamic>? imports,
+      List<ThemeImport>? imports,
       @Deprecated('This API is deprecated. Prefer using flat light type '
           'instead in the lights API.')
       dynamic light,
@@ -214,6 +214,8 @@ abstract class $VectorThemeCopyWith<$Res> {
       String? visibility,
       bool? protected,
       bool? draft});
+
+  $ThemeFogCopyWith<$Res> get fog;
 }
 
 /// @nodoc
@@ -234,7 +236,7 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
     Object? bearing = null,
     Object? camera = freezed,
     Object? center = freezed,
-    Object? fog = freezed,
+    Object? fog = null,
     Object? fragment = freezed,
     Object? glyphs = null,
     Object? imports = freezed,
@@ -279,10 +281,10 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
           ? _value.center
           : center // ignore: cast_nullable_to_non_nullable
               as List<double>?,
-      fog: freezed == fog
+      fog: null == fog
           ? _value.fog
           : fog // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as ThemeFog,
       fragment: freezed == fragment
           ? _value.fragment
           : fragment // ignore: cast_nullable_to_non_nullable
@@ -294,7 +296,7 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
       imports: freezed == imports
           ? _value.imports
           : imports // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<ThemeImport>?,
       light: freezed == light
           ? _value.light
           : light // ignore: cast_nullable_to_non_nullable
@@ -373,6 +375,14 @@ class _$VectorThemeCopyWithImpl<$Res, $Val extends VectorTheme>
               as bool?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ThemeFogCopyWith<$Res> get fog {
+    return $ThemeFogCopyWith<$Res>(_value.fog, (value) {
+      return _then(_value.copyWith(fog: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -390,10 +400,10 @@ abstract class _$$ThemeRootImplCopyWith<$Res>
       dynamic camera,
       @Assert('center.length == 2', 'longitude and latitude')
       List<double>? center,
-      dynamic fog,
+      ThemeFog fog,
       bool? fragment,
       String glyphs,
-      List<dynamic>? imports,
+      List<ThemeImport>? imports,
       @Deprecated('This API is deprecated. Prefer using flat light type '
           'instead in the lights API.')
       dynamic light,
@@ -415,6 +425,9 @@ abstract class _$$ThemeRootImplCopyWith<$Res>
       String? visibility,
       bool? protected,
       bool? draft});
+
+  @override
+  $ThemeFogCopyWith<$Res> get fog;
 }
 
 /// @nodoc
@@ -433,7 +446,7 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
     Object? bearing = null,
     Object? camera = freezed,
     Object? center = freezed,
-    Object? fog = freezed,
+    Object? fog = null,
     Object? fragment = freezed,
     Object? glyphs = null,
     Object? imports = freezed,
@@ -478,10 +491,10 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
           ? _value._center
           : center // ignore: cast_nullable_to_non_nullable
               as List<double>?,
-      fog: freezed == fog
+      fog: null == fog
           ? _value.fog
           : fog // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as ThemeFog,
       fragment: freezed == fragment
           ? _value.fragment
           : fragment // ignore: cast_nullable_to_non_nullable
@@ -493,7 +506,7 @@ class __$$ThemeRootImplCopyWithImpl<$Res>
       imports: freezed == imports
           ? _value._imports
           : imports // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<ThemeImport>?,
       light: freezed == light
           ? _value.light
           : light // ignore: cast_nullable_to_non_nullable
@@ -587,7 +600,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
       required this.fog,
       this.fragment,
       this.glyphs = 'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
-      final List<dynamic>? imports,
+      final List<ThemeImport>? imports,
       @Deprecated('This API is deprecated. Prefer using flat light type '
           'instead in the lights API.')
       this.light,
@@ -619,12 +632,12 @@ class _$ThemeRootImpl implements _ThemeRoot {
       _$$ThemeRootImplFromJson(json);
 
   /// Layers will be created in the order of this array.
-//todo @LayerConverter() required List<ThemeLayer> layers,
+//@LayerListConverter() required List<ThemeLayer> layers,
   /// Sources supply the data that will be displayed on the map.
   final Map<String, ThemeSource> _sources;
 
   /// Layers will be created in the order of this array.
-//todo @LayerConverter() required List<ThemeLayer> layers,
+//@LayerListConverter() required List<ThemeLayer> layers,
   /// Sources supply the data that will be displayed on the map.
   @override
   @SourceConverter()
@@ -677,7 +690,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
   /// atmosphere in the Android and iOS SDKs and planned to be changed in
   /// GL-JS v.3.0.0.
   @override
-  final dynamic fog;
+  final ThemeFog fog;
 
   /// Indicates that a style is a fragment style.
   @override
@@ -695,11 +708,11 @@ class _$ThemeRootImpl implements _ThemeRoot {
   final String glyphs;
 
   /// Imports other styles into this style.
-  final List<dynamic>? _imports;
+  final List<ThemeImport>? _imports;
 
   /// Imports other styles into this style.
   @override
-  List<dynamic>? get imports {
+  List<ThemeImport>? get imports {
     final value = _imports;
     if (value == null) return null;
     if (_imports is EqualUnmodifiableListView) return _imports;
@@ -864,7 +877,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
             (identical(other.bearing, bearing) || other.bearing == bearing) &&
             const DeepCollectionEquality().equals(other.camera, camera) &&
             const DeepCollectionEquality().equals(other._center, _center) &&
-            const DeepCollectionEquality().equals(other.fog, fog) &&
+            (identical(other.fog, fog) || other.fog == fog) &&
             (identical(other.fragment, fragment) ||
                 other.fragment == fragment) &&
             (identical(other.glyphs, glyphs) || other.glyphs == glyphs) &&
@@ -904,7 +917,7 @@ class _$ThemeRootImpl implements _ThemeRoot {
         bearing,
         const DeepCollectionEquality().hash(camera),
         const DeepCollectionEquality().hash(_center),
-        const DeepCollectionEquality().hash(fog),
+        fog,
         fragment,
         glyphs,
         const DeepCollectionEquality().hash(_imports),
@@ -951,10 +964,10 @@ abstract class _ThemeRoot implements VectorTheme {
       final dynamic camera,
       @Assert('center.length == 2', 'longitude and latitude')
       final List<double>? center,
-      required final dynamic fog,
+      required final ThemeFog fog,
       final bool? fragment,
       final String glyphs,
-      final List<dynamic>? imports,
+      final List<ThemeImport>? imports,
       @Deprecated('This API is deprecated. Prefer using flat light type '
           'instead in the lights API.')
       final dynamic light,
@@ -983,7 +996,7 @@ abstract class _ThemeRoot implements VectorTheme {
   @override
 
   /// Layers will be created in the order of this array.
-//todo @LayerConverter() required List<ThemeLayer> layers,
+//@LayerListConverter() required List<ThemeLayer> layers,
   /// Sources supply the data that will be displayed on the map.
   @SourceConverter()
   Map<String, ThemeSource> get sources;
@@ -1019,7 +1032,7 @@ abstract class _ThemeRoot implements VectorTheme {
   /// map when used with terrain or 3D features. Note: fog is renamed to
   /// atmosphere in the Android and iOS SDKs and planned to be changed in
   /// GL-JS v.3.0.0.
-  dynamic get fog;
+  ThemeFog get fog;
   @override
 
   /// Indicates that a style is a fragment style.
@@ -1037,7 +1050,7 @@ abstract class _ThemeRoot implements VectorTheme {
   @override
 
   /// Imports other styles into this style.
-  List<dynamic>? get imports;
+  List<ThemeImport>? get imports;
   @override
 
   /// The global light source. Note: This API is deprecated. Prefer using

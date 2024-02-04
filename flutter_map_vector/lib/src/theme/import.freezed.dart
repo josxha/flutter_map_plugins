@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'imports.dart';
+part of 'import.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ThemeImports _$ThemeImportsFromJson(Map<String, dynamic> json) {
+ThemeImport _$ThemeImportFromJson(Map<String, dynamic> json) {
   return _ThemeImports.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ThemeImports {
+mixin _$ThemeImport {
   /// Unique import name.
   String get id => throw _privateConstructorUsedError;
 
@@ -35,24 +35,24 @@ mixin _$ThemeImports {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ThemeImportsCopyWith<ThemeImports> get copyWith =>
+  $ThemeImportCopyWith<ThemeImport> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ThemeImportsCopyWith<$Res> {
-  factory $ThemeImportsCopyWith(
-          ThemeImports value, $Res Function(ThemeImports) then) =
-      _$ThemeImportsCopyWithImpl<$Res, ThemeImports>;
+abstract class $ThemeImportCopyWith<$Res> {
+  factory $ThemeImportCopyWith(
+          ThemeImport value, $Res Function(ThemeImport) then) =
+      _$ThemeImportCopyWithImpl<$Res, ThemeImport>;
   @useResult
   $Res call(
       {String id, String url, Map<String, Object?>? config, dynamic data});
 }
 
 /// @nodoc
-class _$ThemeImportsCopyWithImpl<$Res, $Val extends ThemeImports>
-    implements $ThemeImportsCopyWith<$Res> {
-  _$ThemeImportsCopyWithImpl(this._value, this._then);
+class _$ThemeImportCopyWithImpl<$Res, $Val extends ThemeImport>
+    implements $ThemeImportCopyWith<$Res> {
+  _$ThemeImportCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -90,7 +90,7 @@ class _$ThemeImportsCopyWithImpl<$Res, $Val extends ThemeImports>
 
 /// @nodoc
 abstract class _$$ThemeImportsImplCopyWith<$Res>
-    implements $ThemeImportsCopyWith<$Res> {
+    implements $ThemeImportCopyWith<$Res> {
   factory _$$ThemeImportsImplCopyWith(
           _$ThemeImportsImpl value, $Res Function(_$ThemeImportsImpl) then) =
       __$$ThemeImportsImplCopyWithImpl<$Res>;
@@ -102,7 +102,7 @@ abstract class _$$ThemeImportsImplCopyWith<$Res>
 
 /// @nodoc
 class __$$ThemeImportsImplCopyWithImpl<$Res>
-    extends _$ThemeImportsCopyWithImpl<$Res, _$ThemeImportsImpl>
+    extends _$ThemeImportCopyWithImpl<$Res, _$ThemeImportsImpl>
     implements _$$ThemeImportsImplCopyWith<$Res> {
   __$$ThemeImportsImplCopyWithImpl(
       _$ThemeImportsImpl _value, $Res Function(_$ThemeImportsImpl) _then)
@@ -178,7 +178,7 @@ class _$ThemeImportsImpl implements _ThemeImports {
 
   @override
   String toString() {
-    return 'ThemeImports(id: $id, url: $url, config: $config, data: $data)';
+    return 'ThemeImport(id: $id, url: $url, config: $config, data: $data)';
   }
 
   @override
@@ -215,7 +215,7 @@ class _$ThemeImportsImpl implements _ThemeImports {
   }
 }
 
-abstract class _ThemeImports implements ThemeImports {
+abstract class _ThemeImports implements ThemeImport {
   const factory _ThemeImports(
       {required final String id,
       required final String url,
