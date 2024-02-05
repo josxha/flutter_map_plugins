@@ -20,19 +20,49 @@ ThemeModelLayer _$ThemeModelLayerFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ThemeModelLayer {
+  /// Rendering type of this layer.
   ThemeLayerType get type => throw _privateConstructorUsedError;
+
+  /// Unique layer name.
   String get id => throw _privateConstructorUsedError;
+
+  /// An expression specifying conditions on source features. Only features
+  /// that match the filter are displayed. Zoom expressions in filters are
+  /// only evaluated at integer zoom levels. The ["feature-state", ...]
+  /// expression is not supported in filter expressions. The ["pitch"] and
+  /// ["distance-from-center"] expressions are supported only for filter
+  /// expressions on the symbol layer.
   dynamic get filter => throw _privateConstructorUsedError;
+
+  /// Layout properties for the layer.
   dynamic get layout => throw _privateConstructorUsedError;
+
+  /// The maximum zoom level for the layer. At zoom levels equal to or
+  /// greater than the maxzoom, the layer will be hidden.
   @Assert('maxZoom >= 0 && maxZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'maxzoom')
   double? get maxZoom => throw _privateConstructorUsedError;
+
+  /// The minimum zoom level for the layer. At zoom levels less than the
+  /// minzoom, the layer will be hidden.
   @Assert('minZoom >= 0 && minZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'minzoom')
   double? get minZoom => throw _privateConstructorUsedError;
+
+  /// Default paint properties for this layer.
   dynamic get paint => throw _privateConstructorUsedError;
+
+  /// The slot this layer is assigned to. If specified, and a slot with that
+  /// name exists, it will be placed at that position in the layer order.
   String? get slot => throw _privateConstructorUsedError;
+
+  /// Name of a source description to be used for this layer. Required for
+  /// all layer types except background and slot.
   String? get source => throw _privateConstructorUsedError;
+
+  /// Layer to use from a vector tile source. Required for vector
+  /// tile sources; prohibited for all other source types, including
+  /// GeoJSON sources.
   @JsonKey(name: 'source-layer')
   String? get sourceLayer => throw _privateConstructorUsedError;
 
@@ -254,28 +284,58 @@ class _$ThemeModelLayerImpl implements _ThemeModelLayer {
   factory _$ThemeModelLayerImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThemeModelLayerImplFromJson(json);
 
+  /// Rendering type of this layer.
   @override
   final ThemeLayerType type;
+
+  /// Unique layer name.
   @override
   final String id;
+
+  /// An expression specifying conditions on source features. Only features
+  /// that match the filter are displayed. Zoom expressions in filters are
+  /// only evaluated at integer zoom levels. The ["feature-state", ...]
+  /// expression is not supported in filter expressions. The ["pitch"] and
+  /// ["distance-from-center"] expressions are supported only for filter
+  /// expressions on the symbol layer.
   @override
   final dynamic filter;
+
+  /// Layout properties for the layer.
   @override
   final dynamic layout;
+
+  /// The maximum zoom level for the layer. At zoom levels equal to or
+  /// greater than the maxzoom, the layer will be hidden.
   @override
   @Assert('maxZoom >= 0 && maxZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'maxzoom')
   final double? maxZoom;
+
+  /// The minimum zoom level for the layer. At zoom levels less than the
+  /// minzoom, the layer will be hidden.
   @override
   @Assert('minZoom >= 0 && minZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'minzoom')
   final double? minZoom;
+
+  /// Default paint properties for this layer.
   @override
   final dynamic paint;
+
+  /// The slot this layer is assigned to. If specified, and a slot with that
+  /// name exists, it will be placed at that position in the layer order.
   @override
   final String? slot;
+
+  /// Name of a source description to be used for this layer. Required for
+  /// all layer types except background and slot.
   @override
   final String? source;
+
+  /// Layer to use from a vector tile source. Required for vector
+  /// tile sources; prohibited for all other source types, including
+  /// GeoJSON sources.
   @override
   @JsonKey(name: 'source-layer')
   final String? sourceLayer;
@@ -357,28 +417,59 @@ abstract class _ThemeModelLayer implements ThemeModelLayer, ThemeLayer {
       _$ThemeModelLayerImpl.fromJson;
 
   @override
+
+  /// Rendering type of this layer.
   ThemeLayerType get type;
   @override
+
+  /// Unique layer name.
   String get id;
   @override
+
+  /// An expression specifying conditions on source features. Only features
+  /// that match the filter are displayed. Zoom expressions in filters are
+  /// only evaluated at integer zoom levels. The ["feature-state", ...]
+  /// expression is not supported in filter expressions. The ["pitch"] and
+  /// ["distance-from-center"] expressions are supported only for filter
+  /// expressions on the symbol layer.
   dynamic get filter;
   @override
+
+  /// Layout properties for the layer.
   dynamic get layout;
   @override
+
+  /// The maximum zoom level for the layer. At zoom levels equal to or
+  /// greater than the maxzoom, the layer will be hidden.
   @Assert('maxZoom >= 0 && maxZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'maxzoom')
   double? get maxZoom;
   @override
+
+  /// The minimum zoom level for the layer. At zoom levels less than the
+  /// minzoom, the layer will be hidden.
   @Assert('minZoom >= 0 && minZoom <= 24', 'number between 0 and 24 inclusive.')
   @JsonKey(name: 'minzoom')
   double? get minZoom;
   @override
+
+  /// Default paint properties for this layer.
   dynamic get paint;
   @override
+
+  /// The slot this layer is assigned to. If specified, and a slot with that
+  /// name exists, it will be placed at that position in the layer order.
   String? get slot;
   @override
+
+  /// Name of a source description to be used for this layer. Required for
+  /// all layer types except background and slot.
   String? get source;
   @override
+
+  /// Layer to use from a vector tile source. Required for vector
+  /// tile sources; prohibited for all other source types, including
+  /// GeoJSON sources.
   @JsonKey(name: 'source-layer')
   String? get sourceLayer;
   @override
