@@ -16,9 +16,6 @@ class FlutterMapVectorPage extends StatelessWidget {
       body: FlutterMap(
         options: const MapOptions(),
         children: [
-          TileLayer(
-            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-          ),
           VectorTileLayer(
             style: VectorTheme.osmBright,
             providers: {
@@ -27,6 +24,12 @@ class FlutterMapVectorPage extends StatelessWidget {
                     'https://tiles.stadiamaps.com/data/openmaptiles/{z}/{x}/{y}.pbf?api_key=$stadiamapsKey',
               ),
             },
+          ),
+          Opacity(
+            opacity: 0.2,
+            child: TileLayer(
+              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            ),
           ),
         ],
       ),

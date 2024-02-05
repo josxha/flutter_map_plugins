@@ -25,3 +25,4 @@ linter:
     diagnostic_describe_all_properties: false
     public_member_api_docs: false # disabled for now, add before release
     avoid_print: false # disabled for now, add before release
+    implementation_imports: false # currently using internal flutter_map classes

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_map_plugins_example/mapbox_style_renderer/tile_widget.dart';
+import 'package:flutter_map_vector/flutter_map_vector.dart';
 
 const tileAsset = 'assets/pbf/streets-tile.pbf';
 
 class MapboxStyleRendererPage extends StatelessWidget {
+  final VectorTheme style = VectorTheme.osmBright;
   final Future<ByteData> _futureTileData = rootBundle.load(tileAsset);
 
   MapboxStyleRendererPage({super.key});
@@ -25,10 +28,7 @@ class MapboxStyleRendererPage extends StatelessWidget {
               byteData.lengthInBytes,
             );
             return Center(
-              child: SizedBox.square(
-                dimension: 256,
-                child: Text('${bytes.lengthInBytes} bytes'),
-              ),
+              child: TileWidget(style: style, bytes: bytes),
             );
           }
           if (snapshot.hasError) {

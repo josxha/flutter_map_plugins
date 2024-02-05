@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map_plugins_example/flutter_map_vector/page.dart';
+import 'package:flutter_map_plugins_example/mapbox_style_renderer/page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
       ),
-      home: const Material(child: FlutterMapVectorPage()),
+      home: Material(child: MapboxStyleRendererPage()),
     );
   }
 }

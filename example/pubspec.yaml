@@ -34,6 +34,7 @@ dependencies:
     path: ../vector_map_tiles_pmtiles
   vector_map_tiles: ^7.0.1
   vector_tile_renderer: ^5.2.0
+  vector_tile: ^2.0.0
 
   flutter_map_vector:
     path: ../flutter_map_vector
