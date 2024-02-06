@@ -1,9 +1,13 @@
-name: Build Android
+name: Test & Build
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   test:
