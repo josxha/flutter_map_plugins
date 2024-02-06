@@ -53,7 +53,7 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
 
     return MultiFrameImageStreamCompleter(
       // ignore: discarded_futures, not actually but the lint thinks so
-      codec: _loadAsync(key, chunkEvents, decode),
+      codec: loadAsync(key, chunkEvents, decode),
       chunkEvents: chunkEvents.stream,
       scale: 1,
       debugLabel: url,
@@ -65,7 +65,8 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
     );
   }
 
-  Future<Codec> _loadAsync(
+  /// This method does the actual fetching of the image
+  Future<Codec> loadAsync(
     CachedImageProvider key,
     StreamController<ImageChunkEvent> chunkEvents,
     ImageDecoderCallback decode, {
@@ -108,7 +109,7 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
       // check if no fallback url set
       if (fallbackUrl == null) rethrow;
       // use fallback url
-      return _loadAsync(key, chunkEvents, decode, useFallback: true);
+      return loadAsync(key, chunkEvents, decode, useFallback: true);
     }
   }
 }

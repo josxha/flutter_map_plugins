@@ -29,3 +29,6 @@ pubspec.lock
 build/
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# ignore coverage info
+**/coverage/lcov.info
