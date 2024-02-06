@@ -32,10 +32,16 @@ dependencies:
     path: ../flutter_map_pmtiles
   
   # vector_map_tiles_pmtiles specific packages
-  vector_map_tiles_pmtiles:
-    path: ../vector_map_tiles_pmtiles
-  vector_map_tiles: ^7.0.1
-  vector_tile_renderer: ^5.2.0
+  #vector_map_tiles_pmtiles:
+  #  path: ../vector_map_tiles_pmtiles
+  #vector_map_tiles: ^7.0.1
+  #vector_tile_renderer: ^5.2.0
+
+
+
+dependency_overrides:
+  flutter_map:
+    path: ../../flutter_map
 
   # vector_map_tiles_compass specific packages
   flutter_map_compass:

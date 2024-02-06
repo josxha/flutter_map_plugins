@@ -52,6 +52,7 @@ class PmTilesImageProvider extends ImageProvider<PmTilesImageProvider> {
     StreamController<ImageChunkEvent> chunkEvents,
     ImageDecoderCallback decode,
   ) async {
+    print(ZXY.fromTileId(tileId).z);
     final data = await archive.tile(tileId);
     final bytes = Uint8List.fromList(data.bytes());
     final codec = decode(await ImmutableBuffer.fromUint8List(bytes));
