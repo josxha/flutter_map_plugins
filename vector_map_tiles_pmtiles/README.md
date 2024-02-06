@@ -1,15 +1,16 @@
-# flutter_map_pmtiles
+# vector_map_tiles_pmtiles
 
 A TileProvider for flutter_map that adds support for PMTiles.
 
-![Pub Likes](https://img.shields.io/pub/likes/flutter_map_pmtiles)
-![Pub Points](https://img.shields.io/pub/points/flutter_map_pmtiles)
-![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_pmtiles)
-![Pub Version](https://img.shields.io/pub/v/flutter_map_pmtiles)
+[![Pub Version](https://img.shields.io/pub/v/vector_map_tiles_pmtiles)](https://pub.dev/packages/vector_map_tiles_pmtiles)
+[![likes](https://img.shields.io/pub/likes/vector_map_tiles_pmtiles?logo=flutter)](https://pub.dev/packages/vector_map_tiles_pmtiles)
+[![Pub Points](https://img.shields.io/pub/points/vector_map_tiles_pmtiles)](https://pub.dev/packages/vector_map_tiles_pmtiles/score)
+[![Pub Popularity](https://img.shields.io/pub/popularity/vector_map_tiles_pmtiles)](https://pub.dev/packages/vector_map_tiles_pmtiles)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)
-![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)
-![GitHub Repo stars](https://img.shields.io/github/stars/josxha/flutter_map_plugins?style=social)
+[![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins)
+[![stars](https://badgen.net/github/stars/josxha/flutter_map_plugins?label=stars&color=green&icon=github)](https://github.com/josxha/vector_map_tiles_pmtiles/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins/issues)
+[![codecov](https://codecov.io/gh/josxha/flutter_map_plugins/graph/badge.svg?token=5045489G7X)](https://codecov.io/gh/josxha/flutter_map_plugins)
 
 ## Getting started
 
@@ -18,7 +19,7 @@ Add the following packages to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   flutter_map: ^6.0.0         # in case you don't have it yet 
-  flutter_map_pmtiles: ^1.0.0 # this package
+  vector_map_tiles_pmtiles: ^1.0.0 # this package
 ```
 
 ## Usage
@@ -27,14 +28,17 @@ dependencies:
 
 ```dart
 // ...from an URL
-final Future<PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
+final Future<
+    PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
     .fromSource('https://example.com/useYourOwnHostedPMTilesFile.pmtiles');
 // ...from an local file on the file system
-final Future<PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
+final Future<
+    PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
     .fromSource('some/file/system/path.pmtiles');
 // ...or provide a PmTilesArchive directly 
 // (you'll need to add pmtiles as direct dependency to your project)
-final Future<PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
+final Future<
+    PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
     .fromArchive(somePmTilesArchive);
 ```
 
