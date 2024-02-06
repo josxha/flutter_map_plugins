@@ -32,3 +32,4 @@ build/
 
 # ignore coverage info
 **/coverage/lcov.info
+coverage/filtered.lcov.info

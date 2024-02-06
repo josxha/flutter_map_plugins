@@ -6,9 +6,32 @@ on:
     branches: [ main ]
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Build Android
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: Install melos
+        run: dart pub global activate melos
+      - name: Install coverde
+        run: dart pub global activate coverde
+      - name: Bootstrap melos
+        run: melos bootstrap
+      - name: Run tests with coverage
+        run: melos run test_with_coverage --no-select
+      - name: Run Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   build-android:
     runs-on: ubuntu-latest
     name: Build Android
+    needs: [ test ]
     steps:
       - name: Checkout project
         uses: actions/checkout@v3
