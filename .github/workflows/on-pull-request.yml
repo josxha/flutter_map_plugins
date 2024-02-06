@@ -10,7 +10,7 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Build Android
+    name: Test
     steps:
       - name: Checkout project
         uses: actions/checkout@v3
