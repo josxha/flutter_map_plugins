@@ -1,8 +1,6 @@
-name: Test & Build
+name: Test & Build `main`
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
 concurrency:
@@ -56,3 +54,26 @@ jobs:
         with:
           name: apk
           path: example/build/app/outputs/flutter-apk/app-release.apk
+  build-web:
+    runs-on: ubuntu-latest
+    needs: [ test ]
+    if: github.repository == 'josxha/flutter_map_plugins'
+    defaults:
+      run:
+        working-directory: ./example
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: Build Web
+        run: flutter build web
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FLUTTER_MAP_PLUGINS }}'
+          channelId: live
+          projectId: flutter-map-plugins
+
