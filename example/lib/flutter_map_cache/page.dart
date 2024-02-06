@@ -26,7 +26,7 @@ class _FlutterMapCachePageState extends State<FlutterMapCachePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('FlutterMap Cache'),
+        title: const Text('flutter_map_cache'),
         actions: const [ConnectivityIcon()],
       ),
       body: Column(
