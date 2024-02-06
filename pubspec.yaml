@@ -1,0 +1,7 @@
+name: flutter_map_plugins
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dev_dependencies:
+  melos: ^4.0.0

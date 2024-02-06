@@ -2,14 +2,15 @@
 
 A slim yet powerful caching plugin for flutter_map tile layers.
 
-![Pub Likes](https://img.shields.io/pub/likes/flutter_map_cache)
-![Pub Points](https://img.shields.io/pub/points/flutter_map_cache)
-![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_cache)
-![Pub Version](https://img.shields.io/pub/v/flutter_map_cache)
+[![Pub Version](https://img.shields.io/pub/v/flutter_map_cache)](https://pub.dev/packages/flutter_map_cache)
+[![likes](https://img.shields.io/pub/likes/flutter_map_cache?logo=flutter)](https://pub.dev/packages/flutter_map_cache)
+[![Pub Points](https://img.shields.io/pub/points/flutter_map_cache)](https://pub.dev/packages/flutter_map_cache/score)
+[![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_cache)](https://pub.dev/packages/flutter_map_cache)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)
-![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)
-![GitHub Repo stars](https://img.shields.io/github/stars/josxha/flutter_map_plugins?style=social)
+[![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins)
+[![stars](https://badgen.net/github/stars/josxha/flutter_map_plugins?label=stars&color=green&icon=github)](https://github.com/josxha/flutter_map_plugins/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins/issues)
+[![codecov](https://codecov.io/gh/josxha/flutter_map_plugins/graph/badge.svg?token=5045489G7X)](https://codecov.io/gh/josxha/flutter_map_plugins)
 
 ## Motivation
 
@@ -81,7 +82,7 @@ dependencies:
 
 ## Usage
 
-Using the cache is easy. Here are examples how to use some of the storage 
+Using the cache is easy. Here are examples how to use some of the storage
 backends:
 
 ### Hive
@@ -269,7 +270,9 @@ web.
   <summary>Click here to expand / hide.</summary>
 
 Yes. This package includes the tile cancellation out of the box.
-There is no need for [flutter_map_cancellable_tile_provider](https://pub.dev/packages/flutter_map_cancellable_tile_provider/) when using 
+There is no need
+for [flutter_map_cancellable_tile_provider](https://pub.dev/packages/flutter_map_cancellable_tile_provider/)
+when using
 this package.
 
 ---
@@ -314,7 +317,7 @@ show up on the map.
 downloading (more than 250 tiles on a higher zoom level) of tiles in their
 [tile usage policy](https://operations.osmfoundation.org/policies/tiles/).
 If you use a paid tile provider, bulk-downloading can cause high costs if
-you pay per tile request. Using a proper offline map solution 
+you pay per tile request. Using a proper offline map solution
 (e.g. MBTiles or PMTiles) would be my recommendation here.
 
 If you still need bulk-downloading functionality you can check out the package
