@@ -1,19 +1,21 @@
 # flutter_map_mbtiles
 
-Raster and Vector MBTiles `TileProvider` for [flutter_map](https://pub.dev/packages/flutter_map).
+Raster and Vector MBTiles `TileProvider`
+for [flutter_map](https://pub.dev/packages/flutter_map).
 
 - Supported raster tiles: `jpg`, `png`, `webp`
 - Supported vector tiles: `pbf`
-- Web is not supported because of it's lack of sqlite support
+- Web is not supported because of it's lacking sqlite support
 
-![Pub Likes](https://img.shields.io/pub/likes/flutter_map_mbtiles)
-![Pub Points](https://img.shields.io/pub/points/flutter_map_mbtiles)
-![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_mbtiles)
-![Pub Version](https://img.shields.io/pub/v/flutter_map_mbtiles)
+[![Pub Version](https://img.shields.io/pub/v/flutter_map_mbtiles)](https://pub.dev/packages/flutter_map_mbtiles)
+[![likes](https://img.shields.io/pub/likes/flutter_map_mbtiles?logo=flutter)](https://pub.dev/packages/flutter_map_mbtiles)
+[![Pub Points](https://img.shields.io/pub/points/flutter_map_mbtiles)](https://pub.dev/packages/flutter_map_mbtiles/score)
+[![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_mbtiles)](https://pub.dev/packages/flutter_map_mbtiles)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_mbtiles)
-![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_mbtiles)
-![GitHub Repo stars](https://img.shields.io/github/stars/josxha/flutter_map_mbtiles?style=social)
+[![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins)
+[![stars](https://badgen.net/github/stars/josxha/flutter_map_plugins?label=stars&color=green&icon=github)](https://github.com/josxha/flutter_map_plugins/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins/issues)
+[![codecov](https://codecov.io/gh/josxha/flutter_map_plugins/graph/badge.svg?token=5045489G7X)](https://codecov.io/gh/josxha/flutter_map_plugins)
 
 ## Getting started
 
