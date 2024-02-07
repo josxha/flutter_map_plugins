@@ -1,6 +1,6 @@
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_mbtiles/flutter_map_mbtiles.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mbtiles/mbtiles.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 

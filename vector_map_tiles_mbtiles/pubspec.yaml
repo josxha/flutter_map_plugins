@@ -3,7 +3,7 @@ description: PMTiles for vector_map_files / flutter_map
 repository: https://github.com/josxha/flutter_map_plugins
 issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
 topics: [ flutter-map, vector-map-tiles, map, pmtiles ]
-version: 1.0.0
+version: 0.1.0
 
 environment:
   sdk: '>=3.2.5 <4.0.0'

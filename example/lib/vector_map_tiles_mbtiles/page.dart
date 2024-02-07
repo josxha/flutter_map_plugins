@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_mbtiles/flutter_map_mbtiles.dart';
 import 'package:flutter_map_plugins_example/utils.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:mbtiles/mbtiles.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 import 'package:vector_map_tiles_mbtiles/vector_map_tiles_pmtiles.dart';
 import 'package:vector_tile_renderer/vector_tile_renderer.dart';
@@ -49,7 +49,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                   padding: const EdgeInsets.all(12),
                   child: Text(
                     'MBTiles Name: ${metadata.name}, '
-                        'Format: ${metadata.format}',
+                    'Format: ${metadata.format}',
                   ),
                 ),
                 Expanded(

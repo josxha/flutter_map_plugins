@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_mbtiles/flutter_map_mbtiles.dart';
 import 'package:flutter_map_plugins_example/utils.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:mbtiles/mbtiles.dart';
 
 class FlutterMapMbTilesPage extends StatefulWidget {
   const FlutterMapMbTilesPage({super.key});
@@ -58,7 +59,7 @@ class _FlutterMapMbTilesPageState extends State<FlutterMapMbTilesPage> {
                     ),
                     children: [
                       TileLayer(
-                        tileProvider: MbTilesTilesProvider(
+                        tileProvider: MbTilesTileProvider(
                           mbtiles: _mbtiles!,
                         ),
                       ),

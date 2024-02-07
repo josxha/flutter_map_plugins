@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_mbtiles/flutter_map_mbtiles.dart';
+import 'package:flutter_map_mbtiles/src/mbtiles_tile_provider.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:mbtiles/mbtiles.dart';
 
 // ignore_for_file: diagnostic_describe_all_properties
 
@@ -22,7 +23,7 @@ class TestApp extends StatelessWidget {
           children: [
             TileLayer(
               urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              tileProvider: MbTilesTilesProvider(mbtiles: mbtiles),
+              tileProvider: MbTilesTileProvider(mbtiles: mbtiles),
             ),
           ],
         ),
