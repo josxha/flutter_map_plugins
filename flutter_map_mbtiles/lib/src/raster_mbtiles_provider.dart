@@ -14,7 +14,7 @@ class MbTilesTilesProvider extends TileProvider {
 
   @override
   ImageProvider getImage(TileCoordinates coordinates, TileLayer options) =>
-      MBTilesImageProvider(
+      MbTilesImageProvider(
         coordinates: coordinates,
         mbtiles: mbtiles,
       );

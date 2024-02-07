@@ -7,27 +7,27 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:mbtiles/mbtiles.dart';
 
 /// Image provider with additional caching functionality
-class MBTilesImageProvider extends ImageProvider<MBTilesImageProvider> {
+class MbTilesImageProvider extends ImageProvider<MbTilesImageProvider> {
   /// The tile coordinates of the requested tile image
   final TileCoordinates coordinates;
 
   /// MBTiles database
   final MBTiles mbtiles;
 
-  /// Default constructor for the [MBTilesImageProvider]
-  MBTilesImageProvider({
+  /// Default constructor for the [MbTilesImageProvider]
+  MbTilesImageProvider({
     required this.coordinates,
     required this.mbtiles,
   });
 
   @override
-  Future<MBTilesImageProvider> obtainKey(ImageConfiguration configuration) {
+  Future<MbTilesImageProvider> obtainKey(ImageConfiguration configuration) {
     return Future.value(this);
   }
 
   @override
   ImageStreamCompleter loadImage(
-    MBTilesImageProvider key,
+    MbTilesImageProvider key,
     ImageDecoderCallback decode,
   ) {
     final chunkEvents = StreamController<ImageChunkEvent>();
@@ -45,7 +45,7 @@ class MBTilesImageProvider extends ImageProvider<MBTilesImageProvider> {
   }
 
   Future<Codec> _loadAsync(
-    MBTilesImageProvider key,
+    MbTilesImageProvider key,
     StreamController<ImageChunkEvent> chunkEvents,
     ImageDecoderCallback decode,
   ) async {
