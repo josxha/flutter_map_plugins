@@ -4,11 +4,12 @@ import 'package:latlong2/latlong.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 import 'package:vector_map_tiles_pmtiles/vector_map_tiles_pmtiles.dart';
 import 'package:vector_tile_renderer/vector_tile_renderer.dart';
+import 'protomap_theme.dart';
 
 // It could be that the hosted PMTiles file is no longer available.
 // Check https://maps.protomaps.com/builds/ to get an up to date build.
 // TODO: use your own tile source https://docs.protomaps.com/pmtiles/cloud-storage
-const tileSource = 'https://build.protomaps.com/20240128.pmtiles';
+const tileSource = 'https://build.protomaps.com/20240203.pmtiles';
 
 class VectorMapTilesPmTilesPage extends StatelessWidget {
   final Future<PmTilesVectorTileProvider> _futureTileProvider =
@@ -30,15 +31,15 @@ class VectorMapTilesPmTilesPage extends StatelessWidget {
             final tileProvider = snapshot.data!;
             return FlutterMap(
               options: const MapOptions(
-                initialZoom: 1,
+                initialZoom: 3,
                 initialCenter: LatLng(0, 0),
-                maxZoom: 3.49,
+                maxZoom: 15,
               ),
               children: [
                 VectorTileLayer(
-                  theme: ProvidedThemes.lightTheme(),
+                  theme: ProtomapTheme.basemapTheme(),
                   tileProviders: TileProviders({
-                    'openmaptiles': tileProvider,
+                    'protomaps': tileProvider,
                   }),
                 ),
               ],
