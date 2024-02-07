@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_mbtiles/page.dart';
@@ -29,8 +30,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => const SelectionPage(),
         'flutter_map_cache': (context) => const FlutterMapCachePage(),
         'flutter_map_pmtiles': (context) => const FlutterMapPmTilesPage(),
-        'vector_map_tiles_pmtiles': (context) => const FlutterMapMbTilesPage(),
-        'flutter_map_mbtiles': (context) => VectorMapTilesPmTilesPage(),
+        'vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
+        'flutter_map_mbtiles': (context) => const FlutterMapMbTilesPage(),
         'vector_map_tiles_mbtiles': (context) =>
             const VectorMapTilesMbTilesPage(),
       },
@@ -60,17 +61,15 @@ class SelectionPage extends StatelessWidget {
         desc: 'PMTiles for vector_map_files / flutter_map',
         routeName: 'vector_map_tiles_pmtiles',
       ),
-      SelectionItemWidget(
+      SelectionItemWidget.disabledOnWeb(
         title: 'flutter_map_mbtiles',
         desc: 'MBTiles for flutter_map',
         routeName: 'flutter_map_mbtiles',
-        disabledOnWeb: true,
       ),
-      SelectionItemWidget(
+      SelectionItemWidget.disabledOnWeb(
         title: 'vector_map_tiles_mbtiles',
         desc: 'MBTiles for vector_map_files / flutter_map',
         routeName: 'vector_map_tiles_mbtiles',
-        disabledOnWeb: true,
       ),
     ];
 
@@ -110,37 +109,66 @@ class SelectionItemWidget extends StatelessWidget {
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
+  static const _bannerTextStyle = TextStyle(
+    color: Color(0xFFFFFFFF),
+    fontSize: 10,
+    fontWeight: FontWeight.w900,
+    height: 1,
+  );
   final String title;
   final String desc;
   final String routeName;
-  final bool disabledOnWeb;
+  final bool disabled;
+  final String disabledMessage;
 
   const SelectionItemWidget({
     super.key,
     required this.title,
     required this.desc,
     required this.routeName,
-    this.disabledOnWeb = false,
+    this.disabled = false,
+    this.disabledMessage = 'Disabled',
   });
+
+  const SelectionItemWidget.disabledOnWeb({
+    super.key,
+    required this.title,
+    required this.desc,
+    required this.routeName,
+  })  : disabled = kIsWeb,
+        disabledMessage = 'Not on web';
 
   @override
   Widget build(BuildContext context) {
+    final content = Padding(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(title, style: _titleStyle, textAlign: TextAlign.center),
+          const Spacer(),
+          Text(desc, textAlign: TextAlign.center),
+          const Spacer(),
+        ],
+      ),
+    );
+
     return Card(
-      color: Colors.white,
+      color: disabled ? Colors.white54 : Colors.white,
       child: InkWell(
-        onTap: () => Navigator.of(context).pushNamed(routeName),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(title, style: _titleStyle, textAlign: TextAlign.center),
-              const Spacer(),
-              Text(desc, textAlign: TextAlign.center),
-              const Spacer(),
-            ],
-          ),
-        ),
+        onTap:
+            disabled ? null : () => Navigator.of(context).pushNamed(routeName),
+        child: disabled
+            ? ClipRect(
+                child: Banner(
+                  message: disabledMessage,
+                  textStyle: _bannerTextStyle,
+                  color: Colors.grey,
+                  location: BannerLocation.bottomEnd,
+                  child: content,
+                ),
+              )
+            : content,
       ),
     );
   }
