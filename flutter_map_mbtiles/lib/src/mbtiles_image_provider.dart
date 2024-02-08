@@ -14,10 +14,14 @@ class MbTilesImageProvider extends ImageProvider<MbTilesImageProvider> {
   /// MBTiles database
   final MBTiles mbtiles;
 
+  /// Whether an exception should get thrown if a tile is not found.
+  final bool silenceTileNotFound;
+
   /// Default constructor for the [MbTilesImageProvider]
-  MbTilesImageProvider({
+  const MbTilesImageProvider({
     required this.coordinates,
     required this.mbtiles,
+    required this.silenceTileNotFound,
   });
 
   @override
@@ -52,6 +56,11 @@ class MbTilesImageProvider extends ImageProvider<MbTilesImageProvider> {
     final tmsY = ((1 << coordinates.z) - 1) - coordinates.y;
     final bytes = mbtiles.getTile(coordinates.z, coordinates.x, tmsY);
     if (bytes == null) {
+      if (silenceTileNotFound) {
+        return decode(
+          await ImmutableBuffer.fromUint8List(TileProvider.transparentImage),
+        );
+      }
       throw Exception(
         'Tile could not be found in MBTiles '
         '(z:${coordinates.z}, x:${coordinates.x}, y:${coordinates.y})',

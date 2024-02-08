@@ -61,6 +61,7 @@ class _FlutterMapMbTilesPageState extends State<FlutterMapMbTilesPage> {
                       TileLayer(
                         tileProvider: MbTilesTileProvider(
                           mbtiles: _mbtiles!,
+                          silenceTileNotFound: true,
                         ),
                       ),
                     ],

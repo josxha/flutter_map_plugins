@@ -9,19 +9,29 @@ class MbTilesTileProvider extends TileProvider {
   final MBTiles mbtiles;
 
   /// Create a new [MbTilesTileProvider] instance with an MBTiles instance.
-  MbTilesTileProvider({required this.mbtiles});
+  MbTilesTileProvider({
+    required this.mbtiles,
+    this.silenceTileNotFound = false,
+  });
+
+  /// Set to true if you don't want to throw exceptions for tiles that are
+  /// not found.
+  final bool silenceTileNotFound;
 
   /// Create a new [MbTilesTileProvider] instance by providing the path of the
   /// MBTiles file.
   /// The MBTiles database will be opened internally.
-  MbTilesTileProvider.fromPath({required String path})
-      : mbtiles = MBTiles(mbtilesPath: path);
+  MbTilesTileProvider.fromPath({
+    required String path,
+    this.silenceTileNotFound = false,
+  }) : mbtiles = MBTiles(mbtilesPath: path);
 
   @override
   ImageProvider getImage(TileCoordinates coordinates, TileLayer options) =>
       MbTilesImageProvider(
         coordinates: coordinates,
         mbtiles: mbtiles,
+        silenceTileNotFound: silenceTileNotFound,
       );
 
   @override
