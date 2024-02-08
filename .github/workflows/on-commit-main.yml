@@ -20,10 +20,12 @@ jobs:
           channel: "stable"
       - name: Install melos
         run: dart pub global activate melos
-      - name: Install coverde
-        run: dart pub global activate coverde
       - name: Bootstrap melos
         run: melos bootstrap
+      - name: Analyze all projects
+        run: melos run analyze --no-select
+      - name: Install coverde
+        run: dart pub global activate coverde
       - name: Run tests with coverage
         run: melos run test_with_coverage --no-select
       - name: Run Codecov
