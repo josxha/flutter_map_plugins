@@ -23,7 +23,7 @@ class FlutterMapCompassPage extends StatelessWidget {
           TileLayer(
             urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
           ),
-          const MapCompass(),
+          const MapCompass.cupertino(),
         ],
       ),
     );
