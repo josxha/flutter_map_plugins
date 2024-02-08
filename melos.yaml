@@ -2,6 +2,7 @@ name: flutter_map_plugins
 packages:
   - flutter_map_*
   - vector_map_tiles_*
+  - example
 
 scripts:
   analyze:

@@ -56,3 +56,19 @@ jobs:
         with:
           name: apk
           path: example/build/app/outputs/flutter-apk/app-release.apk
+  build-web:
+    runs-on: ubuntu-latest
+    needs: [ test ]
+    if: github.repository == 'josxha/flutter_map_plugins'
+    defaults:
+      run:
+        working-directory: ./example
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: Build Web
+        run: flutter build web
