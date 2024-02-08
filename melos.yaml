@@ -2,11 +2,14 @@ name: flutter_map_plugins
 packages:
   - flutter_map_*
   - vector_map_tiles_*
+  - example
 
 scripts:
   analyze:
     description: Run `dart analyze` in all packages
-    run: melos exec dart analyze .
+    run: |
+      melos exec dart format --output=none --set-exit-if-changed .
+      melos exec dart analyze --fatal-infos --fatal-warnings
   test:
     description: Run tests of all packages
     run: melos exec --dir-exists="test" --fail-fast flutter test --no-pub

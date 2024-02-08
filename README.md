@@ -1,4 +1,4 @@
-# Plugins for the flutter_map ecosystem
+# Plugins for the flutter_map ecosystem 🗺️
 
 This repository contains multiple flutter packages that extend the
 functionality of [flutter_map](https://pub.dev/packages/flutter_map).
@@ -9,10 +9,17 @@ functionality of [flutter_map](https://pub.dev/packages/flutter_map).
 [![Issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins/issues)
 [![Open PRs](https://badgen.net/github/open-prs/josxha/flutter_map_cache?label=Open+PRs&color=green)](https://GitHub.com/josxha/flutter_map_plugins/pulls)
 
-A combined example app can be found under
-[./example](https://github.com/josxha/flutter_map_plugins).
+- A combined example app can be found under
+  [./example](https://github.com/josxha/flutter_map_plugins)
+  or use the hosted version
+  at [https://flutter-map-plugins.web.app](https://flutter-map-plugins.web.app/).
+- Need a list of all `flutter_map` plugins? Check out
+  the [awesome-flutter-map](https://github.com/josxha/awesome-flutter-map?tab=readme-ov-file#awesome-flutter-map)
+  list.
 
-## [flutter_map_cache](https://pub.dev/packages/flutter_map_cache)
+## Packages
+
+### [flutter_map_cache](https://pub.dev/packages/flutter_map_cache)
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_cache)](https://pub.dev/packages/flutter_map_cache)
 [![likes](https://img.shields.io/pub/likes/flutter_map_cache?logo=flutter)](https://pub.dev/packages/flutter_map_cache)
@@ -26,7 +33,7 @@ storage backend you would possibly want.
   and flutter_map.
 - Support for tile cancellation
 
-## [flutter_map_pmtiles](https://pub.dev/packages/flutter_map_pmtiles)
+### [flutter_map_pmtiles](https://pub.dev/packages/flutter_map_pmtiles)
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_pmtiles)](https://pub.dev/packages/flutter_map_pmtiles)
 [![likes](https://img.shields.io/pub/likes/flutter_map_pmtiles?logo=flutter)](https://pub.dev/packages/flutter_map_pmtiles)
@@ -42,7 +49,7 @@ flutter_map tile layers.
   learn more about
   PMTiles.
 
-## [vector_map_tiles_pmtiles](https://pub.dev/packages/vector_map_tiles_pmtiles)
+### [vector_map_tiles_pmtiles](https://pub.dev/packages/vector_map_tiles_pmtiles)
 
 [![Pub Version](https://img.shields.io/pub/v/vector_map_tiles_pmtiles)](https://pub.dev/packages/vector_map_tiles_pmtiles)
 [![likes](https://img.shields.io/pub/likes/vector_map_tiles_pmtiles?logo=flutter)](https://pub.dev/packages/vector_map_tiles_pmtiles)
@@ -58,3 +65,9 @@ adds support for vector tiles to flutter_map.
   HTTP Range Requests. Head over to [protomaps.com](https://protomaps.com/) to
   learn more about
   PMTiles.
+
+## Contributions
+
+A huge thanks to all contributors! 😎
+
+[![List of contributors](https://contrib.rocks/image?repo=josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins/graphs/contributors)

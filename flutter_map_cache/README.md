@@ -17,13 +17,14 @@ A slim yet powerful caching plugin for flutter_map tile layers.
 - Many tile providers **require users in their tile usage policy** to cache
   tile requests. This decreases the load on those servers and is important
   especially if they are donation based like the OpenStreetMap.
+- Commercial tile providers normally charge per tile request. By caching tiles
+  you can reduce the amount of tile requests and **lower your costs**.
 - Caching map tiles provides a **better user experience** since the region the
   user visited **loads nearby instantly**. Most of the time a user visits the
   same regions often, e.g. because it is the region he lives in.
 - Especially raster tiles that are used by default on flutter_map, the data
-  consumption can be high really fast. Caching tiles **lowers the amount of used
-  mobile data and bandwidth** with itself is an enthusiasm factor you don't want
-  to miss out on.
+  consumption can be high quite fast. Caching tiles **lowers the amount of used
+  mobile data and bandwidth**.
 
 ## Features
 

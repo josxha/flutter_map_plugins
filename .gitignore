@@ -33,3 +33,6 @@ build/
 # ignore coverage info
 **/coverage/lcov.info
 coverage/filtered.lcov.info
+
+# ignore generated files by melos
+pubspec_overrides.yaml
