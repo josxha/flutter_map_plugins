@@ -16,4 +16,11 @@ dependencies:
   vector_map_tiles: ^7.0.1
 
 dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  test: ^1.24.9
+  mockito: ^5.4.4
+  build_runner: ^2.4.8
+  latlong2: ^0.9.0
+  flutter_map: ^6.1.0
   flutter_lints: ^3.0.0

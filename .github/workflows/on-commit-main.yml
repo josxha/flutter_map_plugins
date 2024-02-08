@@ -1,0 +1,81 @@
+name: Test & Build `main`
+on:
+  push:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: Install melos
+        run: dart pub global activate melos
+      - name: Bootstrap melos
+        run: melos bootstrap
+      - name: Analyze all projects
+        run: melos run analyze --no-select
+      - name: Install coverde
+        run: dart pub global activate coverde
+      - name: Run tests with coverage
+        run: melos run test_with_coverage --no-select
+      - name: Run Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  build-android:
+    runs-on: ubuntu-latest
+    name: Build Android
+    needs: [ test ]
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: Build APK
+        working-directory: example
+        run: flutter build apk
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: apk
+          path: example/build/app/outputs/flutter-apk/app-release.apk
+  build-web:
+    runs-on: ubuntu-latest
+    needs: [ test ]
+    if: github.repository == 'josxha/flutter_map_plugins'
+    defaults:
+      run:
+        working-directory: ./example
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: Build Web
+        run: flutter build web
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FLUTTER_MAP_PLUGINS }}'
+          channelId: live
+          projectId: flutter-map-plugins
+
