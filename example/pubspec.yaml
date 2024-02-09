@@ -36,6 +36,11 @@ dependencies:
   flutter_map_cache:
     path: ../flutter_map_cache
 
+  # vector_map_tiles_compass specific packages
+  flutter_map_compass:
+    path: ../flutter_map_compass
+  cupertino_icons: ^1.0.6
+
 dev_dependencies:
   total_lints: ^3.0.0
 

@@ -14,7 +14,7 @@ jobs:
     name: Test
     steps:
       - name: Checkout project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -39,7 +39,7 @@ jobs:
     needs: [ test ]
     steps:
       - name: Checkout project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
@@ -59,6 +59,7 @@ jobs:
           path: example/build/app/outputs/flutter-apk/app-release.apk
   build-web:
     runs-on: ubuntu-latest
+    name: Build Web
     needs: [ test ]
     if: github.repository == 'josxha/flutter_map_plugins'
     defaults:
@@ -66,7 +67,7 @@ jobs:
         working-directory: ./example
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
