@@ -40,7 +40,7 @@ storage backend you would possibly want.
 [![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_compass)](https://pub.dev/packages/flutter_map_compass)
 
 A compass for flutter_map that indicates the map rotation. It rotates the map
-back to north on top on click.
+back to north on top when clicked.
 
 ### [flutter_map_pmtiles](https://pub.dev/packages/flutter_map_pmtiles)
 

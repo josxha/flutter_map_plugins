@@ -1,7 +1,7 @@
 # flutter_map_compass
 
 A simple compass for flutter_map. It shows the rotation of the map and resets
-the rotation back to 0 on tap.
+the rotation back to 0 when tapped.
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_compass)](https://pub.dev/packages/flutter_map_compass)
 [![likes](https://img.shields.io/pub/likes/flutter_map_compass?logo=flutter)](https://pub.dev/packages/flutter_map_compass)
