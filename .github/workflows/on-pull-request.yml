@@ -58,6 +58,7 @@ jobs:
           path: example/build/app/outputs/flutter-apk/app-release.apk
   build-web:
     runs-on: ubuntu-latest
+    name: Build Web
     needs: [ test ]
     if: github.repository == 'josxha/flutter_map_plugins'
     defaults:
