@@ -33,6 +33,15 @@ storage backend you would possibly want.
   and flutter_map.
 - Support for tile cancellation
 
+### [flutter_map_compass](https://pub.dev/packages/flutter_map_compass)
+
+[![Pub Version](https://img.shields.io/pub/v/flutter_map_compass)](https://pub.dev/packages/flutter_map_compass)
+[![likes](https://img.shields.io/pub/likes/flutter_map_compass?logo=flutter)](https://pub.dev/packages/flutter_map_compass)
+[![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_compass)](https://pub.dev/packages/flutter_map_compass)
+
+A compass for flutter_map that indicates the map rotation. It rotates the map
+back to north on top on click.
+
 ### [flutter_map_pmtiles](https://pub.dev/packages/flutter_map_pmtiles)
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_pmtiles)](https://pub.dev/packages/flutter_map_pmtiles)

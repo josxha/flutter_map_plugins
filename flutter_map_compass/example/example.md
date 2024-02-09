@@ -9,7 +9,7 @@ Widget build(BuildContext context) {
       TileLayer(
         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
       ),
-      const MapCompass(),
+      const MapCompass.cupertino(),
     ],
   );
 }
