@@ -13,7 +13,7 @@ the rotation back to 0 when tapped.
 [![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins/issues)
 [![codecov](https://codecov.io/gh/josxha/flutter_map_plugins/graph/badge.svg?token=5045489G7X)](https://codecov.io/gh/josxha/flutter_map_plugins)
 
-<img src="docs/screenshot.jpg" width="350px" alt="Example screenshot">
+<img src="images/screenshot.jpg" width="350px" alt="Example screenshot">
 
 ## Getting started
 
