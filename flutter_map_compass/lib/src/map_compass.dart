@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_compass/src/utils.dart';
 
-class MapCompass extends StatelessWidget {
+class MapCompass extends StatefulWidget {
   /// This child widget, for example a [Icon] width with a compass icon.
   final Widget icon;
 
@@ -30,10 +30,20 @@ class MapCompass extends StatelessWidget {
   /// Defaults to 10px on all sides.
   final EdgeInsets padding;
 
+  /// The duration of the rotation animation.
+  ///
+  /// Default to 1 second.
+  final Duration rotationDuration;
+
+  /// The curve of the rotation animation.
+  final Curve animationCurve;
+
   const MapCompass({
     super.key,
     required this.icon,
     this.rotationOffset = 0,
+    this.rotationDuration = const Duration(seconds: 1),
+    this.animationCurve = Curves.fastOutSlowIn,
     this.onPressed,
     this.hideIfRotatedNorth = false,
     this.alignment = Alignment.topRight,
@@ -44,6 +54,8 @@ class MapCompass extends StatelessWidget {
     super.key,
     this.onPressed,
     this.hideIfRotatedNorth = false,
+    this.rotationDuration = const Duration(seconds: 1),
+    this.animationCurve = Curves.fastOutSlowIn,
     this.alignment = Alignment.topRight,
     this.padding = const EdgeInsets.all(10),
   })  : rotationOffset = -45,
@@ -54,31 +66,69 @@ class MapCompass extends StatelessWidget {
         );
 
   @override
+  State<MapCompass> createState() => _MapCompassState();
+}
+
+class _MapCompassState extends State<MapCompass> with TickerProviderStateMixin {
+  AnimationController? _animationController;
+  late Animation<double> _rotateAnimation;
+
+  late Tween<double> _rotationTween;
+
+  @override
   Widget build(BuildContext context) {
     final camera = MapCamera.of(context);
 
-    if (hideIfRotatedNorth && camera.rotation == 0) {
+    if (widget.hideIfRotatedNorth && camera.rotation == 0) {
       return const SizedBox.shrink();
     }
 
     return Align(
       alignment: Alignment.topRight,
       child: Padding(
-        padding: padding,
+        padding: widget.padding,
         child: Transform.rotate(
-          angle: (camera.rotation + rotationOffset) * deg2Rad,
+          angle: (camera.rotation + widget.rotationOffset) * deg2Rad,
           child: IconButton(
             padding: EdgeInsets.zero,
-            icon: icon,
-            onPressed: onPressed ?? () => _resetRotation(context),
+            icon: widget.icon,
+            onPressed:
+                widget.onPressed ?? () => _resetRotation(context, camera),
           ),
         ),
       ),
     );
   }
 
-  void _resetRotation(BuildContext context) {
+  void _resetRotation(BuildContext context, MapCamera camera) {
+    // current rotation of the map
+    final rotation = camera.rotation;
+    // nearest north (0°, 360°, -360°, ...)
+    final endRotation = (rotation / 360).round() * 360.0;
+    // don't start animation if rotation doesn't need to change
+    if (rotation == endRotation) return;
+
+    _animationController = AnimationController(
+      duration: widget.rotationDuration,
+      vsync: this,
+    )..addListener(_handleAnimation);
+    _rotateAnimation = CurvedAnimation(
+      parent: _animationController!,
+      curve: widget.animationCurve,
+    );
+
+    _rotationTween = Tween<double>(begin: rotation, end: endRotation);
+    _animationController!.forward(from: 0);
+  }
+
+  void _handleAnimation() {
     final controller = MapController.of(context);
-    controller.rotate(0);
+    controller.rotate(_rotationTween.evaluate(_rotateAnimation));
+  }
+
+  @override
+  void dispose() {
+    _animationController?.dispose();
+    super.dispose();
   }
 }

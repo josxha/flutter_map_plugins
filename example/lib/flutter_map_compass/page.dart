@@ -3,8 +3,15 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_compass/flutter_map_compass.dart';
 import 'package:latlong2/latlong.dart';
 
-class FlutterMapCompassPage extends StatelessWidget {
+class FlutterMapCompassPage extends StatefulWidget {
   const FlutterMapCompassPage({super.key});
+
+  @override
+  State<FlutterMapCompassPage> createState() => _FlutterMapCompassPageState();
+}
+
+class _FlutterMapCompassPageState extends State<FlutterMapCompassPage> {
+  final _mapController = MapController();
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +20,26 @@ class FlutterMapCompassPage extends StatelessWidget {
         backgroundColor: Colors.white,
         title: const Text('flutter_map_compass'),
       ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton.extended(
+            heroTag: 'rotateLeft',
+            label: const Text('Rotate left'),
+            onPressed: () => rotateMap(-90),
+            icon: const Icon(Icons.rotate_left),
+          ),
+          const SizedBox(height: 16),
+          FloatingActionButton.extended(
+            heroTag: 'rotateRight',
+            label: const Text('Rotate right'),
+            onPressed: () => rotateMap(90),
+            icon: const Icon(Icons.rotate_right),
+          ),
+        ],
+      ),
       body: FlutterMap(
+        mapController: _mapController,
         options: const MapOptions(
           initialZoom: 5,
           initialCenter: LatLng(48, 9),
@@ -27,5 +53,9 @@ class FlutterMapCompassPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void rotateMap(double deltaRotation) {
+    _mapController.rotate(_mapController.camera.rotation + deltaRotation);
   }
 }
