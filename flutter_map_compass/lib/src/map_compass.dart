@@ -59,10 +59,12 @@ class MapCompass extends StatefulWidget {
     this.alignment = Alignment.topRight,
     this.padding = const EdgeInsets.all(10),
   })  : rotationOffset = -45,
-        icon = const Icon(
-          CupertinoIcons.compass,
-          color: Colors.black,
-          size: 50,
+        icon = const Stack(
+          children: [
+            Icon(CupertinoIcons.compass, color: Colors.red, size: 50),
+            Icon(CupertinoIcons.compass_fill, color: Colors.white54, size: 50),
+            Icon(CupertinoIcons.circle, color: Colors.black, size: 50),
+          ],
         );
 
   @override
