@@ -65,8 +65,6 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                         theme: ProvidedThemes.lightTheme(),
                         tileProviders: TileProviders({
                           'openmaptiles': MbTilesVectorTileProvider(
-                            maxZoom: 6,
-                            minZoom: 1,
                             mbtiles: _mbtiles!,
                           ),
                         }),
