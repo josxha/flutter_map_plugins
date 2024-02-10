@@ -22,8 +22,10 @@ class VectorMapTilesPmTilesPage extends StatelessWidget {
     logger: kDebugMode ? const vtr.Logger.console() : null,
   );
 
-  final Future<PmTilesVectorTileProvider> _futureTileProvider =
-      PmTilesVectorTileProvider.fromSource(tileSource);
+  final _futureTileProvider = PmTilesVectorTileProvider.fromSource(
+    tileSource,
+    silenceTileNotFound: true,
+  );
 
   VectorMapTilesPmTilesPage({super.key});
 
@@ -47,6 +49,8 @@ class VectorMapTilesPmTilesPage extends StatelessWidget {
               ),
               children: [
                 VectorTileLayer(
+                  // disable the file cache when you change the PMTiles source
+                  fileCacheTtl: Duration.zero,
                   theme: mapTheme,
                   tileProviders: TileProviders({
                     'protomaps': tileProvider,
