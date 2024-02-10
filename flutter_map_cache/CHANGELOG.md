@@ -1,7 +1,8 @@
 ## [1.4.4] 2024-02-10
 
 - Add web as supported platform
-- Update README
+- Update docs
+- Add tests
 
 ## [1.4.3] 2024-02-06
 
