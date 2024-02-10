@@ -1,5 +1,4 @@
-import 'dart:typed_data';
-
+import 'package:flutter/foundation.dart';
 import 'package:pmtiles/pmtiles.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 
@@ -11,14 +10,29 @@ class PmTilesVectorTileProvider extends VectorTileProvider {
 
   /// Create a tile provider directly with a [PmTilesArchive] from the
   /// pmtiles package.
-  PmTilesVectorTileProvider.fromArchive(this.archive);
+  PmTilesVectorTileProvider.fromArchive(
+    this.archive, {
+    this.silenceTileNotFound = !kDebugMode,
+  });
+
+  /// Set to true if [TileNotFoundException]s should not be visible in the
+  /// console.
+  ///
+  /// By default this is disabled in debug mode and enabled else.
+  final bool silenceTileNotFound;
 
   /// Create a tile provider by specifying the source of the PMTiles file.
   ///
   /// [source] can either be a URL or path on your file system.
-  static Future<PmTilesVectorTileProvider> fromSource(String source) async {
+  static Future<PmTilesVectorTileProvider> fromSource(
+    String source, {
+    bool silenceTileNotFound = !kDebugMode,
+  }) async {
     final archive = await PmTilesArchive.from(source);
-    return PmTilesVectorTileProvider.fromArchive(archive);
+    return PmTilesVectorTileProvider.fromArchive(
+      archive,
+      silenceTileNotFound: silenceTileNotFound,
+    );
   }
 
   /// The maximum zoom level that the tile provider supports.
@@ -33,7 +47,15 @@ class PmTilesVectorTileProvider extends VectorTileProvider {
   @override
   Future<Uint8List> provide(TileIdentity tile) async {
     final tileId = ZXY(tile.z, tile.x, tile.y).toTileId();
-    final data = await archive.tile(tileId);
-    return Uint8List.fromList(data.bytes());
+    try {
+      final data = await archive.tile(tileId);
+      return Uint8List.fromList(data.bytes());
+    } on TileNotFoundException {
+      if (silenceTileNotFound) {
+        return Uint8List(0);
+      } else {
+        rethrow;
+      }
+    }
   }
 }

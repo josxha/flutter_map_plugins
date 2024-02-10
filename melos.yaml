@@ -5,18 +5,20 @@ packages:
   - example
 
 scripts:
-  analyze:
-    description: Run `dart analyze` in all packages
-    run: |
-      melos exec dart format --output=none --set-exit-if-changed .
-      melos exec dart analyze --fatal-infos --fatal-warnings
   test:
     description: Run tests of all packages
-    run: melos exec --dir-exists="test" --fail-fast flutter test --no-pub
+    run: melos exec --dir-exists="test"--fail-fast flutter test --no-pub
+  pub_get:
+    description: Run `pub get` for all packages
+    run: melos exec --file-exists="pubspec.yaml" --fail-fast flutter pub get
+  package_score:
+    description: Run pana for all packages
+    run: melos exec --fail-fast --ignore="flutter_map_plugins_example" pana --exit-code-threshold 0 --no-dartdoc .
   test_with_coverage:
     description: Run tests of all packages with coverage and merge its results
     run: |
       melos exec rm -rf coverage 
+      melos exec --dir-exists="test" --fail-fast flutter pub get
       melos exec --dir-exists="test" --fail-fast flutter test --no-pub -r expanded --coverage
       melos exec -c 1 --file-exists=coverage/lcov.info coverde filter --input ./coverage/lcov.info --output MELOS_ROOT_PATH/coverage/filtered.lcov.info --filters \.g\.dart
       coverde value -i coverage/filtered.lcov.info > MELOS_ROOT_PATH/coverage/result.txt

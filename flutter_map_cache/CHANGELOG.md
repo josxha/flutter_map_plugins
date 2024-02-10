@@ -1,3 +1,9 @@
+## [1.4.4] 2024-02-10
+
+- Add web as supported platform
+- Update docs
+- Add tests
+
 ## [1.4.3] 2024-02-06
 
 - Fix: `CachedTileProvider.dio` had its `BaseOptions`

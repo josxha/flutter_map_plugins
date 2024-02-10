@@ -8,9 +8,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  analyze:
     runs-on: ubuntu-latest
-    name: Analyze & Test
+    name: Analyze
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
@@ -22,8 +22,26 @@ jobs:
         run: dart pub global activate melos
       - name: Bootstrap melos
         run: melos bootstrap
+      - name: Get dependencies
+        run: melos run pub_get --no-select
       - name: Analyze all projects
-        run: melos run analyze --no-select
+        run: dart analyze --fatal-infos --fatal-warnings
+      - name: Format all projects
+        run: dart format --output=none --set-exit-if-changed .
+  test:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: Install melos
+        run: dart pub global activate melos
+      - name: Bootstrap melos
+        run: melos bootstrap
       - name: Install coverde
         run: dart pub global activate coverde
       - name: Run tests with coverage
@@ -32,15 +50,32 @@ jobs:
         uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  package-score:
+    name: "Package score"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: Install melos
+        run: dart pub global activate melos
+      - name: Bootstrap melos
+        run: melos bootstrap
+      - name: Install pana
+        run: dart pub global activate pana
+      - name: Check package score for all
+        run: melos run package_score --no-select
   build-android:
     runs-on: ubuntu-latest
     name: Build Android
-    needs: [ test ]
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
       - name: Setup Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '21'
@@ -52,14 +87,13 @@ jobs:
         working-directory: example
         run: flutter build apk
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: apk
           path: example/build/app/outputs/flutter-apk/app-release.apk
   build-web:
     runs-on: ubuntu-latest
     name: Build Web
-    needs: [ test ]
     if: github.repository == 'josxha/flutter_map_plugins'
     defaults:
       run:
