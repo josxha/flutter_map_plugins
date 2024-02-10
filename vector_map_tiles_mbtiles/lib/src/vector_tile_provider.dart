@@ -1,5 +1,4 @@
-import 'dart:typed_data';
-
+import 'package:flutter/foundation.dart';
 import 'package:mbtiles/mbtiles.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 
@@ -8,34 +7,39 @@ class MbTilesVectorTileProvider extends VectorTileProvider {
   /// MBTiles database
   final MBTiles mbtiles;
 
-  /// The minimum zoom level that is supported by the MBTiles file
-  final int minZoom;
+  final MBTilesMetadata _mbTilesMetadata;
 
-  /// The maximum zoom level that is supported by the MBTiles file
-  final int maxZoom;
+  /// Set to true if you want to silence exceptions that would be thrown if a
+  /// tile does not exist in the mbtiles file.
+  ///
+  /// By default this is disabled in debug mode and enabled else.
+  final bool silenceTileNotFound;
 
   /// Create a new [MbTilesVectorTileProvider] and pass it to the flutter_map
   /// vector plugin vector_map_tiles.
   MbTilesVectorTileProvider({
     required this.mbtiles,
-    required this.minZoom,
-    required this.maxZoom,
-  });
+    this.silenceTileNotFound = !kDebugMode,
+  }) : _mbTilesMetadata = mbtiles.getMetadata();
 
   @override
-  int get maximumZoom => maxZoom;
+  int get maximumZoom => _mbTilesMetadata.maxZoom ?? 99;
 
   @override
-  int get minimumZoom => minZoom;
+  int get minimumZoom => _mbTilesMetadata.minZoom ?? 0;
 
   @override
   Future<Uint8List> provide(TileIdentity tile) async {
     final tmsY = ((1 << tile.z) - 1) - tile.y;
     final bytes = mbtiles.getTile(tile.z, tile.x, tmsY);
     if (bytes != null) return bytes;
-    throw Exception(
-      'Tile could not be found in MBTiles '
-          '(z:${tile.z}, x:${tile.x}, y:${tile.y})',
-    );
+    if (silenceTileNotFound) {
+      return Uint8List(0);
+    } else {
+      throw Exception(
+        'Tile could not be found in MBTiles '
+        '(z:${tile.z}, x:${tile.x}, y:${tile.y})',
+      );
+    }
   }
 }

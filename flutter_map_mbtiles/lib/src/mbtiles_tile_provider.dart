@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_mbtiles/src/mbtiles_image_provider.dart';
@@ -11,11 +12,17 @@ class MbTilesTileProvider extends TileProvider {
   /// Create a new [MbTilesTileProvider] instance with an MBTiles instance.
   MbTilesTileProvider({
     required this.mbtiles,
-    this.silenceTileNotFound = false,
-  });
+    this.silenceTileNotFound = !kDebugMode,
+  }) : _createdInternally = false;
+
+  /// If the MBTiles file was created internally, the connection gets closed
+  /// on [dispose].
+  final bool _createdInternally;
 
   /// Set to true if you don't want to throw exceptions for tiles that are
   /// not found.
+  ///
+  /// Defaults to false in debug mode and to true else.
   final bool silenceTileNotFound;
 
   /// Create a new [MbTilesTileProvider] instance by providing the path of the
@@ -23,8 +30,9 @@ class MbTilesTileProvider extends TileProvider {
   /// The MBTiles database will be opened internally.
   MbTilesTileProvider.fromPath({
     required String path,
-    this.silenceTileNotFound = false,
-  }) : mbtiles = MBTiles(mbtilesPath: path);
+    this.silenceTileNotFound = !kDebugMode,
+  })  : mbtiles = MBTiles(mbtilesPath: path),
+        _createdInternally = true;
 
   @override
   ImageProvider getImage(TileCoordinates coordinates, TileLayer options) =>
@@ -36,7 +44,7 @@ class MbTilesTileProvider extends TileProvider {
 
   @override
   void dispose() {
-    mbtiles.dispose();
+    if (_createdInternally) mbtiles.dispose();
     super.dispose();
   }
 }
