@@ -59,25 +59,25 @@ class SelectionPage extends StatelessWidget {
             'reset the rotation on click',
         routeName: 'flutter_map_compass',
       ),
-      SelectionItemWidget(
-        title: 'flutter_map_pmtiles',
-        desc: 'PMTiles for flutter_map',
-        routeName: 'flutter_map_pmtiles',
-      ),
-      SelectionItemWidget(
-        title: 'vector_map_tiles_pmtiles',
-        desc: 'PMTiles for vector_map_files / flutter_map',
-        routeName: 'vector_map_tiles_pmtiles',
-      ),
       SelectionItemWidget.disabledOnWeb(
         title: 'flutter_map_mbtiles',
         desc: 'MBTiles for flutter_map',
         routeName: 'flutter_map_mbtiles',
       ),
+      SelectionItemWidget(
+        title: 'flutter_map_pmtiles',
+        desc: 'PMTiles for flutter_map',
+        routeName: 'flutter_map_pmtiles',
+      ),
       SelectionItemWidget.disabledOnWeb(
         title: 'vector_map_tiles_mbtiles',
         desc: 'MBTiles for vector_map_files / flutter_map',
         routeName: 'vector_map_tiles_mbtiles',
+      ),
+      SelectionItemWidget(
+        title: 'vector_map_tiles_pmtiles',
+        desc: 'PMTiles for vector_map_files / flutter_map',
+        routeName: 'vector_map_tiles_pmtiles',
       ),
     ];
 

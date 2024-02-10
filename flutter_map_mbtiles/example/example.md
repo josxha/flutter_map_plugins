@@ -2,8 +2,8 @@
 
 ```dart
 // initiate your tile provider
-final _futureTileProvider = MbTilesVectorTileProvider
-        .fromSource('eitherAnUrlOrFileSystemPath');
+final _futureTileProvider = MbTilesTileProvider
+    .fromSource('eitherAnUrlOrFileSystemPath');
 
 @override
 Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ Widget build(BuildContext context) {
     children: [
       TileLayer(
         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-        // use your awaited MbTilesVectorTileProvider
+        // use your awaited MbTilesTileProvider
         tileProvider: tileProvider,
       ),
     ],
@@ -23,7 +23,7 @@ Widget build(BuildContext context) {
 ### Need more information?
 
 - Read
-  the [README.md](https://github.com/josxha/flutter_map_plugins/blob/main/vector_map_tiles_mbtiles/README.md)
+  the [README.md](https://github.com/josxha/flutter_map_plugins/blob/main/flutter_map_mbtiles/README.md)
 - Check out
   the [combined example app](https://github.com/josxha/flutter_map_plugins/tree/main/example)
   that showcases this and other flutter_map
