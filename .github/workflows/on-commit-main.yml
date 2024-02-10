@@ -18,6 +18,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+      - name: Get dependencies
+        run: melos run pub_get --no-select
       - name: Analyze all projects
         run: dart analyze --fatal-infos --fatal-warnings
       - name: Format all projects

@@ -8,6 +8,9 @@ scripts:
   test:
     description: Run tests of all packages
     run: melos exec --dir-exists="test" --fail-fast flutter test --no-pub
+  pub_get:
+    description: Run `pub get` for all packages
+    run: melos exec --file-exists="pubspec.yaml" --fail-fast flutter pub get
   test_with_coverage:
     description: Run tests of all packages with coverage and merge its results
     run: |
