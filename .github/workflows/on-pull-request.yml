@@ -50,10 +50,30 @@ jobs:
         uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  package-score:
+    name: "Package score"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+      - name: Dart Package Analyser
+        uses: axel-op/dart-package-analyzer@v4
+        id: analysis
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check package score
+        env:
+          TOTAL: ${{ steps.analysis.outputs.total }}
+          TOTAL_MAX: ${{ steps.analysis.outputs.total_max }}
+        run: |
+          if (( $TOTAL < $TOTAL_MAX ))
+          then
+            echo Package score needs to get improved: $TOTAL / $TOTAL_MAX
+            exit 1
+          fi
   build-android:
     runs-on: ubuntu-latest
     name: Build Android
-    needs: [ test, analyze ]
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
@@ -77,7 +97,6 @@ jobs:
   build-web:
     runs-on: ubuntu-latest
     name: Build Web
-    needs: [ test, analyze ]
     if: github.repository == 'josxha/flutter_map_plugins'
     defaults:
       run:
