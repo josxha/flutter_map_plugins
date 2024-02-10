@@ -1,17 +1,27 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_plugins_example/common/attribution_widget.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 import 'package:vector_map_tiles_pmtiles/vector_map_tiles_pmtiles.dart';
-import 'package:vector_tile_renderer/vector_tile_renderer.dart';
-import 'protomap_theme.dart';
+import 'package:vector_tile_renderer/vector_tile_renderer.dart' as vtr;
 
-// It could be that the hosted PMTiles file is no longer available.
-// Check https://maps.protomaps.com/builds/ to get an up to date build.
-// TODO: use your own tile source https://docs.protomaps.com/pmtiles/cloud-storage
-const tileSource = 'https://build.protomaps.com/20240203.pmtiles';
+/// TODO: use your own tile source https://docs.protomaps.com/pmtiles/cloud-storage
+/// This can be a hosted file or local file in your file system,
+/// However, flutter assets are not supported.
+const String tileSource =
+    'https://raw.githubusercontent.com/protomaps/PMTiles/main/spec/v3/protomaps(vector)ODbL_firenze.pmtiles';
 
 class VectorMapTilesPmTilesPage extends StatelessWidget {
+  /// The theme specifies the look of the rendered map.
+  ///
+  /// Note: Styles from Mapbox, OpenMapTiles and others and not compatible
+  /// with Protomaps styles.
+  final vtr.Theme mapTheme = ProtomapsThemes.light(
+    logger: kDebugMode ? const vtr.Logger.console() : null,
+  );
+
   final Future<PmTilesVectorTileProvider> _futureTileProvider =
       PmTilesVectorTileProvider.fromSource(tileSource);
 
@@ -31,17 +41,18 @@ class VectorMapTilesPmTilesPage extends StatelessWidget {
             final tileProvider = snapshot.data!;
             return FlutterMap(
               options: const MapOptions(
-                initialZoom: 3,
-                initialCenter: LatLng(0, 0),
-                maxZoom: 15,
+                initialCenter: LatLng(43.787942, 11.237517), // firenze
+                maxZoom: 18,
+                minZoom: 0,
               ),
               children: [
                 VectorTileLayer(
-                  theme: ProtomapTheme.basemapTheme(),
+                  theme: mapTheme,
                   tileProviders: TileProviders({
                     'protomaps': tileProvider,
                   }),
                 ),
+                const OsmAttributionWidget(),
               ],
             );
           }

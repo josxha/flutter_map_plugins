@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cache/flutter_map_cache.dart';
+import 'package:flutter_map_plugins_example/common/attribution_widget.dart';
 import 'package:flutter_map_plugins_example/flutter_map_cache/cache_store_types.dart';
 import 'package:flutter_map_plugins_example/flutter_map_cache/connectivity_icon.dart';
 import 'package:latlong2/latlong.dart';
@@ -59,6 +60,7 @@ class _FlutterMapCachePageState extends State<FlutterMapCachePage> {
                   ),
                   userAgentPackageName: 'com.github.josxha/flutter_map_plugins',
                 ),
+                const OsmAttributionWidget(),
               ],
             ),
           ),

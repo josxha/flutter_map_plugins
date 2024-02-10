@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_plugins_example/common/attribution_widget.dart';
 import 'package:flutter_map_pmtiles/flutter_map_pmtiles.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -11,7 +12,9 @@ class FlutterMapPmTilesPage extends StatefulWidget {
 }
 
 // TODO: use your own tile source https://docs.protomaps.com/pmtiles/cloud-storage
-const tileSource =
+/// This can be a hosted file or local file in your file system,
+/// However, flutter assets are not supported.
+const String tileSource =
     'https://raw.githubusercontent.com/protomaps/PMTiles/main/spec/v3/stamen_toner(raster)CC-BY%2BODbL_z3.pmtiles';
 
 class _FlutterMapPmTilesPageState extends State<FlutterMapPmTilesPage> {
@@ -38,6 +41,7 @@ class _FlutterMapPmTilesPageState extends State<FlutterMapPmTilesPage> {
               ),
               children: [
                 TileLayer(tileProvider: tileProvider),
+                const OsmAttributionWidget(),
               ],
             );
           }
