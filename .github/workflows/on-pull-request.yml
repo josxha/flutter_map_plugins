@@ -61,9 +61,7 @@ jobs:
         with:
           channel: "stable"
       - name: Install melos
-        run: |
-          dart pub global activate melos
-          npm install sanitize-html
+        run: dart pub global activate melos
       - name: Bootstrap melos
         run: melos bootstrap
       - name: Install pana
