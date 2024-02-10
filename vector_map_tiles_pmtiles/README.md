@@ -69,13 +69,13 @@ final _futureTileProvider = PmTilesVectorTileProvider
 2. Create your map theme
 
 The theme specifies the look of the rendered map.
+
+- You can use one of the default Protomaps basemap
+  themes, for example the light theme: `ProtomapsThemes.light()`.
+- or provide your own style with: `ThemeReader().read(myStyleJson)`.
+
 Note: Styles from Mapbox, OpenMapTiles and others and not compatible
 with Protomaps styles.
-
-```dart
-/// The map theme that defines the look of the rendered map
-final mapTheme = ProtomapsThemes.light();
-```
 
 3. Await the future, e.g. by using a `FutureBuilder`.
 
