@@ -74,7 +74,7 @@ class SelectionPage extends StatelessWidget {
         desc: 'MBTiles for vector_map_files / flutter_map',
         routeName: 'vector_map_tiles_mbtiles',
       ),
-      SelectionItemWidget(
+      SelectionItemWidget.disabledOnWeb(
         title: 'vector_map_tiles_pmtiles',
         desc: 'PMTiles for vector_map_files / flutter_map',
         routeName: 'vector_map_tiles_pmtiles',
