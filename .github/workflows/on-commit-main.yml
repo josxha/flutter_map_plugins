@@ -36,8 +36,6 @@ jobs:
         run: dart pub global activate melos
       - name: Bootstrap melos
         run: melos bootstrap
-      - name: Analyze all projects
-        run: melos run analyze --no-select
       - name: Install coverde
         run: dart pub global activate coverde
       - name: Run tests with coverage

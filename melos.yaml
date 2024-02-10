@@ -12,6 +12,7 @@ scripts:
     description: Run tests of all packages with coverage and merge its results
     run: |
       melos exec rm -rf coverage 
+      melos exec --dir-exists="test" --fail-fast flutter pub get
       melos exec --dir-exists="test" --fail-fast flutter test --no-pub -r expanded --coverage
       melos exec -c 1 --file-exists=coverage/lcov.info coverde filter --input ./coverage/lcov.info --output MELOS_ROOT_PATH/coverage/filtered.lcov.info --filters \.g\.dart
       coverde value -i coverage/filtered.lcov.info > MELOS_ROOT_PATH/coverage/result.txt
