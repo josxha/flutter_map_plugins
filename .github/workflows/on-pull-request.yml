@@ -56,21 +56,20 @@ jobs:
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
-      - name: Dart Package Analyser
-        uses: axel-op/dart-package-analyzer@v3
-        id: analysis
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check package score
-        env:
-          TOTAL: ${{ steps.analysis.outputs.total }}
-          TOTAL_MAX: ${{ steps.analysis.outputs.total_max }}
+          channel: "stable"
+      - name: Install melos
         run: |
-          if (( $TOTAL < $TOTAL_MAX ))
-          then
-            echo Package score needs to get improved: $TOTAL / $TOTAL_MAX
-            exit 1
-          fi
+          dart pub global activate melos
+          npm install sanitize-html
+      - name: Bootstrap melos
+        run: melos bootstrap
+      - name: Install pana
+        run: dart pub global activate pana
+      - name: Check package score for all
+        run: melos run package_score --no-select
   build-android:
     runs-on: ubuntu-latest
     name: Build Android
