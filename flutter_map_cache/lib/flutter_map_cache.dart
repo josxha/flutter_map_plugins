@@ -1,3 +1,4 @@
+/// flutter_map_cache library
 library flutter_map_cache;
 
 export 'src/cached_image_provider.dart';
