@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
+import 'package:flutter_map_plugins_example/flutter_map_compass/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
 import 'package:flutter_map_plugins_example/vector_map_tiles_pmtiles/page.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         'flutter_map_cache': (context) => const FlutterMapCachePage(),
         'flutter_map_pmtiles': (context) => const FlutterMapPmTilesPage(),
         'vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
+        'flutter_map_compass': (context) => const FlutterMapCompassPage(),
       },
     );
   }
@@ -44,6 +46,12 @@ class SelectionPage extends StatelessWidget {
         desc: 'A slim yet powerful caching plugin for flutter_map '
             'tile layers.',
         routeName: 'flutter_map_cache',
+      ),
+      SelectionItemWidget(
+        title: 'flutter_map_compass',
+        desc: 'A simple compass layer to indicate the map rotation and '
+            'reset the rotation on click',
+        routeName: 'flutter_map_compass',
       ),
       SelectionItemWidget(
         title: 'flutter_map_pmtiles',
