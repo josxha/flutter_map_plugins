@@ -22,9 +22,9 @@ for PMTiles.
 <th>grayscale</th>
 </tr>
 <tr>
-<td style="width: 33%"><img src="images/screenshot-light.jpg" alt="Example screenshot"></td>
-<td style="width: 33%"><img src="images/screenshot-white.jpg" alt="Example screenshot"></td>
-<td style="width: 33%"><img src="images/screenshot-grayscale.jpg" alt="Example screenshot"></td>
+<td style="width: 33%"><img src="https://raw.githubusercontent.com/josxha/flutter_map_plugins/main/vector_map_tiles_pmtiles/images/screenshot-light.jpg" alt="Example screenshot"></td>
+<td style="width: 33%"><img src="https://raw.githubusercontent.com/josxha/flutter_map_plugins/main/vector_map_tiles_pmtiles/images/screenshot-white.jpg" alt="Example screenshot"></td>
+<td style="width: 33%"><img src="https://raw.githubusercontent.com/josxha/flutter_map_plugins/main/vector_map_tiles_pmtiles/images/screenshot-grayscale.jpg" alt="Example screenshot"></td>
 </tr>
 </table>
 
@@ -34,8 +34,8 @@ for PMTiles.
 <th>black</th>
 </tr>
 <tr>
-<td style="width: 33%"><img src="images/screenshot-dark.jpg" alt="Example screenshot"></td>
-<td style="width: 33%"><img src="images/screenshot-black.jpg" alt="Example screenshot"></td>
+<td style="width: 33%"><img src="https://raw.githubusercontent.com/josxha/flutter_map_plugins/main/vector_map_tiles_pmtiles/images/screenshot-dark.jpg" alt="Example screenshot"></td>
+<td style="width: 33%"><img src="https://raw.githubusercontent.com/josxha/flutter_map_plugins/main/vector_map_tiles_pmtiles/images/screenshot-black.jpg" alt="Example screenshot"></td>
 </tr>
 </table>
 
