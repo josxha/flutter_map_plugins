@@ -57,7 +57,7 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v4
       - name: Dart Package Analyser
-        uses: axel-op/dart-package-analyzer@v4
+        uses: axel-op/dart-package-analyzer@v3
         id: analysis
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
