@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_compass/flutter_map_compass.dart';
+import 'package:flutter_map_plugins_example/common/attribution_widget.dart';
 import 'package:latlong2/latlong.dart';
 
 class FlutterMapCompassPage extends StatefulWidget {
@@ -36,6 +37,7 @@ class _FlutterMapCompassPageState extends State<FlutterMapCompassPage> {
             onPressed: () => rotateMap(90),
             icon: const Icon(Icons.rotate_right),
           ),
+          const SizedBox(height: 24),
         ],
       ),
       body: FlutterMap(
@@ -50,6 +52,7 @@ class _FlutterMapCompassPageState extends State<FlutterMapCompassPage> {
             urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
           ),
           const MapCompass.cupertino(),
+          const OsmAttributionWidget(),
         ],
       ),
     );
