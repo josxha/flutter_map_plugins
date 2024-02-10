@@ -2,8 +2,8 @@
 
 ```dart
 // initiate your tile provider
-final Future<PmTilesTileProvider> _futureTileProvider = PmTilesTileProvider
-        .fromSource('eitherAnUrlOrFileSystemPath');
+final _futureTileProvider = PmTilesTileProvider
+    .fromSource('eitherAnUrlOrFileSystemPath');
 
 @override
 Widget build(BuildContext context) {
