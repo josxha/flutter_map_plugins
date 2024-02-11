@@ -6,7 +6,6 @@ import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_compass/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_mbtiles/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
-import 'package:flutter_map_plugins_example/vector_map_tiles_mbtiles/page.dart';
 import 'package:flutter_map_plugins_example/vector_map_tiles_pmtiles/page.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -33,8 +32,6 @@ class MyApp extends StatelessWidget {
         'flutter_map_pmtiles': (context) => const FlutterMapPmTilesPage(),
         'vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
         'flutter_map_mbtiles': (context) => const FlutterMapMbTilesPage(),
-        'vector_map_tiles_mbtiles': (context) =>
-            const VectorMapTilesMbTilesPage(),
         'flutter_map_compass': (context) => const FlutterMapCompassPage(),
       },
     );
