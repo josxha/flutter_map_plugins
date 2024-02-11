@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_plugins_example/common/utils.dart';
@@ -18,6 +19,10 @@ class VectorMapTilesMbTilesPage extends StatefulWidget {
 class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
   final Future<MBTiles> _futureMbtiles = _initMbtiles();
   MBTiles? _mbtiles;
+
+  final _theme = ProvidedThemes.lightTheme(
+    logger: kDebugMode ? const Logger.console() : null,
+  );
 
   static Future<MBTiles> _initMbtiles() async {
     // This function copies an asset file from the asset bundle to the temporary
@@ -62,7 +67,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                     ),
                     children: [
                       VectorTileLayer(
-                        theme: ProvidedThemes.lightTheme(),
+                        theme: _theme,
                         tileProviders: TileProviders({
                           'openmaptiles': MbTilesVectorTileProvider(
                             mbtiles: _mbtiles!,

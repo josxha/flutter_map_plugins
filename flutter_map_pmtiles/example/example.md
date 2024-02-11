@@ -11,7 +11,6 @@ Widget build(BuildContext context) {
     options: MapOptions(),
     children: [
       TileLayer(
-        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
         // use your awaited PmTilesTileProvider
         tileProvider: tileProvider,
       ),

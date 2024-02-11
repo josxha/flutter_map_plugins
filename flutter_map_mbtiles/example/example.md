@@ -3,7 +3,7 @@
 ```dart
 // initiate your tile provider
 final _futureTileProvider = MbTilesTileProvider
-    .fromSource('eitherAnUrlOrFileSystemPath');
+    .fromSource('path/to/file.mbtiles');
 
 @override
 Widget build(BuildContext context) {
@@ -11,7 +11,6 @@ Widget build(BuildContext context) {
     options: MapOptions(),
     children: [
       TileLayer(
-        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
         // use your awaited MbTilesTileProvider
         tileProvider: tileProvider,
       ),
