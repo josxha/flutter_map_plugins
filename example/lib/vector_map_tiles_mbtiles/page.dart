@@ -17,20 +17,19 @@ class VectorMapTilesMbTilesPage extends StatefulWidget {
 }
 
 class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
-  final Future<MBTiles> _futureMbtiles = _initMbtiles();
+  final Future<MBTiles> _futureMbtiles = _initMbTiles();
   MBTiles? _mbtiles;
 
-  final _theme = ProvidedThemes.lightTheme(
-    logger: kDebugMode ? const Logger.console() : null,
-  );
+  final logger = kDebugMode ? const Logger.console() : null;
+  late final _theme = ProvidedThemes.lightTheme(logger: logger);
 
-  static Future<MBTiles> _initMbtiles() async {
+  static Future<MBTiles> _initMbTiles() async {
     // This function copies an asset file from the asset bundle to the temporary
     // app directory.
     // It is not recommended to use this in production. Instead download your
     // mbtiles file from a web server or object storage.
     final file = await copyAssetToFile(
-      'assets/mbtiles/countries-vector.mbtiles',
+      'assets/mbtiles/malta-vector.mbtiles',
     );
     return MBTiles(mbtilesPath: file.path);
   }
@@ -59,11 +58,14 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                 ),
                 Expanded(
                   child: FlutterMap(
-                    options: const MapOptions(
-                      minZoom: 1,
-                      maxZoom: 6,
-                      initialZoom: 2,
-                      initialCenter: LatLng(49, 9),
+                    options: MapOptions(
+                      minZoom: 8, //metadata.minZoom?.toDouble() ?? 0,
+                      maxZoom: 14, //metadata.maxZoom?.toDouble() ?? 13,
+                      initialZoom: 11, // metadata.defaultZoom ?? 8,
+                      initialCenter: LatLng(
+                        metadata.defaultCenter?.$2 ?? 0,
+                        metadata.defaultCenter?.$1 ?? 0,
+                      ),
                     ),
                     children: [
                       VectorTileLayer(
@@ -81,6 +83,8 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
             );
           }
           if (snapshot.hasError) {
+            debugPrint(snapshot.error.toString());
+            debugPrintStack(stackTrace: snapshot.stackTrace);
             return Center(child: Text(snapshot.error.toString()));
           }
           return const Center(child: CircularProgressIndicator());
