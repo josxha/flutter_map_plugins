@@ -1,6 +1,6 @@
 name: flutter_map_mbtiles
-description: Raster and Vector MBTiles TileProvider for flutter_map
-version: 0.1.0
+description: Mapbox MBTiles tile provider for flutter_map that can be used for a map that is 100% offline.
+version: 1.0.0
 repository: https://github.com/josxha/flutter_map_mbtiles
 issue_tracker: https://github.com/josxha/flutter_map_mbtiles/issues
 topics: [ flutter-map, mbtiles, map ]

@@ -4,8 +4,10 @@ Raster and Vector MBTiles `TileProvider`
 for [flutter_map](https://pub.dev/packages/flutter_map).
 
 - Supported raster tiles: `jpg`, `png`, `webp`
-- Supported vector tiles: `pbf`
-- Web is not supported because of it's lacking sqlite support
+- If you want to use `pbf` vector tiles
+  you can
+  use [vector_map_tiles_mbtiles](https://pub.dev/packages/vector_map_tiles_mbtiles).
+- Web is not supported because of it's lacking SQLite support.
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_mbtiles)](https://pub.dev/packages/flutter_map_mbtiles)
 [![likes](https://img.shields.io/pub/likes/flutter_map_mbtiles?logo=flutter)](https://pub.dev/packages/flutter_map_mbtiles)
@@ -23,7 +25,8 @@ for [flutter_map](https://pub.dev/packages/flutter_map).
 
 ```yaml
 dependencies:
-  flutter_map_mbtiles: ^0.0.1
+  flutter_map: ^6.0.0         # in case you don't have it yet 
+  flutter_map_mbtiles: ^1.0.0 # this package
 ```
 
 ## Usage

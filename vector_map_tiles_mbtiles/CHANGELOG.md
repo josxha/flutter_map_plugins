@@ -1,4 +1,4 @@
-## 0.1.0
+## [1.0.0] yyyy-mm-dd
 
 - Initial release
-- Add `PmTilesVectorTileProvider`
+- Add `MbTilesVectorTileProvider`

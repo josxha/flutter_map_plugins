@@ -1,6 +1,12 @@
 # vector_map_tiles_mbtiles
 
-A TileProvider for flutter_map that adds support for PMTiles.
+A TileProvider for flutter_map that adds support for MBTiles.
+
+- Supported vector tile format: `pbf` (sometimes known as `mvt`)
+- If you have raster tiles
+  you can
+  use [flutter_map_mbtiles](https://pub.dev/packages/flutter_map_mbtiles).
+- Web is not supported because of it's lacking SQLite support.
 
 [![Pub Version](https://img.shields.io/pub/v/vector_map_tiles_mbtiles)](https://pub.dev/packages/vector_map_tiles_mbtiles)
 [![likes](https://img.shields.io/pub/likes/vector_map_tiles_mbtiles?logo=flutter)](https://pub.dev/packages/vector_map_tiles_mbtiles)
@@ -18,33 +24,28 @@ Add the following packages to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_map: ^6.0.0         # in case you don't have it yet 
+  flutter_map: ^6.0.0              # in case you don't have it yet 
   vector_map_tiles_mbtiles: ^1.0.0 # this package
 ```
 
 ## Usage
 
-1. Initiate the TileProvider
+1. Initiate the VectorTileProvider
 
 ```dart
-// ...from an URL
-final Future<
-    PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
-    .fromSource('https://example.com/useYourOwnHostedPMTilesFile.pmtiles');
 // ...from an local file on the file system
-final Future<
-    PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
-    .fromSource('some/file/system/path.pmtiles');
-// ...or provide a PmTilesArchive directly 
-// (you'll need to add pmtiles as direct dependency to your project)
-final Future<
-    PmTilesVectorTileProvider> _futureTileProvider = PmTilesVectorTileProvider
-    .fromArchive(somePmTilesArchive);
+final _futureTileProvider = MbTilesVectorTileProvider
+    .fromSource('some/file/system/path.mbtiles');
+
+// ...or provide a MbTilesArchive directly 
+// (you'll need to add mbtiles as direct dependency to your project)
+final _futureTileProvider = PmgTilesVectorTileProvider
+    .fromArchive(someMbTilesArchive);
 ```
 
 2. Await the response of the future, e.g. by using a `FutureBuilder`.
 
-3. Provide your `PmTilesVectorTileProvider` to your `TileLayer`
+3. Provide your `MbTilesVectorTileProvider` to your `TileLayer`
 
 ```dart
 @override
