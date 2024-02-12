@@ -29,7 +29,8 @@ jobs:
       - name: Format all projects
         run: dart format --output=none --set-exit-if-changed .
   test:
-    runs-on: ubuntu-latest
+    # run on windows because
+    runs-on: windows-latest
     name: Test
     steps:
       - name: Checkout project

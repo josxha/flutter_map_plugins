@@ -42,6 +42,19 @@ storage backend you would possibly want.
 A compass for flutter_map that indicates the map rotation. It rotates the map
 back to north on top when clicked.
 
+### [flutter_map_mbtiles](https://pub.dev/packages/flutter_map_mbtiles)
+
+[![Pub Version](https://img.shields.io/pub/v/flutter_map_mbtiles)](https://pub.dev/packages/flutter_map_mbtiles)
+[![likes](https://img.shields.io/pub/likes/flutter_map_mbtiles?logo=flutter)](https://pub.dev/packages/flutter_map_mbtiles)
+[![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_mbtiles)](https://pub.dev/packages/flutter_map_mbtiles)
+
+This package provides the `MbTilesTileProvider` that can be used with
+flutter_map tile layers.
+
+- This package uses [mbtiles](https://pub.dev/packages/mbtiles) under the hood
+  for the MBTiles support.
+- MBTiles is a file format to store map tiles in a single SQLite database.
+
 ### [flutter_map_pmtiles](https://pub.dev/packages/flutter_map_pmtiles)
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_pmtiles)](https://pub.dev/packages/flutter_map_pmtiles)
