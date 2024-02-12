@@ -7,7 +7,7 @@ import 'package:mbtiles/mbtiles.dart';
 // ignore_for_file: diagnostic_describe_all_properties
 
 class TestApp extends StatelessWidget {
-  final MBTiles mbtiles;
+  final MbTiles mbtiles;
 
   const TestApp({super.key, required this.mbtiles});
 

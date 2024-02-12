@@ -13,10 +13,10 @@ class FlutterMapMbTilesPage extends StatefulWidget {
 }
 
 class _FlutterMapMbTilesPageState extends State<FlutterMapMbTilesPage> {
-  final Future<MBTiles> _futureMbtiles = _initMbtiles();
-  MBTiles? _mbtiles;
+  final Future<MbTiles> _futureMbtiles = _initMbtiles();
+  MbTiles? _mbtiles;
 
-  static Future<MBTiles> _initMbtiles() async {
+  static Future<MbTiles> _initMbtiles() async {
     // This function copies an asset file from the asset bundle to the temporary
     // app directory.
     // It is not recommended to use this in production. Instead download your
@@ -24,7 +24,7 @@ class _FlutterMapMbTilesPageState extends State<FlutterMapMbTilesPage> {
     final file = await copyAssetToFile(
       'assets/mbtiles/countries-raster.mbtiles',
     );
-    return MBTiles(mbtilesPath: file.path);
+    return MbTiles(mbtilesPath: file.path);
   }
 
   @override
@@ -34,7 +34,7 @@ class _FlutterMapMbTilesPageState extends State<FlutterMapMbTilesPage> {
         backgroundColor: Colors.white,
         title: const Text('flutter_map_mbtiles'),
       ),
-      body: FutureBuilder<MBTiles>(
+      body: FutureBuilder<MbTiles>(
         future: _futureMbtiles,
         builder: (context, snapshot) {
           if (snapshot.hasData) {

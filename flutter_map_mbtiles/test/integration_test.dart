@@ -4,16 +4,16 @@ import 'package:mbtiles/mbtiles.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-@GenerateNiceMocks([MockSpec<MBTiles>()])
+@GenerateNiceMocks([MockSpec<MbTiles>()])
 import 'integration_test.mocks.dart';
 import 'utils/test_app.dart';
 
 Future<void> main() async {
   testWidgets('FlutterMap with MbTilesTileProvider', (tester) async {
-    final mbtiles = MockMBTiles();
+    final mbtiles = MockMbTiles();
     when(mbtiles.getMetadata())
-        .thenAnswer((_) => MBTilesMetadata(name: 'MockMBTiles', format: 'png'));
-    when(mbtiles.getTile(captureAny, captureAny, captureAny))
+        .thenAnswer((_) => MbTilesMetadata(name: 'MockMbTiles', format: 'png'));
+    when(mbtiles.getTile(z: captureAny, x: captureAny, y: captureAny))
         .thenAnswer((_) => TileProvider.transparentImage);
     await tester.pumpWidget(TestApp(mbtiles: mbtiles));
     await tester.pumpAndSettle();

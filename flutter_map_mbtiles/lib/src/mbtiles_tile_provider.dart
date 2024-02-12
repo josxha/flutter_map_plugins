@@ -7,7 +7,7 @@ import 'package:mbtiles/mbtiles.dart';
 /// MBTiles raster [TileProvider], use for `png`, `jpg` or `webp` tiles.
 class MbTilesTileProvider extends TileProvider {
   /// MBTiles database
-  final MBTiles mbtiles;
+  final MbTiles mbtiles;
 
   /// Create a new [MbTilesTileProvider] instance with an MBTiles instance.
   MbTilesTileProvider({
@@ -31,7 +31,7 @@ class MbTilesTileProvider extends TileProvider {
   MbTilesTileProvider.fromPath({
     required String path,
     this.silenceTileNotFound = !kDebugMode,
-  })  : mbtiles = MBTiles(mbtilesPath: path),
+  })  : mbtiles = MbTiles(mbtilesPath: path),
         _createdInternally = true;
 
   @override

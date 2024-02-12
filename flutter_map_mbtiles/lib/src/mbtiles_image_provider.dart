@@ -12,7 +12,7 @@ class MbTilesImageProvider extends ImageProvider<MbTilesImageProvider> {
   final TileCoordinates coordinates;
 
   /// MBTiles database
-  final MBTiles mbtiles;
+  final MbTiles mbtiles;
 
   /// Whether an exception should get thrown if a tile is not found.
   final bool silenceTileNotFound;
@@ -54,7 +54,7 @@ class MbTilesImageProvider extends ImageProvider<MbTilesImageProvider> {
     ImageDecoderCallback decode,
   ) async {
     final tmsY = ((1 << coordinates.z) - 1) - coordinates.y;
-    final bytes = mbtiles.getTile(coordinates.z, coordinates.x, tmsY);
+    final bytes = mbtiles.getTile(z: coordinates.z, x: coordinates.x, y: tmsY);
     if (bytes == null) {
       if (silenceTileNotFound) {
         return decode(
