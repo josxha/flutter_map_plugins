@@ -10,9 +10,11 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  dio: ^5.4.0
   flutter:
     sdk: flutter
   flutter_map: ^6.1.0
+  http: ^1.2.0
   pmtiles: ^1.2.0
 
 dev_dependencies:

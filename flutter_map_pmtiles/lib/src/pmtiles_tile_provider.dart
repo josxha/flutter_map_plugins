@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_pmtiles/flutter_map_pmtiles.dart';
+import 'package:flutter_map_pmtiles/src/dio_at.dart';
 import 'package:pmtiles/pmtiles.dart';
 
 /// Use this [TileProvider] to provide raster tiles from a PMTiles archive.
@@ -17,8 +21,20 @@ class PmTilesTileProvider extends TileProvider {
 
   /// Create a tile provider by specifying the source of the PMTiles file.
   /// [source] can either be a URL or path on your file system.
-  static Future<PmTilesTileProvider> fromSource(String source) async {
-    final archive = await PmTilesArchive.from(source);
+  ///
+  /// Dio is not used if [source] is no URL.
+  static Future<PmTilesTileProvider> fromSource(
+    String source, {
+    Dio? dio,
+  }) async {
+    final PmTilesArchive archive;
+    if (source.startsWith("http://") || source.startsWith('https://')) {
+      final readAt = DioAt(url: source, dio: dio ?? Dio());
+      archive = await PmTilesArchive.fromReadAt(readAt);
+    } else {
+      final file = File(source);
+      archive = await PmTilesArchive.fromFile(file);
+    }
     return PmTilesTileProvider.fromArchive(archive);
   }
 
