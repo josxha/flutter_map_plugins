@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map_pmtiles/flutter_map_pmtiles.dart';
@@ -15,9 +16,13 @@ class PmTilesImageProvider extends ImageProvider<PmTilesImageProvider> {
   /// The calculated tile ID, translated from ZXY coordinates
   final int tileId;
 
+  /// Dio cancel token to cancel the request
+  final CancelToken? cancelToken;
+
   PmTilesImageProvider({
     required this.tileId,
     required this.archive,
+    this.cancelToken,
   });
 
   @override

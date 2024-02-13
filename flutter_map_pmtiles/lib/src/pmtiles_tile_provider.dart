@@ -15,9 +15,14 @@ class PmTilesTileProvider extends TileProvider {
   /// The used PMTiles archive
   final PmTilesArchive archive;
 
+  final Map<int, CancelToken>? cancelTokens;
+
   /// Create a tile provider directly with a [PmTilesArchive] from the
   /// pmtiles package.
-  PmTilesTileProvider.fromArchive(this.archive);
+  PmTilesTileProvider.fromArchive(this.archive) : cancelTokens = null;
+
+  /// Private constructor
+  PmTilesTileProvider._(this.archive, this.cancelTokens);
 
   /// Create a tile provider by specifying the source of the PMTiles file.
   /// [source] can either be a URL or path on your file system.
@@ -29,17 +34,18 @@ class PmTilesTileProvider extends TileProvider {
   }) async {
     final PmTilesArchive archive;
     if (source.startsWith("http://") || source.startsWith('https://')) {
-      final readAt = DioAt(url: source, dio: dio ?? Dio());
-      archive = await PmTilesArchive.fromReadAt(readAt);
-    } else {
-      final file = File(source);
-      archive = await PmTilesArchive.fromFile(file);
+      final dioAt = DioAt(url: source, dio: dio ?? Dio());
+      final archive = await PmTilesArchive.fromReadAt(dioAt);
+      return PmTilesTileProvider._(archive, dioAt.cancelTokens);
     }
+
+    final file = File(source);
+    archive = await PmTilesArchive.fromFile(file);
     return PmTilesTileProvider.fromArchive(archive);
   }
 
   @override
-  bool get supportsCancelLoading => false;
+  bool get supportsCancelLoading => cancelTokens != null;
 
   /// Used by flutter_map to request a specific image for a tile
   @override
@@ -50,6 +56,29 @@ class PmTilesTileProvider extends TileProvider {
     return PmTilesImageProvider(
       tileId: ZXY(coordinates.z, coordinates.x, coordinates.y).toTileId(),
       archive: archive,
+    );
+  }
+
+  /// Used by flutter_map to request a specific image for a tile
+  @override
+  ImageProvider<Object> getImageWithCancelLoadingSupport(
+    TileCoordinates coordinates,
+    TileLayer options,
+    Future<void> cancelLoading,
+  ) {
+    final tileId = ZXY(coordinates.z, coordinates.x, coordinates.y).toTileId();
+
+    final cancelToken = CancelToken();
+    cancelTokens?[tileId] = cancelToken;
+    cancelLoading.then((_) {
+      cancelToken.cancel();
+      cancelTokens?.remove(tileId);
+    });
+
+    return PmTilesImageProvider(
+      tileId: tileId,
+      archive: archive,
+      cancelToken: cancelToken,
     );
   }
 }

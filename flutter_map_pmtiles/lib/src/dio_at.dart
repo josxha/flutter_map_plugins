@@ -7,18 +7,28 @@ import 'package:pmtiles/pmtiles.dart';
 class DioAt implements ReadAt {
   final Dio dio;
   final String url;
+  final Map<int, CancelToken> cancelTokens = {};
+  final bool _dioCreatedInternally;
 
-  const DioAt({required this.dio, required this.url});
+  DioAt({Dio? dio, required this.url})
+      : dio = dio ?? Dio(),
+        _dioCreatedInternally = dio == null;
 
   @override
   Future<http.ByteStream> readAt(int offset, int length) async {
-    final response = await dio.get(url,
+    const tileId = -1; // TODO use the tileId to get the right CancelToken
+
+    final Response<ResponseBody> response = await dio.get(url,
+        cancelToken: cancelTokens[tileId],
         options: Options(
           responseType: ResponseType.stream,
           headers: {
             HttpHeaders.rangeHeader: 'bytes=$offset-${offset + length - 1}',
           },
         ));
+
+    cancelTokens.remove(tileId);
+
     if (response.statusCode != HttpStatus.partialContent) {
       throw HttpException('Unexpected status code: ${response.statusCode}');
     }
@@ -30,11 +40,11 @@ class DioAt implements ReadAt {
           'Unexpected Content-Length: $responseLength expected $length');
     }
 
-    return http.ByteStream(response.data.stream);
+    return http.ByteStream(response.data!.stream);
   }
 
   @override
   Future<void> close() async {
-    dio.close();
+    if (_dioCreatedInternally) dio.close();
   }
 }
