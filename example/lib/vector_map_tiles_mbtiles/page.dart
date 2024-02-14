@@ -17,13 +17,13 @@ class VectorMapTilesMbTilesPage extends StatefulWidget {
 }
 
 class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
-  final Future<MBTiles> _futureMbtiles = _initMbTiles();
-  MBTiles? _mbtiles;
+  final Future<MbTiles> _futureMbtiles = _initMbTiles();
+  MbTiles? _mbtiles;
 
   final logger = kDebugMode ? const Logger.console() : null;
   late final _theme = ProvidedThemes.lightTheme(logger: logger);
 
-  static Future<MBTiles> _initMbTiles() async {
+  static Future<MbTiles> _initMbTiles() async {
     // This function copies an asset file from the asset bundle to the temporary
     // app directory.
     // It is not recommended to use this in production. Instead download your
@@ -31,7 +31,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
     final file = await copyAssetToFile(
       'assets/mbtiles/malta-vector.mbtiles',
     );
-    return MBTiles(mbtilesPath: file.path);
+    return MbTiles(mbtilesPath: file.path);
   }
 
   @override
@@ -41,7 +41,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
         backgroundColor: Colors.white,
         title: const Text('vector_map_tiles_mbtiles'),
       ),
-      body: FutureBuilder<MBTiles>(
+      body: FutureBuilder<MbTiles>(
         future: _futureMbtiles,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -62,10 +62,8 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                       minZoom: 8, //metadata.minZoom?.toDouble() ?? 0,
                       maxZoom: 14, //metadata.maxZoom?.toDouble() ?? 13,
                       initialZoom: 11, // metadata.defaultZoom ?? 8,
-                      initialCenter: LatLng(
-                        metadata.defaultCenter?.$2 ?? 0,
-                        metadata.defaultCenter?.$1 ?? 0,
-                      ),
+                      initialCenter:
+                          metadata.defaultCenter ?? const LatLng(0, 0),
                     ),
                     children: [
                       VectorTileLayer(

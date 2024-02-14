@@ -5,9 +5,9 @@ import 'package:vector_map_tiles/vector_map_tiles.dart';
 /// MBTiles raster TileProvider, use for `pbf` tiles.
 class MbTilesVectorTileProvider extends VectorTileProvider {
   /// MBTiles database
-  final MBTiles mbtiles;
+  final MbTiles mbtiles;
 
-  final MBTilesMetadata _mbTilesMetadata;
+  final MbTilesMetadata _mbTilesMetadata;
 
   /// Set to true if you want to silence exceptions that would be thrown if a
   /// tile does not exist in the mbtiles file.
@@ -23,15 +23,15 @@ class MbTilesVectorTileProvider extends VectorTileProvider {
   }) : _mbTilesMetadata = mbtiles.getMetadata();
 
   @override
-  int get maximumZoom => _mbTilesMetadata.maxZoom ?? 99;
+  int get maximumZoom => _mbTilesMetadata.maxZoom?.floor() ?? 99;
 
   @override
-  int get minimumZoom => _mbTilesMetadata.minZoom ?? 0;
+  int get minimumZoom => _mbTilesMetadata.minZoom?.ceil() ?? 0;
 
   @override
   Future<Uint8List> provide(TileIdentity tile) async {
     final tmsY = ((1 << tile.z) - 1) - tile.y;
-    final bytes = mbtiles.getTile(tile.z, tile.x, tmsY);
+    final bytes = mbtiles.getTile(z: tile.z, x: tile.x, y: tmsY);
     if (bytes != null) return bytes;
     if (silenceTileNotFound) {
       return Uint8List(0);
