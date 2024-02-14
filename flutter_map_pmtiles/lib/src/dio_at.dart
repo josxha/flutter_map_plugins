@@ -27,8 +27,6 @@ class DioAt implements ReadAt {
           },
         ));
 
-    cancelTokens.remove(tileId);
-
     if (response.statusCode != HttpStatus.partialContent) {
       throw HttpException('Unexpected status code: ${response.statusCode}');
     }

@@ -78,7 +78,7 @@ class PmTilesTileProvider extends TileProvider {
     return PmTilesImageProvider(
       tileId: tileId,
       archive: archive,
-      cancelToken: cancelToken,
+      cancelTokens: cancelTokens,
     );
   }
 }

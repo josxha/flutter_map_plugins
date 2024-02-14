@@ -16,13 +16,13 @@ class PmTilesImageProvider extends ImageProvider<PmTilesImageProvider> {
   /// The calculated tile ID, translated from ZXY coordinates
   final int tileId;
 
-  /// Dio cancel token to cancel the request
-  final CancelToken? cancelToken;
+  /// Dio cancel tokens to cancel the request
+  final Map<int, CancelToken>? cancelTokens;
 
   PmTilesImageProvider({
     required this.tileId,
     required this.archive,
-    this.cancelToken,
+    this.cancelTokens,
   });
 
   @override
@@ -58,6 +58,7 @@ class PmTilesImageProvider extends ImageProvider<PmTilesImageProvider> {
     ImageDecoderCallback decode,
   ) async {
     final data = await archive.tile(tileId);
+    cancelTokens?.remove(tileId);
     final bytes = Uint8List.fromList(data.bytes());
     final codec = decode(await ImmutableBuffer.fromUint8List(bytes));
     return codec;
