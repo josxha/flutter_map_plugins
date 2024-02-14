@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_plugins_example/common/utils.dart';
@@ -6,7 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:mbtiles/mbtiles.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 import 'package:vector_map_tiles_mbtiles/vector_map_tiles_pmtiles.dart';
-import 'package:vector_tile_renderer/vector_tile_renderer.dart';
+import 'package:vector_tile_renderer/vector_tile_renderer.dart' as vtr;
 
 class VectorMapTilesMbTilesPage extends StatefulWidget {
   const VectorMapTilesMbTilesPage({super.key});
@@ -20,8 +19,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
   final Future<MbTiles> _futureMbtiles = _initMbTiles();
   MbTiles? _mbtiles;
 
-  final logger = kDebugMode ? const Logger.console() : null;
-  late final _theme = ProvidedThemes.lightTheme(logger: logger);
+  late final _theme = vtr.ProvidedThemes.lightTheme();
 
   static Future<MbTiles> _initMbTiles() async {
     // This function copies an asset file from the asset bundle to the temporary
@@ -31,7 +29,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
     final file = await copyAssetToFile(
       'assets/mbtiles/malta-vector.mbtiles',
     );
-    return MbTiles(mbtilesPath: file.path);
+    return MbTiles(mbtilesPath: file.path, isPBF: false);
   }
 
   @override
@@ -59,9 +57,9 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                 Expanded(
                   child: FlutterMap(
                     options: MapOptions(
-                      minZoom: 8, //metadata.minZoom?.toDouble() ?? 0,
-                      maxZoom: 14, //metadata.maxZoom?.toDouble() ?? 13,
-                      initialZoom: 11, // metadata.defaultZoom ?? 8,
+                      minZoom: 6,
+                      maxZoom: 14,
+                      initialZoom: 11,
                       initialCenter:
                           metadata.defaultCenter ?? const LatLng(0, 0),
                     ),
@@ -71,9 +69,11 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                         tileProviders: TileProviders({
                           'openmaptiles': MbTilesVectorTileProvider(
                             mbtiles: _mbtiles!,
+                            //silenceTileNotFound: true,
                           ),
                         }),
                       ),
+                      //const TranslucentLayer(),
                     ],
                   ),
                 ),
