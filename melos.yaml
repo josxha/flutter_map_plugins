@@ -13,7 +13,7 @@ scripts:
     run: melos exec --file-exists="pubspec.yaml" --fail-fast flutter pub get
   package_score:
     description: Run pana for all packages
-    run: melos exec --fail-fast --ignore="flutter_map_plugins_example" pana --exit-code-threshold 0 --no-dartdoc .
+    run: melos exec --fail-fast --concurrency 1 --no-private pana --exit-code-threshold 0 --no-dartdoc .
   test_with_coverage:
     description: Run tests of all packages with coverage and merge its results
     run: |

@@ -32,38 +32,20 @@ dependencies:
 ## Usage
 
 ```dart
-late final MBTiles mbtiles;
-
-@override
-void initState() {
-  // open mbtiles
-  mbtiles = MBTiles(
-    mbtilesPath: 'assets/mbtiles/countries-raster.mbtiles',
-  );
-  super.initState();
-}
+// provide the path of the MBTiles file to the tile provider.
+// The file must be on your file system and the app must have the permission 
+// to access to it. The file can't be in your assets.
+final _futureTileProvider = MbTilesTileProvider
+    .fromSource('path/to/file.mbtiles');
 
 @override
 Widget build(BuildContext context) {
   return FlutterMap(
-    options: MapOptions(
-      initialZoom: zoom,
-      initialCenter: center,
-      onPositionChanged: (position, hasGesture) {
-        if (position.center == null || position.zoom == null) return;
-        setState(() {
-          center = position.center!;
-          zoom = position.zoom!;
-        });
-      },
-      minZoom: 0,
-      maxZoom: 6,
-    ),
+    options: MapOptions(),
     children: [
       TileLayer(
-        tileProvider: MBTilesTileProvider(
-          mbtiles: mbtiles,
-        ),
+        // use your awaited MbTilesTileProvider
+        tileProvider: tileProvider,
       ),
     ],
   );
@@ -71,9 +53,16 @@ Widget build(BuildContext context) {
 
 @override
 void dispose() {
-  // close mbtiles
-  mbtiles.dispose();
+// close mbtiles database
+  tileProvider.dispose();
   super.dispose();
 }
 
 ```
+
+## Additional information
+
+If you need help you
+can [open an issue](https://github.com/josxha/flutter_map_plugins/issues/new/choose)
+or join
+the [`flutter_map` discord server](https://discord.gg/BwpEsjqMAH).

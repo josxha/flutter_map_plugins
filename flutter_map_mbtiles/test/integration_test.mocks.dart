@@ -3,9 +3,10 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:typed_data' as _i3;
+import 'dart:typed_data' as _i4;
 
-import 'package:mbtiles/mbtiles.dart' as _i2;
+import 'package:mbtiles/src/mbtiles.dart' as _i3;
+import 'package:mbtiles/src/model/mbtiles_metadata.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -32,10 +33,17 @@ class _FakeMBTilesMetadata_0 extends _i1.SmartFake
         );
 }
 
-/// A class which mocks [MBTiles].
+/// A class which mocks [MbTiles].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMBTiles extends _i1.Mock implements _i2.MBTiles {
+class MockMbTiles extends _i1.Mock implements _i3.MbTiles {
+  @override
+  bool get editable => (super.noSuchMethod(
+        Invocation.getter(#editable),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
   @override
   _i2.MBTilesMetadata getMetadata({bool? allowCache = true}) =>
       (super.noSuchMethod(
@@ -63,22 +71,62 @@ class MockMBTiles extends _i1.Mock implements _i2.MBTiles {
       ) as _i2.MBTilesMetadata);
 
   @override
-  _i3.Uint8List? getTile(
-    int? z,
-    int? x,
-    int? y,
-  ) =>
+  _i4.Uint8List? getTile({
+    required int? z,
+    required int? x,
+    required int? y,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
           #getTile,
-          [
-            z,
-            x,
-            y,
-          ],
+          [],
+          {
+            #z: z,
+            #x: x,
+            #y: y,
+          },
         ),
         returnValueForMissingStub: null,
-      ) as _i3.Uint8List?);
+      ) as _i4.Uint8List?);
+
+  @override
+  void createTables() => super.noSuchMethod(
+        Invocation.method(
+          #createTables,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void putTile({
+    required int? z,
+    required int? x,
+    required int? y,
+    required _i4.Uint8List? bytes,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #putTile,
+          [],
+          {
+            #z: z,
+            #x: x,
+            #y: y,
+            #bytes: bytes,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setMetadata(_i2.MBTilesMetadata? metadata) => super.noSuchMethod(
+        Invocation.method(
+          #setMetadata,
+          [metadata],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void dispose() => super.noSuchMethod(
