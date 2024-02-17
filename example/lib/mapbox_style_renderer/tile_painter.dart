@@ -28,13 +28,6 @@ class TilePainter extends CustomPainter {
               // parse command integer
               final commandInteger = geom[i++];
               final command = GeometryCommand.parse(commandInteger & 0x7);
-              if (command == null) {
-                debugPrint(
-                  'Could not parse the command id of the command '
-                  'integer $commandInteger.',
-                );
-                return;
-              }
               final count = commandInteger >> 3;
 
               // decode zigzag encoded parameter integers
@@ -55,21 +48,57 @@ class TilePainter extends CustomPainter {
                   }
                 case GeometryCommand.closePath:
                   path.close();
+                case null:
+                  debugPrint(
+                    'Could not parse the command id of the command '
+                    'integer $commandInteger.',
+                  );
               }
               canvas.drawPath(path, paint);
             }
           case VectorTileGeomType.POINT:
             if (feature.geometryList == null) break;
+
             final paint = Paint()
               ..color = Colors.red
+              ..style = PaintingStyle.stroke
               ..strokeWidth = 1;
             final path = Path();
-            for (var i = 1; i < feature.geometryList!.length; i += 2) {
-              final x = feature.geometryList![i - 1] / 100.0;
-              final y = feature.geometryList![i] / 100.0;
-              path.lineTo(x, y);
+
+            final geom = feature.geometryList!;
+            var i = 0;
+            while (i < geom.length) {
+              // parse command integer
+              final commandInteger = geom[i++];
+              final command = GeometryCommand.parse(commandInteger & 0x7);
+              final count = commandInteger >> 3;
+
+              // decode zigzag encoded parameter integers
+              switch (command) {
+                case GeometryCommand.moveTo:
+                  for (var p = 0; p < count; p++) {
+                    path.moveTo(
+                      parseParamInt(geom[i++]) / 17,
+                      parseParamInt(geom[i++]) / 17,
+                    );
+                  }
+                case GeometryCommand.lineTo:
+                  for (var p = 0; p < count; p++) {
+                    path.relativeLineTo(
+                      parseParamInt(geom[i++]) / 17,
+                      parseParamInt(geom[i++]) / 17,
+                    );
+                  }
+                case GeometryCommand.closePath:
+                  path.close();
+                case null:
+                  debugPrint(
+                    'Could not parse the command id of the command '
+                    'integer $commandInteger.',
+                  );
+              }
+              canvas.drawPath(path, paint);
             }
-            canvas.drawPath(path, paint);
           case VectorTileGeomType.LINESTRING:
             if (feature.geometryList == null) break;
 
@@ -85,13 +114,6 @@ class TilePainter extends CustomPainter {
               // parse command integer
               final commandInteger = geom[i++];
               final command = GeometryCommand.parse(commandInteger & 0x7);
-              if (command == null) {
-                debugPrint(
-                  'Could not parse the command id of the command '
-                  'integer $commandInteger.',
-                );
-                return;
-              }
               final count = commandInteger >> 3;
 
               // decode zigzag encoded parameter integers
@@ -112,6 +134,11 @@ class TilePainter extends CustomPainter {
                   }
                 case GeometryCommand.closePath:
                   path.close();
+                case null:
+                  debugPrint(
+                    'Could not parse the command id of the command '
+                    'integer $commandInteger.',
+                  );
               }
               canvas.drawPath(path, paint);
             }
