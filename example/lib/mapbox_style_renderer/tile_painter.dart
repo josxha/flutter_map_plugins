@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map_vector/flutter_map_vector.dart';
 import 'package:vector_tile/vector_tile.dart';
@@ -30,7 +33,6 @@ class TilePainter extends CustomPainter {
               final command = GeometryCommand.parse(commandInteger & 0x7);
               final count = commandInteger >> 3;
 
-              // decode zigzag encoded parameter integers
               switch (command) {
                 case GeometryCommand.moveTo:
                   for (var p = 0; p < count; p++) {
@@ -62,8 +64,7 @@ class TilePainter extends CustomPainter {
             final paint = Paint()
               ..color = Colors.red
               ..style = PaintingStyle.stroke
-              ..strokeWidth = 1;
-            final path = Path();
+              ..strokeWidth = 5;
 
             final geom = feature.geometryList!;
             var i = 0;
@@ -71,33 +72,18 @@ class TilePainter extends CustomPainter {
               // parse command integer
               final commandInteger = geom[i++];
               final command = GeometryCommand.parse(commandInteger & 0x7);
+              assert(
+                command == GeometryCommand.moveTo,
+                'Command is not moveTo for a VectorTileGeomType of point.',
+              );
               final count = commandInteger >> 3;
 
-              // decode zigzag encoded parameter integers
-              switch (command) {
-                case GeometryCommand.moveTo:
-                  for (var p = 0; p < count; p++) {
-                    path.moveTo(
-                      parseParamInt(geom[i++]) / 17,
-                      parseParamInt(geom[i++]) / 17,
-                    );
-                  }
-                case GeometryCommand.lineTo:
-                  for (var p = 0; p < count; p++) {
-                    path.relativeLineTo(
-                      parseParamInt(geom[i++]) / 17,
-                      parseParamInt(geom[i++]) / 17,
-                    );
-                  }
-                case GeometryCommand.closePath:
-                  path.close();
-                case null:
-                  debugPrint(
-                    'Could not parse the command id of the command '
-                    'integer $commandInteger.',
-                  );
+              final points = Float32List(count * 2);
+
+              for (var p = 0; p < points.length; p++) {
+                points[p] = parseParamInt(geom[i++]) / 17;
               }
-              canvas.drawPath(path, paint);
+              canvas.drawRawPoints(PointMode.points, points, paint);
             }
           case VectorTileGeomType.LINESTRING:
             if (feature.geometryList == null) break;
@@ -116,7 +102,6 @@ class TilePainter extends CustomPainter {
               final command = GeometryCommand.parse(commandInteger & 0x7);
               final count = commandInteger >> 3;
 
-              // decode zigzag encoded parameter integers
               switch (command) {
                 case GeometryCommand.moveTo:
                   for (var p = 0; p < count; p++) {
@@ -171,5 +156,6 @@ enum GeometryCommand {
       };
 }
 
+/// decode zigzag encoded parameter integer
 double parseParamInt(int paramInt) =>
     ((paramInt >> 1) ^ -(paramInt & 1)).toDouble();
