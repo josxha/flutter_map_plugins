@@ -24,10 +24,10 @@ abstract interface class ThemeLayer {
   /// expression is not supported in filter expressions. The ["pitch"] and
   /// ["distance-from-center"] expressions are supported only for filter
   /// expressions on the symbol layer.
-  Object? get filter;
+  dynamic get filter;
 
   /// Layout properties for the layer.
-  Object? get layout;
+  dynamic get layout;
 
   /// The maximum zoom level for the layer. At zoom levels equal to or
   /// greater than the maxzoom, the layer will be hidden.
@@ -38,7 +38,7 @@ abstract interface class ThemeLayer {
   double? get minZoom;
 
   /// Default paint properties for this layer.
-  Object? get paint;
+  dynamic get paint;
 
   /// The slot this layer is assigned to. If specified, and a slot with that
   /// name exists, it will be placed at that position in the layer order.
