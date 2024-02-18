@@ -23,7 +23,7 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.15
   vector_map_tiles: ^7.0.1
   vector_tile_renderer: ^5.2.0
-  mbtiles: ^0.3.1
+  mbtiles: ^0.4.0
 
   vector_map_tiles_mbtiles:
     path: ../vector_map_tiles_mbtiles
