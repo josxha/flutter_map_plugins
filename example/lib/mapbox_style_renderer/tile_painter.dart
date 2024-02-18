@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map_plugins_example/mapbox_style_renderer/extensions.dart';
 import 'package:flutter_map_vector/flutter_map_vector.dart';
@@ -23,12 +24,22 @@ class TilePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     canvas.scale(1 / scale);
 
+    final bgLayer = style.layers
+        .firstWhereOrNull((l) => l.type == ThemeLayerType.background);
+    if (bgLayer != null) {
+      print(bgLayer.paint);
+      final paint = Paint()
+        ..style = PaintingStyle.fill
+        ..color = const Color(0xfff8f4f0);
+      canvas.drawRect(Rect.largest, paint);
+    }
+
     for (final layer in tile.layers) {
       for (final feature in layer.features) {
         switch (feature.type) {
           case VectorTileGeomType.POLYGON:
             final geom = feature.geometryList;
-            if (geom == null) break;
+            if (geom == null) continue;
 
             // parse tags
             final properties = <String, Object?>{};
@@ -37,23 +48,33 @@ class TilePainter extends CustomPainter {
               final value = feature.values![feature.tags[i + 1]];
               properties[key] = value.getValue();
             }
-            final color = switch (properties['class']) {
-              'lake' => Colors.blueAccent,
-              'ocean' => Colors.blue,
-              'residential' => Colors.orange,
+            final featureClass = properties['class'];
+            if (featureClass == null) continue;
+
+            final layer = style.layers.firstWhereOrNull(
+              (l) => l.filter.toString().contains(RegExp('.+$featureClass.+')),
+            );
+            if (layer == null) continue;
+            //print('${layer.id}: ${layer.paint}');
+
+            final color = switch (layer.id) {
+              'lake' => const Color(0xff74aee9),
+              'water-name-ocean' => const Color(0xff74aee9),
+              'landuse-residential' =>
+                const HSLColor.fromAHSL(0.4, 30, 0.19, 0.9).toColor(),
               'pitch' => Colors.greenAccent,
-              'wood' => Colors.green,
-              'grass' => Colors.lightGreenAccent,
-              'sand' => Colors.yellow,
+              'landcover-wood' => const Color(0xff66aa44).withOpacity(0.1),
+              'landcover-grass' => const Color(0xffd8e8c8).withOpacity(1),
+              'landcover-sand' => const Color.fromRGBO(245, 238, 188, 1),
               'farmland' => Colors.lightGreen,
               'nature_reserve' => Colors.transparent,
-              'school' => Colors.pinkAccent,
+              'landuse-school' => const Color(0xfff0e8f8),
               _ => Colors.pink,
             };
 
             // parse geom
             final paint = Paint()
-              ..color = color.withOpacity(0.2)
+              ..color = color
               ..style = PaintingStyle.fill
               ..strokeWidth = 1 * scale;
             final path = Path();
@@ -91,7 +112,7 @@ class TilePainter extends CustomPainter {
               canvas.drawPath(path, paint);
             }
           case VectorTileGeomType.POINT:
-            if (feature.geometryList == null) break;
+            if (feature.geometryList == null) continue;
 
             final paint = Paint()
               ..color = Colors.red
@@ -118,15 +139,46 @@ class TilePainter extends CustomPainter {
               canvas.drawRawPoints(PointMode.points, points, paint);
             }
           case VectorTileGeomType.LINESTRING:
-            if (feature.geometryList == null) break;
+            final geom = feature.geometryList;
+            if (geom == null) continue;
 
-            final paint = Paint()
-              ..color = Colors.black
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 1 * scale;
+            // parse tags
+            final properties = <String, Object?>{};
+            for (var i = 0; i < feature.tags.length; i += 2) {
+              final key = feature.keys![feature.tags[i]];
+              final value = feature.values![feature.tags[i + 1]];
+              properties[key] = value.getValue();
+            }
+            final featureClass = properties['class'];
+            if (featureClass == null) continue;
+
+            final layer = style.layers.firstWhereOrNull(
+              (l) => l.filter.toString().contains(RegExp('.+$featureClass.+')),
+            );
+            if (layer == null) continue;
+
+            final color = switch (layer.id) {
+              'tunnel-link-casing' => const Color(0xffe9ac77),
+              'waterway_tunnel' => const Color(0xffa0c8f0),
+              'tunnel-minor-casing' => const Color(0xffcfcdca),
+              'tunnel-service-track-casing' => const Color(0xffcfcdca),
+              'tunnel-motorway-link-casing' =>
+                const Color.fromARGB(1, 200, 147, 102),
+              'tunnel-path' => const Color(0xffccbbaa),
+              'landuse-railway' =>
+                const HSLColor.fromAHSL(0.4, 30, 0.19, 0.9).toColor(),
+              _ => Colors.pink,
+            };
+            if (color == Colors.pink) {
+              print('${layer.id}: ${layer.paint}');
+            }
+
             final path = Path();
+            final paint = Paint()
+              ..color = color
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 1.5 * scale;
 
-            final geom = feature.geometryList!;
             var i = 0;
             while (i < geom.length) {
               // parse command integer
