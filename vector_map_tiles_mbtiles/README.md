@@ -39,7 +39,7 @@ final _futureTileProvider = MbTilesVectorTileProvider
 
 // ...or provide a MbTilesArchive directly 
 // (you'll need to add mbtiles as direct dependency to your project)
-final _futureTileProvider = PmgTilesVectorTileProvider
+final _futureTileProvider = MbTilesVectorTileProvider
     .fromArchive(someMbTilesArchive);
 ```
 

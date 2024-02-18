@@ -71,6 +71,20 @@ flutter_map tile layers.
   learn more about
   PMTiles.
 
+### [vector_map_tiles_mbtiles](https://pub.dev/packages/vector_map_tiles_pmtiles)
+
+[![Pub Version](https://img.shields.io/pub/v/vector_map_tiles_mbtiles)](https://pub.dev/packages/vector_map_tiles_mbtiles)
+[![likes](https://img.shields.io/pub/likes/vector_map_tiles_mbtiles?logo=flutter)](https://pub.dev/packages/vector_map_tiles_mbtiles)
+[![Pub Popularity](https://img.shields.io/pub/popularity/vector_map_tiles_mbtiles)](https://pub.dev/packages/vector_map_tiles_mbtiles)
+
+This package provides the `MbTilesVectorTileProvider` that can be used with
+the [vector_map_tiles](https://pub.dev/packages/vector_map_tiles) which itself
+adds support for vector tiles to flutter_map.
+
+- This package uses [mbtiles](https://pub.dev/packages/mbtiles) under the hood
+  for the MBTiles support.
+- MBTiles is a file format to store map tiles in a single SQLite database.
+
 ### [vector_map_tiles_pmtiles](https://pub.dev/packages/vector_map_tiles_pmtiles)
 
 [![Pub Version](https://img.shields.io/pub/v/vector_map_tiles_pmtiles)](https://pub.dev/packages/vector_map_tiles_pmtiles)
