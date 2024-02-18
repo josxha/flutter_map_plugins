@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_plugins_example/common/translucent_layer.dart';
 import 'package:flutter_map_plugins_example/common/utils.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mbtiles/mbtiles.dart';
@@ -72,8 +71,6 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                           'openmaptiles': MbTilesVectorTileProvider(
                             mbtiles: _mbtiles!,
                             silenceTileNotFound: true,
-                            minimumZoom: metadata.minZoom?.truncate() ?? 8,
-                            maximumZoom: metadata.maxZoom?.truncate() ?? 14,
                           ),
                         }),
                         // disable all caches
@@ -86,7 +83,6 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                         // or tiles won't get over-zoomed.
                         maximumZoom: 18,
                       ),
-                      const TranslucentLayer(),
                     ],
                   ),
                 ),

@@ -17,13 +17,11 @@ class MbTilesVectorTileProvider extends VectorTileProvider {
 
   /// The minimum zoom level
   @override
-  // Can't be late or it won't get picked up correctly
-  final int minimumZoom;
+  late final int minimumZoom;
 
   /// The maximum zoom level, higher zoom level get "over-zoomed"
   @override
-  // Can't be late or it won't get picked up correctly
-  final int maximumZoom;
+  late final int maximumZoom;
 
   /// Create a new [MbTilesVectorTileProvider] and pass it to the flutter_map
   /// vector plugin vector_map_tiles.
@@ -33,10 +31,13 @@ class MbTilesVectorTileProvider extends VectorTileProvider {
   /// [maximumZoom] defaults to the maximum zoom of the mbtiles metadata.
   MbTilesVectorTileProvider({
     required this.mbtiles,
-    required this.minimumZoom,
-    required this.maximumZoom,
+    int? minimumZoom,
+    int? maximumZoom,
     this.silenceTileNotFound = !kDebugMode,
-  });
+  }) {
+    this.minimumZoom = minimumZoom ?? metadata.minZoom?.truncate() ?? 0;
+    this.maximumZoom = maximumZoom ?? metadata.maxZoom?.truncate() ?? 16;
+  }
 
   @override
   Future<Uint8List> provide(TileIdentity tile) async {
