@@ -23,10 +23,10 @@ class MbTilesVectorTileProvider extends VectorTileProvider {
   });
 
   @override
-  final int maximumZoom = 8;
+  late final int maximumZoom = metadata.maxZoom?.truncate() ?? 22;
 
   @override
-  final int minimumZoom = 14;
+  late final int minimumZoom = metadata.minZoom?.truncate() ?? 0;
 
   @override
   Future<Uint8List> provide(TileIdentity tile) async {

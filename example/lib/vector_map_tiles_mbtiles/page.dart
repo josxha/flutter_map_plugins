@@ -19,7 +19,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
   final Future<MbTiles> _futureMbtiles = _initMbTiles();
   MbTiles? _mbtiles;
 
-  late final _theme = vtr.ProvidedThemes.lightTheme();
+  final _theme = vtr.ProvidedThemes.lightTheme();
 
   static Future<MbTiles> _initMbTiles() async {
     // This function copies an asset file from the asset bundle to the temporary
@@ -57,8 +57,8 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                 Expanded(
                   child: FlutterMap(
                     options: MapOptions(
-                      minZoom: 6,
-                      maxZoom: 14,
+                      minZoom: 8,
+                      maxZoom: 18,
                       initialZoom: 11,
                       initialCenter:
                           metadata.defaultCenter ?? const LatLng(0, 0),
@@ -69,11 +69,17 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                         tileProviders: TileProviders({
                           'openmaptiles': MbTilesVectorTileProvider(
                             mbtiles: _mbtiles!,
-                            //silenceTileNotFound: true,
+                            silenceTileNotFound: true,
                           ),
                         }),
+                        // disable all caches
+                        fileCacheTtl: Duration.zero,
+                        fileCacheMaximumSizeInBytes: 0,
+                        memoryTileCacheMaxSize: 0,
+                        memoryTileDataCacheMaxSize: 0,
+                        textCacheMaxSize: 0,
+                        maximumZoom: metadata.maxZoom,
                       ),
-                      //const TranslucentLayer(),
                     ],
                   ),
                 ),
