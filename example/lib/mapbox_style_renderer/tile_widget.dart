@@ -33,7 +33,10 @@ class TileWidget extends StatelessWidget {
             child: ClipRect(
               child: CustomPaint(
                 painter: TilePainter(
-                    style: style, tile: tileData, tileSize: tileSize),
+                  style: style,
+                  tile: tileData,
+                  tileSize: tileSize,
+                ),
               ),
             ),
           ),
