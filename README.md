@@ -71,7 +71,7 @@ flutter_map tile layers.
   learn more about
   PMTiles.
 
-### [vector_map_tiles_mbtiles](https://pub.dev/packages/vector_map_tiles_pmtiles)
+### [vector_map_tiles_mbtiles](https://pub.dev/packages/vector_map_tiles_mbtiles)
 
 [![Pub Version](https://img.shields.io/pub/v/vector_map_tiles_mbtiles)](https://pub.dev/packages/vector_map_tiles_mbtiles)
 [![likes](https://img.shields.io/pub/likes/vector_map_tiles_mbtiles?logo=flutter)](https://pub.dev/packages/vector_map_tiles_mbtiles)

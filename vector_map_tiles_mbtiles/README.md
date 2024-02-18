@@ -26,6 +26,7 @@ Add the following packages to your `pubspec.yaml` file:
 dependencies:
   flutter_map: ^6.0.0              # in case you don't have it yet 
   vector_map_tiles_mbtiles: ^1.0.0 # this package
+  mbtiles: ^0.4.0                  # MBTiles package
 ```
 
 ## Usage
