@@ -62,7 +62,6 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                       initialZoom: 11,
                       initialCenter:
                           metadata.defaultCenter ?? const LatLng(0, 0),
-                      onPositionChanged: (position, _) => print(position.zoom),
                     ),
                     children: [
                       VectorTileLayer(
@@ -73,12 +72,6 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                             silenceTileNotFound: true,
                           ),
                         }),
-                        // disable all caches
-                        fileCacheTtl: Duration.zero,
-                        fileCacheMaximumSizeInBytes: 0,
-                        memoryTileCacheMaxSize: 0,
-                        memoryTileDataCacheMaxSize: 0,
-                        textCacheMaxSize: 0,
                         // do not set the max zoom here to the metadata.maxZoom
                         // or tiles won't get over-zoomed.
                         maximumZoom: 18,
