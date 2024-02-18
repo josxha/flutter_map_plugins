@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_map: ^6.0.0
-  mbtiles: ^0.3.1
+  mbtiles: ^0.4.0
   sqlite3_flutter_libs: ^0.5.18
 
 dev_dependencies:
