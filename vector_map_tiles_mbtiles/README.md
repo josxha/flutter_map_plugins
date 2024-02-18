@@ -30,34 +30,47 @@ dependencies:
 
 ## Usage
 
-1. Initiate the VectorTileProvider
+1. Open the MBTiles file
+
+The MBTiles file must be stored on the file system and read permission must be
+granted to the app.
+
+You can use the [path_provider](https://pub.dev/packages/path_provider) package
+to get the path of the app document directory.
 
 ```dart
-// ...from an local file on the file system
-final _futureTileProvider = MbTilesVectorTileProvider
-    .fromSource('some/file/system/path.mbtiles');
+// initiate your tile provider
+final mbtiles = MbTiles(mbtilesPath: mbTilesPath, gzip: false);
 
-// ...or provide a MbTilesArchive directly 
-// (you'll need to add mbtiles as direct dependency to your project)
-final _futureTileProvider = MbTilesVectorTileProvider
-    .fromArchive(someMbTilesArchive);
+// OR: in case your protobuf data is not gzip encoded use:
+final mbtiles = MbTiles(mbtilesPath: mbTilesPath, gzip: false);
 ```
 
-2. Await the response of the future, e.g. by using a `FutureBuilder`.
-
-3. Provide your `MbTilesVectorTileProvider` to your `TileLayer`
+2. Provide mbtiles to the `MbTilesVectorTileProvider`:
 
 ```dart
 @override
 Widget build(BuildContext context) {
   return FlutterMap(
-    options: MapOptions(),
+    options: MapOptions(
+      minZoom: 8,
+      maxZoom: 18,
+      initialZoom: 11,
+      initialCenter:
+      metadata.defaultCenter ?? const LatLng(0, 0),
+    ),
     children: [
       VectorTileLayer(
-        theme: ProvidedThemes.lightTheme(),
+        theme: _theme,
         tileProviders: TileProviders({
-          'openmaptiles': tileProvider,
+          'openmaptiles': MbTilesVectorTileProvider(
+            mbtiles: mbtiles,
+            silenceTileNotFound: true,
+          ),
         }),
+        // do not set maximumZoom here to the metadata.maxZoom
+        // or tiles won't get over-zoomed.
+        maximumZoom: 18,
       ),
     ],
   );

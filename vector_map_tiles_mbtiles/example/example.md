@@ -1,18 +1,40 @@
 ### Basic usage
 
+1. Open the MBTiles file:
+
 ```dart
 // initiate your tile provider
-final _futureTileProvider = MbTilesVectorTileProvider
-    .fromSource('path/to/file.mbtiles');
+final mbtiles = MbTiles(mbtilesPath: mbTilesPath, gzip: false);
 
+// OR: in case your protobuf data is not gzip encoded use:
+final mbtiles = MbTiles(mbtilesPath: mbTilesPath, gzip: false);
+```
+
+2. Provide mbtiles to the `MbTilesVectorTileProvider`:
+
+```dart
 @override
 Widget build(BuildContext context) {
   return FlutterMap(
-    options: MapOptions(),
+    options: MapOptions(
+      minZoom: 8,
+      maxZoom: 18,
+      initialZoom: 11,
+      initialCenter:
+      metadata.defaultCenter ?? const LatLng(0, 0),
+    ),
     children: [
-      TileLayer(
-        // use your awaited MbTilesVectorTileProvider
-        tileProvider: tileProvider,
+      VectorTileLayer(
+        theme: _theme,
+        tileProviders: TileProviders({
+          'openmaptiles': MbTilesVectorTileProvider(
+            mbtiles: mbtiles,
+            silenceTileNotFound: true,
+          ),
+        }),
+        // do not set maximumZoom here to the metadata.maxZoom
+        // or tiles won't get over-zoomed.
+        maximumZoom: 18,
       ),
     ],
   );

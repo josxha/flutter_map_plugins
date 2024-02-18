@@ -2,8 +2,3 @@
 
 - Initial release
 - Add `MbTilesVectorTileProvider`
-
-# Todo
-
-- [ ] update CHANGELOG.md
-- [ ] update example.md

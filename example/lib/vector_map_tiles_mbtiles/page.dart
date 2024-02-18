@@ -72,7 +72,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                             silenceTileNotFound: true,
                           ),
                         }),
-                        // do not set the max zoom here to the metadata.maxZoom
+                        // do not set maximumZoom here to the metadata.maxZoom
                         // or tiles won't get over-zoomed.
                         maximumZoom: 18,
                       ),
