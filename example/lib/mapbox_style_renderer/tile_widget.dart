@@ -9,18 +9,26 @@ class TileWidget extends StatelessWidget {
   final VectorTheme style;
   final VectorTile tileData;
   final Uint8List bytes;
+  final int tileSize;
 
-  TileWidget({super.key, required this.style, required this.bytes})
-      : tileData = VectorTile.fromBytes(bytes: bytes);
+  TileWidget({
+    super.key,
+    required this.style,
+    required this.bytes,
+    this.tileSize = 512,
+  }) : tileData = VectorTile.fromBytes(bytes: bytes);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 256,
-      width: 256,
+      height: tileSize.toDouble(),
+      width: tileSize.toDouble(),
       color: Colors.grey,
-      child: CustomPaint(
-        painter: TilePainter(style: style, tile: tileData),
+      child: ClipRect(
+        child: CustomPaint(
+          painter:
+              TilePainter(style: style, tile: tileData, tileSize: tileSize),
+        ),
       ),
     );
   }

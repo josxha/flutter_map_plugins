@@ -8,11 +8,20 @@ import 'package:vector_tile/vector_tile.dart';
 class TilePainter extends CustomPainter {
   final VectorTheme style;
   final VectorTile tile;
+  final int tileSize;
+  final double scale;
 
-  TilePainter({super.repaint, required this.style, required this.tile});
+  TilePainter({
+    super.repaint,
+    required this.style,
+    required this.tile,
+    required this.tileSize,
+  }) : scale = (tile.layers.firstOrNull?.extent ?? tileSize) / tileSize;
 
   @override
   void paint(Canvas canvas, Size size) {
+    canvas.scale(1 / scale);
+
     for (final layer in tile.layers) {
       for (final feature in layer.features) {
         switch (feature.type) {
@@ -22,7 +31,7 @@ class TilePainter extends CustomPainter {
             final paint = Paint()
               ..color = Colors.blue
               ..style = PaintingStyle.fill
-              ..strokeWidth = 1;
+              ..strokeWidth = 1 * scale;
             final path = Path();
 
             final geom = feature.geometryList!;
@@ -37,15 +46,15 @@ class TilePainter extends CustomPainter {
                 case GeometryCommand.moveTo:
                   for (var p = 0; p < count; p++) {
                     path.moveTo(
-                      parseParamInt(geom[i++]) / 17,
-                      parseParamInt(geom[i++]) / 17,
+                      parseParamInt(geom[i++]),
+                      parseParamInt(geom[i++]),
                     );
                   }
                 case GeometryCommand.lineTo:
                   for (var p = 0; p < count; p++) {
                     path.relativeLineTo(
-                      parseParamInt(geom[i++]) / 17,
-                      parseParamInt(geom[i++]) / 17,
+                      parseParamInt(geom[i++]),
+                      parseParamInt(geom[i++]),
                     );
                   }
                 case GeometryCommand.closePath:
@@ -64,7 +73,7 @@ class TilePainter extends CustomPainter {
             final paint = Paint()
               ..color = Colors.red
               ..style = PaintingStyle.stroke
-              ..strokeWidth = 5;
+              ..strokeWidth = 5 * scale;
 
             final geom = feature.geometryList!;
             var i = 0;
@@ -81,7 +90,7 @@ class TilePainter extends CustomPainter {
               final points = Float32List(count * 2);
 
               for (var p = 0; p < points.length; p++) {
-                points[p] = parseParamInt(geom[i++]) / 17;
+                points[p] = parseParamInt(geom[i++]);
               }
               canvas.drawRawPoints(PointMode.points, points, paint);
             }
@@ -91,7 +100,7 @@ class TilePainter extends CustomPainter {
             final paint = Paint()
               ..color = Colors.black
               ..style = PaintingStyle.stroke
-              ..strokeWidth = 1;
+              ..strokeWidth = 1 * scale;
             final path = Path();
 
             final geom = feature.geometryList!;
@@ -106,15 +115,15 @@ class TilePainter extends CustomPainter {
                 case GeometryCommand.moveTo:
                   for (var p = 0; p < count; p++) {
                     path.moveTo(
-                      parseParamInt(geom[i++]) / 17,
-                      parseParamInt(geom[i++]) / 17,
+                      parseParamInt(geom[i++]),
+                      parseParamInt(geom[i++]),
                     );
                   }
                 case GeometryCommand.lineTo:
                   for (var p = 0; p < count; p++) {
                     path.relativeLineTo(
-                      parseParamInt(geom[i++]) / 17,
-                      parseParamInt(geom[i++]) / 17,
+                      parseParamInt(geom[i++]),
+                      parseParamInt(geom[i++]),
                     );
                   }
                 case GeometryCommand.closePath:
