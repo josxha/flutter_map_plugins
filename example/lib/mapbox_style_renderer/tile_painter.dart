@@ -14,7 +14,6 @@ class TilePainter extends CustomPainter {
   final double scale;
 
   TilePainter({
-    super.repaint,
     required this.style,
     required this.tile,
     required this.tileSize,
@@ -22,12 +21,13 @@ class TilePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    final sw = Stopwatch()..start();
     canvas.scale(1 / scale);
 
     final bgLayer = style.layers
         .firstWhereOrNull((l) => l.type == ThemeLayerType.background);
     if (bgLayer != null) {
-      print(bgLayer.paint);
+      //print(bgLayer.paint);
       final paint = Paint()
         ..style = PaintingStyle.fill
         ..color = const Color(0xfff8f4f0);
@@ -173,12 +173,12 @@ class TilePainter extends CustomPainter {
               print('${layer.id}: ${layer.paint}');
             }
 
-            final path = Path();
             final paint = Paint()
               ..color = color
               ..style = PaintingStyle.stroke
               ..strokeWidth = 1.5 * scale;
 
+            final path = Path();
             var i = 0;
             while (i < geom.length) {
               // parse command integer
@@ -217,6 +217,9 @@ class TilePainter extends CustomPainter {
         }
       }
     }
+
+    sw.stop();
+    print('${sw.elapsedMilliseconds}ms');
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -20,16 +21,33 @@ class TileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: tileSize.toDouble(),
-      width: tileSize.toDouble(),
-      color: Colors.grey,
-      child: ClipRect(
-        child: CustomPaint(
-          painter:
-              TilePainter(style: style, tile: tileData, tileSize: tileSize),
-        ),
-      ),
+    return StreamBuilder(
+      initialData: Offset.zero,
+      stream: _randomOffset(),
+      builder: (context, snapshot) {
+        final offset = snapshot.data!;
+        return Padding(
+          padding: EdgeInsets.only(left: offset.dx, top: offset.dy),
+          child: SizedBox.square(
+            dimension: tileSize.toDouble(),
+            child: ClipRect(
+              child: CustomPaint(
+                painter: TilePainter(
+                    style: style, tile: tileData, tileSize: tileSize),
+              ),
+            ),
+          ),
+        );
+      },
     );
+  }
+
+  final _rnd = Random(1234);
+
+  Stream<Offset> _randomOffset() async* {
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 500));
+      yield Offset(_rnd.nextInt(10).toDouble(), _rnd.nextInt(10).toDouble());
+    }
   }
 }
