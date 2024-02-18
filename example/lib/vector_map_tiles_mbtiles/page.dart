@@ -82,7 +82,9 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                         memoryTileCacheMaxSize: 0,
                         memoryTileDataCacheMaxSize: 0,
                         textCacheMaxSize: 0,
-                        maximumZoom: metadata.maxZoom,
+                        // do not set the max zoom here to the metadata.maxZoom
+                        // or tiles won't get over-zoomed.
+                        maximumZoom: 18,
                       ),
                       const TranslucentLayer(),
                     ],
