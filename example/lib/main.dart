@@ -6,6 +6,7 @@ import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_compass/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_mbtiles/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
+import 'package:flutter_map_plugins_example/vector_map_tiles_mbtiles/page.dart';
 import 'package:flutter_map_plugins_example/vector_map_tiles_pmtiles/page.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -32,6 +33,8 @@ class MyApp extends StatelessWidget {
         'flutter_map_pmtiles': (context) => const FlutterMapPmTilesPage(),
         'vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
         'flutter_map_mbtiles': (context) => const FlutterMapMbTilesPage(),
+        'vector_map_tiles_mbtiles': (context) =>
+            const VectorMapTilesMbTilesPage(),
         'flutter_map_compass': (context) => const FlutterMapCompassPage(),
       },
     );
@@ -65,6 +68,11 @@ class SelectionPage extends StatelessWidget {
         title: 'flutter_map_pmtiles',
         desc: 'PMTiles for flutter_map',
         routeName: 'flutter_map_pmtiles',
+      ),
+      SelectionItemWidget.disabledOnWeb(
+        title: 'vector_map_tiles_mbtiles',
+        desc: 'MBTiles for vector_map_files / flutter_map',
+        routeName: 'vector_map_tiles_mbtiles',
       ),
       SelectionItemWidget.disabledOnWeb(
         title: 'vector_map_tiles_pmtiles',
