@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_map_plugins_example/mapbox_style_renderer/extensions.dart';
 import 'package:flutter_map_vector/flutter_map_vector.dart';
 import 'package:vector_tile/vector_tile.dart';
 
@@ -26,15 +27,37 @@ class TilePainter extends CustomPainter {
       for (final feature in layer.features) {
         switch (feature.type) {
           case VectorTileGeomType.POLYGON:
-            if (feature.geometryList == null) break;
+            final geom = feature.geometryList;
+            if (geom == null) break;
 
+            // parse tags
+            final properties = <String, Object?>{};
+            for (var i = 0; i < feature.tags.length; i += 2) {
+              final key = feature.keys![feature.tags[i]];
+              final value = feature.values![feature.tags[i + 1]];
+              properties[key] = value.getValue();
+            }
+            final color = switch (properties['class']) {
+              'lake' => Colors.blueAccent,
+              'ocean' => Colors.blue,
+              'residential' => Colors.orange,
+              'pitch' => Colors.greenAccent,
+              'wood' => Colors.green,
+              'grass' => Colors.lightGreenAccent,
+              'sand' => Colors.yellow,
+              'farmland' => Colors.lightGreen,
+              'nature_reserve' => Colors.transparent,
+              'school' => Colors.pinkAccent,
+              _ => Colors.pink,
+            };
+
+            // parse geom
             final paint = Paint()
-              ..color = Colors.blue
+              ..color = color.withOpacity(0.2)
               ..style = PaintingStyle.fill
               ..strokeWidth = 1 * scale;
             final path = Path();
 
-            final geom = feature.geometryList!;
             var i = 0;
             while (i < geom.length) {
               // parse command integer
