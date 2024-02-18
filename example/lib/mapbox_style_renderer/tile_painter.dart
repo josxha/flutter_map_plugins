@@ -45,7 +45,7 @@ class TilePainter extends CustomPainter {
               switch (command) {
                 case GeometryCommand.moveTo:
                   for (var p = 0; p < count; p++) {
-                    path.moveTo(
+                    path.relativeMoveTo(
                       parseParamInt(geom[i++]),
                       parseParamInt(geom[i++]),
                     );
@@ -114,7 +114,7 @@ class TilePainter extends CustomPainter {
               switch (command) {
                 case GeometryCommand.moveTo:
                   for (var p = 0; p < count; p++) {
-                    path.moveTo(
+                    path.relativeMoveTo(
                       parseParamInt(geom[i++]),
                       parseParamInt(geom[i++]),
                     );
