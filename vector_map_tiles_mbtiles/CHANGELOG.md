@@ -1,4 +1,4 @@
-## [1.0.0] yyyy-mm-dd
+## [1.0.0] 2024-02-dd
 
 - Initial release
 - Add `MbTilesVectorTileProvider`

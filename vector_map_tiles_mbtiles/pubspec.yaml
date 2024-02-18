@@ -15,7 +15,7 @@ dependencies:
   flutter_test:
     sdk: flutter
   test: ^1.24.9
-  mbtiles: ^0.3.1
+  mbtiles: ^0.4.0
   vector_map_tiles: ^7.0.1
 
 dev_dependencies:
