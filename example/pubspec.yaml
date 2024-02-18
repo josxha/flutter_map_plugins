@@ -25,21 +25,18 @@ dependencies:
   vector_tile_renderer: ^5.2.0
   mbtiles: ^0.4.0
 
-  vector_map_tiles_mbtiles:
-    path: ../vector_map_tiles_mbtiles
-  flutter_map_mbtiles:
-    path: ../flutter_map_mbtiles
-  vector_map_tiles_pmtiles:
-    path: ../vector_map_tiles_pmtiles
-  flutter_map_pmtiles:
-    path: ../flutter_map_pmtiles
   flutter_map_cache:
     path: ../flutter_map_cache
-
-  # vector_map_tiles_compass specific packages
   flutter_map_compass:
     path: ../flutter_map_compass
-  cupertino_icons: ^1.0.6
+  flutter_map_mbtiles:
+    path: ../flutter_map_mbtiles
+  flutter_map_pmtiles:
+    path: ../flutter_map_pmtiles
+  vector_map_tiles_mbtiles:
+    path: ../vector_map_tiles_mbtiles
+  vector_map_tiles_pmtiles:
+    path: ../vector_map_tiles_pmtiles
 
 dev_dependencies:
   total_lints: ^3.0.0
