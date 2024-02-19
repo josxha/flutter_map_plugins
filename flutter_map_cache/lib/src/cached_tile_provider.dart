@@ -17,7 +17,7 @@ class CachedTileProvider extends TileProvider {
   /// Create a new [CachedTileProvider]
   CachedTileProvider({
     required CacheStore store,
-    cachePolicy = CachePolicy.forceCache,
+    CachePolicy cachePolicy = CachePolicy.forceCache,
     Dio? dio,
     @Deprecated(
       '''
