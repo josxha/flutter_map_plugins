@@ -22,10 +22,7 @@ class VectorMapTilesPmTilesPage extends StatelessWidget {
     logger: kDebugMode ? const vtr.Logger.console() : null,
   );
 
-  final _futureTileProvider = PmTilesVectorTileProvider.fromSource(
-    tileSource,
-    silenceTileNotFound: true,
-  );
+  final _futureTileProvider = PmTilesVectorTileProvider.fromSource(tileSource);
 
   VectorMapTilesPmTilesPage({super.key});
 
