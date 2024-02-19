@@ -1,4 +1,5 @@
-import 'package:flutter/foundation.dart';
+import 'dart:typed_data';
+
 import 'package:pmtiles/pmtiles.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 
@@ -6,20 +7,42 @@ import 'package:vector_map_tiles/vector_map_tiles.dart';
 /// PMTiles archive.
 ///
 class PmTilesVectorTileProvider extends VectorTileProvider {
+  /// Tile [PmTilesArchive] instance used to request tiles from.
   final PmTilesArchive archive;
+
+  /// The type of the tile provider.
+  ///
+  /// Either [TileProviderType.vector] or [TileProviderType.raster].
   @override
   final TileProviderType type;
 
+  @Deprecated(
+    'This option is no longer used and will get removed in a future update.',
+  )
+  final bool silenceTileNotFound;
+
   /// Create a tile provider directly with a [PmTilesArchive] from the
-  /// pmtiles package.
-  PmTilesVectorTileProvider.fromArchive(this.archive,
-      {this.type = TileProviderType.vector});
+  /// `pmtiles` package.
+  PmTilesVectorTileProvider.fromArchive(
+    this.archive, {
+    this.type = TileProviderType.vector,
+    @Deprecated(
+      'This option is no longer used and will get removed in a future update.',
+    )
+    this.silenceTileNotFound = false,
+  });
 
   /// Create a tile provider by specifying the source of the PMTiles file.
   ///
   /// [source] can either be a URL or path on your file system.
-  static Future<PmTilesVectorTileProvider> fromSource(String source,
-      {TileProviderType type = TileProviderType.vector}) async {
+  static Future<PmTilesVectorTileProvider> fromSource(
+    String source, {
+    TileProviderType type = TileProviderType.vector,
+    @Deprecated(
+      'This option is no longer used and will get removed in a future update.',
+    )
+    bool silenceTileNotFound = false,
+  }) async {
     final archive = await PmTilesArchive.from(source);
     return PmTilesVectorTileProvider.fromArchive(archive, type: type);
   }
@@ -41,9 +64,10 @@ class PmTilesVectorTileProvider extends VectorTileProvider {
       return Uint8List.fromList(data.bytes());
     } on TileNotFoundException {
       throw ProviderException(
-          message: 'Not found: $tile',
-          retryable: Retryable.none,
-          statusCode: 404);
+        message: 'Tile not found: $tile',
+        retryable: Retryable.none,
+        statusCode: 404,
+      );
     }
   }
 }
