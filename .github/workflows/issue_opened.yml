@@ -18,7 +18,7 @@ jobs:
         uses: stefanbuck/github-issue-parser@v3
         id: issue-parser-bug
         with:
-          template-path: .github/ISSUE_TEMPLATE/bug.yml
+          template-path: .github/ISSUE_TEMPLATE/1-bug.yml
       - name: Set labels based on package field
         uses: redhat-plumbers-in-action/advanced-issue-labeler@v3
         with:
@@ -32,7 +32,7 @@ jobs:
         uses: stefanbuck/github-issue-parser@v3
         id: issue-parser-feature
         with:
-          template-path: .github/ISSUE_TEMPLATE/bug.yml
+          template-path: .github/ISSUE_TEMPLATE/2-feature.yml
       - name: Set labels based on package field
         uses: redhat-plumbers-in-action/advanced-issue-labeler@v3
         with:
