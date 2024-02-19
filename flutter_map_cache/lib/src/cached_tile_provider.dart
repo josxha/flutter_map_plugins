@@ -14,7 +14,10 @@ class CachedTileProvider extends TileProvider {
   /// dio http client
   final Dio dio;
 
-  /// Create a new [CachedTileProvider]
+  /// Create a new [CachedTileProvider].
+  ///
+  /// [cachePolicy] allows to set the policy used by the cache, see
+  /// [CachePolicy] from dio_cache_interceptor for more information.
   CachedTileProvider({
     required CacheStore store,
     CachePolicy cachePolicy = CachePolicy.forceCache,
