@@ -1,7 +1,8 @@
-## [1.5.0] 2024-02-10
+## [1.5.0] 2024-02-19
 
-- fix: assertion error when the total amount of bytes is unknown (Thanks to
+- fix: assertion error when the total amount of bytes is unknown (thanks to
   @Thelm76).
+- add: optional `cachePolicy` parameter (thanks to @Thelm76).
 
 ## [1.4.4] 2024-02-10
 
@@ -13,7 +14,7 @@
 
 - Fix: `CachedTileProvider.dio` had its `BaseOptions`
   overridden ([#12](https://github.com/josxha/flutter_map_plugins/issues/12),
-  Thanks to
+  thanks to
   @Thelm76)
 - Add tests
 
@@ -29,7 +30,7 @@
 ## [1.4.0] 2024-01-24
 
 - Add `dio` as a parameter to `CachedTileProvider`. You're now able to provide
-  and reuse your own Dio instance (Thanks to @PatrickWulfe).
+  and reuse your own Dio instance (thanks to @PatrickWulfe).
 - Deprecate the `dioOptions` parameter. Prefer creating your own Dio instance
   and provide it to the `dio` parameter.
 - Update the README file (for example add isar to the list of supported storage

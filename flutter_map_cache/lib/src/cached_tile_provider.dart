@@ -6,14 +6,21 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cache/src/cached_image_provider.dart';
 
+export 'package:dio_cache_interceptor/dio_cache_interceptor.dart'
+    show CachePolicy;
+
 /// TileProvider with additional caching functionality
 class CachedTileProvider extends TileProvider {
   /// dio http client
   final Dio dio;
 
-  /// Create a new [CachedTileProvider]
+  /// Create a new [CachedTileProvider].
+  ///
+  /// [cachePolicy] allows to set the policy used by the cache, see
+  /// [CachePolicy] from dio_cache_interceptor for more information.
   CachedTileProvider({
     required CacheStore store,
+    CachePolicy cachePolicy = CachePolicy.forceCache,
     Dio? dio,
     @Deprecated(
       '''
@@ -40,7 +47,7 @@ class CachedTileProvider extends TileProvider {
         options: CacheOptions(
           store: store,
           allowPostMethod: true,
-          policy: CachePolicy.forceCache,
+          policy: cachePolicy,
           maxStale: maxStale,
           keyBuilder: keyBuilder ?? CacheOptions.defaultCacheKeyBuilder,
           hitCacheOnErrorExcept: hitCacheOnErrorExcept,
