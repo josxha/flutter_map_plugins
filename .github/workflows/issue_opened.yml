@@ -22,7 +22,7 @@ jobs:
       - name: Set labels based on package field
         uses: redhat-plumbers-in-action/advanced-issue-labeler@v3
         with:
-          issue-form: ${{ steps.issue-parser.outputs.jsonString }}
+          issue-form: ${{ steps.issue-parser-bug.outputs.jsonString }}
           section: package
           block-list: |
             other
@@ -36,7 +36,7 @@ jobs:
       - name: Set labels based on package field
         uses: redhat-plumbers-in-action/advanced-issue-labeler@v3
         with:
-          issue-form: ${{ steps.issue-parser.outputs.jsonString }}
+          issue-form: ${{ steps.issue-parser-feature.outputs.jsonString }}
           section: package
           block-list: |
             other
