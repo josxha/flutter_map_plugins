@@ -81,12 +81,14 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
           headers: headers,
         ),
         onReceiveProgress: (count, total) {
-          chunkEvents.add(
-            ImageChunkEvent(
-              cumulativeBytesLoaded: count,
-              expectedTotalBytes: total,
-            ),
-          );
+          if (count >= 0) {
+            chunkEvents.add(
+              ImageChunkEvent(
+                cumulativeBytesLoaded: count,
+                expectedTotalBytes: total >= 0 ? total : null,
+              ),
+            );
+          }
         },
       );
       final bytes = Uint8List.fromList(response.data);
