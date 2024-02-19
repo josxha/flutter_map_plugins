@@ -19,11 +19,11 @@ jobs:
         id: issue-parser-bug
         with:
           template-path: .github/ISSUE_TEMPLATE/bug.yml
-      - name: Set labels based on scope field
+      - name: Set labels based on package field
         uses: redhat-plumbers-in-action/advanced-issue-labeler@v3
         with:
           issue-form: ${{ steps.issue-parser.outputs.jsonString }}
-          section: scope
+          section: package
           block-list: |
             other
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -33,11 +33,11 @@ jobs:
         id: issue-parser-feature
         with:
           template-path: .github/ISSUE_TEMPLATE/bug.yml
-      - name: Set labels based on scope field
+      - name: Set labels based on package field
         uses: redhat-plumbers-in-action/advanced-issue-labeler@v3
         with:
           issue-form: ${{ steps.issue-parser.outputs.jsonString }}
-          section: scope
+          section: package
           block-list: |
             other
           token: ${{ secrets.GITHUB_TOKEN }}

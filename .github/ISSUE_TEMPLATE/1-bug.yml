@@ -9,13 +9,13 @@ body:
       label: Package
       description: For what is your bug report?
       options:
+        - "other"
         - "flutter_map_cache"
         - "flutter_map_compass"
         - "flutter_map_mbtiles"
         - "flutter_map_pmtiles"
         - "vector_map_tiles_mbtiles"
         - "vector_map_tiles_pmtiles"
-        - "other"
     validations:
       required: true
   - type: textarea
@@ -61,16 +61,11 @@ body:
         ```
     validations:
       required: true
-  - type: checkboxes
+  - type: dropdown
     id: platform
     attributes:
       label: Platforms
       description: On what platforms does the bug happen?
-      options:
-        - label: All
-        - label: Android
-        - label: iOS
-        - label: Web
-        - label: Windows
-        - label: MacOS
-        - label: Linux
+      options: [ "all", "android", "iOS", "web", "windows", "macOS", "linux" ]
+    validations:
+      required: true
