@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   pmtiles: ^1.2.0
-  vector_map_tiles: ^7.0.1
+  vector_map_tiles: ^7.3.0
   vector_tile_renderer: ^5.2.0
 
 dev_dependencies:
