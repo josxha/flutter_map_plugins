@@ -69,7 +69,6 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                         tileProviders: TileProviders({
                           'openmaptiles': MbTilesVectorTileProvider(
                             mbtiles: _mbtiles!,
-                            silenceTileNotFound: true,
                           ),
                         }),
                         // do not set maximumZoom here to the metadata.maxZoom

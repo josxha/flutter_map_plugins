@@ -1,4 +1,5 @@
-import 'package:flutter/foundation.dart';
+import 'dart:typed_data';
+
 import 'package:mbtiles/mbtiles.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 
@@ -13,6 +14,9 @@ class MbTilesVectorTileProvider extends VectorTileProvider {
   /// tile does not exist in the mbtiles file.
   ///
   /// By default this is disabled in debug mode and enabled else.
+  @Deprecated(
+    'This option is no longer used and will get removed in a future update.',
+  )
   final bool silenceTileNotFound;
 
   /// The minimum zoom level
@@ -33,7 +37,10 @@ class MbTilesVectorTileProvider extends VectorTileProvider {
     required this.mbtiles,
     int? minimumZoom,
     int? maximumZoom,
-    this.silenceTileNotFound = !kDebugMode,
+    @Deprecated(
+      'This option is no longer used and will get removed in a future update.',
+    )
+    this.silenceTileNotFound = false,
   }) {
     this.minimumZoom = minimumZoom ?? metadata.minZoom?.truncate() ?? 0;
     this.maximumZoom = maximumZoom ?? metadata.maxZoom?.truncate() ?? 16;
@@ -45,10 +52,10 @@ class MbTilesVectorTileProvider extends VectorTileProvider {
     final bytes = mbtiles.getTile(z: tile.z, x: tile.x, y: tmsY);
 
     if (bytes == null) {
-      if (silenceTileNotFound) return Uint8List(0);
-      throw Exception(
-        'Tile could not be found in MBTiles '
-        '(z:${tile.z}, x:${tile.x}, y:${tile.y})',
+      throw ProviderException(
+        message: 'Tile not found: $tile',
+        retryable: Retryable.none,
+        statusCode: 404,
       );
     }
 
