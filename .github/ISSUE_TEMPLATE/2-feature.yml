@@ -1,0 +1,38 @@
+name: Feature Request
+description: Suggest a Feature
+title: "[FEATURE] <title>"
+labels: [ "feature" ]
+body:
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Package
+      description: For what is your feature request?
+      options:
+        - "flutter_map_cache"
+        - "flutter_map_compass"
+        - "flutter_map_mbtiles"
+        - "flutter_map_pmtiles"
+        - "vector_map_tiles_mbtiles"
+        - "vector_map_tiles_pmtiles"
+        - "other"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Feature Description
+      description: Please give describe the feature you have in mind.
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Feature importance
+      description: How important is this feature to you?
+      options:
+        - "(1) would be nice to have"
+        - "(2) would be good to have"
+        - "(3) can't live without it"
+    validations:
+      required: true

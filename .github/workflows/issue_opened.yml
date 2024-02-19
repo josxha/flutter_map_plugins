@@ -1,0 +1,43 @@
+name: Issue opened
+on:
+  issues:
+    types: [ opened ]
+
+permissions:
+  contents: read
+
+jobs:
+  label-component:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse bug report form
+        uses: stefanbuck/github-issue-parser@v3
+        id: issue-parser-bug
+        with:
+          template-path: .github/ISSUE_TEMPLATE/bug.yml
+      - name: Set labels based on scope field
+        uses: redhat-plumbers-in-action/advanced-issue-labeler@v3
+        with:
+          issue-form: ${{ steps.issue-parser.outputs.jsonString }}
+          section: scope
+          block-list: |
+            other
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Parse feature request form
+        uses: stefanbuck/github-issue-parser@v3
+        id: issue-parser-feature
+        with:
+          template-path: .github/ISSUE_TEMPLATE/bug.yml
+      - name: Set labels based on scope field
+        uses: redhat-plumbers-in-action/advanced-issue-labeler@v3
+        with:
+          issue-form: ${{ steps.issue-parser.outputs.jsonString }}
+          section: scope
+          block-list: |
+            other
+          token: ${{ secrets.GITHUB_TOKEN }}
