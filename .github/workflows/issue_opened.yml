@@ -1,7 +1,7 @@
 name: Issue opened
 on:
   issues:
-    types: [ opened ]
+    types: [ opened, reopened ]
 
 permissions:
   contents: read
