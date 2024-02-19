@@ -4,7 +4,7 @@ title: "[FEATURE] <title>"
 labels: [ "feature" ]
 body:
   - type: dropdown
-    id: scope
+    id: package
     attributes:
       label: Package
       description: For what is your feature request?
