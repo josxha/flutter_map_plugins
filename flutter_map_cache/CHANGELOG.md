@@ -1,3 +1,8 @@
+## [1.5.0] 2024-02-10
+
+- fix: assertion error when the total amount of bytes is unknown (Thanks to
+  @Thelm76).
+
 ## [1.4.4] 2024-02-10
 
 - Add web as supported platform
