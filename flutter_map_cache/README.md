@@ -304,7 +304,7 @@ CachedTileProvider(
 ---
 </details>
 
-### How about pre-downloading, bulk-downloading or offline map?
+### Can I use this package for an offline map?
 
 <details>
   <summary>Click here to expand / hide.</summary>
@@ -313,18 +313,8 @@ This package does not provide support to download tiles automatically.
 Only tiles that were previously visited with an active internet connection
 show up on the map.
 
-⚠️ Please note that free tile providers such as
-[OpenStreetMap](https://www.openstreetmap.org/) forbids bulk
-downloading (more than 250 tiles on a higher zoom level) of tiles in their
-[tile usage policy](https://operations.osmfoundation.org/policies/tiles/).
-If you use a paid tile provider, bulk-downloading can cause high costs if
-you pay per tile request. Using a proper offline map solution
-(e.g. MBTiles or PMTiles) would be my recommendation here.
-
-If you still need bulk-downloading functionality you can check out the package
-[flutter_map_tile_caching](https://pub.dev/packages/flutter_map_tile_caching)
-(Paid license is needed or your project has to be open sourced under the
-GPL-3.0 license).
+If you need to have the map completely offline, I recommend to check out
+the file formats MBTiles or PMTiles.
 
 ---
 </details>

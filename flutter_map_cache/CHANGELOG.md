@@ -3,6 +3,7 @@
 - fix: assertion error when the total amount of bytes is unknown (thanks to
   @Thelm76).
 - add: optional `cachePolicy` parameter (thanks to @Thelm76).
+- Update README
 
 ## [1.4.4] 2024-02-10
 
