@@ -74,6 +74,11 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                         // do not set maximumZoom here to the metadata.maxZoom
                         // or tiles won't get over-zoomed.
                         maximumZoom: 18,
+                        textCacheMaxSize: 0,
+                        memoryTileDataCacheMaxSize: 0,
+                        memoryTileCacheMaxSize: 0,
+                        fileCacheMaximumSizeInBytes: 0,
+                        fileCacheTtl: Duration.zero,
                       ),
                     ],
                   ),
