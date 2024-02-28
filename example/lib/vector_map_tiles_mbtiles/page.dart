@@ -27,9 +27,9 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
     // It is not recommended to use this in production. Instead download your
     // mbtiles file from a web server or object storage.
     final file = await copyAssetToFile(
-      'assets/mbtiles/malta-vector.mbtiles',
+      'assets/mbtiles/cartagena.mbtiles',
     );
-    return MbTiles(mbtilesPath: file.path, gzip: false);
+    return MbTiles(mbtilesPath: file.path, gzip: true);
   }
 
   @override
@@ -59,7 +59,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
                     options: MapOptions(
                       minZoom: 8,
                       maxZoom: 18,
-                      initialZoom: 11,
+                      initialZoom: metadata.defaultZoom ?? 11,
                       initialCenter:
                           metadata.defaultCenter ?? const LatLng(0, 0),
                     ),
