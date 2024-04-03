@@ -86,12 +86,13 @@ class _MapCompassState extends State<MapCompass> with TickerProviderStateMixin {
     }
 
     return Align(
-      alignment: Alignment.topRight,
+      alignment: widget.alignment,
       child: Padding(
         padding: widget.padding,
         child: Transform.rotate(
           angle: (camera.rotation + widget.rotationOffset) * deg2Rad,
           child: IconButton(
+            alignment: Alignment.center,
             padding: EdgeInsets.zero,
             icon: widget.icon,
             onPressed:
