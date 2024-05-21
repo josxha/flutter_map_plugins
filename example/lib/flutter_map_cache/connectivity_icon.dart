@@ -7,26 +7,31 @@ class ConnectivityIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final connectivity = Connectivity();
-    return FutureBuilder<ConnectivityResult>(
+    return FutureBuilder<List<ConnectivityResult>>(
       future: connectivity.checkConnectivity(),
       builder: (context, snapshot) {
         if (snapshot.data == null) {
           return const SizedBox.shrink();
         }
-        return StreamBuilder<ConnectivityResult>(
-          stream: Connectivity().onConnectivityChanged,
+        return StreamBuilder<List<ConnectivityResult>>(
+          stream: connectivity.onConnectivityChanged,
           initialData: snapshot.data,
-          builder: (context, snapshot) => Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: switch (snapshot.data) {
-              ConnectivityResult.none => const Icon(
-                  Icons.signal_wifi_connected_no_internet_4_outlined,
-                  color: Colors.red,
-                ),
-              null => const SizedBox.shrink(),
-              _ => const SizedBox.shrink(),
-            },
-          ),
+          builder: (context, snapshot) {
+            if (snapshot.data case final List<ConnectivityResult> data) {
+              if (data.any((e) => e != ConnectivityResult.none)) {
+                return const SizedBox.shrink();
+              } else {
+                return const Padding(
+                  padding: EdgeInsets.only(right: 16),
+                  child: Icon(
+                    Icons.signal_wifi_connected_no_internet_4_outlined,
+                    color: Colors.red,
+                  ),
+                );
+              }
+            }
+            return const SizedBox.shrink();
+          },
         );
       },
     );
