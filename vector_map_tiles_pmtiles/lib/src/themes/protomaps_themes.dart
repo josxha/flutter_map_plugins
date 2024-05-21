@@ -8,11 +8,13 @@ part 'grayscale.dart';
 part 'light.dart';
 part 'white.dart';
 
-/// Protomaps themes, version 2.0.0-alpha.5
+/// Protomaps themes, version 3.0.1
 ///
 /// All themes are published by Protomaps under CC0 / public domain.
 ///
 /// https://unpkg.com/browse/protomaps-themes-base@2.0.0-alpha.5/dist/layers/
+///
+/// https://github.com/protomaps/basemaps/blob/main/CHANGELOG.md
 class ProtomapsThemes {
   final Logger? logger;
   final Map<String, Object> sources;

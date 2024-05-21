@@ -1795,64 +1795,8 @@ const themeBlack = [
     "paint": {
       "text-color": "#5c5c5c",
       "text-halo-color": "#141414",
-      "text-halo-width": 2
-    }
-  },
-  {
-    "id": "pois_important",
-    "type": "symbol",
-    "source": "protomaps",
-    "source-layer": "pois",
-    "filter": [
-      "any",
-      [
-        "<",
-        ["get", "pmap:min_zoom"],
-        13
-      ]
-    ],
-    "layout": {
-      "symbol-sort-key": ["get", "pmap:min_zoom"],
-      "text-font": ["Noto Sans Regular"],
-      "text-field": ["get", "name"],
-      "text-size": 11,
-      "text-max-width": 9,
-      "icon-padding": [
-        "interpolate",
-        ["linear"],
-        ["zoom"],
-        0,
-        2,
-        14,
-        2,
-        16,
-        20,
-        17,
-        2,
-        22,
-        2
-      ]
-    },
-    "paint": {
-      "text-color": "#5c5c5c",
-      "text-halo-color": "#141414",
       "text-halo-width": 1.5
     }
-  },
-  {
-    "id": "places_locality_circle",
-    "type": "circle",
-    "source": "protomaps",
-    "source-layer": "places",
-    "filter": ["==", "pmap:kind", "locality"],
-    "paint": {
-      "circle-radius": 2,
-      "circle-stroke-width": 1.5,
-      "circle-stroke-color": "#666666",
-      "circle-color": "#000000",
-      "circle-translate": [-6, 0]
-    },
-    "maxzoom": 8
   },
   {
     "id": "places_locality",
@@ -1861,6 +1805,14 @@ const themeBlack = [
     "source-layer": "places",
     "filter": ["==", "pmap:kind", "locality"],
     "layout": {
+      "icon-image": [
+        "step",
+        ["zoom"],
+        "townspot",
+        8,
+        ""
+      ],
+      "icon-size": 0.7,
       "text-field": "{name}",
       "text-font": [
         "case",
@@ -2001,7 +1953,7 @@ const themeBlack = [
         ["linear"],
         ["zoom"],
         0,
-        2,
+        0,
         8,
         4,
         10,
@@ -2018,7 +1970,7 @@ const themeBlack = [
         8,
         "center"
       ],
-      "text-radial-offset": 0.2
+      "text-radial-offset": 0.4
     },
     "paint": {
       "text-color": "#999999",

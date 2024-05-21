@@ -1,3 +1,8 @@
+## [1.3.0] 2024-05-21
+
+- Update `ProtomapsThemes` to
+  include [version 3.0.1 themes](https://github.com/protomaps/basemaps/blob/main/CHANGELOG.md)
+
 ## [1.2.0] 2024-02-19
 
 - Update `vector_map_tiles` to version 7.3.0 and bump the dependency constraints
