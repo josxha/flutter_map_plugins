@@ -10,7 +10,13 @@ scripts:
     run: melos exec --dir-exists="test"--fail-fast flutter test --no-pub
   pub_get:
     description: Run `pub get` for all packages
-    run: melos exec --file-exists="pubspec.yaml" --fail-fast flutter pub get
+    run: melos exec --file-exists="pubspec.yaml" --concurrency 1 --fail-fast flutter pub get
+  pub_upgrade:
+    description: Run `pub upgrade` for all packages
+    run: melos exec --file-exists="pubspec.yaml" --concurrency 1 --fail-fast flutter pub upgrade
+  pub_outdated:
+    description: Run `pub outdated` for all packages
+    run: melos exec --file-exists="pubspec.yaml" --concurrency 1 --fail-fast flutter pub outdated
   package_score:
     description: Run pana for all packages
     run: melos exec --fail-fast --concurrency 1 --no-private pana --exit-code-threshold 0 --no-dartdoc .
