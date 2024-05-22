@@ -11,8 +11,9 @@ import 'utils/test_app.dart';
 Future<void> main() async {
   testWidgets('FlutterMap with MbTilesTileProvider', (tester) async {
     final mbtiles = MockMbTiles();
-    when(mbtiles.getMetadata())
-        .thenAnswer((_) => MbTilesMetadata(name: 'MockMbTiles', format: 'png'));
+    when(mbtiles.getMetadata()).thenAnswer(
+      (_) => const MbTilesMetadata(name: 'MockMbTiles', format: 'png'),
+    );
     when(mbtiles.getTile(z: captureAny, x: captureAny, y: captureAny))
         .thenAnswer((_) => TileProvider.transparentImage);
     await tester.pumpWidget(TestApp(mbtiles: mbtiles));
