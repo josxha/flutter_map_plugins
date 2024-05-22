@@ -1,6 +1,10 @@
 name: Update iOS CocoaPods
 on:
   workflow_dispatch:
+
+permissions:
+  id-token: write
+
 jobs:
   update-pods:
     runs-on: macos-latest
