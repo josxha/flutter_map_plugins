@@ -17,7 +17,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: "stable"
+          cache: true
       - name: Install melos
         run: dart pub global activate melos
       - name: Bootstrap melos
@@ -38,7 +38,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: "stable"
+          cache: true
       - name: Install melos
         run: dart pub global activate melos
       - name: Bootstrap melos
@@ -60,7 +60,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: "stable"
+          cache: true
       - name: Install melos
         run: dart pub global activate melos
       - name: Bootstrap melos
@@ -84,7 +84,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: "stable"
+          cache: true
       - name: Build APK
         working-directory: example
         run: flutter build apk
@@ -93,11 +93,39 @@ jobs:
         with:
           name: apk
           path: example/build/app/outputs/flutter-apk/app-release.apk
+      - name: Upload apk as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter_map_plugins_example.apk
+          path: example/build/app/outputs/flutter-apk/app-release.apk
+  build-ios:
+    runs-on: macos-latest
+    name: Build iOS
+    needs: [ test, analyze, package-score ]
+    defaults:
+      run:
+        working-directory: ./example
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ matrix.sdk }}
+          cache: true
+      - uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          podfile-path: example/ios/Podfile.lock
+      - run: flutter pub get
+      - name: Build iOS package
+        run: flutter build ios --simulator
+      - name: Upload Runner.app as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter_map_plugins_example.app
+          path: example/build/ios/iphonesimulator
   build-web:
     runs-on: ubuntu-latest
     name: Build Web
     needs: [ test, analyze, package-score ]
-    if: github.repository == 'josxha/flutter_map_plugins'
     defaults:
       run:
         working-directory: ./example
@@ -107,13 +135,18 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: "stable"
+          cache: true
       - name: Build Web
         run: flutter build web
+      - name: Upload web as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter_map_plugins_example.web
+          path: example/build/web
       - uses: FirebaseExtended/action-hosting-deploy@v0
+        if: github.repository_owner == 'josxha'
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FLUTTER_MAP_PLUGINS }}'
           channelId: live
           projectId: flutter-map-plugins
-
