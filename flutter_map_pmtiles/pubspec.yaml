@@ -3,7 +3,7 @@ description: PMTiles tile provider for flutter_map. It uses HTTP Range Requests 
 repository: https://github.com/josxha/flutter_map_plugins
 issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
 topics: [ flutter-map, map, pmtiles ]
-version: 1.0.3
+version: 1.0.4
 
 environment:
   sdk: '>=3.2.5 <4.0.0'
@@ -12,7 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_map: ^6.1.0
+  flutter_map: ">=6.0.0 <8.0.0"
   pmtiles: ^1.2.0
 
 dev_dependencies:

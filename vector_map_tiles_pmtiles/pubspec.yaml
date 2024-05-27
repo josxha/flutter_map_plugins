@@ -3,7 +3,7 @@ description: PMTiles tile provider for vector_map_tiles (flutter_map vector tile
 repository: https://github.com/josxha/flutter_map_plugins
 issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
 topics: [ flutter-map, vector-map-tiles, map, pmtiles ]
-version: 1.3.0
+version: 1.3.1
 
 environment:
   sdk: '>=3.2.5 <4.0.0'
@@ -23,5 +23,5 @@ dev_dependencies:
   mockito: ^5.4.4
   build_runner: ^2.4.8
   latlong2: ^0.9.0
-  flutter_map: ^6.1.0
+  flutter_map: ">=6.0.0 <8.0.0"
   flutter_lints: ^4.0.0
