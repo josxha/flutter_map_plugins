@@ -1,3 +1,7 @@
+## [1.5.1] 2024-05-27
+
+- Support for flutter_map v6 and v7
+
 ## [1.5.0] 2024-02-19
 
 - fix: assertion error when the total amount of bytes is unknown (thanks to

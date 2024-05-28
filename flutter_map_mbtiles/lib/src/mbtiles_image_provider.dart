@@ -8,6 +8,13 @@ import 'package:mbtiles/mbtiles.dart';
 
 /// Image provider with additional caching functionality
 class MbTilesImageProvider extends ImageProvider<MbTilesImageProvider> {
+  /// Default constructor for the [MbTilesImageProvider]
+  const MbTilesImageProvider({
+    required this.coordinates,
+    required this.mbtiles,
+    required this.silenceTileNotFound,
+  });
+
   /// The tile coordinates of the requested tile image
   final TileCoordinates coordinates;
 
@@ -16,13 +23,6 @@ class MbTilesImageProvider extends ImageProvider<MbTilesImageProvider> {
 
   /// Whether an exception should get thrown if a tile is not found.
   final bool silenceTileNotFound;
-
-  /// Default constructor for the [MbTilesImageProvider]
-  const MbTilesImageProvider({
-    required this.coordinates,
-    required this.mbtiles,
-    required this.silenceTileNotFound,
-  });
 
   @override
   Future<MbTilesImageProvider> obtainKey(ImageConfiguration configuration) {

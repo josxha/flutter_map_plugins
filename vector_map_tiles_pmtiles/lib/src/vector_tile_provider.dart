@@ -7,6 +7,17 @@ import 'package:vector_map_tiles/vector_map_tiles.dart';
 /// PMTiles archive.
 ///
 class PmTilesVectorTileProvider extends VectorTileProvider {
+  /// Create a tile provider directly with a [PmTilesArchive] from the
+  /// `pmtiles` package.
+  PmTilesVectorTileProvider.fromArchive(
+    this.archive, {
+    this.type = TileProviderType.vector,
+    @Deprecated(
+      'This option is no longer used and will get removed in a future update.',
+    )
+    this.silenceTileNotFound = false,
+  });
+
   /// Tile [PmTilesArchive] instance used to request tiles from.
   final PmTilesArchive archive;
 
@@ -19,18 +30,9 @@ class PmTilesVectorTileProvider extends VectorTileProvider {
   @Deprecated(
     'This option is no longer used and will get removed in a future update.',
   )
-  final bool silenceTileNotFound;
 
-  /// Create a tile provider directly with a [PmTilesArchive] from the
-  /// `pmtiles` package.
-  PmTilesVectorTileProvider.fromArchive(
-    this.archive, {
-    this.type = TileProviderType.vector,
-    @Deprecated(
-      'This option is no longer used and will get removed in a future update.',
-    )
-    this.silenceTileNotFound = false,
-  });
+  /// Flag no longer in use.
+  final bool silenceTileNotFound;
 
   /// Create a tile provider by specifying the source of the PMTiles file.
   ///

@@ -11,12 +11,14 @@ import 'utils/test_app.dart';
 Future<void> main() async {
   testWidgets('FlutterMap with MbTilesTileProvider', (tester) async {
     final pmTiles = MockPmTilesArchive();
-    when(pmTiles.tile(captureAny)).thenAnswer((params) async => Tile(
-          params.positionalArguments.first,
-          bytes: TileProvider.transparentImage,
-          compression: Compression.none,
-          type: TileType.png,
-        ));
+    when(pmTiles.tile(captureAny)).thenAnswer(
+      (params) async => Tile(
+        params.positionalArguments.first as int,
+        bytes: TileProvider.transparentImage,
+        compression: Compression.none,
+        type: TileType.png,
+      ),
+    );
     await tester.pumpWidget(TestApp(pmTiles: pmTiles));
     await tester.pumpAndSettle();
   });

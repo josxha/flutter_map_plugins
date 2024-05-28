@@ -1,20 +1,5 @@
-include: package:total_lints/app.yaml
+include: ../analysis_options.yaml
 
 linter:
   rules:
-    avoid_types_on_closure_parameters: true
-    omit_local_variable_types: true
-    use_key_in_widget_constructors: true
-    avoid_positional_boolean_parameters: false
-    always_use_package_imports: true
-    avoid_relative_lib_imports: true
-    prefer_relative_imports: false
-    avoid_catches_without_on_clauses: false
-    avoid_multiple_declarations_per_line: true
-    prefer_foreach: false
-    flutter_style_todos: false
-    use_build_context_synchronously: false # lint: Dont use BuildContext across async gaps
-    unnecessary_lambdas: false # changes functionality
-    avoid_dynamic_calls: false
-    sort_pub_dependencies: false # no automatic fix
-    discarded_futures: false # does not work properly
+    public_member_api_docs: false

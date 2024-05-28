@@ -9,11 +9,13 @@ Future<void> main() async {
     final mapController = MapController();
     const cupertinoCompassKey = ValueKey('cupertino key');
     const customCompassKey = ValueKey('custom key');
-    await tester.pumpWidget(TestApp(
-      mapController: mapController,
-      cupertinoCompassKey: cupertinoCompassKey,
-      customCompassKey: customCompassKey,
-    ));
+    await tester.pumpWidget(
+      TestApp(
+        mapController: mapController,
+        cupertinoCompassKey: cupertinoCompassKey,
+        customCompassKey: customCompassKey,
+      ),
+    );
     await tester.pumpAndSettle();
     expect(mapController.camera.rotation, closeTo(0, 0.001));
 

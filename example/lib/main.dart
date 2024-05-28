@@ -6,8 +6,6 @@ import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_compass/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_mbtiles/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
-import 'package:flutter_map_plugins_example/vector_map_tiles_mbtiles/page.dart';
-import 'package:flutter_map_plugins_example/vector_map_tiles_pmtiles/page.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -31,10 +29,10 @@ class MyApp extends StatelessWidget {
         '/': (context) => const SelectionPage(),
         'flutter_map_cache': (context) => const FlutterMapCachePage(),
         'flutter_map_pmtiles': (context) => const FlutterMapPmTilesPage(),
-        'vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
+        // 'vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
         'flutter_map_mbtiles': (context) => const FlutterMapMbTilesPage(),
-        'vector_map_tiles_mbtiles': (context) =>
-            const VectorMapTilesMbTilesPage(),
+        // 'vector_map_tiles_mbtiles': (context) =>
+        //     const VectorMapTilesMbTilesPage(),
         'flutter_map_compass': (context) => const FlutterMapCompassPage(),
       },
     );
@@ -69,7 +67,7 @@ class SelectionPage extends StatelessWidget {
         desc: 'PMTiles for flutter_map',
         routeName: 'flutter_map_pmtiles',
       ),
-      SelectionItemWidget.disabledOnWeb(
+      /*SelectionItemWidget.disabledOnWeb(
         title: 'vector_map_tiles_mbtiles',
         desc: 'MBTiles for vector_map_files / flutter_map',
         routeName: 'vector_map_tiles_mbtiles',
@@ -78,7 +76,7 @@ class SelectionPage extends StatelessWidget {
         title: 'vector_map_tiles_pmtiles',
         desc: 'PMTiles for vector_map_files / flutter_map',
         routeName: 'vector_map_tiles_pmtiles',
-      ),
+      ),*/
     ];
 
     final width = MediaQuery.sizeOf(context).width;
@@ -113,6 +111,22 @@ class SelectionPage extends StatelessWidget {
 }
 
 class SelectionItemWidget extends StatelessWidget {
+  const SelectionItemWidget({
+    required this.title,
+    required this.desc,
+    required this.routeName,
+    this.disabled = false,
+    this.disabledMessage = 'Disabled',
+    super.key,
+  });
+
+  const SelectionItemWidget.disabledOnWeb({
+    required this.title,
+    required this.desc,
+    required this.routeName,
+    super.key,
+  })  : disabled = kIsWeb,
+        disabledMessage = 'Not on web';
   static const _titleStyle = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
@@ -128,23 +142,6 @@ class SelectionItemWidget extends StatelessWidget {
   final String routeName;
   final bool disabled;
   final String disabledMessage;
-
-  const SelectionItemWidget({
-    super.key,
-    required this.title,
-    required this.desc,
-    required this.routeName,
-    this.disabled = false,
-    this.disabledMessage = 'Disabled',
-  });
-
-  const SelectionItemWidget.disabledOnWeb({
-    super.key,
-    required this.title,
-    required this.desc,
-    required this.routeName,
-  })  : disabled = kIsWeb,
-        disabledMessage = 'Not on web';
 
   @override
   Widget build(BuildContext context) {

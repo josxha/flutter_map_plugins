@@ -8,12 +8,12 @@ import 'package:pmtiles/pmtiles.dart';
 /// Note that this tile provider does only support raster tiles
 /// (no mvt / pbf).
 class PmTilesTileProvider extends TileProvider {
-  /// The used PMTiles archive
-  final PmTilesArchive archive;
-
   /// Create a tile provider directly with a [PmTilesArchive] from the
   /// pmtiles package.
   PmTilesTileProvider.fromArchive(this.archive);
+
+  /// The used PMTiles archive
+  final PmTilesArchive archive;
 
   /// Create a tile provider by specifying the source of the PMTiles file.
   /// [source] can either be a URL or path on your file system.

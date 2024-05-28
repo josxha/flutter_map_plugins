@@ -8,6 +8,17 @@ import 'package:flutter_map/flutter_map.dart';
 
 /// Image provider with additional caching functionality
 class CachedImageProvider extends ImageProvider<CachedImageProvider> {
+  /// Default constructor for the [CachedImageProvider]
+  CachedImageProvider({
+    required this.dio,
+    required this.url,
+    required this.headers,
+    required this.cancelLoading,
+    this.fallbackUrl,
+  }) {
+    cancelLoading.then((_) => cancelToken.cancel());
+  }
+
   /// The dio instance
   final Dio dio;
 
@@ -25,17 +36,6 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
 
   /// Call this callback to cancel the request
   final Future<void> cancelLoading;
-
-  /// Default constructor for the [CachedImageProvider]
-  CachedImageProvider({
-    required this.dio,
-    required this.url,
-    this.fallbackUrl,
-    required this.headers,
-    required this.cancelLoading,
-  }) {
-    cancelLoading.then((_) => cancelToken.cancel());
-  }
 
   @override
   Future<CachedImageProvider> obtainKey(
@@ -73,7 +73,7 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
     bool useFallback = false,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await dio.get<List<int>>(
         useFallback && fallbackUrl != null ? fallbackUrl! : url,
         cancelToken: cancelToken,
         options: Options(
@@ -92,7 +92,7 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
           );
         },
       );
-      final bytes = Uint8List.fromList(response.data);
+      final bytes = Uint8List.fromList(response.data!);
       final codec = decode(await ImmutableBuffer.fromUint8List(bytes));
       cancelLoading.ignore();
       return codec;

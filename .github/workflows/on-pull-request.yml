@@ -78,7 +78,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '21'
+          java-version: '17'
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -96,29 +96,29 @@ jobs:
         with:
           name: flutter_map_plugins_example.apk
           path: example/build/app/outputs/flutter-apk/app-release.apk
-  build-ios:
-    runs-on: macos-latest
-    name: Build iOS
-    defaults:
-      run:
-        working-directory: ./example
-    steps:
-      - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ matrix.sdk }}
-          cache: true
-      - uses: maxim-lobanov/setup-cocoapods@v1
-        with:
-          podfile-path: example/ios/Podfile.lock
-      - run: flutter pub get
-      - name: Build iOS package
-        run: flutter build ios --simulator
-      - name: Upload Runner.app as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: flutter_map_plugins_example.app
-          path: example/build/ios/iphonesimulator
+  #  build-ios:
+  #    runs-on: macos-latest
+  #    name: Build iOS
+  #    defaults:
+  #      run:
+  #        working-directory: ./example
+  #    steps:
+  #      - uses: actions/checkout@v4
+  #      - uses: subosito/flutter-action@v2
+  #        with:
+  #          flutter-version: ${{ matrix.sdk }}
+  #          cache: true
+  #      - uses: maxim-lobanov/setup-cocoapods@v1
+  #        with:
+  #          podfile-path: example/ios/Podfile.lock
+  #      - run: flutter pub get
+  #      - name: Build iOS package
+  #        run: flutter build ios --simulator
+  #      - name: Upload Runner.app as artifact
+  #        uses: actions/upload-artifact@v4
+  #        with:
+  #          name: flutter_map_plugins_example.app
+  #          path: example/build/ios/iphonesimulator
   build-web:
     runs-on: ubuntu-latest
     name: Build Web

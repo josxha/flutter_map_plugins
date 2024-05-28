@@ -7,9 +7,9 @@ import 'package:mbtiles/mbtiles.dart';
 // ignore_for_file: diagnostic_describe_all_properties
 
 class TestApp extends StatelessWidget {
-  final MbTiles mbtiles;
+  const TestApp({required this.mbtiles, super.key});
 
-  const TestApp({super.key, required this.mbtiles});
+  final MbTiles mbtiles;
 
   @override
   Widget build(BuildContext context) {

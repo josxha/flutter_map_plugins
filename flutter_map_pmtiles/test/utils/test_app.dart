@@ -7,9 +7,8 @@ import 'package:pmtiles/pmtiles.dart';
 // ignore_for_file: diagnostic_describe_all_properties
 
 class TestApp extends StatelessWidget {
+  const TestApp({required this.pmTiles, super.key});
   final PmTilesArchive pmTiles;
-
-  const TestApp({super.key, required this.pmTiles});
 
   @override
   Widget build(BuildContext context) {

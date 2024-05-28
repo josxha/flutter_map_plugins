@@ -11,9 +11,6 @@ export 'package:dio_cache_interceptor/dio_cache_interceptor.dart'
 
 /// TileProvider with additional caching functionality
 class CachedTileProvider extends TileProvider {
-  /// dio http client
-  final Dio dio;
-
   /// Create a new [CachedTileProvider].
   ///
   /// [cachePolicy] allows to set the policy used by the cache, see
@@ -55,6 +52,9 @@ class CachedTileProvider extends TileProvider {
       ),
     ]);
   }
+
+  /// dio http client
+  final Dio dio;
 
   /// list of http status codes that will not hit the cache, e.g. if the user
   /// needs authentication or the server is currently not able to handle the

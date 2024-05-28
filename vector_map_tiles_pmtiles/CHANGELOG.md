@@ -1,3 +1,7 @@
+## [1.3.1] 2024-05-27
+
+- Support for flutter_map v6 and v7
+
 ## [1.3.0] 2024-05-21
 
 - Update `ProtomapsThemes` to
