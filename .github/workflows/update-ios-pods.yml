@@ -20,6 +20,7 @@ jobs:
         with:
           cache: true
       - name: Get Flutter dependencies
+        working-directory: ./example
         run: flutter pub get
       - name: Update CocoaPods
         working-directory: ./example/ios
