@@ -53,8 +53,10 @@ Future<void> main() async {
 
   test('Accepts a type', () async {
     final mockPmTiles = MockPmTilesArchive();
-    final provider = PmTilesVectorTileProvider.fromArchive(mockPmTiles,
-        type: TileProviderType.raster);
+    final provider = PmTilesVectorTileProvider.fromArchive(
+      mockPmTiles,
+      type: TileProviderType.raster,
+    );
     expect(provider.type, TileProviderType.raster);
   });
 }

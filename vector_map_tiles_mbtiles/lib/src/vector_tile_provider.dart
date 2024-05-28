@@ -5,28 +5,6 @@ import 'package:vector_map_tiles/vector_map_tiles.dart';
 
 /// MBTiles raster TileProvider, use for `pbf` tiles.
 class MbTilesVectorTileProvider extends VectorTileProvider {
-  /// MBTiles database
-  final MbTiles mbtiles;
-
-  MbTilesMetadata get metadata => mbtiles.getMetadata();
-
-  /// Set to true if you want to silence exceptions that would be thrown if a
-  /// tile does not exist in the mbtiles file.
-  ///
-  /// By default this is disabled in debug mode and enabled else.
-  @Deprecated(
-    'This option is no longer used and will get removed in a future update.',
-  )
-  final bool silenceTileNotFound;
-
-  /// The minimum zoom level
-  @override
-  late final int minimumZoom;
-
-  /// The maximum zoom level, higher zoom level get "over-zoomed"
-  @override
-  late final int maximumZoom;
-
   /// Create a new [MbTilesVectorTileProvider] and pass it to the flutter_map
   /// vector plugin vector_map_tiles.
   ///
@@ -45,6 +23,29 @@ class MbTilesVectorTileProvider extends VectorTileProvider {
     this.minimumZoom = minimumZoom ?? metadata.minZoom?.truncate() ?? 0;
     this.maximumZoom = maximumZoom ?? metadata.maxZoom?.truncate() ?? 16;
   }
+
+  /// MBTiles database
+  final MbTiles mbtiles;
+
+  /// Get the metadata of the [MbTiles] archive.
+  MbTilesMetadata get metadata => mbtiles.getMetadata();
+
+  /// Set to true if you want to silence exceptions that would be thrown if a
+  /// tile does not exist in the mbtiles file.
+  ///
+  /// By default this is disabled in debug mode and enabled else.
+  @Deprecated(
+    'This option is no longer used and will get removed in a future update.',
+  )
+  final bool silenceTileNotFound;
+
+  /// The minimum zoom level
+  @override
+  late final int minimumZoom;
+
+  /// The maximum zoom level, higher zoom level get "over-zoomed"
+  @override
+  late final int maximumZoom;
 
   @override
   Future<Uint8List> provide(TileIdentity tile) async {

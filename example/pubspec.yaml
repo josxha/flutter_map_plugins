@@ -21,8 +21,8 @@ dependencies:
   dio_cache_interceptor_file_store: ^1.2.2
   dio_cache_interceptor_hive_store: ^3.2.1
   sqlite3_flutter_libs: ^0.5.15
-  vector_map_tiles: ^7.0.1
-  vector_tile_renderer: ^5.2.0
+  #  vector_map_tiles: ^7.0.1
+  #  vector_tile_renderer: ^5.2.0
   mbtiles: ^0.4.0
 
   flutter_map_cache:
@@ -33,13 +33,13 @@ dependencies:
     path: ../flutter_map_mbtiles
   flutter_map_pmtiles:
     path: ../flutter_map_pmtiles
-  vector_map_tiles_mbtiles:
-    path: ../vector_map_tiles_mbtiles
-  vector_map_tiles_pmtiles:
-    path: ../vector_map_tiles_pmtiles
+#  vector_map_tiles_mbtiles:
+#    path: ../vector_map_tiles_mbtiles
+#  vector_map_tiles_pmtiles:
+#    path: ../vector_map_tiles_pmtiles
 
 dev_dependencies:
-  total_lints: ^3.0.0
+  very_good_analysis: ^5.1.0
 
 flutter:
   uses-material-design: true

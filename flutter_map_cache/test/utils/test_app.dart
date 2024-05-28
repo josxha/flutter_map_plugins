@@ -8,10 +8,10 @@ import 'package:latlong2/latlong.dart';
 // ignore_for_file: diagnostic_describe_all_properties
 
 class TestApp extends StatelessWidget {
+  const TestApp({required this.cacheStore, required this.dio, super.key});
+
   final CacheStore cacheStore;
   final Dio dio;
-
-  const TestApp({super.key, required this.cacheStore, required this.dio});
 
   @override
   Widget build(BuildContext context) {

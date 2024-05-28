@@ -2,7 +2,7 @@ part of 'protomaps_themes.dart';
 
 // ignore_for_file: prefer_single_quotes, require_trailing_commas
 
-const themeWhite = [
+const _themeWhite = [
   {
     "id": "background",
     "type": "background",

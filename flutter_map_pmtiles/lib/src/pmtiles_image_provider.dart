@@ -9,16 +9,17 @@ import 'package:pmtiles/pmtiles.dart';
 /// The [PmTilesImageProvider] is used by the [PmTilesTileProvider] to load
 /// tile images.
 class PmTilesImageProvider extends ImageProvider<PmTilesImageProvider> {
+  /// Create a new [PmTilesImageProvider] instance
+  PmTilesImageProvider({
+    required this.tileId,
+    required this.archive,
+  });
+
   /// Reference to the PMTiles archive instance
   final PmTilesArchive archive;
 
   /// The calculated tile ID, translated from ZXY coordinates
   final int tileId;
-
-  PmTilesImageProvider({
-    required this.tileId,
-    required this.archive,
-  });
 
   @override
   Future<PmTilesImageProvider> obtainKey(

@@ -9,9 +9,8 @@ import 'package:vector_tile_renderer/vector_tile_renderer.dart';
 // ignore_for_file: diagnostic_describe_all_properties
 
 class TestApp extends StatelessWidget {
+  const TestApp({required this.mbTiles, super.key});
   final MbTiles mbTiles;
-
-  const TestApp({super.key, required this.mbTiles});
 
   @override
   Widget build(BuildContext context) {

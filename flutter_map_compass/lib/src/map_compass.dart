@@ -3,7 +3,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_compass/src/utils.dart';
 
+/// A compass for flutter_map that shows the map rotation and allows to reset
+/// the rotation back to 0.
 class MapCompass extends StatefulWidget {
+  /// Use this constructor if you want to customize your compass.
+  ///
+  /// Use [MapCompass.cupertino] to use the default.
+  const MapCompass({
+    required this.icon,
+    super.key,
+    this.rotationOffset = 0,
+    this.rotationDuration = const Duration(seconds: 1),
+    this.animationCurve = Curves.fastOutSlowIn,
+    this.onPressed,
+    this.hideIfRotatedNorth = false,
+    this.alignment = Alignment.topRight,
+    this.padding = const EdgeInsets.all(10),
+  });
+
+  /// The default map compass based on the cupertino compass icon
+  const MapCompass.cupertino({
+    super.key,
+    this.onPressed,
+    this.hideIfRotatedNorth = false,
+    this.rotationDuration = const Duration(seconds: 1),
+    this.animationCurve = Curves.fastOutSlowIn,
+    this.alignment = Alignment.topRight,
+    this.padding = const EdgeInsets.all(10),
+  })  : rotationOffset = -45,
+        icon = const Stack(
+          children: [
+            Icon(CupertinoIcons.compass, color: Colors.red, size: 50),
+            Icon(CupertinoIcons.compass_fill, color: Colors.white54, size: 50),
+            Icon(CupertinoIcons.circle, color: Colors.black, size: 50),
+          ],
+        );
+
   /// This child widget, for example a [Icon] width with a compass icon.
   final Widget icon;
 
@@ -37,35 +72,6 @@ class MapCompass extends StatefulWidget {
 
   /// The curve of the rotation animation.
   final Curve animationCurve;
-
-  const MapCompass({
-    super.key,
-    required this.icon,
-    this.rotationOffset = 0,
-    this.rotationDuration = const Duration(seconds: 1),
-    this.animationCurve = Curves.fastOutSlowIn,
-    this.onPressed,
-    this.hideIfRotatedNorth = false,
-    this.alignment = Alignment.topRight,
-    this.padding = const EdgeInsets.all(10),
-  });
-
-  const MapCompass.cupertino({
-    super.key,
-    this.onPressed,
-    this.hideIfRotatedNorth = false,
-    this.rotationDuration = const Duration(seconds: 1),
-    this.animationCurve = Curves.fastOutSlowIn,
-    this.alignment = Alignment.topRight,
-    this.padding = const EdgeInsets.all(10),
-  })  : rotationOffset = -45,
-        icon = const Stack(
-          children: [
-            Icon(CupertinoIcons.compass, color: Colors.red, size: 50),
-            Icon(CupertinoIcons.compass_fill, color: Colors.white54, size: 50),
-            Icon(CupertinoIcons.circle, color: Colors.black, size: 50),
-          ],
-        );
 
   @override
   State<MapCompass> createState() => _MapCompassState();

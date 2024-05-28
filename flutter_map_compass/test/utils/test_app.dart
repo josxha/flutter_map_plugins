@@ -6,16 +6,16 @@ import 'package:latlong2/latlong.dart';
 // ignore_for_file: diagnostic_describe_all_properties
 
 class TestApp extends StatelessWidget {
+  const TestApp({
+    required this.mapController,
+    required this.cupertinoCompassKey,
+    required this.customCompassKey,
+    super.key,
+  });
+
   final ValueKey<String> cupertinoCompassKey;
   final ValueKey<String> customCompassKey;
   final MapController mapController;
-
-  const TestApp({
-    required this.mapController,
-    super.key,
-    required this.cupertinoCompassKey,
-    required this.customCompassKey,
-  });
 
   @override
   Widget build(BuildContext context) {
