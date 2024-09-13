@@ -1,4 +1,3 @@
-/*
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_plugins_example/common/utils.dart';
@@ -100,4 +99,3 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
     super.dispose();
   }
 }
-*/
