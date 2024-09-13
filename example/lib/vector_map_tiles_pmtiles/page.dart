@@ -1,4 +1,3 @@
-/*
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -15,6 +14,8 @@ const String tileSource =
     'https://raw.githubusercontent.com/protomaps/PMTiles/main/spec/v3/protomaps(vector)ODbL_firenze.pmtiles';
 
 class VectorMapTilesPmTilesPage extends StatelessWidget {
+  VectorMapTilesPmTilesPage({super.key});
+
   /// The theme specifies the look of the rendered map.
   ///
   /// Note: Styles from Mapbox, OpenMapTiles and others and not compatible
@@ -24,8 +25,6 @@ class VectorMapTilesPmTilesPage extends StatelessWidget {
   );
 
   final _futureTileProvider = PmTilesVectorTileProvider.fromSource(tileSource);
-
-  VectorMapTilesPmTilesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,4 +68,3 @@ class VectorMapTilesPmTilesPage extends StatelessWidget {
     );
   }
 }
-*/

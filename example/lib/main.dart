@@ -67,7 +67,7 @@ class SelectionPage extends StatelessWidget {
         desc: 'PMTiles for flutter_map',
         routeName: 'flutter_map_pmtiles',
       ),
-      /*SelectionItemWidget.disabledOnWeb(
+      SelectionItemWidget.disabledOnWeb(
         title: 'vector_map_tiles_mbtiles',
         desc: 'MBTiles for vector_map_files / flutter_map',
         routeName: 'vector_map_tiles_mbtiles',
@@ -76,7 +76,7 @@ class SelectionPage extends StatelessWidget {
         title: 'vector_map_tiles_pmtiles',
         desc: 'PMTiles for vector_map_files / flutter_map',
         routeName: 'vector_map_tiles_pmtiles',
-      ),*/
+      ),
     ];
 
     final width = MediaQuery.sizeOf(context).width;
