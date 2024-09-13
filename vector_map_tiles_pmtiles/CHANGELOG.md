@@ -1,6 +1,6 @@
-## [1.3.1] 2024-05-27
+## [1.4.0]
 
-- Support for flutter_map v6 and v7
+- Use `vector_map_tiles` version ^8.0.0 (`flutter_map` v7).
 
 ## [1.3.0] 2024-05-21
 
