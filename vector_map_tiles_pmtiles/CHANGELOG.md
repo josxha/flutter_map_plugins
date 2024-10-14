@@ -1,3 +1,7 @@
+## [1.5.0]
+
+- Add Protomaps themes version 4.1.
+
 ## [1.4.0]
 
 - Use `vector_map_tiles` version ^8.0.0 (`flutter_map` v7).

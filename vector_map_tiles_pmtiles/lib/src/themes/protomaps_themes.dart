@@ -4,7 +4,7 @@ import 'package:vector_tile_renderer/vector_tile_renderer.dart';
 
 // ignore_for_file: prefer_single_quotes, require_trailing_commas
 
-/// Protomaps themes, version 3.0.1
+/// Protomaps themes.
 ///
 /// All themes are published by Protomaps under CC0 / public domain.
 ///
@@ -25,16 +25,20 @@ class ProtomapsThemes {
     },
     this.glyphs =
         "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
+    this.sprites,
   });
 
-  /// The [Logger] that gets provided to vector_map_tiles
+  /// The [Logger] that gets provided to vector_map_tiles.
   final Logger? logger;
 
-  /// A Map of Tile Sources
+  /// A Map of Tile Sources.
   final Map<String, Object> sources;
 
-  /// An URL template for the glyphs
+  /// An URL template for the glyphs.
   final String glyphs;
+
+  /// An URL template for the sprites.
+  final String? sprites;
 
   /// build the [Theme].
   Theme build(List<Map<String, Object>> layers) =>
@@ -43,6 +47,7 @@ class ProtomapsThemes {
         "sources": sources,
         "layers": layers,
         "glyphs": glyphs,
+        if (sprites != null) "sprite": sprites,
       });
 
   /// Prefer to use a versioned theme.
@@ -65,43 +70,54 @@ class ProtomapsThemes {
   @Deprecated('Prefer to use a versioned theme')
   static Theme white({Logger? logger}) => whiteV3(logger: logger);
 
-  /// Protomaps black theme version 3
+  /// Protomaps black theme version 3.
   static Theme blackV3({Logger? logger}) =>
       ProtomapsThemes(logger: logger).build(v3.themeBlack);
 
-  /// Protomaps dark theme version 3
+  /// Protomaps dark theme version 3.
   static Theme darkV3({Logger? logger}) =>
       ProtomapsThemes(logger: logger).build(v3.themeDark);
 
-  /// Protomaps grayscale theme version 3
+  /// Protomaps grayscale theme version 3.
   static Theme grayscaleV3({Logger? logger}) =>
       ProtomapsThemes(logger: logger).build(v3.themeGrayscale);
 
-  /// Protomaps light theme version 3
+  /// Protomaps light theme version 3.
   static Theme lightV3({Logger? logger}) =>
       ProtomapsThemes(logger: logger).build(v3.themeLight);
 
-  /// Protomaps white theme version 3
+  /// Protomaps white theme version 3.
   static Theme whiteV3({Logger? logger}) =>
       ProtomapsThemes(logger: logger).build(v3.themeWhite);
 
-  /// Protomaps black theme version 4
-  static Theme blackV4({Logger? logger}) =>
-      ProtomapsThemes(logger: logger).build(v4.themeBlack);
+  /// Protomaps black theme version 4.
+  static Theme blackV4({Logger? logger}) => ProtomapsThemes(
+        logger: logger,
+        sprites: 'https://protomaps.github.io/basemaps-assets/sprites/v4/black',
+      ).build(v4.themeBlack);
 
-  /// Protomaps dark theme version 4
-  static Theme darkV4({Logger? logger}) =>
-      ProtomapsThemes(logger: logger).build(v4.themeDark);
+  /// Protomaps dark theme version 4.
+  static Theme darkV4({Logger? logger}) => ProtomapsThemes(
+        logger: logger,
+        sprites: 'https://protomaps.github.io/basemaps-assets/sprites/v4/dark',
+      ).build(v4.themeDark);
 
-  /// Protomaps grayscale theme version 4
-  static Theme grayscaleV4({Logger? logger}) =>
-      ProtomapsThemes(logger: logger).build(v4.themeGrayscale);
+  /// Protomaps grayscale theme version 4.
+  static Theme grayscaleV4({Logger? logger}) => ProtomapsThemes(
+        logger: logger,
+        sprites:
+            'https://protomaps.github.io/basemaps-assets/sprites/v4/grayscale',
+      ).build(v4.themeGrayscale);
 
-  /// Protomaps light theme version 4
-  static Theme lightV4({Logger? logger}) =>
-      ProtomapsThemes(logger: logger).build(v4.themeLight);
+  /// Protomaps light theme version 4.
+  static Theme lightV4({Logger? logger}) => ProtomapsThemes(
+        logger: logger,
+        sprites: 'https://protomaps.github.io/basemaps-assets/sprites/v4/light',
+      ).build(v4.themeLight);
 
-  /// Protomaps white theme version 4
-  static Theme whiteV4({Logger? logger}) =>
-      ProtomapsThemes(logger: logger).build(v4.themeWhite);
+  /// Protomaps white theme version 4.
+  static Theme whiteV4({Logger? logger}) => ProtomapsThemes(
+        logger: logger,
+        sprites: 'https://protomaps.github.io/basemaps-assets/sprites/v4/white',
+      ).build(v4.themeWhite);
 }
