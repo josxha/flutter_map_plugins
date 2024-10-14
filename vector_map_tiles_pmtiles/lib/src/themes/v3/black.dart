@@ -1,19 +1,20 @@
-part of 'protomaps_themes.dart';
+part of '_package.dart';
 
 // ignore_for_file: prefer_single_quotes, require_trailing_commas
 
-const _themeWhite = [
+/// https://docs.protomaps.com/basemaps/themes#black
+const themeBlack = [
   {
     "id": "background",
     "type": "background",
-    "paint": {"background-color": "#ffffff"}
+    "paint": {"background-color": "#2b2b2b"}
   },
   {
     "id": "earth",
     "type": "fill",
     "source": "protomaps",
     "source-layer": "earth",
-    "paint": {"fill-color": "#ffffff"}
+    "paint": {"fill-color": "#141414"}
   },
   {
     "id": "landuse_park",
@@ -40,9 +41,9 @@ const _themeWhite = [
         ["linear"],
         ["zoom"],
         0,
-        "#fcfcfc",
+        "#181818",
         12,
-        "#fcfcfc"
+        "#181818"
       ]
     }
   },
@@ -55,7 +56,7 @@ const _themeWhite = [
       "any",
       ["in", "pmap:kind", "allotments", "village_green", "playground"]
     ],
-    "paint": {"fill-color": "#fcfcfc", "fill-opacity": 0.7}
+    "paint": {"fill-color": "#181818", "fill-opacity": 0.7}
   },
   {
     "id": "landuse_hospital",
@@ -66,7 +67,7 @@ const _themeWhite = [
       "any",
       ["==", "pmap:kind", "hospital"]
     ],
-    "paint": {"fill-color": "#f8f8f8"}
+    "paint": {"fill-color": "#1d1d1d"}
   },
   {
     "id": "landuse_industrial",
@@ -77,7 +78,7 @@ const _themeWhite = [
       "any",
       ["==", "pmap:kind", "industrial"]
     ],
-    "paint": {"fill-color": "#fcfcfc"}
+    "paint": {"fill-color": "#101010"}
   },
   {
     "id": "landuse_school",
@@ -88,7 +89,7 @@ const _themeWhite = [
       "any",
       ["in", "pmap:kind", "school", "university", "college"]
     ],
-    "paint": {"fill-color": "#f8f8f8"}
+    "paint": {"fill-color": "#111111"}
   },
   {
     "id": "landuse_beach",
@@ -99,7 +100,7 @@ const _themeWhite = [
       "any",
       ["in", "pmap:kind", "beach"]
     ],
-    "paint": {"fill-color": "#f6f6f6"}
+    "paint": {"fill-color": "#1f1f1f"}
   },
   {
     "id": "landuse_zoo",
@@ -110,7 +111,7 @@ const _themeWhite = [
       "any",
       ["in", "pmap:kind", "zoo"]
     ],
-    "paint": {"fill-color": "#f7f7f7"}
+    "paint": {"fill-color": "#191919"}
   },
   {
     "id": "landuse_military",
@@ -121,7 +122,7 @@ const _themeWhite = [
       "any",
       ["in", "pmap:kind", "military", "naval_base", "airfield"]
     ],
-    "paint": {"fill-color": "#f7f7f7"}
+    "paint": {"fill-color": "#191919"}
   },
   {
     "id": "natural_wood",
@@ -138,9 +139,9 @@ const _themeWhite = [
         ["linear"],
         ["zoom"],
         0,
-        "#fafafa",
+        "#1a1a1a",
         12,
-        "#fafafa"
+        "#1a1a1a"
       ]
     }
   },
@@ -156,9 +157,9 @@ const _themeWhite = [
         ["linear"],
         ["zoom"],
         0,
-        "#fafafa",
+        "#1c1c1c",
         12,
-        "#fafafa"
+        "#1c1c1c"
       ]
     }
   },
@@ -168,7 +169,7 @@ const _themeWhite = [
     "source": "protomaps",
     "source-layer": "natural",
     "filter": ["==", "pmap:kind", "glacier"],
-    "paint": {"fill-color": "#fcfcfc"}
+    "paint": {"fill-color": "#191919"}
   },
   {
     "id": "natural_sand",
@@ -176,7 +177,7 @@ const _themeWhite = [
     "source": "protomaps",
     "source-layer": "natural",
     "filter": ["==", "pmap:kind", "sand"],
-    "paint": {"fill-color": "#fafafa"}
+    "paint": {"fill-color": "#161616"}
   },
   {
     "id": "landuse_aerodrome",
@@ -187,7 +188,7 @@ const _themeWhite = [
       "any",
       ["in", "pmap:kind", "aerodrome"]
     ],
-    "paint": {"fill-color": "#fdfdfd"}
+    "paint": {"fill-color": "#191919"}
   },
   {
     "id": "transit_runway",
@@ -199,7 +200,7 @@ const _themeWhite = [
       ["in", "pmap:kind_detail", "runway"]
     ],
     "paint": {
-      "line-color": "#efefef",
+      "line-color": "#323232",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -224,7 +225,7 @@ const _themeWhite = [
       ["in", "pmap:kind_detail", "taxiway"]
     ],
     "paint": {
-      "line-color": "#efefef",
+      "line-color": "#323232",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -243,7 +244,7 @@ const _themeWhite = [
     "type": "fill",
     "source": "protomaps",
     "source-layer": "water",
-    "paint": {"fill-color": "#dcdcdc"}
+    "paint": {"fill-color": "#333333"}
   },
   {
     "id": "physical_line_stream",
@@ -255,7 +256,7 @@ const _themeWhite = [
       "all",
       ["in", "pmap:kind", "stream"]
     ],
-    "paint": {"line-color": "#dcdcdc", "line-width": 0.5}
+    "paint": {"line-color": "#333333", "line-width": 0.5}
   },
   {
     "id": "physical_line_river",
@@ -268,7 +269,7 @@ const _themeWhite = [
       ["in", "pmap:kind", "river"]
     ],
     "paint": {
-      "line-color": "#dcdcdc",
+      "line-color": "#333333",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -291,7 +292,7 @@ const _themeWhite = [
       "any",
       ["==", "pmap:kind", "pedestrian"]
     ],
-    "paint": {"fill-color": "#fdfdfd"}
+    "paint": {"fill-color": "#191919"}
   },
   {
     "id": "landuse_pier",
@@ -302,7 +303,7 @@ const _themeWhite = [
       "any",
       ["==", "pmap:kind", "pier"]
     ],
-    "paint": {"fill-color": "#f5f5f5"}
+    "paint": {"fill-color": "#0a0a0a"}
   },
   {
     "id": "roads_tunnels_other_casing",
@@ -315,7 +316,7 @@ const _themeWhite = [
       ["in", "pmap:kind", "other", "path"]
     ],
     "paint": {
-      "line-color": "#d6d6d6",
+      "line-color": "#101010",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -338,7 +339,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "minor_road"]
     ],
     "paint": {
-      "line-color": "#fcfcfc",
+      "line-color": "#101010",
       "line-dasharray": [3, 2],
       "line-gap-width": [
         "interpolate",
@@ -375,7 +376,7 @@ const _themeWhite = [
       ["==", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#fcfcfc",
+      "line-color": "#101010",
       "line-dasharray": [3, 2],
       "line-gap-width": [
         "interpolate",
@@ -410,7 +411,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "medium_road"]
     ],
     "paint": {
-      "line-color": "#fcfcfc",
+      "line-color": "#101010",
       "line-dasharray": [3, 2],
       "line-gap-width": [
         "interpolate",
@@ -445,7 +446,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "major_road"]
     ],
     "paint": {
-      "line-color": "#fcfcfc",
+      "line-color": "#101010",
       "line-dasharray": [3, 2],
       "line-gap-width": [
         "interpolate",
@@ -481,7 +482,7 @@ const _themeWhite = [
       ["!=", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#fcfcfc",
+      "line-color": "#101010",
       "line-dasharray": [6, 0.5],
       "line-gap-width": [
         "interpolate",
@@ -518,7 +519,7 @@ const _themeWhite = [
       ["in", "pmap:kind", "other", "path"]
     ],
     "paint": {
-      "line-color": "#d6d6d6",
+      "line-color": "#292929",
       "line-dasharray": [4.5, 0.5],
       "line-width": [
         "interpolate",
@@ -542,7 +543,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "minor_road"]
     ],
     "paint": {
-      "line-color": "#d6d6d6",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -569,7 +570,7 @@ const _themeWhite = [
       ["==", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#d6d6d6",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -594,7 +595,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "medium_road"]
     ],
     "paint": {
-      "line-color": "#d6d6d6",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -621,7 +622,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "major_road"]
     ],
     "paint": {
-      "line-color": "#d6d6d6",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -649,7 +650,7 @@ const _themeWhite = [
       ["!=", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#d6d6d6",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -672,7 +673,7 @@ const _themeWhite = [
     "type": "fill",
     "source": "protomaps",
     "source-layer": "buildings",
-    "paint": {"fill-color": "#efefef", "fill-opacity": 0.5}
+    "paint": {"fill-color": "#0a0a0a", "fill-opacity": 0.5}
   },
   {
     "id": "transit_pier",
@@ -684,7 +685,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "pier"]
     ],
     "paint": {
-      "line-color": "#efefef",
+      "line-color": "#0a0a0a",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -711,7 +712,7 @@ const _themeWhite = [
       ["==", "pmap:kind_detail", "service"]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -744,7 +745,7 @@ const _themeWhite = [
       ["!=", "pmap:kind_detail", "service"]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -780,7 +781,7 @@ const _themeWhite = [
       ["==", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -814,7 +815,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "medium_road"]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -851,7 +852,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "major_road"]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -889,7 +890,7 @@ const _themeWhite = [
       ["!=", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -925,7 +926,7 @@ const _themeWhite = [
       ["in", "pmap:kind", "other", "path"]
     ],
     "paint": {
-      "line-color": "#f5f5f5",
+      "line-color": "#1f1f1f",
       "line-dasharray": [3, 1],
       "line-width": [
         "interpolate",
@@ -948,7 +949,7 @@ const _themeWhite = [
       ["==", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#ebebeb",
+      "line-color": "#1f1f1f",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -974,7 +975,7 @@ const _themeWhite = [
       ["==", "pmap:kind_detail", "service"]
     ],
     "paint": {
-      "line-color": "#f5f5f5",
+      "line-color": "#1f1f1f",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1003,9 +1004,9 @@ const _themeWhite = [
         ["exponential", 1.6],
         ["zoom"],
         11,
-        "#ebebeb",
+        "#292929",
         16,
-        "#f5f5f5"
+        "#1f1f1f"
       ],
       "line-width": [
         "interpolate",
@@ -1033,7 +1034,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "medium_road"]
     ],
     "paint": {
-      "line-color": "#ebebeb",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1061,7 +1062,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "major_road"]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1095,7 +1096,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "major_road"]
     ],
     "paint": {
-      "line-color": "#ebebeb",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1124,7 +1125,7 @@ const _themeWhite = [
       ["!=", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1159,7 +1160,7 @@ const _themeWhite = [
       ["!=", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#ebebeb",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1189,7 +1190,7 @@ const _themeWhite = [
     "paint": {
       "line-dasharray": [0.3, 0.75],
       "line-opacity": 0.5,
-      "line-color": "#d6d6d6",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1210,7 +1211,7 @@ const _themeWhite = [
     "source-layer": "boundaries",
     "filter": ["<=", "pmap:min_admin_level", 2],
     "paint": {
-      "line-color": "#adadad",
+      "line-color": "#707070",
       "line-width": 1,
       "line-dasharray": [3, 2]
     }
@@ -1222,7 +1223,7 @@ const _themeWhite = [
     "source-layer": "boundaries",
     "filter": [">", "pmap:min_admin_level", 2],
     "paint": {
-      "line-color": "#adadad",
+      "line-color": "#707070",
       "line-width": 0.5,
       "line-dasharray": [3, 2]
     }
@@ -1239,7 +1240,7 @@ const _themeWhite = [
       ["in", "pmap:kind", "other", "path"]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1263,7 +1264,7 @@ const _themeWhite = [
       ["==", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1298,7 +1299,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "minor_road"]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1335,7 +1336,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "medium_road"]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1372,7 +1373,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "major_road"]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1407,7 +1408,7 @@ const _themeWhite = [
       ["in", "pmap:kind", "other", "path"]
     ],
     "paint": {
-      "line-color": "#f5f5f5",
+      "line-color": "#1f1f1f",
       "line-dasharray": [2, 1],
       "line-width": [
         "interpolate",
@@ -1432,7 +1433,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "minor_road"]
     ],
     "paint": {
-      "line-color": "#f5f5f5",
+      "line-color": "#1f1f1f",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1460,7 +1461,7 @@ const _themeWhite = [
       ["==", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#f5f5f5",
+      "line-color": "#1f1f1f",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1486,7 +1487,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "medium_road"]
     ],
     "paint": {
-      "line-color": "#ebebeb",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1514,7 +1515,7 @@ const _themeWhite = [
       ["==", "pmap:kind", "major_road"]
     ],
     "paint": {
-      "line-color": "#ebebeb",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1543,7 +1544,7 @@ const _themeWhite = [
       ["!=", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#ffffff",
+      "line-color": "#141414",
       "line-gap-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1580,7 +1581,7 @@ const _themeWhite = [
       ["!=", "pmap:link", 1]
     ],
     "paint": {
-      "line-color": "#ebebeb",
+      "line-color": "#292929",
       "line-width": [
         "interpolate",
         ["exponential", 1.6],
@@ -1615,7 +1616,7 @@ const _themeWhite = [
       "text-size": 12,
       "text-letter-spacing": 0.3
     },
-    "paint": {"text-color": "#adadad"}
+    "paint": {"text-color": "#707070"}
   },
   {
     "id": "physical_point_peak",
@@ -1641,7 +1642,7 @@ const _themeWhite = [
       "text-letter-spacing": 0.1,
       "text-max-width": 9
     },
-    "paint": {"text-color": "#adadad", "text-halo-width": 1.5}
+    "paint": {"text-color": "#707070", "text-halo-width": 1.5}
   },
   {
     "id": "roads_labels_minor",
@@ -1661,8 +1662,8 @@ const _themeWhite = [
       "text-size": 12
     },
     "paint": {
-      "text-color": "#adadad",
-      "text-halo-color": "#ffffff",
+      "text-color": "#525252",
+      "text-halo-color": "#141414",
       "text-halo-width": 2
     }
   },
@@ -1701,7 +1702,7 @@ const _themeWhite = [
       "text-max-width": 9,
       "text-transform": "uppercase"
     },
-    "paint": {"text-color": "#adadad"}
+    "paint": {"text-color": "#707070"}
   },
   {
     "id": "physical_point_lakes",
@@ -1729,7 +1730,7 @@ const _themeWhite = [
       "text-letter-spacing": 0.1,
       "text-max-width": 9
     },
-    "paint": {"text-color": "#adadad"}
+    "paint": {"text-color": "#707070"}
   },
   {
     "id": "roads_labels_major",
@@ -1749,8 +1750,8 @@ const _themeWhite = [
       "text-size": 12
     },
     "paint": {
-      "text-color": "#999999",
-      "text-halo-color": "#ffffff",
+      "text-color": "#5c5c5c",
+      "text-halo-color": "#141414",
       "text-halo-width": 2
     }
   },
@@ -1793,8 +1794,8 @@ const _themeWhite = [
       "text-transform": "uppercase"
     },
     "paint": {
-      "text-color": "#8f8f8f",
-      "text-halo-color": "#ffffff",
+      "text-color": "#5c5c5c",
+      "text-halo-color": "#141414",
       "text-halo-width": 1.5
     }
   },
@@ -1973,8 +1974,8 @@ const _themeWhite = [
       "text-radial-offset": 0.4
     },
     "paint": {
-      "text-color": "#5c5c5c",
-      "text-halo-color": "#ffffff",
+      "text-color": "#999999",
+      "text-halo-color": "#141414",
       "text-halo-width": 1
     }
   },
@@ -2008,8 +2009,8 @@ const _themeWhite = [
       "text-transform": "uppercase"
     },
     "paint": {
-      "text-color": "#b3b3b3",
-      "text-halo-color": "#ffffff",
+      "text-color": "#3d3d3d",
+      "text-halo-color": "#141414",
       "text-halo-width": 2
     }
   },
@@ -2096,6 +2097,6 @@ const _themeWhite = [
       ],
       "text-transform": "uppercase"
     },
-    "paint": {"text-color": "#b8b8b8"}
+    "paint": {"text-color": "#707070"}
   }
 ];
