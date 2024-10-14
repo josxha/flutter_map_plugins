@@ -1,8 +1,9 @@
-part of 'protomaps_themes.dart';
+part of '_package.dart';
 
 // ignore_for_file: prefer_single_quotes, require_trailing_commas
 
-const _themeBlack = [
+/// https://docs.protomaps.com/basemaps/themes#black
+const themeBlack = [
   {
     "id": "background",
     "type": "background",

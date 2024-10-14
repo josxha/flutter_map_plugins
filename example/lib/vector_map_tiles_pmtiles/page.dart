@@ -20,7 +20,7 @@ class VectorMapTilesPmTilesPage extends StatelessWidget {
   ///
   /// Note: Styles from Mapbox, OpenMapTiles and others and not compatible
   /// with Protomaps styles.
-  final vtr.Theme mapTheme = ProtomapsThemes.light(
+  final vtr.Theme mapTheme = ProtomapsThemes.lightV4(
     logger: kDebugMode ? const vtr.Logger.console() : null,
   );
 
