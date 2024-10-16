@@ -119,8 +119,7 @@ class _MapCompassState extends State<MapCompass> with TickerProviderStateMixin {
                   _resetRotation(context, camera);
                 }
               }
-            }
-
+            },
           ),
         ),
       ),
