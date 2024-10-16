@@ -16,6 +16,7 @@ class MapCompass extends StatefulWidget {
     this.rotationDuration = const Duration(seconds: 1),
     this.animationCurve = Curves.fastOutSlowIn,
     this.onPressed,
+    this.disableOnPressedOverriding = false,
     this.hideIfRotatedNorth = false,
     this.alignment = Alignment.topRight,
     this.padding = const EdgeInsets.all(10),
@@ -26,6 +27,7 @@ class MapCompass extends StatefulWidget {
     super.key,
     this.onPressed,
     this.hideIfRotatedNorth = false,
+    this.disableOnPressedOverriding = false,
     this.rotationDuration = const Duration(seconds: 1),
     this.animationCurve = Curves.fastOutSlowIn,
     this.alignment = Alignment.topRight,
@@ -73,6 +75,11 @@ class MapCompass extends StatefulWidget {
   /// The curve of the rotation animation.
   final Curve animationCurve;
 
+  /// When [disableOnPressedOverriding] is true, [onPressed] will be called
+  /// after default rotation.
+  ///
+  final bool disableOnPressedOverriding;
+
   @override
   State<MapCompass> createState() => _MapCompassState();
 }
@@ -101,8 +108,19 @@ class _MapCompassState extends State<MapCompass> with TickerProviderStateMixin {
             alignment: Alignment.center,
             padding: EdgeInsets.zero,
             icon: widget.icon,
-            onPressed:
-                widget.onPressed ?? () => _resetRotation(context, camera),
+            onPressed: () {
+              if (widget.disableOnPressedOverriding) {
+                _resetRotation(context, camera);
+                widget.onPressed?.call();
+              } else {
+                if (widget.onPressed != null) {
+                  widget.onPressed!.call();
+                } else {
+                  _resetRotation(context, camera);
+                }
+              }
+            }
+
           ),
         ),
       ),
