@@ -75,9 +75,8 @@ class MapCompass extends StatefulWidget {
   /// The curve of the rotation animation.
   final Curve animationCurve;
 
-  /// When [onPressedOverridesDefault] is true, [onPressed] will be override
+  /// When [onPressedOverridesDefault] is true, [onPressed] overrides
   /// the default rotation.
-  ///
   final bool onPressedOverridesDefault;
 
   @override
