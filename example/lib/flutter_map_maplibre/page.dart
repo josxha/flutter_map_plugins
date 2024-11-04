@@ -4,14 +4,14 @@ import 'package:flutter_map_maplibre/flutter_map_maplibre.dart';
 import 'package:flutter_map_plugins_example/common/attribution_widget.dart';
 import 'package:latlong2/latlong.dart';
 
-class FlutterMapMapLibrePage extends StatefulWidget {
-  const FlutterMapMapLibrePage({super.key});
+class MapLibreFlutterMapPage extends StatefulWidget {
+  const MapLibreFlutterMapPage({super.key});
 
   @override
-  State<FlutterMapMapLibrePage> createState() => _FlutterMapMapLibrePageState();
+  State<MapLibreFlutterMapPage> createState() => _MapLibreFlutterMapPageState();
 }
 
-class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
+class _MapLibreFlutterMapPageState extends State<MapLibreFlutterMapPage> {
   final _mapController = MapController();
 
   @override
@@ -28,12 +28,9 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
           initialCenter: LatLng(48, 9),
           maxZoom: 18,
         ),
-        children: [
-          TileLayer(
-            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-          ),
-          const MapLibreLayer(),
-          const OsmAttributionWidget(),
+        children: const [
+          MapLibreLayer(),
+          OsmAttributionWidget(),
         ],
       ),
     );

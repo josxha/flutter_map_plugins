@@ -17,8 +17,9 @@ class FlutterMapAdapter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = MapController.of(context);
-    final camera = MapCamera.of(context);
+    final controller = MapController.maybeOf(context);
+    final camera = MapCamera.maybeOf(context);
+    if (controller == null || camera == null) return const SizedBox.shrink();
 
     return RepaintBoundary(
       child: LayoutBuilder(

@@ -28,9 +28,9 @@ extension MapCameraExt on MapCamera {
   /// Convert [MapCamera] to [fm.MapCamera].
   fm.MapCamera toFlutterMapCamera(BoxConstraints constraints) {
     return fm.MapCamera(
-      zoom: zoom,
+      zoom: zoom + 1,
       center: center.toLatLng(),
-      rotation: bearing,
+      rotation: -bearing,
       crs: const fm.Epsg3857(),
       nonRotatedSize: math.Point(
         constraints.maxWidth,

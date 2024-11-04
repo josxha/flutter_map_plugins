@@ -41,15 +41,15 @@ class _MapLibreLayerState extends State<MapLibreLayer> {
     // sync the FlutterMap movement with MapLibreMap
     _controller?.moveCamera(
       center: fmCamera.center.toPosition(),
-      zoom: fmCamera.zoom,
-      bearing: fmCamera.rotation,
+      zoom: fmCamera.zoom - 1,
+      bearing: -fmCamera.rotation,
     );
 
     return MapLibreMap(
       options: MapOptions(
         initCenter: fmCamera.center.toPosition(),
-        initBearing: fmCamera.rotation,
-        initZoom: fmCamera.zoom,
+        initBearing: -fmCamera.rotation,
+        initZoom: fmCamera.zoom - 1,
         initStyle: widget.initStyle,
         gestures: const MapGestures.none(),
       ),
