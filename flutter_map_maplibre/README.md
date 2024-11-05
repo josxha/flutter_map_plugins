@@ -2,11 +2,23 @@
 
 This package offers performant Mapbox Vector Tiles (MVT) support
 for [flutter_map](https://pub.dev/packages/flutter_map)
-powered by native [MapLibre SDKs](https://maplibre.org).
+powered by [maplibre](https://pub.dev/packages/maplibre).
+
+[![Pub Version](https://img.shields.io/pub/v/flutter_map_maplibre)](https://pub.dev/packages/flutter_map_maplibre)
+[![likes](https://img.shields.io/pub/likes/flutter_map_maplibre?logo=flutter)](https://pub.dev/packages/flutter_map_maplibre)
+[![Pub Points](https://img.shields.io/pub/points/flutter_map_maplibre)](https://pub.dev/packages/flutter_map_maplibre/score)
+[![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_maplibre)](https://pub.dev/packages/flutter_map_maplibre)
+
+[![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins)
+[![stars](https://badgen.net/github/stars/josxha/flutter_map_plugins?label=stars&color=green&icon=github)](https://github.com/josxha/flutter_map_plugins/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins/issues)
+[![codecov](https://codecov.io/gh/josxha/flutter_map_plugins/graph/badge.svg?token=5045489G7X)](https://codecov.io/gh/josxha/flutter_map_plugins)
+
+![Showcase](https://raw.githubusercontent.com/josxha/flutter_map_plugins/1dbc16057899a7aa6ccb57ecc2f9bb1e53c87b0b/showcase.gif)
 
 ## Getting started
 
-Add the dependencies to your `pubspec.yaml` file.
+1. Add the dependencies to your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
@@ -14,6 +26,13 @@ dependencies:
   flutter_map_maplibre: ^0.0.1
   maplibre: ^0.1.0
 ```
+
+2. Follow the platform
+   specific [setup steps](https://flutter-maplibre.pages.dev/docs/category/getting-started)
+   for the `maplibre` package:
+
+- [Setup Web](https://flutter-maplibre.pages.dev/docs/getting-started/setup-web)
+- [Setup Android](https://flutter-maplibre.pages.dev/docs/getting-started/setup-android)
 
 ## Usage
 
@@ -30,6 +49,11 @@ the [hosted example app](https://flutter-map-plugins.web.app/).
 
 Here we add a `MapLibreMap` as a layer to `FlutterMap` and let flutter_map
 handle all gesture inputs.
+
+> [!WARNING]
+> NOTE: The `MapLibreLayer` has currently a known bug on Android causing it to
+> have a high delay and throwing exceptions to the
+> console: https://github.com/josxha/flutter_map_plugins/issues/54
 
 ```dart
 @override

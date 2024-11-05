@@ -53,6 +53,7 @@ class _MapLibreFlutterMapPageState extends State<MapLibreFlutterMapPage> {
             ],
           ),
           const MarkerLayer(
+            rotate: true,
             markers: [
               Marker(
                 point: LatLng(15, 5),
