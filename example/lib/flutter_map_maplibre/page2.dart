@@ -17,7 +17,7 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text('flutter_map_maplibre 2'),
+        title: const Text('FlutterMap in MapLibre'),
       ),
       body: MapLibreMap(
         options: MapOptions(

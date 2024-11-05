@@ -175,7 +175,7 @@ class SelectionItemWidget extends StatelessWidget {
     );
 
     return Card(
-      color: disabled ? Colors.white54 : Colors.white,
+      color: disabled ? Colors.white70 : Colors.white,
       child: InkWell(
         onTap:
             disabled ? null : () => Navigator.of(context).pushNamed(routeName),
