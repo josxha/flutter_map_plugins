@@ -13,6 +13,10 @@ class FlutterMapMapLibrePage extends StatefulWidget {
 }
 
 class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
+  /// The MapLibreMap controller
+  // ignore: unused_field, use_late_for_private_fields_and_variables
+  MapController? _controller;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,10 +25,11 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
         title: const Text('FlutterMap in MapLibre'),
       ),
       body: MapLibreMap(
+        onMapCreated: (controller) => _controller = controller,
         options: MapOptions(
           initCenter: Position(0, 0),
           initZoom: 3,
-          maxPitch: 0,
+          maxPitch: 0, // flutter_map doesn't support pitch, disable it here
           initStyle:
               'https://api.protomaps.com/styles/v2/light.json?key=$protomapsKey',
         ),

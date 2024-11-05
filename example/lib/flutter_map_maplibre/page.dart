@@ -24,10 +24,17 @@ class _MapLibreFlutterMapPageState extends State<MapLibreFlutterMapPage> {
       ),
       body: FlutterMap(
         mapController: _mapController,
-        options: const MapOptions(
+        options: MapOptions(
           initialZoom: 4,
-          initialCenter: LatLng(0, 0),
+          initialCenter: const LatLng(0, 0),
           maxZoom: 20,
+          // maplibre does not support an unbound latitude
+          cameraConstraint: CameraConstraint.contain(
+            bounds: LatLngBounds(
+              const LatLng(-90, -180),
+              const LatLng(90, 180),
+            ),
+          ),
         ),
         children: [
           const MapLibreLayer(
