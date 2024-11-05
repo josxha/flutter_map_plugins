@@ -25,7 +25,7 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
           initZoom: 3,
           maxPitch: 0,
         ),
-        children: const [
+        children: [
           /*FlutterMapAdapter(
             child: Opacity(
               opacity: 0.6,
@@ -34,9 +34,60 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
               ),
             ),
           ),*/
-          FlutterMapAdapter(
+          const FlutterMapAdapter(
             child: fm.CircleLayer(
-              circles: [fm.CircleMarker(point: LatLng(0, 0), radius: 10)],
+              circles: [
+                fm.CircleMarker(
+                  point: LatLng(10, 20),
+                  radius: 15,
+                  color: Colors.blue,
+                  borderColor: Colors.black,
+                  borderStrokeWidth: 2,
+                ),
+              ],
+            ),
+          ),
+          const FlutterMapAdapter(
+            child: fm.MarkerLayer(
+              markers: [
+                fm.Marker(
+                  point: LatLng(15, 5),
+                  width: 40,
+                  height: 40,
+                  child: Icon(Icons.location_on, color: Colors.red, size: 40),
+                  alignment: Alignment.bottomCenter,
+                ),
+              ],
+            ),
+          ),
+          FlutterMapAdapter(
+            child: fm.PolylineLayer(
+              polylines: [
+                fm.Polyline(
+                  points: const [
+                    LatLng(-20, -10),
+                    LatLng(-15, -15),
+                    LatLng(-20, -25),
+                  ],
+                  color: Colors.purple,
+                  strokeWidth: 3,
+                ),
+              ],
+            ),
+          ),
+          FlutterMapAdapter(
+            child: fm.PolygonLayer(
+              polygons: [
+                fm.Polygon(
+                  points: const [
+                    LatLng(8, -25),
+                    LatLng(-5, -23),
+                    LatLng(5, -10),
+                    LatLng(10, -15),
+                  ],
+                  color: Colors.pink.withOpacity(0.8),
+                ),
+              ],
             ),
           ),
         ],
