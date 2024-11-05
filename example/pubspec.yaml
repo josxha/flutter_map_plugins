@@ -24,11 +24,14 @@ dependencies:
   vector_map_tiles: ^8.0.0
   vector_tile_renderer: ^5.2.0
   mbtiles: ^0.4.0
+  maplibre: ^0.1.0
 
   flutter_map_cache:
     path: ../flutter_map_cache
   flutter_map_compass:
     path: ../flutter_map_compass
+  flutter_map_maplibre:
+    path: ../flutter_map_maplibre
   flutter_map_mbtiles:
     path: ../flutter_map_mbtiles
   flutter_map_pmtiles:
