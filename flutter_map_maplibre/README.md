@@ -14,7 +14,7 @@ powered by native [MapLibre SDKs](https://maplibre.org).
 [![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins/issues)
 [![codecov](https://codecov.io/gh/josxha/flutter_map_plugins/graph/badge.svg?token=5045489G7X)](https://codecov.io/gh/josxha/flutter_map_plugins)
 
-![Showcase](../showcase.gif)
+![Showcase](https://raw.githubusercontent.com/josxha/flutter_map_plugins/1dbc16057899a7aa6ccb57ecc2f9bb1e53c87b0b/showcase.gif)
 
 ## Getting started
 
