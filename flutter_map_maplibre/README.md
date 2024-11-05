@@ -50,6 +50,11 @@ the [hosted example app](https://flutter-map-plugins.web.app/).
 Here we add a `MapLibreMap` as a layer to `FlutterMap` and let flutter_map
 handle all gesture inputs.
 
+> [!WARNING]
+> NOTE: The `MapLibreLayer` has currently a known bug causing it to have a high
+> delay and throwing exceptions to the
+> console: https://github.com/josxha/flutter_map_plugins/issues/54
+
 ```dart
 @override
 Widget build(BuildContext context) {
