@@ -42,6 +42,15 @@ storage backend you would possibly want.
 A compass for flutter_map that indicates the map rotation. It rotates the map
 back to north on top when clicked.
 
+### [flutter_map_maplibre](https://pub.dev/packages/flutter_map_maplibre)
+
+[![Pub Version](https://img.shields.io/pub/v/flutter_map_maplibre)](https://pub.dev/packages/flutter_map_maplibre)
+[![likes](https://img.shields.io/pub/likes/flutter_map_maplibre?logo=flutter)](https://pub.dev/packages/flutter_map_maplibre)
+[![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_maplibre)](https://pub.dev/packages/flutter_map_maplibre)
+
+Performant Mapbox Vector Tiles (MVT) support for flutter_map powered by native
+MapLibre SDKs.
+
 ### [flutter_map_mbtiles](https://pub.dev/packages/flutter_map_mbtiles)
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_mbtiles)](https://pub.dev/packages/flutter_map_mbtiles)
