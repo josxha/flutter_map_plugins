@@ -2,7 +2,7 @@
 
 This package offers performant Mapbox Vector Tiles (MVT) support
 for [flutter_map](https://pub.dev/packages/flutter_map)
-powered by native [MapLibre SDKs](https://maplibre.org).
+powered by [maplibre](https://pub.dev/packages/maplibre).
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_maplibre)](https://pub.dev/packages/flutter_map_maplibre)
 [![likes](https://img.shields.io/pub/likes/flutter_map_maplibre?logo=flutter)](https://pub.dev/packages/flutter_map_maplibre)
@@ -18,7 +18,7 @@ powered by native [MapLibre SDKs](https://maplibre.org).
 
 ## Getting started
 
-Add the dependencies to your `pubspec.yaml` file.
+1. Add the dependencies to your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
@@ -26,6 +26,13 @@ dependencies:
   flutter_map_maplibre: ^0.0.1
   maplibre: ^0.1.0
 ```
+
+2. Follow the platform
+   specific [setup steps](https://flutter-maplibre.pages.dev/docs/category/getting-started)
+   for the `maplibre` package:
+
+- [Setup Web](https://flutter-maplibre.pages.dev/docs/getting-started/setup-web)
+- [Setup Android](https://flutter-maplibre.pages.dev/docs/getting-started/setup-android)
 
 ## Usage
 
