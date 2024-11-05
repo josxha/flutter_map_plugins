@@ -49,6 +49,7 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
           ),
           const FlutterMapAdapter(
             child: fm.MarkerLayer(
+              rotate: true,
               markers: [
                 fm.Marker(
                   point: LatLng(15, 5),

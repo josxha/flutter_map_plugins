@@ -4,6 +4,16 @@ This package offers performant Mapbox Vector Tiles (MVT) support
 for [flutter_map](https://pub.dev/packages/flutter_map)
 powered by native [MapLibre SDKs](https://maplibre.org).
 
+[![Pub Version](https://img.shields.io/pub/v/flutter_map_maplibre)](https://pub.dev/packages/flutter_map_maplibre)
+[![likes](https://img.shields.io/pub/likes/flutter_map_maplibre?logo=flutter)](https://pub.dev/packages/flutter_map_maplibre)
+[![Pub Points](https://img.shields.io/pub/points/flutter_map_maplibre)](https://pub.dev/packages/flutter_map_maplibre/score)
+[![Pub Popularity](https://img.shields.io/pub/popularity/flutter_map_maplibre)](https://pub.dev/packages/flutter_map_maplibre)
+
+[![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins)
+[![stars](https://badgen.net/github/stars/josxha/flutter_map_plugins?label=stars&color=green&icon=github)](https://github.com/josxha/flutter_map_plugins/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins/issues)
+[![codecov](https://codecov.io/gh/josxha/flutter_map_plugins/graph/badge.svg?token=5045489G7X)](https://codecov.io/gh/josxha/flutter_map_plugins)
+
 ## Getting started
 
 Add the dependencies to your `pubspec.yaml` file.
