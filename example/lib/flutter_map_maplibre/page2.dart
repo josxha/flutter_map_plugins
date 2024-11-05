@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart' as fm;
 import 'package:flutter_map_maplibre/flutter_map_maplibre.dart';
+import 'package:flutter_map_plugins_example/flutter_map_maplibre/config.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:maplibre/maplibre.dart';
 
@@ -24,16 +25,10 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
           initCenter: Position(0, 0),
           initZoom: 3,
           maxPitch: 0,
+          initStyle:
+              'https://api.protomaps.com/styles/v2/light.json?key=$protomapsKey',
         ),
         children: [
-          /*FlutterMapAdapter(
-            child: Opacity(
-              opacity: 0.6,
-              child: fm.TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              ),
-            ),
-          ),*/
           const FlutterMapAdapter(
             child: fm.CircleLayer(
               circles: [

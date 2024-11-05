@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_maplibre/flutter_map_maplibre.dart';
 import 'package:flutter_map_plugins_example/common/attribution_widget.dart';
+import 'package:flutter_map_plugins_example/flutter_map_maplibre/config.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapLibreFlutterMapPage extends StatefulWidget {
@@ -29,7 +30,10 @@ class _MapLibreFlutterMapPageState extends State<MapLibreFlutterMapPage> {
           maxZoom: 20,
         ),
         children: [
-          const MapLibreLayer(),
+          const MapLibreLayer(
+            initStyle:
+                'https://api.protomaps.com/styles/v2/light.json?key=$protomapsKey',
+          ),
           const CircleLayer(
             circles: [
               CircleMarker(
