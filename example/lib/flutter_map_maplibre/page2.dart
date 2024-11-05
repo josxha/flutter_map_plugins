@@ -55,7 +55,7 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
                   width: 40,
                   height: 40,
                   child: Icon(Icons.location_on, color: Colors.red, size: 40),
-                  alignment: Alignment.bottomCenter,
+                  alignment: Alignment.topCenter,
                 ),
               ],
             ),
