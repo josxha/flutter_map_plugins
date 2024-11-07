@@ -21,20 +21,22 @@ class FlutterMapAdapter extends StatelessWidget {
     final camera = MapCamera.maybeOf(context);
     if (controller == null || camera == null) return const SizedBox.shrink();
 
-    return RepaintBoundary(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return fm.MapInheritedModel(
-            options: const fm.MapOptions(
-              interactionOptions: fm.InteractionOptions(
-                flags: fm.InteractiveFlag.none,
+    return fm.TranslucentPointer(
+      child: RepaintBoundary(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return fm.MapInheritedModel(
+              options: const fm.MapOptions(
+                interactionOptions: fm.InteractionOptions(
+                  flags: fm.InteractiveFlag.none,
+                ),
               ),
-            ),
-            controller: controller.toFlutterMapController(),
-            camera: camera.toFlutterMapCamera(constraints),
-            child: child,
-          );
-        },
+              controller: controller.toFlutterMapController(),
+              camera: camera.toFlutterMapCamera(constraints),
+              child: child,
+            );
+          },
+        ),
       ),
     );
   }
