@@ -14,7 +14,7 @@ dependencies:
     sdk: flutter
   flutter_map: ^7.0.0
   latlong2: ^0.9.0
-  maplibre: ^0.1.1
+  maplibre: ^0.1.2
 
 dev_dependencies:
   flutter_test:
