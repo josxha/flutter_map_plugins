@@ -12,6 +12,7 @@ body:
         - "other"
         - "flutter_map_cache"
         - "flutter_map_compass"
+        - "flutter_map_maplibre"
         - "flutter_map_mbtiles"
         - "flutter_map_pmtiles"
         - "vector_map_tiles_mbtiles"

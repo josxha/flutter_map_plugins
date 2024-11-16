@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_compass/page.dart';
+import 'package:flutter_map_plugins_example/flutter_map_maplibre/page.dart';
+import 'package:flutter_map_plugins_example/flutter_map_maplibre/page2.dart';
 import 'package:flutter_map_plugins_example/flutter_map_mbtiles/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
 import 'package:flutter_map_plugins_example/vector_map_tiles_mbtiles/page.dart';
@@ -29,13 +31,15 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/': (context) => const SelectionPage(),
-        'flutter_map_cache': (context) => const FlutterMapCachePage(),
-        'flutter_map_pmtiles': (context) => const FlutterMapPmTilesPage(),
-        'vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
-        'flutter_map_mbtiles': (context) => const FlutterMapMbTilesPage(),
-        'vector_map_tiles_mbtiles': (context) =>
+        '/flutter_map_cache': (context) => const FlutterMapCachePage(),
+        '/flutter_map_pmtiles': (context) => const FlutterMapPmTilesPage(),
+        '/flutter_map_maplibre': (context) => const MapLibreFlutterMapPage(),
+        '/flutter_map_maplibre2': (context) => const FlutterMapMapLibrePage(),
+        '/vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
+        '/flutter_map_mbtiles': (context) => const FlutterMapMbTilesPage(),
+        '/vector_map_tiles_mbtiles': (context) =>
             const VectorMapTilesMbTilesPage(),
-        'flutter_map_compass': (context) => const FlutterMapCompassPage(),
+        '/flutter_map_compass': (context) => const FlutterMapCompassPage(),
       },
     );
   }
@@ -51,33 +55,43 @@ class SelectionPage extends StatelessWidget {
         title: 'flutter_map_cache',
         desc: 'A slim yet powerful caching plugin for flutter_map '
             'tile layers.',
-        routeName: 'flutter_map_cache',
+        routeName: '/flutter_map_cache',
       ),
       SelectionItemWidget(
         title: 'flutter_map_compass',
         desc: 'A simple compass layer to indicate the map rotation and '
             'reset the rotation on click',
-        routeName: 'flutter_map_compass',
+        routeName: '/flutter_map_compass',
+      ),
+      SelectionItemWidget(
+        title: 'flutter_map_maplibre',
+        desc: 'Performant vector tiles for flutter_map',
+        routeName: '/flutter_map_maplibre',
+      ),
+      SelectionItemWidget(
+        title: 'flutter_map_maplibre 2',
+        desc: 'Use flutter_map layers in maplibre',
+        routeName: '/flutter_map_maplibre2',
       ),
       SelectionItemWidget.disabledOnWeb(
         title: 'flutter_map_mbtiles',
         desc: 'MBTiles for flutter_map',
-        routeName: 'flutter_map_mbtiles',
+        routeName: '/flutter_map_mbtiles',
       ),
       SelectionItemWidget(
         title: 'flutter_map_pmtiles',
         desc: 'PMTiles for flutter_map',
-        routeName: 'flutter_map_pmtiles',
+        routeName: '/flutter_map_pmtiles',
       ),
       SelectionItemWidget.disabledOnWeb(
         title: 'vector_map_tiles_mbtiles',
         desc: 'MBTiles for vector_map_files / flutter_map',
-        routeName: 'vector_map_tiles_mbtiles',
+        routeName: '/vector_map_tiles_mbtiles',
       ),
       SelectionItemWidget.disabledOnWeb(
         title: 'vector_map_tiles_pmtiles',
         desc: 'PMTiles for vector_map_files / flutter_map',
-        routeName: 'vector_map_tiles_pmtiles',
+        routeName: '/vector_map_tiles_pmtiles',
       ),
     ];
 
@@ -161,7 +175,7 @@ class SelectionItemWidget extends StatelessWidget {
     );
 
     return Card(
-      color: disabled ? Colors.white54 : Colors.white,
+      color: disabled ? Colors.white70 : Colors.white,
       child: InkWell(
         onTap:
             disabled ? null : () => Navigator.of(context).pushNamed(routeName),
