@@ -60,6 +60,40 @@ void dispose() {
 
 ```
 
+## Using mbtiles files from Geofabrik
+
+1. MbTiles from Geofabrik are gzip compressed. Set the gzip flag to true
+```dart
+MbTiles(mbtilesPath: file, gzip: true)
+```
+
+2. You need to use a style that is compatible with your tile schema. In this case the tile schema is Shortbread. The tile schema used in the example app is OpenMapTiles. Existing styles can be found at https://shortbread-tiles.org/styles/ or used as hosted style from versatiles.org
+```dart
+// use the style from versatiles.org
+final response = await http.get(
+      Uri.parse('https://tiles.versatiles.org/assets/styles/colorful.json'),
+    );
+    _theme =
+        ThemeReader().read(jsonDecode(response.body) as Map<String, Object?>);
+```
+When downloaded, apply the theme/style (used ambiguously in vector_map_tiles) in the VectorTileLayer:
+```dart
+VectorTileLayer(
+  theme: _theme,
+  tileProviders: TileProviders({
+    ...
+  }),
+),
+```
+3. Set the tile provider for the correct source, in this case we want to use the TileProvider for the versatiles-shortbread source.
+```dart
+tileProviders: TileProviders({
+  'versatiles-shortbread': MbTilesVectorTileProvider(
+    mbtiles: _mbtiles!,
+  ),
+}),
+```
+
 ## Additional information
 
 If you need help you
