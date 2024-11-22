@@ -45,8 +45,6 @@ class _MapLibreLayerState extends State<MapLibreLayer> {
   MapController? _controller;
   StreamSubscription<fm.MapEvent>? _streamSub;
 
-  MapLibreMap? _map;
-
   Position? initCenter;
   double? initZoom;
   double? initBearing;
