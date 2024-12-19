@@ -22,3 +22,6 @@ updates:
         update-types:
           - "version-update:semver-minor"
           - "version-update:semver-patch"
+    groups:
+      dependencies:
+        patterns: [ "*" ]
