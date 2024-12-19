@@ -42,7 +42,7 @@ dependencies:
     path: ../vector_map_tiles_pmtiles
 
 dev_dependencies:
-  very_good_analysis: ^6.0.0
+  very_good_analysis: ^7.0.0
 
 flutter:
   uses-material-design: true
