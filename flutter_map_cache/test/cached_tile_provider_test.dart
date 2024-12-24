@@ -5,6 +5,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cache/flutter_map_cache.dart';
 import 'package:test/test.dart';
 
+// Keep the original format.
 // ignore_for_file: deprecated_member_use_from_same_package
 
 Future<void> main() async {

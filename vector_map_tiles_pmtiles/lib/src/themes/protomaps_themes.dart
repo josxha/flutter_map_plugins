@@ -2,6 +2,7 @@ import 'package:vector_map_tiles_pmtiles/src/themes/v3/_package.dart' as v3;
 import 'package:vector_map_tiles_pmtiles/src/themes/v4/_package.dart' as v4;
 import 'package:vector_tile_renderer/vector_tile_renderer.dart';
 
+// Keep the original format.
 // ignore_for_file: prefer_single_quotes, require_trailing_commas
 
 /// Protomaps themes.

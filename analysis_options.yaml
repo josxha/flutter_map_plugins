@@ -5,3 +5,4 @@ linter:
     flutter_style_todos: false
     cascade_invocations: false
     sort_pub_dependencies: false
+    deprecated_member_use_from_same_package: false
