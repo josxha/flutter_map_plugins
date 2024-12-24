@@ -86,7 +86,7 @@ class _MapLibreFlutterMapPageState extends State<MapLibreFlutterMapPage> {
                   LatLng(5, -10),
                   LatLng(10, -15),
                 ],
-                color: Colors.pink.withOpacity(0.8),
+                color: Colors.pink.withValues(alpha: 0.8),
               ),
             ],
           ),
