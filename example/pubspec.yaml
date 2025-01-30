@@ -25,7 +25,7 @@ dependencies:
   vector_map_tiles: ^8.0.0
   vector_tile_renderer: ^5.2.0
   mbtiles: ^0.4.0
-  maplibre: ^0.1.0
+  maplibre: ^0.2.0
 
   flutter_map_cache:
     path: ../flutter_map_cache

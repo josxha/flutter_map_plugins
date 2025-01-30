@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart' as fm;
-// ignore: implementation_imports
 import 'package:flutter_map/src/map/inherited_model.dart' as fm;
 import 'package:flutter_map_maplibre/flutter_map_maplibre.dart';
 import 'package:maplibre/maplibre.dart';

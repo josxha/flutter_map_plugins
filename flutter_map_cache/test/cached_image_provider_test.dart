@@ -4,8 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_map_cache/flutter_map_cache.dart';
 import 'package:test/test.dart';
 
-// ignore_for_file: deprecated_member_use_from_same_package
-
 Future<void> main() async {
   test('create new instance', () {
     final dio = Dio();

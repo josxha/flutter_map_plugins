@@ -85,6 +85,7 @@ class _FlutterMapCachePageState extends State<FlutterMapCachePage> {
                   ),
                 if (!kIsWeb)
                   FutureBuilder<Directory>(
+                    // future does not get discarded
                     // ignore: discarded_futures
                     future: getTemporaryDirectory(), // not available on web
                     builder: (context, snapshot) {

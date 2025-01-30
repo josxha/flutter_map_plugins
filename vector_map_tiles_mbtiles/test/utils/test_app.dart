@@ -6,8 +6,9 @@ import 'package:vector_map_tiles/vector_map_tiles.dart';
 import 'package:vector_map_tiles_mbtiles/vector_map_tiles_mbtiles.dart';
 import 'package:vector_tile_renderer/vector_tile_renderer.dart';
 
-yclass TestApp extends StatelessWidget {
+class TestApp extends StatelessWidget {
   const TestApp({required this.mbTiles, super.key});
+
   final MbTiles mbTiles;
 
   @override

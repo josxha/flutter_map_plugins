@@ -6,7 +6,6 @@ import 'package:flutter_map_cache/flutter_map_cache.dart';
 import 'package:test/test.dart';
 
 // Keep the original format.
-// ignore_for_file: deprecated_member_use_from_same_package
 
 Future<void> main() async {
   test('create new instance', () {
@@ -69,11 +68,12 @@ Future<void> main() async {
   });
   test('use empty dioOptions parameter', () {
     final store = MemCacheStore();
-    final dioOptions = BaseOptions();
+    final dio = Dio();
 
-    final provider = CachedTileProvider(store: store, dioOptions: dioOptions);
+    final provider = CachedTileProvider(store: store, dio: dio);
 
-    expect(provider.dio.options, equals(dioOptions));
+    expect(provider.dio, equals(dio));
+    expect(provider.dio.options, equals(dio.options));
     expect(provider.dio.options.headers.isEmpty, isTrue);
   });
   test('use dioOptions parameter with values', () {
@@ -83,8 +83,9 @@ Future<void> main() async {
       baseUrl: someBaseUrl,
       headers: {'X-API-TOKEN': 'test123'},
     );
+    final dio = Dio(dioOptions);
 
-    final provider = CachedTileProvider(store: store, dioOptions: dioOptions);
+    final provider = CachedTileProvider(store: store, dio: dio);
 
     expect(provider.dio.options, equals(provider.dio.options));
     expect(provider.dio.options.baseUrl, equals(someBaseUrl));
