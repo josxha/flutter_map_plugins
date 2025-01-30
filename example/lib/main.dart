@@ -10,11 +10,11 @@ import 'package:flutter_map_plugins_example/flutter_map_mbtiles/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
 import 'package:flutter_map_plugins_example/vector_map_tiles_mbtiles/page.dart';
 import 'package:flutter_map_plugins_example/vector_map_tiles_pmtiles/page.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:url_strategy/url_strategy.dart';
 
 void main() {
-  setPathUrlStrategy();
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -108,7 +108,7 @@ class SelectionPage extends StatelessWidget {
         actions: [githubButton],
       ),
       body: ColoredBox(
-        color: Colors.blueGrey.withOpacity(0.3),
+        color: Colors.blueGrey.withValues(alpha: 0.3),
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: GridView.count(

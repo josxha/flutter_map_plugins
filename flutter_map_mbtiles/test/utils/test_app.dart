@@ -4,8 +4,6 @@ import 'package:flutter_map_mbtiles/src/mbtiles_tile_provider.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mbtiles/mbtiles.dart';
 
-// ignore_for_file: diagnostic_describe_all_properties
-
 class TestApp extends StatelessWidget {
   const TestApp({required this.mbtiles, super.key});
 

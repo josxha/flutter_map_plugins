@@ -5,8 +5,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cache/flutter_map_cache.dart';
 import 'package:latlong2/latlong.dart';
 
-// ignore_for_file: diagnostic_describe_all_properties
-
 class TestApp extends StatelessWidget {
   const TestApp({required this.cacheStore, required this.dio, super.key});
 

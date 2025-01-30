@@ -4,10 +4,9 @@ import 'package:flutter_map_pmtiles/flutter_map_pmtiles.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:pmtiles/pmtiles.dart';
 
-// ignore_for_file: diagnostic_describe_all_properties
-
 class TestApp extends StatelessWidget {
   const TestApp({required this.pmTiles, super.key});
+
   final PmTilesArchive pmTiles;
 
   @override

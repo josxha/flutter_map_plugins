@@ -1,5 +1,6 @@
 part of '_package.dart';
 
+// Keep the original format.
 // ignore_for_file: prefer_single_quotes, require_trailing_commas
 
 /// https://docs.protomaps.com/basemaps/themes#dark

@@ -3,8 +3,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:pmtiles/pmtiles.dart';
 
-// ignore_for_file: diagnostic_describe_all_properties
-
 class TestApp extends StatelessWidget {
   const TestApp({required this.pmTiles, super.key});
 
