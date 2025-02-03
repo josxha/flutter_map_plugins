@@ -8,7 +8,7 @@ for PMTiles.
 [![Pub Version](https://img.shields.io/pub/v/vector_map_tiles_pmtiles)](https://pub.dev/packages/vector_map_tiles_pmtiles)
 [![likes](https://img.shields.io/pub/likes/vector_map_tiles_pmtiles?logo=flutter)](https://pub.dev/packages/vector_map_tiles_pmtiles)
 [![Pub Points](https://img.shields.io/pub/points/vector_map_tiles_pmtiles)](https://pub.dev/packages/vector_map_tiles_pmtiles/score)
-[![Pub Popularity](https://img.shields.io/pub/popularity/vector_map_tiles_pmtiles)](https://pub.dev/packages/vector_map_tiles_pmtiles)
+[![Pub Downloads](https://img.shields.io/pub/dm/vector_map_tiles_pmtiles)](https://pub.dev/packages/vector_map_tiles_pmtiles)
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins)
 [![stars](https://badgen.net/github/stars/josxha/flutter_map_plugins?label=stars&color=green&icon=github)](https://github.com/josxha/flutter_map_plugins/stargazers)

@@ -11,7 +11,7 @@ A TileProvider for flutter_map that adds support for MBTiles.
 [![Pub Version](https://img.shields.io/pub/v/vector_map_tiles_mbtiles)](https://pub.dev/packages/vector_map_tiles_mbtiles)
 [![likes](https://img.shields.io/pub/likes/vector_map_tiles_mbtiles?logo=flutter)](https://pub.dev/packages/vector_map_tiles_mbtiles)
 [![Pub Points](https://img.shields.io/pub/points/vector_map_tiles_mbtiles)](https://pub.dev/packages/vector_map_tiles_mbtiles/score)
-[![Pub Popularity](https://img.shields.io/pub/popularity/vector_map_tiles_mbtiles)](https://pub.dev/packages/vector_map_tiles_mbtiles)
+[![Pub Downloads](https://img.shields.io/pub/dm/vector_map_tiles_mbtiles)](https://pub.dev/packages/vector_map_tiles_mbtiles)
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins)
 [![stars](https://badgen.net/github/stars/josxha/flutter_map_plugins?label=stars&color=green&icon=github)](https://github.com/josxha/flutter_map_plugins/stargazers)
@@ -80,40 +80,67 @@ Widget build(BuildContext context) {
 
 ## Using mbtiles files from Geofabrik
 
-1. MbTiles from [Geofabrik](https://download.geofabrik.de/) are gzip compressed. Set the gzip flag to true
+1. MbTiles from [Geofabrik](https://download.geofabrik.de/) are gzip compressed.
+   Set the gzip flag to true
+
 ```dart
-MbTiles(mbtilesPath: file, gzip: true)
+MbTiles
+(
+mbtilesPath
+:
+file
+,
+gzip
+:
+true
+)
 ```
 
-2. You need to use a style that is compatible with your tile schema. In this case the tile schema is Shortbread. The tile schema used in the example app is OpenMapTiles. Existing styles can be found at https://shortbread-tiles.org/styles/ or used as hosted style from [versatiles.org](https://versatiles.org/).
+2. You need to use a style that is compatible with your tile schema. In this
+   case the tile schema is Shortbread. The tile schema used in the example app
+   is OpenMapTiles. Existing styles can be found
+   at https://shortbread-tiles.org/styles/ or used as hosted style
+   from [versatiles.org](https://versatiles.org/).
 
 ```dart
 // use the style from versatiles.org
-final response = await http.get(
-      Uri.parse('https://tiles.versatiles.org/assets/styles/colorful.json'),
-    );
-    _theme =
-        ThemeReader().read(jsonDecode(response.body) as Map<String, Object?>);
+final response = await
+http.get
+(
+Uri.parse('https://tiles.versatiles.org/assets/styles/colorful.json'),
+);
+_theme =
+ThemeReader().read(jsonDecode(response.body) as Map<String, Object?
+>
+);
 ```
 
-When downloaded, apply the theme/style (used ambiguously in vector_map_tiles) in the VectorTileLayer:
+When downloaded, apply the theme/style (used ambiguously in vector_map_tiles) in
+the VectorTileLayer:
 
 ```dart
-VectorTileLayer(
-  theme: _theme,
-  tileProviders: TileProviders({
-    ...
-  }),
-),
-```
-
-3. Set the tile provider for the correct source, in this case we want to use the TileProvider for the `versatiles-shortbread` source.
-
-```dart
+VectorTileLayer
+(
+theme: _theme,
 tileProviders: TileProviders({
-  'versatiles-shortbread': MbTilesVectorTileProvider(
-    mbtiles: _mbtiles!,
-  ),
+...
+})
+,
+)
+,
+```
+
+3. Set the tile provider for the correct source, in this case we want to use the
+   TileProvider for the `versatiles-shortbread` source.
+
+```dart
+tileProviders: TileProviders
+(
+{'versatiles-shortbread
+'
+: MbTilesVectorTileProvider(
+mbtiles: _mbtiles!,
+),
 }),
 ```
 
