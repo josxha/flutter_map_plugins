@@ -4,16 +4,21 @@ repository: https://github.com/josxha/flutter_map_plugins
 issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
 topics: [ flutter-map, vector-map-tiles, map, mbtiles ]
 version: 1.2.0
+resolution: workspace
 
 environment:
-  sdk: '>=3.2.5 <4.0.0'
+  sdk: '>=3.6.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
   mbtiles: ^0.4.0
-  vector_map_tiles: ^8.0.0
+  #  vector_map_tiles: ^8.0.0
+  vector_map_tiles:
+    git:
+      url: https://github.com/josxha/flutter-vector-map-tiles
+      ref: flutter_map-v8
 
 dev_dependencies:
   flutter_test:
@@ -22,6 +27,6 @@ dev_dependencies:
   mockito: ^5.4.4
   build_runner: ^2.4.8
   latlong2: ^0.9.0
-  flutter_map: ^7.0.0
+  flutter_map: ^8.0.0
   very_good_analysis: ^7.0.0
-  vector_tile_renderer: ^5.2.0
+  vector_tile_renderer: ^6.0.0

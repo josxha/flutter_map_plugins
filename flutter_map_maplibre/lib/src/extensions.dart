@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/rendering.dart';
 import 'package:flutter_map/flutter_map.dart' as fm;
 import 'package:latlong2/latlong.dart';
@@ -32,7 +30,7 @@ extension MapCameraExt on MapCamera {
       center: center.toLatLng(),
       rotation: -bearing,
       crs: const fm.Epsg3857(),
-      nonRotatedSize: math.Point(
+      nonRotatedSize: Size(
         constraints.maxWidth,
         constraints.maxHeight,
       ),

@@ -1,8 +1,13 @@
-name: flutter_map_plugins
-
+name: _
+publish_to: none
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-
-dev_dependencies:
-  melos: ^6.0.0
-  very_good_analysis: ^7.0.0
+  sdk: ^3.6.0
+workspace:
+  - example
+  - flutter_map_cache
+  - flutter_map_compass
+  - flutter_map_maplibre
+  - flutter_map_mbtiles
+  - flutter_map_pmtiles
+  - vector_map_tiles_mbtiles
+  - vector_map_tiles_pmtiles

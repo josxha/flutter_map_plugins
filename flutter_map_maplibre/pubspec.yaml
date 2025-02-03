@@ -4,15 +4,16 @@ version: 0.0.2
 topics: [ flutter-map, map, vector, maplibre, mvt ]
 repository: https://github.com/josxha/flutter_map_plugins
 issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
+resolution: workspace
 
 environment:
-  sdk: ^3.5.4
+  sdk: '>=3.6.0 <4.0.0'
   flutter: ">=3.24.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_map: ^7.0.0
+  flutter_map: ^8.0.0
   latlong2: ^0.9.0
   maplibre: ^0.2.0
 
