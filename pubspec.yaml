@@ -1,4 +1,4 @@
-name: _
+name: flutter_map_plugins
 publish_to: none
 environment:
   sdk: ^3.6.0
