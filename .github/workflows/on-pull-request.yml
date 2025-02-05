@@ -36,8 +36,6 @@ jobs:
           cache: true
       - name: Install coverde
         run: dart pub global activate coverde
-      - name: Get Dependencies
-        run: flutter pub get
       - name: Run Test with Coverage
         run: |
           rm -rf coverage 
