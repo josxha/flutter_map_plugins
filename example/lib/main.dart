@@ -35,10 +35,10 @@ class MyApp extends StatelessWidget {
         '/flutter_map_pmtiles': (context) => const FlutterMapPmTilesPage(),
         '/flutter_map_maplibre': (context) => const MapLibreFlutterMapPage(),
         '/flutter_map_maplibre2': (context) => const FlutterMapMapLibrePage(),
-        '/vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
+        // '/vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
         '/flutter_map_mbtiles': (context) => const FlutterMapMbTilesPage(),
-        '/vector_map_tiles_mbtiles': (context) =>
-            const VectorMapTilesMbTilesPage(),
+        // '/vector_map_tiles_mbtiles': (context) =>
+        //     const VectorMapTilesMbTilesPage(),
         '/flutter_map_compass': (context) => const FlutterMapCompassPage(),
       },
     );
@@ -83,25 +83,27 @@ class SelectionPage extends StatelessWidget {
         desc: 'PMTiles for flutter_map',
         routeName: '/flutter_map_pmtiles',
       ),
-      SelectionItemWidget.disabledOnWeb(
-        title: 'vector_map_tiles_mbtiles',
-        desc: 'MBTiles for vector_map_files / flutter_map',
-        routeName: '/vector_map_tiles_mbtiles',
-      ),
-      SelectionItemWidget.disabledOnWeb(
-        title: 'vector_map_tiles_pmtiles',
-        desc: 'PMTiles for vector_map_files / flutter_map',
-        routeName: '/vector_map_tiles_pmtiles',
-      ),
+      // SelectionItemWidget.disabledOnWeb(
+      //   title: 'vector_map_tiles_mbtiles',
+      //   desc: 'MBTiles for vector_map_files / flutter_map',
+      //   routeName: '/vector_map_tiles_mbtiles',
+      // ),
+      // SelectionItemWidget.disabledOnWeb(
+      //   title: 'vector_map_tiles_pmtiles',
+      //   desc: 'PMTiles for vector_map_files / flutter_map',
+      //   routeName: '/vector_map_tiles_pmtiles',
+      // ),
     ];
 
-    final width = MediaQuery.sizeOf(context).width;
+    final width = MediaQuery
+        .sizeOf(context)
+        .width;
     final githubButton = width < 350
         ? IconButton(onPressed: _openGithub, icon: const Icon(Icons.link))
         : TextButton(
-            onPressed: _openGithub,
-            child: const Text('Source Code'),
-          );
+      onPressed: _openGithub,
+      child: const Text('Source Code'),
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text('flutter_map_plugins'),
@@ -121,7 +123,8 @@ class SelectionPage extends StatelessWidget {
     );
   }
 
-  void _openGithub() => launchUrlString(
+  void _openGithub() =>
+      launchUrlString(
         'https://github.com/josxha/flutter_map_plugins',
       );
 }
@@ -141,7 +144,8 @@ class SelectionItemWidget extends StatelessWidget {
     required this.desc,
     required this.routeName,
     super.key,
-  })  : disabled = kIsWeb,
+  })
+      : disabled = kIsWeb,
         disabledMessage = 'Not on web';
   static const _titleStyle = TextStyle(
     fontSize: 16,
@@ -178,17 +182,17 @@ class SelectionItemWidget extends StatelessWidget {
       color: disabled ? Colors.white70 : Colors.white,
       child: InkWell(
         onTap:
-            disabled ? null : () => Navigator.of(context).pushNamed(routeName),
+        disabled ? null : () => Navigator.of(context).pushNamed(routeName),
         child: disabled
             ? ClipRect(
-                child: Banner(
-                  message: disabledMessage,
-                  textStyle: _bannerTextStyle,
-                  color: Colors.grey,
-                  location: BannerLocation.bottomEnd,
-                  child: content,
-                ),
-              )
+          child: Banner(
+            message: disabledMessage,
+            textStyle: _bannerTextStyle,
+            color: Colors.grey,
+            location: BannerLocation.bottomEnd,
+            child: content,
+          ),
+        )
             : content,
       ),
     );
