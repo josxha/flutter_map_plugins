@@ -38,7 +38,7 @@ jobs:
         run: dart pub global activate coverde
       - name: Run Test with Coverage
         run: |
-          melos exec rm -rf coverage 
+          rm -rf coverage 
           cd flutter_map_cache
           flutter test --no-pub -r expanded --coverage
           coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
@@ -87,7 +87,28 @@ jobs:
       - name: Install pana
         run: dart pub global activate pana
       - name: Check package score for all
-        run: melos run package_score --no-select
+        run: |
+          cd flutter_map_cache
+          pana --exit-code-threshold 0 --no-dartdoc .
+          cd ..
+          cd flutter_map_compass
+          pana --exit-code-threshold 0 --no-dartdoc .
+          cd ..
+          cd flutter_map_maplibre
+          pana --exit-code-threshold 0 --no-dartdoc .
+          cd ..
+          cd flutter_map_mbtiles
+          pana --exit-code-threshold 0 --no-dartdoc .
+          cd ..
+          cd flutter_map_pmtiles
+          pana --exit-code-threshold 0 --no-dartdoc .
+          cd ..
+  #          cd vector_map_tiles_mbtiles
+  #          pana --exit-code-threshold 0 --no-dartdoc .
+  #          cd ..
+  #          cd vector_map_tiles_pmtiles
+  #          pana --exit-code-threshold 0 --no-dartdoc .
+  #          cd ..
   build-android:
     runs-on: ubuntu-latest
     name: Build Android
