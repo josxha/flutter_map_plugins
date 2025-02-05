@@ -18,12 +18,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           cache: true
-      - name: Install melos
-        run: dart pub global activate melos
-      - name: Bootstrap melos
-        run: melos bootstrap
       - name: Get dependencies
-        run: melos run pub_get --no-select
+        run: flutter pub get
       - name: Analyze all projects
         run: dart analyze --fatal-infos --fatal-warnings
       - name: Format all projects
@@ -38,14 +34,40 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           cache: true
-      - name: Install melos
-        run: dart pub global activate melos
-      - name: Bootstrap melos
-        run: melos bootstrap
       - name: Install coverde
         run: dart pub global activate coverde
-      - name: Run tests with coverage
-        run: melos run test_with_coverage --no-select
+      - name: Run Test with Coverage
+        run: |
+          melos exec rm -rf coverage 
+          cd flutter_map_cache
+          flutter test --no-pub -r expanded --coverage
+          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          cd ..
+          cd flutter_map_compass
+          flutter test --no-pub -r expanded --coverage
+          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          cd ..
+          cd flutter_map_maplibre
+          flutter test --no-pub -r expanded --coverage
+          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          cd ..
+          cd flutter_map_mbtiles
+          flutter test --no-pub -r expanded --coverage
+          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          cd ..
+          cd flutter_map_pmtiles
+          flutter test --no-pub -r expanded --coverage
+          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          cd ..
+          #          cd vector_map_tiles_mbtiles
+          #          flutter test --no-pub -r expanded --coverage
+          #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          #          cd ..
+          #          cd vector_map_tiles_pmtiles
+          #          flutter test --no-pub -r expanded --coverage
+          #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          #          cd ..
+          coverde value -i coverage/filtered.lcov.info > coverage/result.txt
       - name: Run Codecov
         uses: codecov/codecov-action@v5
         env:
@@ -60,10 +82,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           cache: true
-      - name: Install melos
-        run: dart pub global activate melos
-      - name: Bootstrap melos
-        run: melos bootstrap
+      - name: Get Dependencies
+        run: flutter pub get
       - name: Install pana
         run: dart pub global activate pana
       - name: Check package score for all
