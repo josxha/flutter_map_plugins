@@ -3,7 +3,7 @@ description: Mapbox MBTiles vector tile provider for vector_map_files / flutter_
 repository: https://github.com/josxha/flutter_map_plugins
 issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
 topics: [ flutter-map, vector-map-tiles, map, mbtiles ]
-version: 1.2.0
+version: 1.2.1
 resolution: workspace
 
 environment:
@@ -14,11 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   mbtiles: ^0.4.0
-  #  vector_map_tiles: ^8.0.0
-  vector_map_tiles:
-    git:
-      url: https://github.com/josxha/flutter-vector-map-tiles
-      ref: flutter_map-v8
+  vector_map_tiles: ^8.0.0
 
 dev_dependencies:
   flutter_test:
