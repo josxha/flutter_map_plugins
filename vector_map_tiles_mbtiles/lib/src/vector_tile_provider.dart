@@ -62,4 +62,7 @@ class MbTilesVectorTileProvider extends VectorTileProvider {
 
     return Uint8List.fromList(bytes);
   }
+
+  @override
+  TileOffset get tileOffset => TileOffset.DEFAULT;
 }

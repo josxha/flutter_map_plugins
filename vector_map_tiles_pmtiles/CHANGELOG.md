@@ -1,3 +1,8 @@
+## [1.5.1] 2025-02-05
+
+- Support for flutter_map v8
+- Support for vector_map_tiles v9
+
 ## [1.5.0]
 
 - Add Protomaps themes version 4.1.

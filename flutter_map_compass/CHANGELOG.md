@@ -1,3 +1,7 @@
+## [1.1.1] 2025-02-05
+
+- Support for flutter_map v6, v7 and v8
+
 ## [1.1.0] 2024-10-20
 
 - Add `onPressedOverridesDefault`
