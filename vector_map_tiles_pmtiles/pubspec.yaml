@@ -14,11 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   pmtiles: ^1.2.0
-  #  vector_map_tiles: ^8.0.0
-  vector_map_tiles:
-    git:
-      url: https://github.com/josxha/flutter-vector-map-tiles
-      ref: flutter_map-v8
+  vector_map_tiles: ^8.0.0
   vector_tile_renderer: ^6.0.0
 
 dev_dependencies:

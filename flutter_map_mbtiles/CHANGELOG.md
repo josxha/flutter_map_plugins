@@ -1,3 +1,7 @@
+## [1.0.4] 2025-02-05
+
+- Support for flutter_map v6, v7 and v8
+
 ## [1.0.3] 2024-05-27
 
 - Support for flutter_map v6 and v7

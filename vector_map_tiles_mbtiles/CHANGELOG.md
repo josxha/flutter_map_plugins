@@ -1,3 +1,8 @@
+## [1.2.1] 2025-02-05
+
+- Support for flutter_map v8
+- Support for vector_map_tiles v9
+
 ## [1.2.0]
 
 - Use `vector_map_tiles` version ^8.0.0 (`flutter_map` v7).
