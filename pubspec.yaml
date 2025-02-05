@@ -11,3 +11,7 @@ workspace:
   - flutter_map_pmtiles
 #  - vector_map_tiles_mbtiles
 #  - vector_map_tiles_pmtiles
+
+dev_dependencies:
+  melos: ^6.0.0
+  very_good_analysis: ^7.0.0
