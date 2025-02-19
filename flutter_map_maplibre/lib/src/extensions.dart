@@ -30,10 +30,7 @@ extension MapCameraExt on MapCamera {
       center: center.toLatLng(),
       rotation: -bearing,
       crs: const fm.Epsg3857(),
-      nonRotatedSize: Size(
-        constraints.maxWidth,
-        constraints.maxHeight,
-      ),
+      nonRotatedSize: Size(constraints.maxWidth, constraints.maxHeight),
     );
   }
 }

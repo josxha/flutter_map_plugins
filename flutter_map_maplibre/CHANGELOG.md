@@ -1,4 +1,10 @@
-## [0.0.3] 2025-02-05
+## 0.0.4
+
+- Update docs
+- Bump minimum Flutter version to 3.29.0
+- Bump minimum Dart version to 3.7.0
+
+## 0.0.3
 
 - Support for flutter_map v8
 

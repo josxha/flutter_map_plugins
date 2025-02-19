@@ -22,9 +22,9 @@ powered by [maplibre](https://pub.dev/packages/maplibre).
 
 ```yaml
 dependencies:
-  flutter_map: ^7.0.0
-  flutter_map_maplibre: ^0.0.1
-  maplibre: ^0.1.0
+  flutter_map: ^8.0.0
+  flutter_map_maplibre: ^0.0.4
+  maplibre: ^0.2.0
 ```
 
 2. Follow the platform
@@ -47,13 +47,8 @@ the [hosted example app](https://flutter-map-plugins.web.app/).
 
 #### Use MapLibre as a vector layer in FlutterMap
 
-Here we add a `MapLibreMap` as a layer to `FlutterMap` and let flutter_map
+Here we add a `MapLibreMap` as a layer to `FlutterMap` and let `flutter_map`
 handle all gesture inputs.
-
-> [!WARNING]
-> NOTE: The `MapLibreLayer` has currently a known bug on Android causing it to
-> have a high delay and throwing exceptions to the
-> console: https://github.com/josxha/flutter_map_plugins/issues/54
 
 ```dart
 @override
@@ -85,7 +80,7 @@ Widget build(BuildContext context) {
 #### Use FlutterMap layers inside MapLibre
 
 In this solution we use `FlutterMap` layers in `MapLibreMap`.
-All gesture inputs are handled by maplibre.
+All gesture inputs are handled by `maplibre`.
 
 ```dart
 @override

@@ -63,12 +63,12 @@ class SelectionPage extends StatelessWidget {
       ),
       SelectionItemWidget(
         title: 'flutter_map_maplibre',
-        desc: 'Performant vector tiles for flutter_map',
+        desc: 'Use MapLibre as a layer in FlutterMap',
         routeName: '/flutter_map_maplibre',
       ),
       SelectionItemWidget(
         title: 'flutter_map_maplibre 2',
-        desc: 'Use flutter_map layers in maplibre',
+        desc: 'Use FlutterMap layers in MapLibre',
         routeName: '/flutter_map_maplibre2',
       ),
       SelectionItemWidget.disabledOnWeb(
