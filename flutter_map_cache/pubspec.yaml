@@ -20,7 +20,7 @@ environment:
 
 dependencies:
   dio: ^5.2.0+1
-  dio_cache_interceptor: ^3.4.2
+  dio_cache_interceptor: ^4.0.0
   flutter:
     sdk: flutter
   flutter_map: ">=6.0.0 <9.0.0"

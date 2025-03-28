@@ -36,7 +36,7 @@ class CachedTileProvider extends TileProvider {
     List<Interceptor>? interceptors,
     Duration? maxStale,
     CacheKeyBuilder? keyBuilder,
-    List<int>? hitCacheOnErrorExcept = defaultHitCacheOnErrorExcept,
+    List<int> hitCacheOnErrorCodes = defaultHitCacheOnErrorExcept,
   }) : dio = dio ?? Dio(dioOptions ?? BaseOptions()) {
     this.dio.interceptors.addAll([
       ...?interceptors,
@@ -47,7 +47,7 @@ class CachedTileProvider extends TileProvider {
           policy: cachePolicy,
           maxStale: maxStale,
           keyBuilder: keyBuilder ?? CacheOptions.defaultCacheKeyBuilder,
-          hitCacheOnErrorExcept: hitCacheOnErrorExcept,
+          hitCacheOnErrorCodes: hitCacheOnErrorCodes,
         ),
       ),
     ]);
