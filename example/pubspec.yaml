@@ -24,7 +24,7 @@ dependencies:
   dio_cache_interceptor_hive_store: ^4.0.0
   sqlite3_flutter_libs: ^0.5.15
   #  vector_map_tiles: ^8.0.0
-  vector_tile_renderer: ^6.0.0
+  # vector_tile_renderer: ^6.0.0
   mbtiles: ^0.4.0
   maplibre: ^0.2.0
 

@@ -25,4 +25,4 @@ dev_dependencies:
   latlong2: ^0.9.0
   flutter_map: ^8.0.0
   very_good_analysis: ^7.0.0
-  vector_tile_renderer: ^6.0.0
+  vector_tile_renderer: ^5.2.0

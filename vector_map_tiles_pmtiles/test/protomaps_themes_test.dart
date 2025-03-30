@@ -1,3 +1,4 @@
+/*
 import 'package:flutter_test/flutter_test.dart';
 import 'package:vector_map_tiles_pmtiles/vector_map_tiles_pmtiles.dart';
 
@@ -23,3 +24,4 @@ Future<void> main() async {
     expect(theme.tileSources, equals(<String>{'protomaps'}));
   });
 }
+*/

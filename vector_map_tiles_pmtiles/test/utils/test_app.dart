@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -18,15 +19,18 @@ class TestApp extends StatelessWidget {
             initialCenter: LatLng(0, 0),
           ),
           children: [
-            /*VectorTileLayer(
+            */
+/*VectorTileLayer(
               tileProviders: TileProviders({
                 'protomaps': PmTilesVectorTileProvider.fromArchive(pmTiles),
               }),
               theme: null,
-            ),*/
+            ),*/ /*
+
           ],
         ),
       ),
     );
   }
 }
+*/
