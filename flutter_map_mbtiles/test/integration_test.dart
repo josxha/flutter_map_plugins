@@ -12,9 +12,9 @@ Future<void> main() async {
   testWidgets('FlutterMap with MbTilesTileProvider', (tester) async {
     final mbtiles = MockMbTiles();
     when(mbtiles.getMetadata()).thenAnswer(
-      (_) => const MbTilesMetadata(name: 'MockMbTiles', format: 'png'),
+          (_) => const MbTilesMetadata(name: 'MockMbTiles', format: 'png'),
     );
-    when(mbtiles.getTile(z: captureAny, x: captureAny, y: captureAny))
+    when(mbtiles.getTile(z: anyNamed("z"), x: anyNamed("x"), y: anyNamed("y")))
         .thenAnswer((_) => TileProvider.transparentImage);
     await tester.pumpWidget(TestApp(mbtiles: mbtiles));
     await tester.pumpAndSettle();
