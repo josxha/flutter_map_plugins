@@ -135,15 +135,10 @@ jobs:
       - name: Build APK
         working-directory: example
         run: flutter build apk
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: apk
-          path: example/build/app/outputs/flutter-apk/app-release.apk
       - name: Upload apk as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: flutter_map_plugins_example.apk
+          name: flutter_map_plugins_example_apk
           path: example/build/app/outputs/flutter-apk/app-release.apk
   #  build-ios:
   #    runs-on: macos-latest
@@ -188,7 +183,7 @@ jobs:
       - name: Upload web as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: flutter_map_plugins_example.web
+          name: flutter_map_plugins_example_web
           path: example/build/web
       - uses: FirebaseExtended/action-hosting-deploy@v0
         if: github.repository_owner == 'josxha'
