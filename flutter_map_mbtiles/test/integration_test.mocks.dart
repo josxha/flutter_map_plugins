@@ -26,7 +26,7 @@ import 'package:mockito/mockito.dart' as _i1;
 class _FakeMbTilesMetadata_0 extends _i1.SmartFake
     implements _i2.MbTilesMetadata {
   _FakeMbTilesMetadata_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 /// A class which mocks [MbTiles].
@@ -34,42 +34,38 @@ class _FakeMbTilesMetadata_0 extends _i1.SmartFake
 /// See the documentation for Mockito's code generation for more information.
 class MockMbTiles extends _i1.Mock implements _i3.MbTiles {
   @override
-  bool get editable =>
-      (super.noSuchMethod(
-            Invocation.getter(#editable),
-            returnValue: false,
-            returnValueForMissingStub: false,
-          )
-          as bool);
+  bool get editable => (super.noSuchMethod(
+        Invocation.getter(#editable),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
 
   @override
   _i2.MbTilesMetadata getMetadata({bool? allowCache = true}) =>
       (super.noSuchMethod(
-            Invocation.method(#getMetadata, [], {#allowCache: allowCache}),
-            returnValue: _FakeMbTilesMetadata_0(
-              this,
-              Invocation.method(#getMetadata, [], {#allowCache: allowCache}),
-            ),
-            returnValueForMissingStub: _FakeMbTilesMetadata_0(
-              this,
-              Invocation.method(#getMetadata, [], {#allowCache: allowCache}),
-            ),
-          )
-          as _i2.MbTilesMetadata);
+        Invocation.method(#getMetadata, [], {#allowCache: allowCache}),
+        returnValue: _FakeMbTilesMetadata_0(
+          this,
+          Invocation.method(#getMetadata, [], {#allowCache: allowCache}),
+        ),
+        returnValueForMissingStub: _FakeMbTilesMetadata_0(
+          this,
+          Invocation.method(#getMetadata, [], {#allowCache: allowCache}),
+        ),
+      ) as _i2.MbTilesMetadata);
 
   @override
   _i4.Uint8List? getTile({required int? z, required int? x, required int? y}) =>
       (super.noSuchMethod(
-            Invocation.method(#getTile, [], {#z: z, #x: x, #y: y}),
-            returnValueForMissingStub: null,
-          )
-          as _i4.Uint8List?);
+        Invocation.method(#getTile, [], {#z: z, #x: x, #y: y}),
+        returnValueForMissingStub: null,
+      ) as _i4.Uint8List?);
 
   @override
   void createTables() => super.noSuchMethod(
-    Invocation.method(#createTables, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#createTables, []),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void putTile({
@@ -77,20 +73,21 @@ class MockMbTiles extends _i1.Mock implements _i3.MbTiles {
     required int? x,
     required int? y,
     required _i4.Uint8List? bytes,
-  }) => super.noSuchMethod(
-    Invocation.method(#putTile, [], {#z: z, #x: x, #y: y, #bytes: bytes}),
-    returnValueForMissingStub: null,
-  );
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(#putTile, [], {#z: z, #x: x, #y: y, #bytes: bytes}),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void setMetadata(_i2.MbTilesMetadata? metadata) => super.noSuchMethod(
-    Invocation.method(#setMetadata, [metadata]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#setMetadata, [metadata]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void dispose() => super.noSuchMethod(
-    Invocation.method(#dispose, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#dispose, []),
+        returnValueForMissingStub: null,
+      );
 }
