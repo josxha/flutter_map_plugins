@@ -40,34 +40,41 @@ jobs:
         run: |
           rm -rf coverage 
           cd flutter_map_cache
+          flutter pub get
           flutter test --no-pub -r expanded --coverage
           coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
           cd ..
           cd flutter_map_compass
+          flutter pub get
           flutter test --no-pub -r expanded --coverage
           coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
           cd ..
           #          cd flutter_map_maplibre
+          #          flutter pub get
           #          flutter test --no-pub -r expanded --coverage
           #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
           #          cd ..
           cd flutter_map_mbtiles
+          flutter pub get
           flutter test --no-pub -r expanded --coverage
           coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
           cd ..
           cd flutter_map_pmtiles
+          flutter pub get
           flutter test --no-pub -r expanded --coverage
           coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
           cd ..
           #          cd vector_map_tiles_mbtiles
+          #          flutter pub get
           #          flutter test --no-pub -r expanded --coverage
           #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
           #          cd ..
           #          cd vector_map_tiles_pmtiles
+          #          flutter pub get
           #          flutter test --no-pub -r expanded --coverage
           #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
           #          cd ..
-          coverde value -i coverage/filtered.lcov.info > coverage/result.txt
+               coverde value -i coverage/filtered.lcov.info > coverage/result.txt
       - name: Run Codecov
         uses: codecov/codecov-action@v5
         env:
@@ -89,24 +96,31 @@ jobs:
       - name: Check package score for all
         run: |
           cd flutter_map_cache
+          flutter pub get
           pana --exit-code-threshold 0 --no-dartdoc .
           cd ..
           cd flutter_map_compass
+          flutter pub get
           pana --exit-code-threshold 0 --no-dartdoc .
           cd ..
           cd flutter_map_maplibre
+          flutter pub get
           pana --exit-code-threshold 0 --no-dartdoc .
           cd ..
           cd flutter_map_mbtiles
+          flutter pub get
           pana --exit-code-threshold 0 --no-dartdoc .
           cd ..
           cd flutter_map_pmtiles
+          flutter pub get
           pana --exit-code-threshold 0 --no-dartdoc .
           cd ..
   #          cd vector_map_tiles_mbtiles
+  #          flutter pub get
   #          pana --exit-code-threshold 0 --no-dartdoc .
   #          cd ..
   #          cd vector_map_tiles_pmtiles
+  #          flutter pub get
   #          pana --exit-code-threshold 0 --no-dartdoc .
   #          cd ..
   build-android:
@@ -127,15 +141,10 @@ jobs:
       - name: Build APK
         working-directory: example
         run: flutter build apk
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: apk
-          path: example/build/app/outputs/flutter-apk/app-release.apk
       - name: Upload apk as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: flutter_map_plugins_example.apk
+          name: flutter_map_plugins_example_apk
           path: example/build/app/outputs/flutter-apk/app-release.apk
   #  build-ios:
   #    runs-on: macos-latest
@@ -178,5 +187,5 @@ jobs:
       - name: Upload web as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: flutter_map_plugins_example.web
+          name: flutter_map_plugins_example_web
           path: example/build/web
