@@ -36,7 +36,15 @@ class CachedTileProvider extends TileProvider {
     List<Interceptor>? interceptors,
     Duration? maxStale,
     CacheKeyBuilder? keyBuilder,
-    List<int> hitCacheOnErrorCodes = defaultHitCacheOnErrorExcept,
+    @Deprecated(
+      '''
+      hitCacheOnErrorExcept is split with hitCacheOnNetworkFailure. Term is now positive and replaced by hitCacheOnErrorCodes
+    ''',
+    )
+    List<int>? hitCacheOnErrorExcept = defaultHitCacheOnErrorExcept,
+    List<int> hitCacheOnErrorCodes =
+        CachedTileProvider.defaultHitCacheOnErrorCodes,
+    bool hitCacheOnNetworkFailure = false,
   }) : dio = dio ?? Dio(dioOptions ?? BaseOptions()) {
     this.dio.interceptors.addAll([
       ...?interceptors,
@@ -48,6 +56,7 @@ class CachedTileProvider extends TileProvider {
           maxStale: maxStale,
           keyBuilder: keyBuilder ?? CacheOptions.defaultCacheKeyBuilder,
           hitCacheOnErrorCodes: hitCacheOnErrorCodes,
+          hitCacheOnNetworkFailure: hitCacheOnNetworkFailure,
         ),
       ),
     ]);
@@ -63,6 +72,15 @@ class CachedTileProvider extends TileProvider {
     HttpStatus.unauthorized,
     HttpStatus.forbidden,
     HttpStatus.badGateway,
+  ];
+
+  /// List of HTTP status codes that will trigger caching only when
+  /// an error occurs.
+  /// If a request fails with a status code in this list,
+  /// the cached response (if available) will be used instead of treating
+  /// the error as a complete failure.
+  static const List<int> defaultHitCacheOnErrorCodes = [
+    HttpStatus.notFound,
   ];
 
   @override
