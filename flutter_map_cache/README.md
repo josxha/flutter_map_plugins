@@ -60,20 +60,21 @@ dependencies:
   path_provider: ^2.1.2 # in case the storage backend requires a path
 
   # drift
-  dio_cache_interceptor_db_store: ^5.1.0
+  http_cache_drift_store: ^7.0.0
   sqlite3_flutter_libs: ^0.5.15
 
   # file system
-  dio_cache_interceptor_file_store: ^1.2.2
+  http_cache_file_store: ^2.0.0
 
   # hive
-  dio_cache_interceptor_hive_store: ^3.2.1
+  http_cache_hive_store: ^5.0.0
 
   # objectbox
-  dio_cache_interceptor_objectbox_store: ^1.1.3
+  http_cache_objectbox_store: ^2.0.0
   objectbox_flutter_libs: ^1.4.1
 
   # isar
+  http_cache_isar_store: ^2.0.0
   isar: ^3.1.0+1
   isar_flutter_libs: ^3.1.0+1
 ```
@@ -181,7 +182,7 @@ class MyMap extends StatelessWidget {
 import 'dart:io';
 
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
-import 'package:dio_cache_interceptor_file_store/dio_cache_interceptor_file_store.dart';
+import 'package:http_cache_file_store/http_cache_file_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cache/flutter_map_cache.dart';

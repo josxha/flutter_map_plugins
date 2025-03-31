@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
-import 'package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart';
-import 'package:dio_cache_interceptor_file_store/dio_cache_interceptor_file_store.dart';
-import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:flutter/material.dart';
+import 'package:http_cache_drift_store/http_cache_drift_store.dart';
+import 'package:http_cache_file_store/http_cache_file_store.dart';
+import 'package:http_cache_hive_store/http_cache_hive_store.dart';
 
 enum CacheStoreTypes {
   memCache('MemCache'),
@@ -18,7 +18,7 @@ enum CacheStoreTypes {
 
   CacheStore getCacheStore(String path) => switch (this) {
         CacheStoreTypes.memCache => MemCacheStore(),
-        CacheStoreTypes.dbCache => DbCacheStore(
+        CacheStoreTypes.dbCache => DriftCacheStore(
             databasePath: path,
             databaseName: 'DbCacheStore',
           ),
@@ -33,7 +33,7 @@ enum CacheStoreTypes {
 
   CacheStore getCacheStoreWeb() => switch (this) {
         CacheStoreTypes.memCache => MemCacheStore(),
-        CacheStoreTypes.dbCache => DbCacheStore(
+        CacheStoreTypes.dbCache => DriftCacheStore(
             databasePath: '', // ignored on web
             databaseName: 'DbCacheStore',
           ),
