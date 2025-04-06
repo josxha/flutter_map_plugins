@@ -5,6 +5,9 @@ issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
 topics: [ flutter-map, map ]
 version: 1.1.1
 resolution: workspace
+funding:
+  - https://paypal.me/joschaeckert
+  - https://github.com/sponsors/josxha
 
 environment:
   sdk: '>=3.6.0 <4.0.0'

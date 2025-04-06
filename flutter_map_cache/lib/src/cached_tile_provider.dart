@@ -19,25 +19,13 @@ class CachedTileProvider extends TileProvider {
     required CacheStore store,
     CachePolicy cachePolicy = CachePolicy.forceCache,
     Dio? dio,
-    @Deprecated(
-      '''
-      This parameter will be removed in version 2.0.0 of flutter_map_cache.
-      
-      Please use the `dio` parameter instead and provide your own Dio instance.
-      
-        CachedTileProvider(
-          dio: Dio(
-            BaseOptions(...),
-          ),
-        ),
-  ''',
-    )
-    BaseOptions? dioOptions,
     List<Interceptor>? interceptors,
     Duration? maxStale,
     CacheKeyBuilder? keyBuilder,
-    List<int>? hitCacheOnErrorExcept = defaultHitCacheOnErrorExcept,
-  }) : dio = dio ?? Dio(dioOptions ?? BaseOptions()) {
+    List<int> hitCacheOnErrorCodes =
+        CachedTileProvider.defaultHitCacheOnErrorCodes,
+    bool hitCacheOnNetworkFailure = true,
+  }) : dio = dio ?? Dio() {
     this.dio.interceptors.addAll([
       ...?interceptors,
       DioCacheInterceptor(
@@ -47,7 +35,8 @@ class CachedTileProvider extends TileProvider {
           policy: cachePolicy,
           maxStale: maxStale,
           keyBuilder: keyBuilder ?? CacheOptions.defaultCacheKeyBuilder,
-          hitCacheOnErrorExcept: hitCacheOnErrorExcept,
+          hitCacheOnErrorCodes: hitCacheOnErrorCodes,
+          hitCacheOnNetworkFailure: hitCacheOnNetworkFailure,
         ),
       ),
     ]);
@@ -56,14 +45,13 @@ class CachedTileProvider extends TileProvider {
   /// dio http client
   final Dio dio;
 
-  /// list of http status codes that will not hit the cache, e.g. if the user
-  /// needs authentication or the server is currently not able to handle the
-  /// request
-  static const List<int> defaultHitCacheOnErrorExcept = [
-    HttpStatus.unauthorized,
-    HttpStatus.forbidden,
-    HttpStatus.badGateway,
-  ];
+  /// List of HTTP status codes that allow to return a previous cached
+  /// response.
+  ///
+  /// If a request fails with a status code in this list,
+  /// the cached response (if available) will be used instead of treating
+  /// the error as a complete failure.
+  static const List<int> defaultHitCacheOnErrorCodes = [HttpStatus.notFound];
 
   @override
   bool get supportsCancelLoading => true;

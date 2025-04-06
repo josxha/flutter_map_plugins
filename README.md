@@ -19,7 +19,7 @@ functionality of [flutter_map](https://pub.dev/packages/flutter_map).
 
 ## Packages
 
-### [flutter_map_cache](https://pub.dev/packages/flutter_map_cache)
+### [flutter_map_cache](https://github.com/josxha/flutter_map_plugins/tree/main/flutter_map_cache)
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_cache)](https://pub.dev/packages/flutter_map_cache)
 [![likes](https://img.shields.io/pub/likes/flutter_map_cache?logo=flutter)](https://pub.dev/packages/flutter_map_cache)
@@ -33,7 +33,7 @@ storage backend you would possibly want.
   and flutter_map.
 - Support for tile cancellation
 
-### [flutter_map_compass](https://pub.dev/packages/flutter_map_compass)
+### [flutter_map_compass](https://github.com/josxha/flutter_map_plugins/tree/main/flutter_map_compass)
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_compass)](https://pub.dev/packages/flutter_map_compass)
 [![likes](https://img.shields.io/pub/likes/flutter_map_compass?logo=flutter)](https://pub.dev/packages/flutter_map_compass)
@@ -42,7 +42,7 @@ storage backend you would possibly want.
 A compass for flutter_map that indicates the map rotation. It rotates the map
 back to north on top when clicked.
 
-### [flutter_map_maplibre](https://pub.dev/packages/flutter_map_maplibre)
+### [flutter_map_maplibre](https://github.com/josxha/flutter_map_plugins/tree/main/flutter_map_maplibre)
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_maplibre)](https://pub.dev/packages/flutter_map_maplibre)
 [![likes](https://img.shields.io/pub/likes/flutter_map_maplibre?logo=flutter)](https://pub.dev/packages/flutter_map_maplibre)
@@ -51,7 +51,7 @@ back to north on top when clicked.
 Performant Mapbox Vector Tiles (MVT) support for flutter_map powered by native
 MapLibre SDKs.
 
-### [flutter_map_mbtiles](https://pub.dev/packages/flutter_map_mbtiles)
+### [flutter_map_mbtiles](https://github.com/josxha/flutter_map_plugins/tree/main/flutter_map_mbtiles)
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_mbtiles)](https://pub.dev/packages/flutter_map_mbtiles)
 [![likes](https://img.shields.io/pub/likes/flutter_map_mbtiles?logo=flutter)](https://pub.dev/packages/flutter_map_mbtiles)
@@ -64,7 +64,7 @@ flutter_map tile layers.
   for the MBTiles support.
 - MBTiles is a file format to store map tiles in a single SQLite database.
 
-### [flutter_map_pmtiles](https://pub.dev/packages/flutter_map_pmtiles)
+### [flutter_map_pmtiles](https://github.com/josxha/flutter_map_plugins/tree/main/flutter_map_pmtiles)
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_pmtiles)](https://pub.dev/packages/flutter_map_pmtiles)
 [![likes](https://img.shields.io/pub/likes/flutter_map_pmtiles?logo=flutter)](https://pub.dev/packages/flutter_map_pmtiles)
@@ -80,7 +80,7 @@ flutter_map tile layers.
   learn more about
   PMTiles.
 
-### [vector_map_tiles_mbtiles](https://pub.dev/packages/vector_map_tiles_mbtiles)
+### [vector_map_tiles_mbtiles](https://github.com/josxha/flutter_map_plugins/tree/main/vector_map_tiles_mbtiles)
 
 [![Pub Version](https://img.shields.io/pub/v/vector_map_tiles_mbtiles)](https://pub.dev/packages/vector_map_tiles_mbtiles)
 [![likes](https://img.shields.io/pub/likes/vector_map_tiles_mbtiles?logo=flutter)](https://pub.dev/packages/vector_map_tiles_mbtiles)
@@ -94,7 +94,7 @@ adds support for vector tiles to flutter_map.
   for the MBTiles support.
 - MBTiles is a file format to store map tiles in a single SQLite database.
 
-### [vector_map_tiles_pmtiles](https://pub.dev/packages/vector_map_tiles_pmtiles)
+### [vector_map_tiles_pmtiles](https://github.com/josxha/flutter_map_plugins/tree/main/vector_map_tiles_pmtiles)
 
 [![Pub Version](https://img.shields.io/pub/v/vector_map_tiles_pmtiles)](https://pub.dev/packages/vector_map_tiles_pmtiles)
 [![likes](https://img.shields.io/pub/likes/vector_map_tiles_pmtiles?logo=flutter)](https://pub.dev/packages/vector_map_tiles_pmtiles)

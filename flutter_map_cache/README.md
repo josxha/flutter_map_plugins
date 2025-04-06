@@ -40,9 +40,10 @@ Supported storage backends are:
 | In-Memory                                       | - For testing purposes<br/>- `flutter_map` has memory caching itself                                           |
 | File System                                     | - Easy to setup, no additional storage backend package required<br/>- potentially slower than using a database |
 | [Drift](https://pub.dev/packages/drift)         | - SQLite database<br/>- good platform support                                                                  |
-| [Hive](https://pub.dev/packages/hive)           | - key-value database<br/>- easy to integrate                                                                   |
-| [ObjectBox](https://pub.dev/packages/objectbox) | - NoSQL, ACID compliant<br/>- Fast library<br/>- More complex integration                                      |
-| [Isar](https://pub.dev/packages/isar)           | - NoSQL<br/>- Fast library<br/>- More complex integration                                                      |
+| [Hive CE](https://pub.dev/packages/hive_ce)     | - key-value database<br/>- easy to integrate                                                                   |
+| [ObjectBox](https://pub.dev/packages/objectbox) | - NoSQL database<br/>- More complex integration                                                                |
+| [Isar](https://pub.dev/packages/isar)           | - NoSQL database<br/>- More complex integration                                                                |
+| [Sembast](https://pub.dev/packages/sembast)     | - NoSQL database                                                                                               |
 
 Other storage backends will be supported as soon as the underlying package
 [dio_cache_interceptor](https://pub.dev/packages/dio_cache_interceptor) supports
@@ -60,22 +61,28 @@ dependencies:
   path_provider: ^2.1.2 # in case the storage backend requires a path
 
   # drift
-  dio_cache_interceptor_db_store: ^5.1.0
+  http_cache_drift_store: ^7.0.0
   sqlite3_flutter_libs: ^0.5.15
 
   # file system
-  dio_cache_interceptor_file_store: ^1.2.2
+  http_cache_file_store: ^2.0.0
 
   # hive
-  dio_cache_interceptor_hive_store: ^3.2.1
+  http_cache_hive_store: ^5.0.0
 
   # objectbox
-  dio_cache_interceptor_objectbox_store: ^1.1.3
+  http_cache_objectbox_store: ^2.0.0
   objectbox_flutter_libs: ^1.4.1
 
   # isar
+  http_cache_isar_store: ^2.0.0
   isar: ^3.1.0+1
   isar_flutter_libs: ^3.1.0+1
+
+  # sembast
+  http_cache_sembast_store: ^1.0.0
+  sembast: ^3.8.4+1
+  sembast_web: ^2.4.1
 ```
 
 2. ⚠️ Some storage backends have their own required setups. Please check them
@@ -181,7 +188,7 @@ class MyMap extends StatelessWidget {
 import 'dart:io';
 
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
-import 'package:dio_cache_interceptor_file_store/dio_cache_interceptor_file_store.dart';
+import 'package:http_cache_file_store/http_cache_file_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cache/flutter_map_cache.dart';

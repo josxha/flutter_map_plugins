@@ -1,11 +1,13 @@
 name: flutter_map_cache
 description: A slim yet powerful caching plugin for flutter_map tile layers.
-version: 1.5.2
+version: 2.0.0
 repository: https://github.com/josxha/flutter_map_plugins
 issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
 resolution: workspace
-
 topics: [ flutter-map, map, cache, dio ]
+funding:
+  - https://paypal.me/joschaeckert
+  - https://github.com/sponsors/josxha
 
 platforms:
   android:
@@ -20,7 +22,7 @@ environment:
 
 dependencies:
   dio: ^5.2.0+1
-  dio_cache_interceptor: ^3.4.2
+  dio_cache_interceptor: ^4.0.0
   flutter:
     sdk: flutter
   flutter_map: ">=6.0.0 <9.0.0"
