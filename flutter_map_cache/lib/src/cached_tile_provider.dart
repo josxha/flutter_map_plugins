@@ -24,7 +24,7 @@ class CachedTileProvider extends TileProvider {
     CacheKeyBuilder? keyBuilder,
     List<int> hitCacheOnErrorCodes =
         CachedTileProvider.defaultHitCacheOnErrorCodes,
-    bool hitCacheOnNetworkFailure = false,
+    bool hitCacheOnNetworkFailure = true,
   }) : dio = dio ?? Dio() {
     this.dio.interceptors.addAll([
       ...?interceptors,
