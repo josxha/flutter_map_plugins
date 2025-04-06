@@ -1,3 +1,18 @@
+## [2.0.0] 2025-04-06
+
+- Use
+  [dio_cache_interceptor: ^4.0.0](https://pub.dev/packages/dio_cache_interceptor/changelog#400)
+- Remove deprecated `dioOptions` parameter
+- Add
+  [hitCacheOnNetworkFailure](https://pub.dev/documentation/dio_cache_interceptor/latest/dio_cache_interceptor/CacheOptions/hitCacheOnNetworkFailure.html)
+- Remove `hitCacheOnErrorExcept` in favor of the
+  new [hitCacheOnErrorCodes](https://pub.dev/documentation/dio_cache_interceptor/latest/dio_cache_interceptor/CacheOptions/hitCacheOnErrorCodes.html)
+
+Please update your integration and used store packages according to
+the [Getting Started section](https://pub.dev/packages/flutter_map_cache#getting-started).
+More information can be found in
+the [dio_cache_interceptor changelog](https://pub.dev/packages/dio_cache_interceptor/changelog#400).
+
 ## [1.5.2] 2025-02-05
 
 - Support for flutter_map v6, v7 and v8
