@@ -1,3 +1,7 @@
+## [2.0.0+1] 2025-04-18
+
+- Update "Getting started" documentation
+
 ## [2.0.0] 2025-04-06
 
 - Use
