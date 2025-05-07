@@ -9,5 +9,5 @@ workspace:
   - flutter_map_maplibre
   - flutter_map_mbtiles
   - flutter_map_pmtiles
-#  - vector_map_tiles_mbtiles
-#  - vector_map_tiles_pmtiles
+  - vector_map_tiles_mbtiles
+  - vector_map_tiles_pmtiles

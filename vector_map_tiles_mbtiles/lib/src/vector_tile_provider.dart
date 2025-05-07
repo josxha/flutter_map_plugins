@@ -1,4 +1,3 @@
-/*
 import 'dart:typed_data';
 
 import 'package:mbtiles/mbtiles.dart';
@@ -67,4 +66,3 @@ class MbTilesVectorTileProvider extends VectorTileProvider {
   @override
   TileOffset get tileOffset => TileOffset.DEFAULT;
 }
-*/
