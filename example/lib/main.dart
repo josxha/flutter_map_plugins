@@ -8,6 +8,8 @@ import 'package:flutter_map_plugins_example/flutter_map_maplibre/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_maplibre/page2.dart';
 import 'package:flutter_map_plugins_example/flutter_map_mbtiles/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
+import 'package:flutter_map_plugins_example/vector_map_tiles_mbtiles/page.dart';
+import 'package:flutter_map_plugins_example/vector_map_tiles_pmtiles/page.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -33,10 +35,10 @@ class MyApp extends StatelessWidget {
         '/flutter_map_pmtiles': (context) => const FlutterMapPmTilesPage(),
         '/flutter_map_maplibre': (context) => const MapLibreFlutterMapPage(),
         '/flutter_map_maplibre2': (context) => const FlutterMapMapLibrePage(),
-        // '/vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
+        '/vector_map_tiles_pmtiles': (context) => VectorMapTilesPmTilesPage(),
         '/flutter_map_mbtiles': (context) => const FlutterMapMbTilesPage(),
-        // '/vector_map_tiles_mbtiles': (context) =>
-        //     const VectorMapTilesMbTilesPage(),
+        '/vector_map_tiles_mbtiles': (context) =>
+            const VectorMapTilesMbTilesPage(),
         '/flutter_map_compass': (context) => const FlutterMapCompassPage(),
       },
     );
@@ -81,16 +83,16 @@ class SelectionPage extends StatelessWidget {
         desc: 'PMTiles for flutter_map',
         routeName: '/flutter_map_pmtiles',
       ),
-      // SelectionItemWidget.disabledOnWeb(
-      //   title: 'vector_map_tiles_mbtiles',
-      //   desc: 'MBTiles for vector_map_files / flutter_map',
-      //   routeName: '/vector_map_tiles_mbtiles',
-      // ),
-      // SelectionItemWidget.disabledOnWeb(
-      //   title: 'vector_map_tiles_pmtiles',
-      //   desc: 'PMTiles for vector_map_files / flutter_map',
-      //   routeName: '/vector_map_tiles_pmtiles',
-      // ),
+      SelectionItemWidget.disabledOnWeb(
+        title: 'vector_map_tiles_mbtiles',
+        desc: 'MBTiles for vector_map_files / flutter_map',
+        routeName: '/vector_map_tiles_mbtiles',
+      ),
+      SelectionItemWidget(
+        title: 'vector_map_tiles_pmtiles',
+        desc: 'PMTiles for vector_map_files / flutter_map',
+        routeName: '/vector_map_tiles_pmtiles',
+      ),
     ];
 
     final width = MediaQuery.sizeOf(context).width;

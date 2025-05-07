@@ -23,8 +23,8 @@ dependencies:
   http_cache_file_store: ^2.0.0
   http_cache_hive_store: ^5.0.0
   sqlite3_flutter_libs: ^0.5.15
-  #  vector_map_tiles: ^8.0.0
-  # vector_tile_renderer: ^6.0.0
+  vector_map_tiles: ^9.0.0-beta.8
+  vector_tile_renderer: ^6.0.0
   mbtiles: ^0.4.0
   maplibre: ^0.2.0
 
@@ -38,10 +38,10 @@ dependencies:
     path: ../flutter_map_mbtiles
   flutter_map_pmtiles:
     path: ../flutter_map_pmtiles
-#  vector_map_tiles_mbtiles:
-#    path: ../vector_map_tiles_mbtiles
-#  vector_map_tiles_pmtiles:
-#    path: ../vector_map_tiles_pmtiles
+  vector_map_tiles_mbtiles:
+    path: ../vector_map_tiles_mbtiles
+  vector_map_tiles_pmtiles:
+    path: ../vector_map_tiles_pmtiles
 
 dev_dependencies:
   very_good_analysis: ^7.0.0

@@ -1,1 +1,1 @@
-// export 'src/vector_tile_provider.dart';
+export 'src/vector_tile_provider.dart';
