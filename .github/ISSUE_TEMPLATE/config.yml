@@ -2,7 +2,7 @@ blank_issues_enabled: true
 contact_links:
   - name: "Ask a Question"
     url: https://github.com/josxha/flutter-maplibre/discussions/new?category=q-a
-    about: "If you have a question about using MapLibre on Flutter"
+    about: "If you have a question about using a Package"
   - name: "Start a Discussion"
     url: https://github.com/josxha/flutter-maplibre/discussions/new?category=general
     about: "Start a discussion on some topic"
