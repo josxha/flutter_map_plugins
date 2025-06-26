@@ -17,6 +17,7 @@ class CachedTileProvider extends TileProvider {
   /// [CachePolicy] from dio_cache_interceptor for more information.
   CachedTileProvider({
     required CacheStore store,
+    super.headers,
     CachePolicy cachePolicy = CachePolicy.forceCache,
     Dio? dio,
     List<Interceptor>? interceptors,
