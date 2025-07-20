@@ -28,6 +28,8 @@ dependencies:
 ## Usage
 
 ```dart
+import 'package:flutter_map_compass/flutter_map_compass.dart';
+
 @override
 Widget build(BuildContext context) {
   return FlutterMap(
