@@ -26,10 +26,13 @@ dependencies:
 ```
 
 ## Usage
-
+To import the package
 ```dart
 import 'package:flutter_map_compass/flutter_map_compass.dart';
+```
 
+To use the MapCompass
+```dart
 @override
 Widget build(BuildContext context) {
   return FlutterMap(
