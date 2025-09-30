@@ -18,7 +18,8 @@ const String tileSource =
     'https://raw.githubusercontent.com/protomaps/PMTiles/main/spec/v3/stamen_toner(raster)CC-BY%2BODbL_z3.pmtiles';
 
 class _FlutterMapPmTilesPageState extends State<FlutterMapPmTilesPage> {
-  final _futureTileProvider = PmTilesTileProvider.fromSource(tileSource);
+  final Future<PmTilesTileProvider> _futureTileProvider =
+      PmTilesTileProvider.fromSource(tileSource);
 
   @override
   Widget build(BuildContext context) {

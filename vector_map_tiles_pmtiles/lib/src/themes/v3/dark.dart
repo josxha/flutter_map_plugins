@@ -4,7 +4,7 @@ part of '_package.dart';
 // ignore_for_file: prefer_single_quotes, require_trailing_commas
 
 /// https://docs.protomaps.com/basemaps/themes#dark
-const themeDark = [
+const themeDark = <Map<String, Object>>[
   {
     "id": "background",
     "type": "background",

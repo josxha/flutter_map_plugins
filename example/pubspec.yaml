@@ -15,7 +15,7 @@ dependencies:
     sdk: flutter
   latlong2: ^0.9.0
   url_launcher: ^6.2.4
-  connectivity_plus: ^6.0.0
+  connectivity_plus: ^7.0.0
   path_provider: ^2.0.15
   dio: ^5.2.0+1
   dio_cache_interceptor: ^4.0.0
@@ -44,7 +44,7 @@ dependencies:
     path: ../vector_map_tiles_pmtiles
 
 dev_dependencies:
-  very_good_analysis: ^7.0.0
+  very_good_analysis: ^10.0.0
 
 flutter:
   uses-material-design: true

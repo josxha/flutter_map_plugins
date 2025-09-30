@@ -1,6 +1,6 @@
 name: flutter_map_maplibre
 description: "Performant Mapbox Vector Tiles (MVT) support for flutter_map powered by native MapLibre SDKs."
-version: 0.0.4
+version: 0.0.5
 topics: [ flutter-map, map, vector, maplibre, mvt ]
 repository: https://github.com/josxha/flutter_map_plugins
 issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
@@ -23,4 +23,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^7.0.0
+  very_good_analysis: ^10.0.0

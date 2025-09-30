@@ -19,7 +19,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
   final Future<MbTiles> _futureMbtiles = _initMbTiles();
   MbTiles? _mbtiles;
 
-  final _theme = vtr.ProvidedThemes.lightTheme();
+  final vtr.Theme _theme = vtr.ProvidedThemes.lightTheme();
 
   static Future<MbTiles> _initMbTiles() async {
     // This function copies an asset file from the asset bundle to the temporary

@@ -37,7 +37,6 @@ class MbTilesImageProvider extends ImageProvider<MbTilesImageProvider> {
     final chunkEvents = StreamController<ImageChunkEvent>();
 
     return MultiFrameImageStreamCompleter(
-      // ignore: discarded_futures, not actually but the lint thinks so
       codec: _loadAsync(key, chunkEvents, decode),
       chunkEvents: chunkEvents.stream,
       scale: 1,
