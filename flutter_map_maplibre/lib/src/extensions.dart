@@ -3,16 +3,16 @@ import 'package:flutter_map/flutter_map.dart' as fm;
 import 'package:latlong2/latlong.dart';
 import 'package:maplibre/maplibre.dart';
 
-/// Extension methods on [Position];
-extension PositionExt on Position {
-  /// Convert [Position] to [LatLng].
-  LatLng toLatLng() => LatLng(lat.toDouble(), lng.toDouble());
+/// Extension methods on [Geographic];
+extension PositionExt on Geographic {
+  /// Convert [Geographic] to [LatLng].
+  LatLng toLatLng() => LatLng(lat, lon);
 }
 
 /// Extension methods on [LatLng];
 extension LatLngExt on LatLng {
-  /// Convert [LatLng] to [Position].
-  Position toPosition() => Position(longitude, latitude);
+  /// Convert [LatLng] to [Geographic].
+  Geographic toPosition() => Geographic(lon: longitude, lat: latitude);
 }
 
 /// Extension methods on [MapController];

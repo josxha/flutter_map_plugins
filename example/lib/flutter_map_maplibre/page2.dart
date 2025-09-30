@@ -26,8 +26,8 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
       ),
       body: MapLibreMap(
         onMapCreated: (controller) => _controller = controller,
-        options: MapOptions(
-          initCenter: Position(0, 0),
+        options: const MapOptions(
+          initCenter: Geographic(lon: 0, lat: 0),
           initZoom: 3,
           maxPitch: 0, // flutter_map doesn't support pitch, disable it here
           initStyle:
