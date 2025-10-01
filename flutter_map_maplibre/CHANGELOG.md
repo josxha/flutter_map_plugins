@@ -1,3 +1,7 @@
+## 0.0.5
+
+- Update `maplibre` to `^0.3.0`
+
 ## 0.0.4
 
 - Update docs

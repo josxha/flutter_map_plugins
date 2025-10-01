@@ -24,7 +24,8 @@ class VectorMapTilesPmTilesPage extends StatelessWidget {
     logger: kDebugMode ? const vtr.Logger.console() : null,
   );
 
-  final _futureTileProvider = PmTilesVectorTileProvider.fromSource(tileSource);
+  final Future<PmTilesVectorTileProvider> _futureTileProvider =
+      PmTilesVectorTileProvider.fromSource(tileSource);
 
   @override
   Widget build(BuildContext context) {

@@ -52,7 +52,6 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
     final chunkEvents = StreamController<ImageChunkEvent>();
 
     return MultiFrameImageStreamCompleter(
-      // ignore: discarded_futures, not actually but the lint thinks so
       codec: loadAsync(key, chunkEvents, decode),
       chunkEvents: chunkEvents.stream,
       scale: 1,

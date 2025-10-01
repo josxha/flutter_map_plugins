@@ -23,8 +23,8 @@ powered by [maplibre](https://pub.dev/packages/maplibre).
 ```yaml
 dependencies:
   flutter_map: ^8.0.0
-  flutter_map_maplibre: ^0.0.4
-  maplibre: ^0.2.0
+  flutter_map_maplibre: ^0.0.5
+  maplibre: ^0.3.0
 ```
 
 2. Follow the platform
@@ -33,6 +33,7 @@ dependencies:
 
 - [Setup Web](https://flutter-maplibre.pages.dev/docs/getting-started/setup-web)
 - [Setup Android](https://flutter-maplibre.pages.dev/docs/getting-started/setup-android)
+- [Setup iOS](https://flutter-maplibre.pages.dev/docs/getting-started/setup-ios)
 
 ## Usage
 
@@ -88,7 +89,7 @@ Widget build(BuildContext context) {
   return MapLibreMap(
     onMapCreated: (controller) => _controller = controller,
     options: MapOptions(
-      initCenter: Position(0, 0),
+      initCenter: Geographic(lon: 0, lat: 0),
       initZoom: 3,
       maxPitch: 0, // flutter_map doesn't support camera pitch, disable it here
       initStyle: 'insert your style url here',
