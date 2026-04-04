@@ -29,7 +29,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
     final file = await copyAssetToFile(
       'assets/mbtiles/malta-vector.mbtiles',
     );
-    return MbTiles(mbtilesPath: file.path, gzip: false);
+    return MbTiles(path: file.path, gzip: false);
   }
 
   @override
@@ -95,7 +95,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
   @override
   void dispose() {
     // close the open database connection
-    _mbtiles?.dispose();
+    _mbtiles?.close();
     super.dispose();
   }
 }

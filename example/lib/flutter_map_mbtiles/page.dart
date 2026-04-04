@@ -24,7 +24,7 @@ class _FlutterMapMbTilesPageState extends State<FlutterMapMbTilesPage> {
     final file = await copyAssetToFile(
       'assets/mbtiles/countries-raster.mbtiles',
     );
-    return MbTiles(mbtilesPath: file.path);
+    return MbTiles(path: file.path);
   }
 
   @override
@@ -82,7 +82,7 @@ class _FlutterMapMbTilesPageState extends State<FlutterMapMbTilesPage> {
   @override
   void dispose() {
     // close the open database connection
-    _mbtiles?.dispose();
+    _mbtiles?.close();
     super.dispose();
   }
 }
