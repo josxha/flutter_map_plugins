@@ -16,7 +16,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  mbtiles: ^0.4.0
+  mbtiles: ^0.5.0
   vector_map_tiles: ^9.0.0-beta.8
 
 dev_dependencies:
