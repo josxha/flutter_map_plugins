@@ -80,7 +80,7 @@ jobs:
             --output coverage/filtered.lcov.info \
             --filters \.g\.dart
       - name: Run Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   package-score:
