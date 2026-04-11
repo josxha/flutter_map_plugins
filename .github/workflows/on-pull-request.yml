@@ -34,6 +34,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           cache: true
+      - name: Install lcov
+        run: sudo apt-get update && sudo apt-get install -y lcov
       - name: Install coverde
         run: dart pub global activate coverde
       - name: Run Test with Coverage
