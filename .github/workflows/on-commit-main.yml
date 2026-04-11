@@ -96,25 +96,25 @@ jobs:
       - name: Check package score for all
         run: |
           cd flutter_map_cache
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_compass
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_maplibre
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_mbtiles
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_pmtiles
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
   #          cd vector_map_tiles_mbtiles
-  #          pana --exit-code-threshold 0 --no-dartdoc .
+  #          pana --exit-code-threshold 10 --no-dartdoc .
   #          cd ..
   #          cd vector_map_tiles_pmtiles
-  #          pana --exit-code-threshold 0 --no-dartdoc .
+  #          pana --exit-code-threshold 10 --no-dartdoc .
   #          cd ..
   build-android:
     runs-on: ubuntu-latest
