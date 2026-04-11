@@ -23,7 +23,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   test: ^1.24.9
-  mockito: ^5.4.4
+  mocktail: ^1.0.5
   build_runner: ^2.4.8
   latlong2: ^0.9.0
   flutter_map: ^8.0.0
