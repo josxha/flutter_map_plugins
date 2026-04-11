@@ -41,7 +41,7 @@ jobs:
           rm -rf coverage 
           cd flutter_map_cache
           flutter pub get
-          flutter test --no-pub -r expanded --merge-coverage --coverage-path=../coverage/lcov.info
+          flutter test --no-pub -r expanded --coverage-path=../coverage/lcov.info
           cd ..
           cd flutter_map_compass
           flutter pub get
