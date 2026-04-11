@@ -1,3 +1,8 @@
+## [2.1.0] 2026-04-11
+
+- Add `headers` parameter to `CachedTileProvider` to allow adding custom
+  headers to tile requests.
+
 ## [2.0.0+1] 2025-04-18
 
 - Update "Getting started" documentation
