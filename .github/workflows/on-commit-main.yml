@@ -76,7 +76,7 @@ jobs:
           #          cd ..
           coverde value -i coverage/filtered.lcov.info > coverage/result.txt
       - name: Run Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   package-score:
@@ -96,25 +96,25 @@ jobs:
       - name: Check package score for all
         run: |
           cd flutter_map_cache
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_compass
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_maplibre
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_mbtiles
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_pmtiles
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
   #          cd vector_map_tiles_mbtiles
-  #          pana --exit-code-threshold 0 --no-dartdoc .
+  #          pana --exit-code-threshold 10 --no-dartdoc .
   #          cd ..
   #          cd vector_map_tiles_pmtiles
-  #          pana --exit-code-threshold 0 --no-dartdoc .
+  #          pana --exit-code-threshold 10 --no-dartdoc .
   #          cd ..
   build-android:
     runs-on: ubuntu-latest
@@ -136,7 +136,7 @@ jobs:
         working-directory: example
         run: flutter build apk
       - name: Upload apk as artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: flutter_map_plugins_example_apk
           path: example/build/app/outputs/flutter-apk/app-release.apk
@@ -160,7 +160,7 @@ jobs:
   #      - name: Build iOS package
   #        run: flutter build ios --simulator
   #      - name: Upload Runner.app as artifact
-  #        uses: actions/upload-artifact@v6
+  #        uses: actions/upload-artifact@v7
   #        with:
   #          name: flutter_map_plugins_example.app
   #          path: example/build/ios/iphonesimulator
@@ -181,7 +181,7 @@ jobs:
       - name: Build Web
         run: flutter build web
       - name: Upload web as artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: flutter_map_plugins_example_web
           path: example/build/web

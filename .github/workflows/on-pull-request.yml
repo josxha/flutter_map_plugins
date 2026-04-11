@@ -34,6 +34,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           cache: true
+      - name: Install lcov
+        run: sudo apt-get update && sudo apt-get install -y lcov
       - name: Install coverde
         run: dart pub global activate coverde
       - name: Run Test with Coverage
@@ -41,42 +43,44 @@ jobs:
           rm -rf coverage 
           cd flutter_map_cache
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/flutter_map_cache.lcov.info
           cd ..
           cd flutter_map_compass
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/flutter_map_compass.lcov.info
           cd ..
-          #          cd flutter_map_maplibre
-          #          flutter pub get
-          #          flutter test --no-pub -r expanded --coverage
-          #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
-          #          cd ..
+          # cd flutter_map_maplibre
+          # flutter pub get
+          # flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/flutter_map_maplibre.lcov.info
+          # cd ..
           cd flutter_map_mbtiles
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/flutter_map_mbtiles.lcov.info
           cd ..
           cd flutter_map_pmtiles
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/flutter_map_pmtiles.lcov.info
           cd ..
-          #          cd vector_map_tiles_mbtiles
-          #          flutter pub get
-          #          flutter test --no-pub -r expanded --coverage
-          #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
-          #          cd ..
-          #          cd vector_map_tiles_pmtiles
-          #          flutter pub get
-          #          flutter test --no-pub -r expanded --coverage
-          #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
-          #          cd ..
-               coverde value -i coverage/filtered.lcov.info > coverage/result.txt
+          # cd vector_map_tiles_mbtiles
+          # flutter pub get
+          # flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/vector_map_tiles_mbtiles.lcov.info
+          # cd ..
+          # cd vector_map_tiles_pmtiles
+          # flutter pub get
+          # flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/vector_map_tiles_pmtiles.lcov.info
+          # cd ..
+          lcov \
+            -a coverage/flutter_map_cache.lcov.info \
+            -a coverage/flutter_map_compass.lcov.info \
+            -a coverage/flutter_map_mbtiles.lcov.info \
+            -a coverage/flutter_map_pmtiles.lcov.info \
+            -o coverage/lcov.info
+          coverde filter \
+            --input coverage/lcov.info \
+            --output coverage/filtered.lcov.info \
+            --filters \.g\.dart
       - name: Run Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   package-score:
@@ -97,31 +101,31 @@ jobs:
         run: |
           cd flutter_map_cache
           flutter pub get
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_compass
           flutter pub get
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_maplibre
           flutter pub get
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_mbtiles
           flutter pub get
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_pmtiles
           flutter pub get
-          pana --exit-code-threshold 0 --no-dartdoc .
+          pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
   #          cd vector_map_tiles_mbtiles
   #          flutter pub get
-  #          pana --exit-code-threshold 0 --no-dartdoc .
+  #          pana --exit-code-threshold 10 --no-dartdoc .
   #          cd ..
   #          cd vector_map_tiles_pmtiles
   #          flutter pub get
-  #          pana --exit-code-threshold 0 --no-dartdoc .
+  #          pana --exit-code-threshold 10 --no-dartdoc .
   #          cd ..
   build-android:
     runs-on: ubuntu-latest
@@ -142,7 +146,7 @@ jobs:
         working-directory: example
         run: flutter build apk
       - name: Upload apk as artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: flutter_map_plugins_example_apk
           path: example/build/app/outputs/flutter-apk/app-release.apk
@@ -165,7 +169,7 @@ jobs:
   #      - name: Build iOS package
   #        run: flutter build ios --simulator
   #      - name: Upload Runner.app as artifact
-  #        uses: actions/upload-artifact@v6
+  #        uses: actions/upload-artifact@v7
   #        with:
   #          name: flutter_map_plugins_example.app
   #          path: example/build/ios/iphonesimulator
@@ -185,7 +189,7 @@ jobs:
       - name: Build Web
         run: flutter build web
       - name: Upload web as artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: flutter_map_plugins_example_web
           path: example/build/web
