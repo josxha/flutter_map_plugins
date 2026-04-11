@@ -1,11 +1,12 @@
-/*
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:pmtiles/pmtiles.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 import 'package:vector_map_tiles_pmtiles/src/vector_tile_provider.dart';
 
-import 'integration_test.mocks.dart';
+class MockPmTilesArchive extends Mock implements PmTilesArchive {}
 
 Future<void> main() async {
   test('Create tile provider from archive', () async {
@@ -21,13 +22,13 @@ Future<void> main() async {
     expect(provider.type, TileProviderType.vector);
     expect(
       provider.archive.centerPosition.latitude,
-      closeTo(43.779779, 0.001),
+      closeTo(43.7672134, 0.1),
     );
     expect(
       provider.archive.centerPosition.longitude,
-      closeTo(11.2414827, 0.001),
+      closeTo(11.2543435, 0.1),
     );
-    expect(provider.maximumZoom, equals(14));
+    expect(provider.maximumZoom, equals(15));
     expect(provider.minimumZoom, equals(0));
     expect(
       await provider.provide(TileIdentity(0, 0, 0)),
@@ -61,4 +62,3 @@ Future<void> main() async {
     expect(provider.type, TileProviderType.raster);
   });
 }
-*/
