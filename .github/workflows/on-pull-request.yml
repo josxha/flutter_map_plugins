@@ -41,40 +41,34 @@ jobs:
           rm -rf coverage 
           cd flutter_map_cache
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --merge-coverage --coverage-path=../coverage/lcov.info
           cd ..
           cd flutter_map_compass
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --coverage --merge-coverage --coverage-path=../coverage/lcov.info
           cd ..
-          #          cd flutter_map_maplibre
-          #          flutter pub get
-          #          flutter test --no-pub -r expanded --coverage
-          #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
-          #          cd ..
+          # cd flutter_map_maplibre
+          # flutter pub get
+          # flutter test --no-pub -r expanded --coverage --merge-coverage --coverage-path=../coverage/lcov.info
+          # cd ..
           cd flutter_map_mbtiles
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --coverage --merge-coverage --coverage-path=../coverage/lcov.info
           cd ..
           cd flutter_map_pmtiles
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --coverage --merge-coverage --coverage-path=../coverage/lcov.info
           cd ..
-          #          cd vector_map_tiles_mbtiles
-          #          flutter pub get
-          #          flutter test --no-pub -r expanded --coverage
-          #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
-          #          cd ..
-          #          cd vector_map_tiles_pmtiles
-          #          flutter pub get
-          #          flutter test --no-pub -r expanded --coverage
-          #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
-          #          cd ..
-               coverde value -i coverage/filtered.lcov.info > coverage/result.txt
+          # cd vector_map_tiles_mbtiles
+          # flutter pub get
+          # flutter test --no-pub -r expanded --coverage --merge-coverage --coverage-path=../coverage/lcov.info
+          # cd ..
+          # cd vector_map_tiles_pmtiles
+          # flutter pub get
+          # flutter test --no-pub -r expanded --coverage --merge-coverage --coverage-path=../coverage/lcov.info
+          # cd ..
+          coverde filter --input coverage/lcov.info --output coverage/filtered.lcov.info --filters \.g\.dart
+          coverde value -i coverage/filtered.lcov.info > coverage/result.txt
       - name: Run Codecov
         uses: codecov/codecov-action@v5
         env:
