@@ -26,6 +26,11 @@ A slim yet powerful caching plugin for flutter_map tile layers.
   consumption can be high quite fast. Caching tiles **lowers the amount of used
   mobile data and bandwidth**.
 
+flutter_map introduced a caching mechanism in version 8.2.0 that solves these
+topics. This package is for users that need advanced use cases that are not
+covered by the default caching mechanism of flutter_map and legacy support for
+flutter_map versions < 8.2.0.
+
 ## Features
 
 The package uses [dio](https://pub.dev/packages/dio) with the
