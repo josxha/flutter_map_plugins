@@ -76,7 +76,7 @@ jobs:
           #          cd ..
           coverde value -i coverage/filtered.lcov.info > coverage/result.txt
       - name: Run Codecov
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@v7
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   package-score:
