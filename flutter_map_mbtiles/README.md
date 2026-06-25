@@ -31,12 +31,20 @@ dependencies:
 
 ## Usage
 
+For the common case of loading tiles from a file, use
+`MbTilesTileProvider.fromPath`. It opens the MBTiles database for you and closes
+it again on `dispose`, so you don't need to add the `mbtiles` package to your
+own `pubspec.yaml`.
+
+The `MbTilesTileProvider(mbtiles: ...)` constructor is for advanced lifecycle
+management only, where you create and own the `MbTiles` instance yourself.
+
 ```dart
 // provide the path of the MBTiles file to the tile provider.
 // The file must be on your file system and the app must have the permission 
 // to access to it. The file can't be in your assets.
 final _futureTileProvider = MbTilesTileProvider
-    .fromSource('path/to/file.mbtiles');
+    .fromPath(path: 'path/to/file.mbtiles');
 
 @override
 Widget build(BuildContext context) {
