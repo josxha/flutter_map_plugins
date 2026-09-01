@@ -67,7 +67,6 @@ dependencies:
 
   # drift
   http_cache_drift_store: ^7.0.0
-  sqlite3_flutter_libs: ^0.5.15
 
   # file system
   http_cache_file_store: ^2.0.0
