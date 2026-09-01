@@ -94,7 +94,7 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
       final bytes = Uint8List.fromList(response.data!);
       final codec = decode(await ImmutableBuffer.fromUint8List(bytes));
       cancelLoading.ignore();
-      return codec;
+      return await codec;
     } catch (error) {
       // check if request is cancelled
       if (error is DioException) {

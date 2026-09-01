@@ -17,7 +17,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_map: ^8.0.0
-  latlong2: ^0.9.1
+  latlong2: ">=0.9.0 <0.11.0"
   maplibre: ^0.3.0
 
 dev_dependencies:

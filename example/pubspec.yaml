@@ -13,7 +13,7 @@ dependencies:
   flutter_map: ^8.0.0
   flutter_web_plugins:
     sdk: flutter
-  latlong2: ^0.9.0
+  latlong2: ">=0.9.0 <0.11.0"
   url_launcher: ^6.2.4
   connectivity_plus: ^7.0.0
   path_provider: ^2.0.15
@@ -22,10 +22,9 @@ dependencies:
   http_cache_drift_store: ^7.0.0
   http_cache_file_store: ^2.0.0
   http_cache_hive_store: ^5.0.0
-  sqlite3_flutter_libs: ^0.5.15
-  vector_map_tiles: ^9.0.0-beta.8
-  vector_tile_renderer: ^6.0.0
-  mbtiles: ^0.4.0
+  vector_map_tiles: ^10.0.0-beta.2
+  vector_tile_renderer: ^7.0.0-beta.1
+  mbtiles: ^0.5.0
   maplibre: ^0.3.0
 
   flutter_map_cache:

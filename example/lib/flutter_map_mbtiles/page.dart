@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_mbtiles/flutter_map_mbtiles.dart';
 import 'package:flutter_map_plugins_example/common/utils.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:mbtiles/mbtiles.dart';
 
 class FlutterMapMbTilesPage extends StatefulWidget {
@@ -24,7 +23,7 @@ class _FlutterMapMbTilesPageState extends State<FlutterMapMbTilesPage> {
     final file = await copyAssetToFile(
       'assets/mbtiles/countries-raster.mbtiles',
     );
-    return MbTiles(mbtilesPath: file.path);
+    return MbTiles(path: file.path);
   }
 
   @override
@@ -82,7 +81,7 @@ class _FlutterMapMbTilesPageState extends State<FlutterMapMbTilesPage> {
   @override
   void dispose() {
     // close the open database connection
-    _mbtiles?.dispose();
+    _mbtiles?.close();
     super.dispose();
   }
 }
