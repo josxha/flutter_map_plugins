@@ -1,3 +1,8 @@
+## [1.2.2]
+
+- Support `mbtiles` 0.5 and `latlong2` 0.10 so the package resolves with
+  `vector_map_tiles` 9 and `flutter_map` 8.
+
 ## [1.2.1] 2025-02-05
 
 - Support for flutter_map v8

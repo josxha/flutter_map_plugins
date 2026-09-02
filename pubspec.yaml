@@ -15,6 +15,12 @@ workspace:
 dev_dependencies:
   melos: ^7.0.0
 
+# The workspace contains plugins spanning multiple flutter_map generations.
+# Resolve their shared test graph with the versions required by flutter_map 8.
+dependency_overrides:
+  latlong2: ^0.10.1
+  mbtiles: ^0.5.1
+
 melos:
   scripts:
     test:

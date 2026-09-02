@@ -61,10 +61,10 @@ jobs:
           flutter pub get
           flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/flutter_map_pmtiles.lcov.info
           cd ..
-          # cd vector_map_tiles_mbtiles
-          # flutter pub get
-          # flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/vector_map_tiles_mbtiles.lcov.info
-          # cd ..
+          cd vector_map_tiles_mbtiles
+          flutter pub get
+          flutter test --no-pub -r expanded
+          cd ..
           # cd vector_map_tiles_pmtiles
           # flutter pub get
           # flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/vector_map_tiles_pmtiles.lcov.info
