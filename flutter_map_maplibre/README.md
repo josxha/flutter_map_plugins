@@ -63,7 +63,7 @@ There are two ways to bridge the gap between `flutter_map` and `maplibre`:
 | Use it to      | add a vector map to an existing FlutterMap | use flutter_map layers in a MapLibre map |
 
 Each solution has its pros and cons. You can check out both implementations in
-the [hosted example app](https://flutter-map-plugins.web.app/).
+the [hosted example app](https://flutter-map-plugins.joscha-eckert.workers.dev/).
 
 ### Use MapLibre as a vector layer in FlutterMap
 

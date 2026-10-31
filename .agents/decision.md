@@ -2,18 +2,23 @@
 
 Append new decisions at the top. Format: date, decision, reason.
 
-## 2026-10-31: The example app is hosted on Cloudflare Pages, not Firebase
+## 2026-10-31: The example app is hosted on Cloudflare (Workers static assets), not Firebase
 
-Cloudflare Pages builds and deploys the example web app, with preview
-deployments for pull requests. Settings: build command
-`chmod +x cloudflare_pages.sh && ./cloudflare_pages.sh`, build output directory
-`example/build/web`. Cloudflare's build image has no Flutter, so the script
-clones the Flutter SDK (`stable` branch, override with `FLUTTER_BRANCH`) and
-builds with `--wasm`. It writes a `_headers` file with the COOP/COEP headers
-that the multi threaded WebAssembly renderer needs. Pages serves `index.html`
-for unknown routes, which the path based URLs of the example need. The GitHub
-Actions workflow still builds the web app to verify it, but no longer deploys.
-Firebase config and the deploy job were removed.
+A Cloudflare Worker with static assets builds and serves the example web app
+(https://flutter-map-plugins.joscha-eckert.workers.dev), with preview
+deployments for pull requests. Cloudflare recommends Workers for new projects and the
+Pages option was not available in the maintainer's dashboard, so
+`wrangler.jsonc` serves `example/build/web` as a single-page app
+(`previews: {}` is required for `wrangler preview`). Dashboard settings, for
+both the production and the preview (Vorschau-Basis) tab: build command
+`chmod +x cloudflare_pages.sh && ./cloudflare_pages.sh`; deploy command
+`npx wrangler deploy` (production) and `npx wrangler preview` (previews).
+Cloudflare's build image has no Flutter, so the script clones the Flutter SDK
+(`stable` branch, override with `FLUTTER_BRANCH`) and builds with `--wasm`. It
+writes a `_headers` file with the COOP/COEP headers that the multi threaded
+WebAssembly renderer needs. The GitHub Actions workflow still builds the web
+app to verify it, but no longer deploys. Firebase config and the deploy job
+were removed.
 
 ## 2026-10-31: Raising min Dart/Flutter or a dependency is not a breaking release
 
