@@ -1,0 +1,72 @@
+name: Publish to pub.dev
+
+# Publishes a single package when a tag with the format
+# `{package_name}-v{version}` is pushed, e.g. `flutter_map_cache-v2.1.1`.
+#
+# Enable "automated publishing from GitHub Actions" for each package on
+# pub.dev (Admin tab) with the tag pattern `{package_name}-v{{version}}`,
+# e.g. `flutter_map_cache-v{{version}}`.
+on:
+  push:
+    tags:
+      - '[a-z]*-v[0-9]+.[0-9]+.[0-9]+*'
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # required for the authentication with pub.dev
+      contents: read
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v7
+      - name: Parse tag
+        id: tag
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          PACKAGE="${TAG%%-v*}"
+          VERSION="${TAG#*-v}"
+          if [ ! -f "${PACKAGE}/pubspec.yaml" ]; then
+            echo "::error::Package '${PACKAGE}' not found. Expected a tag like '{package_name}-v{version}'."
+            exit 1
+          fi
+          PUBSPEC_VERSION=$(grep -E '^version:' "${PACKAGE}/pubspec.yaml" | head -n 1 | awk '{print $2}')
+          if [ "${PUBSPEC_VERSION}" != "${VERSION}" ]; then
+            echo "::error::The tag version '${VERSION}' does not match the version '${PUBSPEC_VERSION}' in ${PACKAGE}/pubspec.yaml."
+            exit 1
+          fi
+          if ! grep -q "^## \[\?${VERSION//./\\.}\]\?" "${PACKAGE}/CHANGELOG.md"; then
+            echo "::error::${PACKAGE}/CHANGELOG.md has no entry for version '${VERSION}'."
+            exit 1
+          fi
+          echo "package=${PACKAGE}" >> "$GITHUB_OUTPUT"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          cache: true
+      - name: Get dependencies
+        working-directory: ${{ steps.tag.outputs.package }}
+        run: flutter pub get
+      - name: Analyze
+        working-directory: ${{ steps.tag.outputs.package }}
+        run: dart analyze --fatal-infos --fatal-warnings
+      - name: Test
+        working-directory: ${{ steps.tag.outputs.package }}
+        run: |
+          if [ -d test ]; then flutter test --no-pub; fi
+      - name: Authenticate with pub.dev
+        run: |
+          PUB_TOKEN=$(curl --retry 5 --retry-connrefused -sLS \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=https://pub.dev" \
+            -H "User-Agent: actions/oidc-client" \
+            -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" | jq -r '.value')
+          echo "PUB_TOKEN=${PUB_TOKEN}" >> "$GITHUB_ENV"
+          dart pub token add https://pub.dev --env-var PUB_TOKEN
+      - name: Publish dry run
+        working-directory: ${{ steps.tag.outputs.package }}
+        run: dart pub publish --dry-run
+      - name: Publish
+        working-directory: ${{ steps.tag.outputs.package }}
+        run: dart pub publish --force

@@ -23,4 +23,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  maplibre_platform_interface: ^0.4.0-pre.1
+  plugin_platform_interface: ^2.1.8
   very_good_analysis: ^11.0.0

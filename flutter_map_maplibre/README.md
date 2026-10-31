@@ -2,7 +2,12 @@
 
 This package offers performant Mapbox Vector Tiles (MVT) support
 for [flutter_map](https://pub.dev/packages/flutter_map)
-powered by [maplibre](https://pub.dev/packages/maplibre).
+powered by [maplibre](https://pub.dev/packages/maplibre), which renders maps
+with the native MapLibre SDKs.
+
+- `MapLibreLayer`: use a `MapLibreMap` as a layer inside of `FlutterMap`.
+- `FlutterMapAdapter`: use `flutter_map` layers (markers, polylines, ...) inside
+  of `MapLibreMap`.
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_maplibre)](https://pub.dev/packages/flutter_map_maplibre)
 [![likes](https://img.shields.io/pub/likes/flutter_map_maplibre?logo=flutter)](https://pub.dev/packages/flutter_map_maplibre)
@@ -27,29 +32,43 @@ dependencies:
   maplibre: ^0.4.0-pre.1
 ```
 
-2. Follow the platform
-   specific [setup steps](https://flutter-maplibre.pages.dev/docs/category/getting-started)
+2. Follow the platform specific
+   [setup steps](https://flutter-maplibre.pages.dev/docs/category/getting-started)
    for the `maplibre` package:
 
 - [Setup Web](https://flutter-maplibre.pages.dev/docs/getting-started/setup-web)
 - [Setup Android](https://flutter-maplibre.pages.dev/docs/getting-started/setup-android)
 - [Setup iOS](https://flutter-maplibre.pages.dev/docs/getting-started/setup-ios)
 
+3. Import the packages:
+
+```dart
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_maplibre/flutter_map_maplibre.dart';
+import 'package:latlong2/latlong.dart';
+// Only import what you need from maplibre to avoid name clashes with
+// flutter_map, e.g. MapOptions and MapController exist in both packages.
+import 'package:maplibre/maplibre.dart' show MapStyle;
+```
+
 ## Usage
 
-There are two ways to bridge the gap between `flutter_map`
-and `maplibre`:
+There are two ways to bridge the gap between `flutter_map` and `maplibre`:
 
-- Add a MapLibre map as a layer to a FlutterMap map
-- or use FlutterMap layers in a MapLibre map
+|                | `MapLibreLayer`                          | `FlutterMapAdapter`                  |
+|----------------|------------------------------------------|--------------------------------------|
+| Root widget    | `FlutterMap`                             | `MapLibreMap`                        |
+| Gestures       | handled by `flutter_map`                 | handled by `maplibre`                |
+| Camera control | `flutter_map` `MapController`            | `maplibre` `MapController`           |
+| Use it to      | add a vector map to an existing FlutterMap | use flutter_map layers in a MapLibre map |
 
 Each solution has its pros and cons. You can check out both implementations in
 the [hosted example app](https://flutter-map-plugins.web.app/).
 
-#### Use MapLibre as a vector layer in FlutterMap
+### Use MapLibre as a vector layer in FlutterMap
 
-Here we add a `MapLibreMap` as a layer to `FlutterMap` and let `flutter_map`
-handle all gesture inputs.
+Add a `MapLibreLayer` to the `children` of `FlutterMap`. `flutter_map` handles
+all gesture inputs and the `MapLibreLayer` follows its camera.
 
 ```dart
 @override
@@ -69,19 +88,52 @@ Widget build(BuildContext context) {
       ),
     ),
     children: [
-      const MapLibreLayer(
-        initStyle: 'https://tiles.openfreemap.org/styles/liberty',
-      ),
+      // uses the OpenFreeMap liberty style by default
+      const MapLibreLayer(),
       // add other flutter_map layers here
     ],
   );
 }
 ```
 
-#### Use FlutterMap layers inside MapLibre
+Use another style with the `style` parameter:
 
-In this solution we use `FlutterMap` layers in `MapLibreMap`.
-All gesture inputs are handled by `maplibre`.
+```dart
+MapLibreLayer(
+  style: MapStyle.url('https://tiles.openfreemap.org/styles/liberty'),
+)
+```
+
+#### MapLibreLayer parameters
+
+| Parameter       | Description                                                                                  |
+|-----------------|----------------------------------------------------------------------------------------------|
+| `style`         | The map style (`MapStyle.url`, `.json`, `.asset`, `.file`). Defaults to OpenFreeMap liberty. |
+| `minZoom`       | Minimum zoom level of the MapLibre map.                                                      |
+| `maxZoom`       | Maximum zoom level of the MapLibre map.                                                      |
+| `maxBounds`     | Restricts the camera of the MapLibre map to a `GeoBox`.                                      |
+| `layers`        | MapLibre layers that are rendered on top of the style (`MapLibreMap.layers`).                |
+| `children`      | Widgets that are placed on top of the MapLibre map (`MapLibreMap.children`).                 |
+| `paused`        | Pauses the rendering of the map.                                                             |
+| `onMapCreated`  | Called with the `maplibre` `MapController` when the map got created.                         |
+| `onStyleLoaded` | Called with the `StyleController` when the style has been loaded.                            |
+| `onEvent`       | Called for all `maplibre` map events.                                                        |
+
+The following options of `MapLibreMap` are not configurable because
+`flutter_map` controls the camera: the camera pitch (tilt), the gestures and
+the initial camera.
+
+> [!NOTE]
+> The zoom levels of MapLibre are one level lower than the zoom levels of
+> `flutter_map` (with its default 256px tiles). `MapLibreLayer` converts the
+> zoom for you. Keep that in mind when you set `minZoom` and `maxZoom` of the
+> `MapLibreLayer`, they use the MapLibre zoom levels. To restrict the camera use the options of
+> `FlutterMap`.
+
+### Use FlutterMap layers inside MapLibre
+
+Wrap each `flutter_map` layer with a `FlutterMapAdapter` and add it to
+the `children` of `MapLibreMap`. All gesture inputs are handled by `maplibre`.
 
 ```dart
 @override
@@ -112,6 +164,19 @@ Widget build(BuildContext context) {
   );
 }
 ```
+
+> [!NOTE]
+> In this example `MapOptions`, `InitialCamera` and `MapLibreMap` come from
+> `package:maplibre/maplibre.dart`. Import it with a prefix if you also use
+> `flutter_map` in the same file.
+
+## Limitations
+
+- `flutter_map` can't tilt the camera. `MapLibreLayer` disables the pitch.
+- `MapLibreLayer` works with the default `Epsg3857` coordinate reference
+  system of `FlutterMap` only, because MapLibre uses Web Mercator.
+- MapLibre renders vector tiles with native SDKs. Platform support is the same
+  as the [maplibre](https://pub.dev/packages/maplibre) package.
 
 ## Additional information
 

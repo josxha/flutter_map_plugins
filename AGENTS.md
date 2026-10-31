@@ -23,3 +23,10 @@ Monorepo of flutter_map plugins, managed as a Dart pub workspace with melos.
   that package's `pubspec.yaml`.
 - Technical decisions are recorded in `.agents/decision.md`. Read it before
   changing versions or dependency constraints, and append new decisions there.
+
+## Releasing
+
+Push a tag `{package_name}-v{version}` (e.g. `flutter_map_cache-v2.1.1`). The
+`publish.yml` workflow checks the pubspec version and changelog, runs analyze and
+tests and publishes the package to pub.dev. Automated publishing must be enabled
+for each package on pub.dev with the tag pattern `{package_name}-v{{version}}`.
