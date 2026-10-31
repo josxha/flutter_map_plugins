@@ -1,5 +1,6 @@
 ## 1.5.2
 
+- Update lint rules to `very_good_analysis ^11.0.0`
 - Update `vector_map_tiles` to `^9.0.0-beta.9`
 
 ## [1.5.1] 2025-02-05

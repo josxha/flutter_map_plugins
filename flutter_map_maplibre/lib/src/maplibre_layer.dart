@@ -10,7 +10,7 @@ import 'package:maplibre/maplibre.dart';
 class MapLibreLayer extends StatefulWidget {
   /// Create a new [MapLibreLayer] to use it as a layer in
   /// [fm.FlutterMap.children].
-  const MapLibreLayer({
+  const new({
     this.children = const [],
     this.initStyle = 'https://demotiles.maplibre.org/style.json',
     this.onEvent,

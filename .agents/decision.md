@@ -19,6 +19,14 @@ so they cannot share one workspace resolution. The packages resolve standalone
 `pmtiles` 1.x forbids). `vector_map_tiles_mbtiles` uses `^9.0.0-beta.13`.
 v10 (experimental flutter_gpu) is deliberately avoided.
 
-## 2026-10-31: very_good_analysis stays on 10.x
+## 2026-10-31: very_good_analysis 11 in all packages
 
-Version 11 needs a newer Dart than the 3.12 minimum used in the workspace.
+All packages use `very_good_analysis ^11.0.0` (requires Dart 3.13). It is only a
+dev dependency, so it does not constrain consumers of the packages. Its lints
+require `await` on returned futures in async functions and the `new(...)`
+constructor syntax (already needs Dart 3.13, as `flutter_map_maplibre` does).
+
+## 2026-10-31: CocoaPods is no longer used in the example
+
+No Podfile is tracked and the Xcode workspace does not reference Pods. Stale
+`Pods-RunnerTests` references and the `update-ios-pods` workflow were removed.

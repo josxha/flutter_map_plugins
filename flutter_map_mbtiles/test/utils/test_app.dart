@@ -18,9 +18,7 @@ class TestApp extends StatelessWidget {
             initialCenter: LatLng(0, 0),
           ),
           children: [
-            TileLayer(
-              tileProvider: MbTilesTileProvider(mbtiles: mbtiles),
-            ),
+            TileLayer(tileProvider: MbTilesTileProvider(mbtiles: mbtiles)),
           ],
         ),
       ),

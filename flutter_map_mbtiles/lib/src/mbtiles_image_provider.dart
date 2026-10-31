@@ -56,7 +56,7 @@ class MbTilesImageProvider extends ImageProvider<MbTilesImageProvider> {
     final bytes = mbtiles.getTile(z: coordinates.z, x: coordinates.x, y: tmsY);
     if (bytes == null) {
       if (silenceTileNotFound) {
-        return decode(
+        return await decode(
           await ImmutableBuffer.fromUint8List(TileProvider.transparentImage),
         );
       }
@@ -65,6 +65,6 @@ class MbTilesImageProvider extends ImageProvider<MbTilesImageProvider> {
         '(z:${coordinates.z}, x:${coordinates.x}, y:${coordinates.y})',
       );
     }
-    return decode(await ImmutableBuffer.fromUint8List(bytes));
+    return await decode(await ImmutableBuffer.fromUint8List(bytes));
   }
 }

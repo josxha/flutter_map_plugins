@@ -27,54 +27,29 @@ import 'package:pmtiles/src/types.dart' as _i9;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeHeader_0 extends _i1.SmartFake implements _i2.Header {
-  _FakeHeader_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-        parent,
-        parentInvocation,
-      );
+  _FakeHeader_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeDirectory_1 extends _i1.SmartFake implements _i3.Directory {
-  _FakeDirectory_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-        parent,
-        parentInvocation,
-      );
+  _FakeDirectory_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeConverter_2<S, T> extends _i1.SmartFake
     implements _i4.Converter<S, T> {
-  _FakeConverter_2(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-        parent,
-        parentInvocation,
-      );
+  _FakeConverter_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeLatLng_3 extends _i1.SmartFake implements _i5.LatLng {
-  _FakeLatLng_3(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-        parent,
-        parentInvocation,
-      );
+  _FakeLatLng_3(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeTile_4 extends _i1.SmartFake implements _i6.Tile {
-  _FakeTile_4(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-        parent,
-        parentInvocation,
-      );
+  _FakeTile_4(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [PmTilesArchive].
@@ -85,10 +60,7 @@ class MockPmTilesArchive extends _i1.Mock implements _i7.PmTilesArchive {
   _i2.Header get header =>
       (super.noSuchMethod(
             Invocation.getter(#header),
-            returnValue: _FakeHeader_0(
-              this,
-              Invocation.getter(#header),
-            ),
+            returnValue: _FakeHeader_0(this, Invocation.getter(#header)),
             returnValueForMissingStub: _FakeHeader_0(
               this,
               Invocation.getter(#header),
@@ -98,10 +70,7 @@ class MockPmTilesArchive extends _i1.Mock implements _i7.PmTilesArchive {
 
   @override
   set header(_i2.Header? _header) => super.noSuchMethod(
-    Invocation.setter(
-      #header,
-      _header,
-    ),
+    Invocation.setter(#header, _header),
     returnValueForMissingStub: null,
   );
 
@@ -109,10 +78,7 @@ class MockPmTilesArchive extends _i1.Mock implements _i7.PmTilesArchive {
   _i3.Directory get root =>
       (super.noSuchMethod(
             Invocation.getter(#root),
-            returnValue: _FakeDirectory_1(
-              this,
-              Invocation.getter(#root),
-            ),
+            returnValue: _FakeDirectory_1(this, Invocation.getter(#root)),
             returnValueForMissingStub: _FakeDirectory_1(
               this,
               Invocation.getter(#root),
@@ -122,10 +88,7 @@ class MockPmTilesArchive extends _i1.Mock implements _i7.PmTilesArchive {
 
   @override
   set root(_i3.Directory? _root) => super.noSuchMethod(
-    Invocation.setter(
-      #root,
-      _root,
-    ),
+    Invocation.setter(#root, _root),
     returnValueForMissingStub: null,
   );
 
@@ -202,10 +165,7 @@ class MockPmTilesArchive extends _i1.Mock implements _i7.PmTilesArchive {
   _i5.LatLng get minPosition =>
       (super.noSuchMethod(
             Invocation.getter(#minPosition),
-            returnValue: _FakeLatLng_3(
-              this,
-              Invocation.getter(#minPosition),
-            ),
+            returnValue: _FakeLatLng_3(this, Invocation.getter(#minPosition)),
             returnValueForMissingStub: _FakeLatLng_3(
               this,
               Invocation.getter(#minPosition),
@@ -217,10 +177,7 @@ class MockPmTilesArchive extends _i1.Mock implements _i7.PmTilesArchive {
   _i5.LatLng get maxPosition =>
       (super.noSuchMethod(
             Invocation.getter(#maxPosition),
-            returnValue: _FakeLatLng_3(
-              this,
-              Invocation.getter(#maxPosition),
-            ),
+            returnValue: _FakeLatLng_3(this, Invocation.getter(#maxPosition)),
             returnValueForMissingStub: _FakeLatLng_3(
               this,
               Invocation.getter(#maxPosition),
@@ -255,10 +212,7 @@ class MockPmTilesArchive extends _i1.Mock implements _i7.PmTilesArchive {
   @override
   _i8.Future<_i3.Entry?> lookup(int? tileId) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #lookup,
-              [tileId],
-            ),
+            Invocation.method(#lookup, [tileId]),
             returnValue: _i8.Future<_i3.Entry?>.value(),
             returnValueForMissingStub: _i8.Future<_i3.Entry?>.value(),
           )
@@ -267,27 +221,12 @@ class MockPmTilesArchive extends _i1.Mock implements _i7.PmTilesArchive {
   @override
   _i8.Future<_i6.Tile> tile(int? tileId) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #tile,
-              [tileId],
-            ),
+            Invocation.method(#tile, [tileId]),
             returnValue: _i8.Future<_i6.Tile>.value(
-              _FakeTile_4(
-                this,
-                Invocation.method(
-                  #tile,
-                  [tileId],
-                ),
-              ),
+              _FakeTile_4(this, Invocation.method(#tile, [tileId])),
             ),
             returnValueForMissingStub: _i8.Future<_i6.Tile>.value(
-              _FakeTile_4(
-                this,
-                Invocation.method(
-                  #tile,
-                  [tileId],
-                ),
-              ),
+              _FakeTile_4(this, Invocation.method(#tile, [tileId])),
             ),
           )
           as _i8.Future<_i6.Tile>);
@@ -295,10 +234,7 @@ class MockPmTilesArchive extends _i1.Mock implements _i7.PmTilesArchive {
   @override
   _i8.Stream<_i6.Tile> tiles(List<int>? tileIds) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #tiles,
-              [tileIds],
-            ),
+            Invocation.method(#tiles, [tileIds]),
             returnValue: _i8.Stream<_i6.Tile>.empty(),
             returnValueForMissingStub: _i8.Stream<_i6.Tile>.empty(),
           )
@@ -307,10 +243,7 @@ class MockPmTilesArchive extends _i1.Mock implements _i7.PmTilesArchive {
   @override
   _i8.Future<void> close() =>
       (super.noSuchMethod(
-            Invocation.method(
-              #close,
-              [],
-            ),
+            Invocation.method(#close, []),
             returnValue: _i8.Future<void>.value(),
             returnValueForMissingStub: _i8.Future<void>.value(),
           )

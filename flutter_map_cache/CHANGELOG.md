@@ -1,5 +1,6 @@
 ## 2.1.1
 
+- Update lint rules to `very_good_analysis ^11.0.0`
 - Support `latlong2` 0.10 in tests and update lint rules
 
 ## [2.1.0] 2026-04-11

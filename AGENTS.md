@@ -15,7 +15,7 @@ Monorepo of flutter_map plugins, managed as a Dart pub workspace with melos.
 
 - Workspace: `flutter pub get`, then `flutter analyze` / `flutter test` in each
   package (or `melos run test`).
-- Keep `flutter analyze` clean (`very_good_analysis`).
+- Keep `dart analyze --fatal-infos --fatal-warnings` and `dart format` clean (`very_good_analysis` 11).
 
 ## Conventions
 
