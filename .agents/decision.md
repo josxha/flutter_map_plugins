@@ -2,6 +2,15 @@
 
 Append new decisions at the top. Format: date, decision, reason.
 
+## 2026-10-31: The example app is hosted on Cloudflare, not Firebase
+
+Cloudflare builds and deploys the example web app (Workers Builds, previews for
+pull requests). Cloudflare's build image has no Flutter, so the build command
+runs `scripts/cloudflare_build.sh` which installs a pinned Flutter version.
+`wrangler.jsonc` serves `example/build/web` as a single page application. The
+GitHub Actions workflow still builds the web app to verify it, but no longer
+deploys. Firebase config and the deploy job were removed.
+
 ## 2026-10-31: Raising min Dart/Flutter or a dependency is not a breaking release
 
 Bumping the minimum Dart or Flutter version, or a dependency constraint, is a

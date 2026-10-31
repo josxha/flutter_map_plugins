@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "flutter-map-plugins",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./example/build/web",
+    // the example app uses path based URLs, serve index.html for all routes
+    "not_found_handling": "single-page-application"
+  }
+}
