@@ -10,8 +10,8 @@ funding:
   - https://github.com/sponsors/josxha
 
 environment:
-  sdk: '>=3.7.0 <4.0.0'
-  flutter: ">=3.29.0"
+  sdk: '>=3.13.0 <4.0.0'
+  flutter: ">=3.47.0"
 
 dependencies:
   flutter:
@@ -23,4 +23,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^11.0.0
+  very_good_analysis: ^10.0.0

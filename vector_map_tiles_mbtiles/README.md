@@ -84,16 +84,7 @@ Widget build(BuildContext context) {
    Set the gzip flag to true
 
 ```dart
-MbTiles
-(
-mbtilesPath
-:
-file
-,
-gzip
-:
-true
-)
+MbTiles(path: file, gzip: true)
 ```
 
 2. You need to use a style that is compatible with your tile schema. In this
