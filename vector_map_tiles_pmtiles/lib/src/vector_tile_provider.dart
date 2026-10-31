@@ -1,3 +1,4 @@
+/*
 import 'dart:typed_data';
 
 import 'package:pmtiles/pmtiles.dart';
@@ -76,3 +77,4 @@ class PmTilesVectorTileProvider extends VectorTileProvider {
   @override
   TileOffset get tileOffset => TileOffset.DEFAULT;
 }
+*/
