@@ -2,14 +2,18 @@
 
 Append new decisions at the top. Format: date, decision, reason.
 
-## 2026-10-31: The example app is hosted on Cloudflare, not Firebase
+## 2026-10-31: The example app is hosted on Cloudflare Pages, not Firebase
 
-Cloudflare builds and deploys the example web app (Workers Builds, previews for
-pull requests). Cloudflare's build image has no Flutter, so the build command
-runs `scripts/cloudflare_build.sh` which installs a pinned Flutter version.
-`wrangler.jsonc` serves `example/build/web` as a single page application. The
-GitHub Actions workflow still builds the web app to verify it, but no longer
-deploys. Firebase config and the deploy job were removed.
+Cloudflare Pages builds and deploys the example web app, with preview
+deployments for pull requests. Settings: build command
+`chmod +x cloudflare_pages.sh && ./cloudflare_pages.sh`, build output directory
+`example/build/web`. Cloudflare's build image has no Flutter, so the script
+clones the Flutter SDK (`stable` branch, override with `FLUTTER_BRANCH`) and
+builds with `--wasm`. It writes a `_headers` file with the COOP/COEP headers
+that the multi threaded WebAssembly renderer needs. Pages serves `index.html`
+for unknown routes, which the path based URLs of the example need. The GitHub
+Actions workflow still builds the web app to verify it, but no longer deploys.
+Firebase config and the deploy job were removed.
 
 ## 2026-10-31: Raising min Dart/Flutter or a dependency is not a breaking release
 
