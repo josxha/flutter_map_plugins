@@ -1,4 +1,3 @@
-/*
 import 'package:vector_map_tiles_pmtiles/src/themes/v3/_package.dart' as v3;
 import 'package:vector_map_tiles_pmtiles/src/themes/v4/_package.dart' as v4;
 import 'package:vector_tile_renderer/vector_tile_renderer.dart';
@@ -123,4 +122,3 @@ class ProtomapsThemes {
         sprites: 'https://protomaps.github.io/basemaps-assets/sprites/v4/white',
       ).build(v4.themeWhite);
 }
-*/

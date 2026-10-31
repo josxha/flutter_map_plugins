@@ -1,3 +1,7 @@
+## 2.1.1
+
+- Support `latlong2` 0.10 in tests and update lint rules
+
 ## [2.1.0] 2026-04-11
 
 - Add `headers` parameter to `CachedTileProvider` to allow adding custom

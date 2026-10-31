@@ -1,3 +1,8 @@
+## 1.1.2
+
+- Update `cupertino_icons` to `^2.0.0`
+- Bump minimum Dart version to 3.12.0
+
 ## [1.1.1] 2025-02-05
 
 - Support for flutter_map v6, v7 and v8

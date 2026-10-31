@@ -26,7 +26,7 @@ for [flutter_map](https://pub.dev/packages/flutter_map).
 ```yaml
 dependencies:
   flutter_map: ^6.0.0         # in case you don't have it yet 
-  flutter_map_mbtiles: ^1.0.0 # this package
+  flutter_map_mbtiles: ^2.0.0 # this package
 ```
 
 ## Usage

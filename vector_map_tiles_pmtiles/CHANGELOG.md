@@ -1,3 +1,7 @@
+## 1.5.2
+
+- Update `vector_map_tiles` to `^9.0.0-beta.9`
+
 ## [1.5.1] 2025-02-05
 
 - Support for flutter_map v8

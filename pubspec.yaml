@@ -9,6 +9,7 @@ workspace:
   - flutter_map_maplibre
   - flutter_map_mbtiles
   - flutter_map_pmtiles
+  # vector_map_tiles_* are intentionally excluded: vector_tile_renderer needs protobuf ^3 which conflicts with pmtiles ^2 (protobuf ^6). They resolve standalone.
   #- vector_map_tiles_mbtiles
   #- vector_map_tiles_pmtiles
 

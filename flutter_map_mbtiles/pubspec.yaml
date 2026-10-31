@@ -1,6 +1,6 @@
 name: flutter_map_mbtiles
 description: Mapbox MBTiles tile provider for flutter_map that can be used for a map that is 100% offline.
-version: 1.0.4
+version: 2.0.0
 repository: https://github.com/josxha/flutter_map_plugins
 issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
 topics: [ flutter-map, mbtiles, map ]
@@ -26,4 +26,4 @@ dev_dependencies:
   latlong2: ">=0.9.0 <0.11.0"
   mockito: ^5.4.4
   test: ^1.24.9
-  very_good_analysis: ^10.0.0
+  very_good_analysis: ^10.3.0

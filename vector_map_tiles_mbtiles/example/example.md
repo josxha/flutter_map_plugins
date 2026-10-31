@@ -4,10 +4,10 @@
 
 ```dart
 // initiate your tile provider
-final mbtiles = MbTiles(mbtilesPath: mbTilesPath, gzip: false);
+final mbtiles = MbTiles(path: mbTilesPath, gzip: false);
 
 // OR: in case your protobuf data is not gzip encoded use:
-final mbtiles = MbTiles(mbtilesPath: mbTilesPath, gzip: false);
+final mbtiles = MbTiles(path: mbTilesPath, gzip: false);
 ```
 
 2. Provide mbtiles to the `MbTilesVectorTileProvider`:
