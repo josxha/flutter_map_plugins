@@ -14,7 +14,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  cupertino_icons: ^1.0.6
+  cupertino_icons: ^2.0.0
   flutter:
     sdk: flutter
   flutter_map: ">=6.0.0 <9.0.0"
