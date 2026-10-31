@@ -45,7 +45,7 @@ Add the following packages to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_map: ^6.0.0              # in case you don't have it yet 
+  flutter_map: ^8.0.0              # in case you don't have it yet 
   vector_map_tiles_pmtiles: ^1.1.0 # this package
 ```
 

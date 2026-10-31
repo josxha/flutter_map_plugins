@@ -61,8 +61,8 @@ them.
 
 ```yaml
 dependencies:
-  flutter_map: ^8.1.1 # in case you don't have it yet 
-  flutter_map_cache: ^2.0.0 # this package
+  flutter_map: ^8.1.1 # in case you don't have it yet
+  flutter_map_cache: ^2.1.1 # this package
   path_provider: ^2.1.2 # in case the storage backend requires a path
 
   # drift

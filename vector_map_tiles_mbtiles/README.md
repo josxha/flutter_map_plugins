@@ -6,7 +6,7 @@ A TileProvider for flutter_map that adds support for MBTiles.
 - If you have raster tiles
   you can
   use [flutter_map_mbtiles](https://pub.dev/packages/flutter_map_mbtiles).
-- Web is not supported because of it's lacking SQLite support.
+- Web is not supported because of its lacking SQLite support.
 
 [![Pub Version](https://img.shields.io/pub/v/vector_map_tiles_mbtiles)](https://pub.dev/packages/vector_map_tiles_mbtiles)
 [![likes](https://img.shields.io/pub/likes/vector_map_tiles_mbtiles?logo=flutter)](https://pub.dev/packages/vector_map_tiles_mbtiles)
@@ -24,8 +24,8 @@ Add the following packages to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_map: ^6.0.0              # in case you don't have it yet 
-  vector_map_tiles_mbtiles: ^1.0.0 # this package
+  flutter_map: ^8.0.0              # in case you don't have it yet
+  vector_map_tiles_mbtiles: ^1.2.2 # this package
   mbtiles: ^0.5.0                  # MBTiles package
 ```
 
@@ -40,8 +40,8 @@ You can use the [path_provider](https://pub.dev/packages/path_provider) package
 to get the path of the app document directory.
 
 ```dart
-// initiate your tile provider
-final mbtiles = MbTiles(path: mbTilesPath, gzip: false);
+// the tile data is gzip encoded (the default for most pbf mbtiles files)
+final mbtiles = MbTiles(path: mbTilesPath, gzip: true);
 
 // OR: in case your protobuf data is not gzip encoded use:
 final mbtiles = MbTiles(path: mbTilesPath, gzip: false);
@@ -95,14 +95,11 @@ MbTiles(path: file, gzip: true)
 
 ```dart
 // use the style from versatiles.org
-final response = await
-http.get
-(
-Uri.parse('https://tiles.versatiles.org/assets/styles/colorful.json'),
+final response = await http.get(
+  Uri.parse('https://tiles.versatiles.org/assets/styles/colorful.json'),
 );
-_theme =
-ThemeReader().read(jsonDecode(response.body) as Map<String, Object?
->
+_theme = ThemeReader().read(
+  jsonDecode(response.body) as Map<String, Object?>,
 );
 ```
 
@@ -110,28 +107,22 @@ When downloaded, apply the theme/style (used ambiguously in vector_map_tiles) in
 the VectorTileLayer:
 
 ```dart
-VectorTileLayer
-(
-theme: _theme,
-tileProviders: TileProviders({
-...
-})
-,
-)
-,
+VectorTileLayer(
+  theme: _theme,
+  tileProviders: TileProviders({
+    // ...
+  }),
+),
 ```
 
 3. Set the tile provider for the correct source, in this case we want to use the
    TileProvider for the `versatiles-shortbread` source.
 
 ```dart
-tileProviders: TileProviders
-(
-{'versatiles-shortbread
-'
-: MbTilesVectorTileProvider(
-mbtiles: _mbtiles!,
-),
+tileProviders: TileProviders({
+  'versatiles-shortbread': MbTilesVectorTileProvider(
+    mbtiles: _mbtiles!,
+  ),
 }),
 ```
 

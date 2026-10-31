@@ -37,13 +37,13 @@ dependencies:
 
 ## Usage
 
-There are two ways how to use bridge the gap between `flutter_map`
+There are two ways to bridge the gap between `flutter_map`
 and `maplibre`:
 
 - Add a MapLibre map as a layer to a FlutterMap map
 - or use FlutterMap layers in a MapLibre map
 
-Each solution has its pro and cons. You can check out both implementations in
+Each solution has its pros and cons. You can check out both implementations in
 the [hosted example app](https://flutter-map-plugins.web.app/).
 
 #### Use MapLibre as a vector layer in FlutterMap
@@ -56,9 +56,9 @@ handle all gesture inputs.
 Widget build(BuildContext context) {
   return FlutterMap(
     mapController: _mapController,
-    options: const MapOptions(
+    options: MapOptions(
       initialZoom: 4,
-      initialCenter: LatLng(0, 0),
+      initialCenter: const LatLng(0, 0),
       maxZoom: 20,
       // maplibre does not support an unbound latitude
       cameraConstraint: CameraConstraint.contain(
@@ -89,10 +89,9 @@ Widget build(BuildContext context) {
   return MapLibreMap(
     onMapCreated: (controller) => _controller = controller,
     options: MapOptions(
-      initCenter: Geographic(lon: 0, lat: 0),
-      initZoom: 3,
+      initCamera: InitialCamera.position(zoom: 3),
       maxPitch: 0, // flutter_map doesn't support camera pitch, disable it here
-      initStyle: 'insert your style url here',
+      style: MapStyle.url('insert your style url here'),
     ),
     children: [
       // wrap each of your flutter_map layer with a FlutterMapAdapter widget
