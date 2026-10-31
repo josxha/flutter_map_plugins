@@ -2,6 +2,17 @@
 
 Append new decisions at the top. Format: date, decision, reason.
 
+## 2026-10-31: Pre-release dependencies and release channels
+
+`flutter_map_maplibre` is released as a pre-release (`0.1.0-pre.1`) while it
+depends on `maplibre ^0.4.0-pre.1`. `vector_map_tiles_mbtiles` and
+`vector_map_tiles_pmtiles` are released as stable versions although they
+depend on `vector_map_tiles ^9.0.0-beta.9`, because the v9 betas are the
+maintained line (stable v8 is outdated, v10 is the flutter_gpu rewrite). pub
+warns about stable versions with pre-release dependencies, so the dry run in
+`publish.yml` only reports; `dart pub publish --force` ignores warnings but
+still fails on validation errors.
+
 ## 2026-10-31: The example app is hosted on Cloudflare (Workers static assets), not Firebase
 
 A Cloudflare Worker with static assets builds and serves the example web app
