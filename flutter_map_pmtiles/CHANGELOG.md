@@ -1,4 +1,4 @@
-## 2.0.0
+## 1.1.0
 
 - Update `pmtiles` to `^2.0.0`
 - Bump minimum Dart version to 3.11.3 and Flutter to 3.41.1
