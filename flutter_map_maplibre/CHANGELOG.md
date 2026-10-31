@@ -1,5 +1,6 @@
 ## 0.1.0
 
+- Use the OpenFreeMap liberty style as default `initStyle` of `MapLibreLayer`
 - Update `maplibre` to `^0.4.0-pre.1` (`0.4.x` versions included)
 
 ## 0.0.5

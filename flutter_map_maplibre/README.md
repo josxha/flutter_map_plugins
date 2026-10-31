@@ -70,7 +70,7 @@ Widget build(BuildContext context) {
     ),
     children: [
       const MapLibreLayer(
-        initStyle: 'insert your style url here',
+        initStyle: 'https://tiles.openfreemap.org/styles/liberty',
       ),
       // add other flutter_map layers here
     ],
@@ -91,7 +91,7 @@ Widget build(BuildContext context) {
     options: MapOptions(
       initCamera: InitialCamera.position(zoom: 3),
       maxPitch: 0, // flutter_map doesn't support camera pitch, disable it here
-      style: MapStyle.url('insert your style url here'),
+      style: MapStyle.url('https://tiles.openfreemap.org/styles/liberty'),
     ),
     children: [
       // wrap each of your flutter_map layer with a FlutterMapAdapter widget

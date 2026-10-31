@@ -12,7 +12,7 @@ class MapLibreLayer extends StatefulWidget {
   /// [fm.FlutterMap.children].
   const new({
     this.children = const [],
-    this.initStyle = 'https://demotiles.maplibre.org/style.json',
+    this.initStyle = 'https://tiles.openfreemap.org/styles/liberty',
     this.onEvent,
     super.key,
   });
@@ -23,8 +23,8 @@ class MapLibreLayer extends StatefulWidget {
   /// The [MapLibreMap.onEvent] callback.
   final MapEventCallback? onEvent;
 
-  /// The style URL that should get used. If not set, the default MapLibre style
-  /// is used (https://demotiles.maplibre.org/style.json).
+  /// The style URL that should get used. If not set, the OpenFreeMap liberty
+  /// style is used.
   final String initStyle;
 
   @override

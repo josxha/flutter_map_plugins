@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart' as fm;
 import 'package:flutter_map_maplibre/flutter_map_maplibre.dart';
-import 'package:flutter_map_plugins_example/flutter_map_maplibre/config.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:maplibre/maplibre.dart';
 
@@ -31,9 +30,7 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
             zoom: 3,
           ),
           maxPitch: 0, // flutter_map doesn't support pitch, disable it here
-          style: MapStyle.url(
-            'https://api.protomaps.com/styles/v2/light.json?key=$protomapsKey',
-          ),
+          style: MapStyle.url('https://tiles.openfreemap.org/styles/liberty'),
         ),
         children: [
           const FlutterMapAdapter(
