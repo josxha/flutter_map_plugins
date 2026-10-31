@@ -63,12 +63,28 @@ void dispose() {
   tileProvider.dispose();
   super.dispose();
 }
+```
 
-// Alternatively, open the database yourself and pass it to the tile provider.
-// You are then responsible for closing it.
+### Use an existing `MbTiles` instance
+
+Alternatively, open the database yourself and pass it to the tile provider.
+You are then responsible for closing it. `MbTiles` is not exported by this
+package, add [mbtiles](https://pub.dev/packages/mbtiles) as a direct dependency
+to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  mbtiles: ^0.5.0
+```
+
+```dart
+import 'package:mbtiles/mbtiles.dart';
+
 final mbtiles = MbTiles(path: 'path/to/file.mbtiles');
 final tileProvider = MbTilesTileProvider(mbtiles: mbtiles);
 
+// close the database when you don't need it anymore
+mbtiles.close();
 ```
 
 ## Additional information

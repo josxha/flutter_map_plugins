@@ -18,7 +18,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,20 +45,22 @@ class MyApp extends StatelessWidget {
 }
 
 class SelectionPage extends StatelessWidget {
-  const SelectionPage({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
     const children = [
       SelectionItemWidget(
         title: 'flutter_map_cache',
-        desc: 'A slim yet powerful caching plugin for flutter_map '
+        desc:
+            'A slim yet powerful caching plugin for flutter_map '
             'tile layers.',
         routeName: '/flutter_map_cache',
       ),
       SelectionItemWidget(
         title: 'flutter_map_compass',
-        desc: 'A simple compass layer to indicate the map rotation and '
+        desc:
+            'A simple compass layer to indicate the map rotation and '
             'reset the rotation on click',
         routeName: '/flutter_map_compass',
       ),
@@ -97,10 +99,7 @@ class SelectionPage extends StatelessWidget {
     final width = MediaQuery.sizeOf(context).width;
     final githubButton = width < 350
         ? IconButton(onPressed: _openGithub, icon: const Icon(Icons.link))
-        : TextButton(
-            onPressed: _openGithub,
-            child: const Text('Source Code'),
-          );
+        : TextButton(onPressed: _openGithub, child: const Text('Source Code'));
     return Scaffold(
       appBar: AppBar(
         title: const Text('flutter_map_plugins'),
@@ -120,13 +119,12 @@ class SelectionPage extends StatelessWidget {
     );
   }
 
-  void _openGithub() => launchUrlString(
-        'https://github.com/josxha/flutter_map_plugins',
-      );
+  void _openGithub() =>
+      launchUrlString('https://github.com/josxha/flutter_map_plugins');
 }
 
 class SelectionItemWidget extends StatelessWidget {
-  const SelectionItemWidget({
+  const new({
     required this.title,
     required this.desc,
     required this.routeName,
@@ -135,13 +133,13 @@ class SelectionItemWidget extends StatelessWidget {
     super.key,
   });
 
-  const SelectionItemWidget.disabledOnWeb({
+  const new disabledOnWeb({
     required this.title,
     required this.desc,
     required this.routeName,
     super.key,
-  })  : disabled = kIsWeb,
-        disabledMessage = 'Not on web';
+  }) : disabled = kIsWeb,
+       disabledMessage = 'Not on web';
   static const _titleStyle = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
@@ -176,8 +174,9 @@ class SelectionItemWidget extends StatelessWidget {
     return Card(
       color: disabled ? Colors.white70 : Colors.white,
       child: InkWell(
-        onTap:
-            disabled ? null : () => Navigator.of(context).pushNamed(routeName),
+        onTap: disabled
+            ? null
+            : () => Navigator.of(context).pushNamed(routeName),
         child: disabled
             ? ClipRect(
                 child: Banner(

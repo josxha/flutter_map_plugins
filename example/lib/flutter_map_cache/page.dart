@@ -13,7 +13,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:path_provider/path_provider.dart';
 
 class FlutterMapCachePage extends StatefulWidget {
-  const FlutterMapCachePage({super.key});
+  const new({super.key});
 
   @override
   State<FlutterMapCachePage> createState() => _FlutterMapCachePageState();
@@ -104,9 +104,7 @@ class _FlutterMapCachePageState extends State<FlutterMapCachePage> {
                       if (snapshot.hasError) {
                         debugPrint(snapshot.error.toString());
                         debugPrintStack(stackTrace: snapshot.stackTrace);
-                        return Expanded(
-                          child: Text(snapshot.error.toString()),
-                        );
+                        return Expanded(child: Text(snapshot.error.toString()));
                       }
                       return const Expanded(child: LinearProgressIndicator());
                     },

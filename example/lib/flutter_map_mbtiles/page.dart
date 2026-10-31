@@ -5,7 +5,7 @@ import 'package:flutter_map_plugins_example/common/utils.dart';
 import 'package:mbtiles/mbtiles.dart';
 
 class FlutterMapMbTilesPage extends StatefulWidget {
-  const FlutterMapMbTilesPage({super.key});
+  const new({super.key});
 
   @override
   State<FlutterMapMbTilesPage> createState() => _FlutterMapMbTilesPageState();

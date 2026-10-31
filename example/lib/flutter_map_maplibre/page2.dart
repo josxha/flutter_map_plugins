@@ -5,7 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:maplibre/maplibre.dart';
 
 class FlutterMapMapLibrePage extends StatefulWidget {
-  const FlutterMapMapLibrePage({super.key});
+  const new({super.key});
 
   @override
   State<FlutterMapMapLibrePage> createState() => _FlutterMapMapLibrePageState();
@@ -26,9 +26,7 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
       body: MapLibreMap(
         onMapCreated: (controller) => _controller = controller,
         options: const MapOptions(
-          initCamera: InitialCamera.position(
-            zoom: 3,
-          ),
+          initCamera: InitialCamera.position(zoom: 3),
           maxPitch: 0, // flutter_map doesn't support pitch, disable it here
           style: MapStyle.url('https://tiles.openfreemap.org/styles/liberty'),
         ),

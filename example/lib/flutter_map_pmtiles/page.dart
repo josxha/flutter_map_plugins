@@ -5,7 +5,7 @@ import 'package:flutter_map_pmtiles/flutter_map_pmtiles.dart';
 import 'package:latlong2/latlong.dart';
 
 class FlutterMapPmTilesPage extends StatefulWidget {
-  const FlutterMapPmTilesPage({super.key});
+  const new({super.key});
 
   @override
   State<FlutterMapPmTilesPage> createState() => _FlutterMapPmTilesPageState();

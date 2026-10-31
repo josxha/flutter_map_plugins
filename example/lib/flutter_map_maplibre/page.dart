@@ -5,7 +5,7 @@ import 'package:flutter_map_plugins_example/common/attribution_widget.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapLibreFlutterMapPage extends StatefulWidget {
-  const MapLibreFlutterMapPage({super.key});
+  const new({super.key});
 
   @override
   State<MapLibreFlutterMapPage> createState() => _MapLibreFlutterMapPageState();
