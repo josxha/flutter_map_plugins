@@ -6,8 +6,9 @@ Append new decisions at the top. Format: date, decision, reason.
 
 A Cloudflare Worker with static assets builds and serves the example web app
 (https://flutter-map-plugins.joscha-eckert.workers.dev), with preview
-deployments for pull requests. Cloudflare no longer offers creating new Pages
-projects, so `wrangler.jsonc` serves `example/build/web` as a single page app
+deployments for pull requests. Cloudflare recommends Workers for new projects and the
+Pages option was not available in the maintainer's dashboard, so
+`wrangler.jsonc` serves `example/build/web` as a single-page app
 (`previews: {}` is required for `wrangler preview`). Dashboard settings, for
 both the production and the preview (Vorschau-Basis) tab: build command
 `chmod +x cloudflare_pages.sh && ./cloudflare_pages.sh`; deploy command
