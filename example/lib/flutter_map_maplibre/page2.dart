@@ -27,11 +27,13 @@ class _FlutterMapMapLibrePageState extends State<FlutterMapMapLibrePage> {
       body: MapLibreMap(
         onMapCreated: (controller) => _controller = controller,
         options: const MapOptions(
-          initCenter: Geographic(lon: 0, lat: 0),
-          initZoom: 3,
+          initCamera: InitialCamera.position(
+            zoom: 3,
+          ),
           maxPitch: 0, // flutter_map doesn't support pitch, disable it here
-          initStyle:
-              'https://api.protomaps.com/styles/v2/light.json?key=$protomapsKey',
+          style: MapStyle.url(
+            'https://api.protomaps.com/styles/v2/light.json?key=$protomapsKey',
+          ),
         ),
         children: [
           const FlutterMapAdapter(

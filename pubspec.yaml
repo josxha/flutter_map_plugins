@@ -9,26 +9,11 @@ workspace:
   - flutter_map_maplibre
   - flutter_map_mbtiles
   - flutter_map_pmtiles
-  - vector_map_tiles_mbtiles
-  - vector_map_tiles_pmtiles
+  #- vector_map_tiles_mbtiles
+  #- vector_map_tiles_pmtiles
 
 dev_dependencies:
   melos: ^8.0.0
-
-dependency_overrides:
-  vector_map_tiles:
-    git:
-      url: https://github.com/greensopinion/flutter-vector-map-tiles
-      ref: 9.0.0
-  vector_tile_renderer:
-    git:
-      url: https://github.com/greensopinion/dart-vector-tile-renderer
-      ref: main
-  protobuf:
-    git:
-      url: https://github.com/google/protobuf.dart
-      ref: master
-      path: protobuf
 
 melos:
   scripts:

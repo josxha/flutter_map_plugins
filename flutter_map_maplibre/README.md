@@ -24,7 +24,7 @@ powered by [maplibre](https://pub.dev/packages/maplibre).
 dependencies:
   flutter_map: ^8.0.0
   flutter_map_maplibre: ^0.0.5
-  maplibre: ^0.3.0
+  maplibre: ^0.4.0-pre.1
 ```
 
 2. Follow the platform

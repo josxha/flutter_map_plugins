@@ -1,3 +1,7 @@
+## 0.1.0
+
+- Update `maplibre` to `^0.4.0-pre.1` (`0.4.x` versions included)
+
 ## 0.0.5
 
 - Update `maplibre` to `^0.3.0`

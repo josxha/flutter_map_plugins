@@ -1,7 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:mbtiles/mbtiles.dart';
-import 'package:vector_map_tiles/vector_map_tiles.dart';
+
+// import 'package:vector_map_tiles/vector_map_tiles.dart';
 
 /// MBTiles raster TileProvider, use for `pbf` tiles.
 class MbTilesVectorTileProvider extends VectorTileProvider {

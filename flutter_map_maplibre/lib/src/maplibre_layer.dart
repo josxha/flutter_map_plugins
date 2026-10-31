@@ -54,10 +54,12 @@ class _MapLibreLayerState extends State<MapLibreLayer> {
 
     return MapLibreMap(
       options: MapOptions(
-        initCenter: fmCamera.center.toPosition(),
-        initBearing: -fmCamera.rotation,
-        initZoom: fmCamera.zoom - 1,
-        initStyle: widget.initStyle,
+        initCamera: InitialCamera.position(
+          center: fmCamera.center.toPosition(),
+          bearing: -fmCamera.rotation,
+          zoom: fmCamera.zoom - 1,
+        ),
+        style: MapStyle.url(widget.initStyle),
         maxPitch: 0,
         gestures: const MapGestures.none(),
       ),

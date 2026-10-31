@@ -55,6 +55,6 @@ class PmTilesImageProvider extends ImageProvider<PmTilesImageProvider> {
     final data = await archive.tile(tileId);
     final bytes = Uint8List.fromList(data.bytes());
     final codec = decode(await ImmutableBuffer.fromUint8List(bytes));
-    return codec;
+    return await codec;
   }
 }
