@@ -19,9 +19,7 @@ class TestApp extends StatelessWidget {
             initialCenter: LatLng(0, 0),
           ),
           children: [
-            TileLayer(
-              tileProvider: PmTilesTileProvider.fromArchive(pmTiles),
-            ),
+            TileLayer(tileProvider: PmTilesTileProvider.fromArchive(pmTiles)),
           ],
         ),
       ),

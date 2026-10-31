@@ -1,7 +1,7 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_plugins_example/common/utils.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:mbtiles/mbtiles.dart';
 import 'package:vector_map_tiles/vector_map_tiles.dart';
 import 'package:vector_map_tiles_mbtiles/vector_map_tiles_mbtiles.dart';
@@ -29,7 +29,7 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
     final file = await copyAssetToFile(
       'assets/mbtiles/malta-vector.mbtiles',
     );
-    return MbTiles(mbtilesPath: file.path, gzip: false);
+    return MbTiles(path: file.path, gzip: false);
   }
 
   @override
@@ -95,7 +95,8 @@ class _VectorMapTilesMbTilesPageState extends State<VectorMapTilesMbTilesPage> {
   @override
   void dispose() {
     // close the open database connection
-    _mbtiles?.dispose();
+    _mbtiles?.close();
     super.dispose();
   }
 }
+*/

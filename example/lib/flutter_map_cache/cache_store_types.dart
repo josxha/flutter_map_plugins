@@ -12,47 +12,42 @@ enum CacheStoreTypes {
   fileCache('FileCache'),
   hiveCache('HiveCache');
 
-  const CacheStoreTypes(this.name);
+  new(this.name);
 
   final String name;
 
   CacheStore getCacheStore(String path) => switch (this) {
-        CacheStoreTypes.memCache => MemCacheStore(),
-        CacheStoreTypes.dbCache => DriftCacheStore(
-            databasePath: path,
-            databaseName: 'DbCacheStore',
-          ),
-        CacheStoreTypes.fileCache => FileCacheStore(
-            '$path${Platform.pathSeparator}FileCacheStore',
-          ),
-        CacheStoreTypes.hiveCache => HiveCacheStore(
-            '$path${Platform.pathSeparator}HiveCacheStore',
-            hiveBoxName: 'HiveCacheStore',
-          ),
-      };
+    CacheStoreTypes.memCache => MemCacheStore(),
+    CacheStoreTypes.dbCache => DriftCacheStore(
+      databasePath: path,
+      databaseName: 'DbCacheStore',
+    ),
+    CacheStoreTypes.fileCache => FileCacheStore(
+      '$path${Platform.pathSeparator}FileCacheStore',
+    ),
+    CacheStoreTypes.hiveCache => HiveCacheStore(
+      '$path${Platform.pathSeparator}HiveCacheStore',
+      hiveBoxName: 'HiveCacheStore',
+    ),
+  };
 
   CacheStore getCacheStoreWeb() => switch (this) {
-        CacheStoreTypes.memCache => MemCacheStore(),
-        CacheStoreTypes.dbCache => DriftCacheStore(
-            databasePath: '', // ignored on web
-            databaseName: 'DbCacheStore',
-          ),
-        CacheStoreTypes.fileCache => FileCacheStore(
-            'FileCacheStore',
-          ),
-        CacheStoreTypes.hiveCache => HiveCacheStore(
-            'HiveCacheStore',
-            hiveBoxName: 'HiveCacheStore',
-          ),
-      };
+    CacheStoreTypes.memCache => MemCacheStore(),
+    CacheStoreTypes.dbCache => DriftCacheStore(
+      databasePath: '', // ignored on web
+      databaseName: 'DbCacheStore',
+    ),
+    CacheStoreTypes.fileCache => FileCacheStore('FileCacheStore'),
+    CacheStoreTypes.hiveCache => HiveCacheStore(
+      'HiveCacheStore',
+      hiveBoxName: 'HiveCacheStore',
+    ),
+  };
 
   static List<DropdownMenuEntry<CacheStoreTypes>> get dropdownList =>
       CacheStoreTypes.values
           .map(
-            (e) => DropdownMenuEntry<CacheStoreTypes>(
-              value: e,
-              label: e.name,
-            ),
+            (e) => DropdownMenuEntry<CacheStoreTypes>(value: e, label: e.name),
           )
           .toList(growable: false);
 }

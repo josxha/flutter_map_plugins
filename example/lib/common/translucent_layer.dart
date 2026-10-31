@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
 
 class TranslucentLayer extends StatelessWidget {
-  const TranslucentLayer({super.key, this.opacity = 0.2});
+  const new({super.key, this.opacity = 0.2});
 
   final double opacity;
 

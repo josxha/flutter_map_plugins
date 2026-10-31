@@ -1,13 +1,13 @@
 # flutter_map_mbtiles
 
-Raster and Vector MBTiles `TileProvider`
+Raster MBTiles `TileProvider`
 for [flutter_map](https://pub.dev/packages/flutter_map).
 
 - Supported raster tiles: `jpg`, `png`, `webp`
 - If you want to use `pbf` vector tiles
   you can
   use [vector_map_tiles_mbtiles](https://pub.dev/packages/vector_map_tiles_mbtiles).
-- Web is not supported because of it's lacking SQLite support.
+- Web is not supported because of its lacking SQLite support.
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_map_mbtiles)](https://pub.dev/packages/flutter_map_mbtiles)
 [![likes](https://img.shields.io/pub/likes/flutter_map_mbtiles?logo=flutter)](https://pub.dev/packages/flutter_map_mbtiles)
@@ -25,26 +25,32 @@ for [flutter_map](https://pub.dev/packages/flutter_map).
 
 ```yaml
 dependencies:
-  flutter_map: ^6.0.0         # in case you don't have it yet 
-  flutter_map_mbtiles: ^1.0.0 # this package
+  flutter_map: ^8.0.0         # in case you don't have it yet
+  flutter_map_mbtiles: ^1.1.0 # this package
 ```
+
+The underlying [mbtiles](https://pub.dev/packages/mbtiles) package uses native
+assets to bundle SQLite, so no extra setup is needed on supported platforms.
+Please check its
+[Getting started](https://pub.dev/packages/mbtiles#getting-started) guide if
+you run into build problems.
 
 ## Usage
 
 ```dart
-// provide the path of the MBTiles file to the tile provider.
-// The file must be on your file system and the app must have the permission 
-// to access to it. The file can't be in your assets.
-final _futureTileProvider = MbTilesTileProvider
-    .fromSource('path/to/file.mbtiles');
+// Provide the path of the MBTiles file to the tile provider.
+// The file must be on your file system and the app must have the permission
+// to access it. The file can't be in your assets.
+final tileProvider = MbTilesTileProvider.fromPath(
+  path: 'path/to/file.mbtiles',
+);
 
 @override
 Widget build(BuildContext context) {
   return FlutterMap(
-    options: MapOptions(),
+    options: const MapOptions(),
     children: [
       TileLayer(
-        // use your awaited MbTilesTileProvider
         tileProvider: tileProvider,
       ),
     ],
@@ -53,11 +59,32 @@ Widget build(BuildContext context) {
 
 @override
 void dispose() {
-// close mbtiles database
+  // closes the MBTiles database
   tileProvider.dispose();
   super.dispose();
 }
+```
 
+### Use an existing `MbTiles` instance
+
+Alternatively, open the database yourself and pass it to the tile provider.
+You are then responsible for closing it. `MbTiles` is not exported by this
+package, add [mbtiles](https://pub.dev/packages/mbtiles) as a direct dependency
+to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  mbtiles: ^0.5.0
+```
+
+```dart
+import 'package:mbtiles/mbtiles.dart';
+
+final mbtiles = MbTiles(path: 'path/to/file.mbtiles');
+final tileProvider = MbTilesTileProvider(mbtiles: mbtiles);
+
+// close the database when you don't need it anymore
+mbtiles.close();
 ```
 
 ## Additional information

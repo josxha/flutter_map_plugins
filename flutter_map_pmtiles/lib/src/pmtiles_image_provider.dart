@@ -10,10 +10,7 @@ import 'package:pmtiles/pmtiles.dart';
 /// tile images.
 class PmTilesImageProvider extends ImageProvider<PmTilesImageProvider> {
   /// Create a new [PmTilesImageProvider] instance
-  PmTilesImageProvider({
-    required this.tileId,
-    required this.archive,
-  });
+  PmTilesImageProvider({required this.tileId, required this.archive});
 
   /// Reference to the PMTiles archive instance
   final PmTilesArchive archive;
@@ -22,9 +19,7 @@ class PmTilesImageProvider extends ImageProvider<PmTilesImageProvider> {
   final int tileId;
 
   @override
-  Future<PmTilesImageProvider> obtainKey(
-    ImageConfiguration configuration,
-  ) {
+  Future<PmTilesImageProvider> obtainKey(ImageConfiguration configuration) {
     return Future.value(this);
   }
 
@@ -55,6 +50,6 @@ class PmTilesImageProvider extends ImageProvider<PmTilesImageProvider> {
     final data = await archive.tile(tileId);
     final bytes = Uint8List.fromList(data.bytes());
     final codec = decode(await ImmutableBuffer.fromUint8List(bytes));
-    return codec;
+    return await codec;
   }
 }

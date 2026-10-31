@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_maplibre/flutter_map_maplibre.dart';
 import 'package:flutter_map_plugins_example/common/attribution_widget.dart';
-import 'package:flutter_map_plugins_example/flutter_map_maplibre/config.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapLibreFlutterMapPage extends StatefulWidget {
-  const MapLibreFlutterMapPage({super.key});
+  const new({super.key});
 
   @override
   State<MapLibreFlutterMapPage> createState() => _MapLibreFlutterMapPageState();
@@ -37,10 +36,8 @@ class _MapLibreFlutterMapPageState extends State<MapLibreFlutterMapPage> {
           ),
         ),
         children: [
-          const MapLibreLayer(
-            initStyle:
-                'https://api.protomaps.com/styles/v2/light.json?key=$protomapsKey',
-          ),
+          // uses the OpenFreeMap liberty style by default
+          const MapLibreLayer(),
           const CircleLayer(
             circles: [
               CircleMarker(

@@ -7,10 +7,10 @@ functionality of [flutter_map](https://pub.dev/packages/flutter_map).
 [![codecov](https://codecov.io/gh/josxha/flutter_map_plugins/graph/badge.svg?token=5045489G7X)](https://codecov.io/gh/josxha/flutter_map_plugins)
 [![GitHub last commit](https://img.shields.io/github/last-commit/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins)
 [![Issues](https://img.shields.io/github/issues/josxha/flutter_map_plugins)](https://github.com/josxha/flutter_map_plugins/issues)
-[![Open PRs](https://badgen.net/github/open-prs/josxha/flutter_map_cache?label=Open+PRs&color=green)](https://GitHub.com/josxha/flutter_map_plugins/pulls)
+[![Open PRs](https://badgen.net/github/open-prs/josxha/flutter_map_plugins?label=Open+PRs&color=green)](https://GitHub.com/josxha/flutter_map_plugins/pulls)
 
 - A combined example app can be found under
-  [./example](https://github.com/josxha/flutter_map_plugins)
+  [./example](https://github.com/josxha/flutter_map_plugins/tree/main/example)
   or use the hosted version
   at [https://flutter-map-plugins.web.app](https://flutter-map-plugins.web.app/).
 - Need a list of all `flutter_map` plugins? Check out

@@ -4,7 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus
-  sqlite3_flutter_libs
+  maplibre_native
   url_launcher_windows
 )
 

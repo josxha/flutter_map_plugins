@@ -94,14 +94,14 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
       final bytes = Uint8List.fromList(response.data!);
       final codec = decode(await ImmutableBuffer.fromUint8List(bytes));
       cancelLoading.ignore();
-      return codec;
+      return await codec;
     } catch (error) {
       // check if request is cancelled
       if (error is DioException) {
         if (error.type == DioExceptionType.cancel) {
           // request has been cancelled by flutter_map
           // return an empty image to void this exception
-          return decode(
+          return await decode(
             await ImmutableBuffer.fromUint8List(TileProvider.transparentImage),
           );
         }
@@ -111,7 +111,7 @@ class CachedImageProvider extends ImageProvider<CachedImageProvider> {
       // check if no fallback url set
       if (fallbackUrl == null) rethrow;
       // use fallback url
-      return loadAsync(key, chunkEvents, decode, useFallback: true);
+      return await loadAsync(key, chunkEvents, decode, useFallback: true);
     }
   }
 }

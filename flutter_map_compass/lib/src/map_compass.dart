@@ -32,14 +32,14 @@ class MapCompass extends StatefulWidget {
     this.animationCurve = Curves.fastOutSlowIn,
     this.alignment = Alignment.topRight,
     this.padding = const EdgeInsets.all(10),
-  })  : rotationOffset = -45,
-        icon = const Stack(
-          children: [
-            Icon(CupertinoIcons.compass, color: Colors.red, size: 50),
-            Icon(CupertinoIcons.compass_fill, color: Colors.white54, size: 50),
-            Icon(CupertinoIcons.circle, color: Colors.black, size: 50),
-          ],
-        );
+  }) : rotationOffset = -45,
+       icon = const Stack(
+         children: [
+           Icon(CupertinoIcons.compass, color: Colors.red, size: 50),
+           Icon(CupertinoIcons.compass_fill, color: Colors.white54, size: 50),
+           Icon(CupertinoIcons.circle, color: Colors.black, size: 50),
+         ],
+       );
 
   /// This child widget, for example a [Icon] width with a compass icon.
   final Widget icon;

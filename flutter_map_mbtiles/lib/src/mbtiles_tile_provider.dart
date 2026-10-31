@@ -18,8 +18,8 @@ class MbTilesTileProvider extends TileProvider {
   MbTilesTileProvider.fromPath({
     required String path,
     this.silenceTileNotFound = !kDebugMode,
-  })  : mbtiles = MbTiles(mbtilesPath: path),
-        _createdInternally = true;
+  }) : mbtiles = MbTiles(path: path),
+       _createdInternally = true;
 
   /// MBTiles database
   final MbTiles mbtiles;
@@ -44,7 +44,7 @@ class MbTilesTileProvider extends TileProvider {
 
   @override
   void dispose() {
-    if (_createdInternally) mbtiles.dispose();
+    if (_createdInternally) mbtiles.close();
     super.dispose();
   }
 }

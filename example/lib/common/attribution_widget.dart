@@ -3,7 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class OsmAttributionWidget extends StatelessWidget {
-  const OsmAttributionWidget({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {

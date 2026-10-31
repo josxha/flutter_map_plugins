@@ -1,3 +1,9 @@
+## 1.2.2
+
+- Update lint rules to `very_good_analysis ^11.0.0`
+- Update `mbtiles` to `^0.5.0` (use the `path` parameter)
+- Update `vector_map_tiles` to `^9.0.0-beta.9`
+
 ## [1.2.1] 2025-02-05
 
 - Support for flutter_map v8

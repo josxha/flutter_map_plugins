@@ -2,7 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
 class ConnectivityIcon extends StatelessWidget {
-  const ConnectivityIcon({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -21,17 +21,20 @@ Add the following packages to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_map: ^6.0.0         # in case you don't have it yet 
-  flutter_map_compass: ^1.0.0 # this package
+  flutter_map: ^8.0.0         # in case you don't have it yet 
+  flutter_map_compass: ^1.1.2 # this package
 ```
 
 ## Usage
-To import the package
+
+To import the package:
+
 ```dart
 import 'package:flutter_map_compass/flutter_map_compass.dart';
 ```
 
-To use the MapCompass
+To use the `MapCompass`:
+
 ```dart
 @override
 Widget build(BuildContext context) {

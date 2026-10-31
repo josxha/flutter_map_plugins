@@ -9,7 +9,7 @@ import 'package:maplibre/maplibre.dart';
 class FlutterMapAdapter extends StatelessWidget {
   /// Create a new [FlutterMapAdapter] to use flutter_map layers inside of
   /// [MapLibreMap.children].
-  const FlutterMapAdapter({required this.child, super.key});
+  const new({required this.child, super.key});
 
   /// The flutter_map layer widget.
   final Widget child;
