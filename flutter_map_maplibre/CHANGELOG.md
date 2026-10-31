@@ -1,4 +1,4 @@
-## 0.1.0
+## 0.1.0-pre.1
 
 - Use the OpenFreeMap liberty style as default style of `MapLibreLayer`
 - `MapLibreLayer` exposes all `MapLibreMap` parameters that make sense with

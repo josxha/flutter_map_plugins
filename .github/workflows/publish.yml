@@ -66,7 +66,14 @@ jobs:
           dart pub token add https://pub.dev --env-var PUB_TOKEN
       - name: Publish dry run
         working-directory: ${{ steps.tag.outputs.package }}
-        run: dart pub publish --dry-run
+        # The dry run exits non-zero on warnings too, e.g. for a stable
+        # release that depends on a pre-release package (see
+        # .agents/decision.md). It only reports here; `dart pub publish
+        # --force` below still fails on validation errors.
+        run: |
+          if ! dart pub publish --dry-run; then
+            echo "::warning::The publish dry run reported warnings or errors, see the log above."
+          fi
       - name: Publish
         working-directory: ${{ steps.tag.outputs.package }}
         run: dart pub publish --force
