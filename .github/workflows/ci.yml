@@ -1,7 +1,9 @@
-name: Test & Build `main`
+name: Test & Build
 on:
   push:
     branches: [ main ]
+  pull_request:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
@@ -39,6 +41,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           cache: true
+      - name: Install lcov
+        run: sudo apt-get update && sudo apt-get install -y lcov
       - name: Install coverde
         run: dart pub global activate coverde
       - name: Run Test with Coverage
@@ -46,40 +50,42 @@ jobs:
           rm -rf coverage 
           cd flutter_map_cache
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/flutter_map_cache.lcov.info
           cd ..
           cd flutter_map_compass
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/flutter_map_compass.lcov.info
           cd ..
-          #          cd flutter_map_maplibre
-          #          flutter pub get
-          #          flutter test --no-pub -r expanded --coverage
-          #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
-          #          cd ..
+          # cd flutter_map_maplibre
+          # flutter pub get
+          # flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/flutter_map_maplibre.lcov.info
+          # cd ..
           cd flutter_map_mbtiles
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/flutter_map_mbtiles.lcov.info
           cd ..
           cd flutter_map_pmtiles
           flutter pub get
-          flutter test --no-pub -r expanded --coverage
-          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
+          flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/flutter_map_pmtiles.lcov.info
           cd ..
-          #          cd vector_map_tiles_mbtiles
-          #          flutter pub get
-          #          flutter test --no-pub -r expanded --coverage
-          #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
-          #          cd ..
-          #          cd vector_map_tiles_pmtiles
-          #          flutter pub get
-          #          flutter test --no-pub -r expanded --coverage
-          #          coverde filter --input ./coverage/lcov.info --output ../coverage/filtered.lcov.info --filters \.g\.dart
-          #          cd ..
-          coverde value -i coverage/filtered.lcov.info > coverage/result.txt
+          # cd vector_map_tiles_mbtiles
+          # flutter pub get
+          # flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/vector_map_tiles_mbtiles.lcov.info
+          # cd ..
+          # cd vector_map_tiles_pmtiles
+          # flutter pub get
+          # flutter test --no-pub -r expanded --coverage --coverage-path=../coverage/vector_map_tiles_pmtiles.lcov.info
+          # cd ..
+          lcov \
+            -a coverage/flutter_map_cache.lcov.info \
+            -a coverage/flutter_map_compass.lcov.info \
+            -a coverage/flutter_map_mbtiles.lcov.info \
+            -a coverage/flutter_map_pmtiles.lcov.info \
+            -o coverage/lcov.info
+          coverde filter \
+            --input coverage/lcov.info \
+            --output coverage/filtered.lcov.info \
+            --filters \.g\.dart
       - name: Run Codecov
         uses: codecov/codecov-action@v7
         env:
@@ -101,30 +107,36 @@ jobs:
       - name: Check package score for all
         run: |
           cd flutter_map_cache
+          flutter pub get
           pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_compass
+          flutter pub get
           pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_maplibre
+          flutter pub get
           pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_mbtiles
+          flutter pub get
           pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
           cd flutter_map_pmtiles
+          flutter pub get
           pana --exit-code-threshold 10 --no-dartdoc .
           cd ..
   #          cd vector_map_tiles_mbtiles
+  #          flutter pub get
   #          pana --exit-code-threshold 10 --no-dartdoc .
   #          cd ..
   #          cd vector_map_tiles_pmtiles
+  #          flutter pub get
   #          pana --exit-code-threshold 10 --no-dartdoc .
   #          cd ..
   build-android:
     runs-on: ubuntu-latest
     name: Build Android
-    needs: [ test, analyze, package-score ]
     steps:
       - name: Checkout project
         uses: actions/checkout@v7
@@ -148,7 +160,6 @@ jobs:
   #  build-ios:
   #    runs-on: macos-latest
   #    name: Build iOS
-  #    needs: [ test, analyze, package-score ]
   #    defaults:
   #      run:
   #        working-directory: ./example
@@ -172,7 +183,6 @@ jobs:
   build-web:
     runs-on: ubuntu-latest
     name: Build Web
-    needs: [ test, analyze, package-score ]
     defaults:
       run:
         working-directory: ./example
@@ -190,8 +200,20 @@ jobs:
         with:
           name: flutter_map_plugins_example_web
           path: example/build/web
+  deploy-web:
+    name: Deploy Web
+    runs-on: ubuntu-latest
+    needs: [ test, analyze, package-score, build-web ]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository_owner == 'josxha'
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+      - name: Download web build
+        uses: actions/download-artifact@v7
+        with:
+          name: flutter_map_plugins_example_web
+          path: example/build/web
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        if: github.repository_owner == 'josxha'
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FLUTTER_MAP_PLUGINS }}'
