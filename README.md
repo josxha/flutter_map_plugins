@@ -12,7 +12,7 @@ functionality of [flutter_map](https://pub.dev/packages/flutter_map).
 - A combined example app can be found under
   [./example](https://github.com/josxha/flutter_map_plugins/tree/main/example)
   or use the hosted version
-  at [https://flutter-map-plugins.web.app](https://flutter-map-plugins.web.app/).
+  at [https://flutter-map-plugins.joscha-eckert.workers.dev](https://flutter-map-plugins.joscha-eckert.workers.dev/).
 - Need a list of all `flutter_map` plugins? Check out
   the [awesome-flutter-map](https://github.com/josxha/awesome-flutter-map?tab=readme-ov-file#awesome-flutter-map)
   list.
