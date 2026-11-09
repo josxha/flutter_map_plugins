@@ -19,6 +19,14 @@ Monorepo of flutter_map plugins, managed as a Dart pub workspace with melos.
 
 ## Conventions
 
+- Use Conventional Commits for every commit message and pull request title:
+  `<type>(<scope>): <imperative summary>` (e.g.
+  `fix(flutter_map_maplibre): migrate to maplibre 0.4.0-pre.2`).
+  Use standard types such as `feat`, `fix`, `docs`, `refactor`, `test`,
+  `build`, `ci`, and `chore`; use the affected package as the scope when
+  applicable. For repository-wide changes without a meaningful scope, omit
+  the scope (e.g. `chore: update tooling`). Keep the summary concise, lowercase,
+  imperative, and without a trailing period.
 - Every user-visible change gets a `CHANGELOG.md` entry and a version bump in
   that package's `pubspec.yaml`.
 - Technical decisions are recorded in `.agents/decision.md`. Read it before

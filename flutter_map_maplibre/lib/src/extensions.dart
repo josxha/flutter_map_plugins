@@ -21,9 +21,10 @@ extension MapControllerExt on MapController {
   fm.MapController toFlutterMapController() => fm.MapController();
 }
 
-/// Extension methods on [MapCamera];
-extension MapCameraExt on MapCamera {
-  /// Convert [MapCamera] to [fm.MapCamera].
+/// Extension methods on [CameraPosition].
+///
+extension CameraPositionExt on CameraPosition {
+  /// Convert [CameraPosition] to [fm.MapCamera].
   fm.MapCamera toFlutterMapCamera(BoxConstraints constraints) {
     return fm.MapCamera(
       zoom: zoom + 1,

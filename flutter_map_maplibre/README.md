@@ -28,8 +28,8 @@ with the native MapLibre SDKs.
 ```yaml
 dependencies:
   flutter_map: ^8.0.0
-  flutter_map_maplibre: ^0.1.0-pre.1
-  maplibre: ^0.4.0-pre.1
+  flutter_map_maplibre: ^0.1.0-pre.2
+  maplibre: ^0.4.0-pre.2
 ```
 
 2. Follow the platform specific
@@ -46,9 +46,8 @@ dependencies:
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_maplibre/flutter_map_maplibre.dart';
 import 'package:latlong2/latlong.dart';
-// Only import what you need from maplibre to avoid name clashes with
-// flutter_map, e.g. MapOptions and MapController exist in both packages.
-import 'package:maplibre/maplibre.dart' show MapStyle;
+// Use a prefix for maplibre to avoid name clashes with flutter_map.
+import 'package:maplibre/maplibre.dart' as ml;
 ```
 
 ## Usage
@@ -100,7 +99,7 @@ Use another style with the `style` parameter:
 
 ```dart
 MapLibreLayer(
-  style: MapStyle.url('https://tiles.openfreemap.org/styles/liberty'),
+  style: ml.MapStyle.url('https://tiles.openfreemap.org/styles/liberty'),
 )
 ```
 
@@ -117,7 +116,16 @@ MapLibreLayer(
 | `paused`        | Pauses the rendering of the map.                                                             |
 | `onMapCreated`  | Called with the `maplibre` `MapController` when the map got created.                         |
 | `onStyleLoaded` | Called with the `StyleController` when the style has been loaded.                            |
-| `onEvent`       | Called for all `maplibre` map events.                                                        |
+| Event callbacks | Individually typed callbacks matching `MapLibreMap`, including clicks, drags, camera changes, and rendering events. |
+
+`MapLibreLayer` exposes each MapLibre event callback as an individual typed
+parameter, with the same names as `MapLibreMap`: `onClick`, `onDoubleClick`,
+`onSecondaryClick`, `onLongClick`, `onDragStart`, `onDrag`, `onDragEnd`,
+`onPointerMove`, `onPointerLeave`, `onCameraMoveStart`, `onCameraMove`,
+`onCameraMoveEnd`, `onIdle`, `onError`, `onStyleImageMissing`,
+`onLoadingStarted`, `onLoadingFinished`, `onSourceChanged`, `onTile`,
+`onRenderFrame`, `onRenderMap`, `onGlyphs`, `onSprite`, `onRenderingChanged`,
+`onResize`, `onContextLost`, `onContextRestored`, and `onProjectionChanged`.
 
 The following options of `MapLibreMap` are not configurable because
 `flutter_map` controls the camera: the camera pitch (tilt), the gestures and
@@ -138,12 +146,12 @@ the `children` of `MapLibreMap`. All gesture inputs are handled by `maplibre`.
 ```dart
 @override
 Widget build(BuildContext context) {
-  return MapLibreMap(
+  return ml.MapLibreMap(
     onMapCreated: (controller) => _controller = controller,
-    options: MapOptions(
-      initCamera: InitialCamera.position(zoom: 3),
+    options: ml.MapOptions(
+      initCamera: ml.CameraUpdate.position(zoom: 3),
       maxPitch: 0, // flutter_map doesn't support camera pitch, disable it here
-      style: MapStyle.url('https://tiles.openfreemap.org/styles/liberty'),
+      style: ml.MapStyle.url('https://tiles.openfreemap.org/styles/liberty'),
     ),
     children: [
       // wrap each of your flutter_map layer with a FlutterMapAdapter widget
@@ -166,9 +174,8 @@ Widget build(BuildContext context) {
 ```
 
 > [!NOTE]
-> In this example `MapOptions`, `InitialCamera` and `MapLibreMap` come from
-> `package:maplibre/maplibre.dart`. Import it with a prefix if you also use
-> `flutter_map` in the same file.
+> In this example `MapOptions`, `CameraUpdate` and `MapLibreMap` come from
+> `package:maplibre/maplibre.dart` (imported as `ml` to avoid name clashes).
 
 ## Limitations
 

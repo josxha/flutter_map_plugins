@@ -32,14 +32,13 @@ class FakeMapLibreMapState extends MapLibreMapState {
   Widget build(BuildContext context) => Stack(children: widget.children);
 
   @override
-  Future<void> moveCamera({
-    Geographic? center,
-    double? zoom,
-    double? bearing,
-    double? pitch,
-    EdgeInsets padding = EdgeInsets.zero,
-  }) async {
-    moveCameraCalls.add((center: center, zoom: zoom, bearing: bearing));
+  Future<void> moveCamera(CameraUpdate update) async {
+    final position = update as CameraUpdatePosition;
+    moveCameraCalls.add((
+      center: position.center,
+      zoom: position.zoom,
+      bearing: position.bearing,
+    ));
   }
 
   @override

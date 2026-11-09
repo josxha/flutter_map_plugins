@@ -25,7 +25,34 @@ class MapLibreLayer extends StatefulWidget {
     this.paused = false,
     this.onMapCreated,
     this.onStyleLoaded,
-    this.onEvent,
+    this.onClick,
+    this.onDoubleClick,
+    this.onSecondaryClick,
+    this.onLongClick,
+    this.onDragStart,
+    this.onDrag,
+    this.onDragEnd,
+    this.onPointerMove,
+    this.onPointerLeave,
+    this.onCameraMoveStart,
+    this.onCameraMove,
+    this.onCameraMoveEnd,
+    this.onIdle,
+    this.onError,
+    this.onStyleImageMissing,
+    this.onLoadingStarted,
+    this.onLoadingFinished,
+    this.onSourceChanged,
+    this.onTile,
+    this.onRenderFrame,
+    this.onRenderMap,
+    this.onGlyphs,
+    this.onSprite,
+    this.onRenderingChanged,
+    this.onResize,
+    this.onContextLost,
+    this.onContextRestored,
+    this.onProjectionChanged,
     super.key,
   });
 
@@ -67,8 +94,89 @@ class MapLibreLayer extends StatefulWidget {
   /// The [MapLibreMap.onStyleLoaded] callback.
   final StyleLoadedCallback? onStyleLoaded;
 
-  /// The [MapLibreMap.onEvent] callback.
-  final MapEventCallback? onEvent;
+  /// The [MapLibreMap.onClick] callback.
+  final MapEventCallback<MapEventClick>? onClick;
+
+  /// The [MapLibreMap.onDoubleClick] callback.
+  final FutureOr<void> Function(MapEventDoubleClick event)? onDoubleClick;
+
+  /// The [MapLibreMap.onSecondaryClick] callback.
+  final MapEventCallback<MapEventSecondaryClick>? onSecondaryClick;
+
+  /// The [MapLibreMap.onLongClick] callback.
+  final MapEventCallback<MapEventLongClick>? onLongClick;
+
+  /// The [MapLibreMap.onDragStart] callback.
+  final FutureOr<void> Function(MapEventDragStart event)? onDragStart;
+
+  /// The [MapLibreMap.onDrag] callback.
+  final MapEventCallback<MapEventDrag>? onDrag;
+
+  /// The [MapLibreMap.onDragEnd] callback.
+  final MapEventCallback<MapEventDragEnd>? onDragEnd;
+
+  /// The [MapLibreMap.onPointerMove] callback.
+  final MapEventCallback<MapEventPointerMove>? onPointerMove;
+
+  /// The [MapLibreMap.onPointerLeave] callback.
+  final MapEventCallback<MapEventPointerLeave>? onPointerLeave;
+
+  /// The [MapLibreMap.onCameraMoveStart] callback.
+  final MapEventCallback<MapEventCameraMoveStart>? onCameraMoveStart;
+
+  /// The [MapLibreMap.onCameraMove] callback.
+  final MapEventCallback<MapEventCameraMove>? onCameraMove;
+
+  /// The [MapLibreMap.onCameraMoveEnd] callback.
+  final MapEventCallback<MapEventCameraMoveEnd>? onCameraMoveEnd;
+
+  /// The [MapLibreMap.onIdle] callback.
+  final MapEventCallback<MapEventIdle>? onIdle;
+
+  /// The [MapLibreMap.onError] callback.
+  final MapEventCallback<MapEventError>? onError;
+
+  /// The [MapLibreMap.onStyleImageMissing] callback.
+  final MapEventCallback<MapEventStyleImageMissing>? onStyleImageMissing;
+
+  /// The [MapLibreMap.onLoadingStarted] callback.
+  final MapEventCallback<MapEventLoadingStarted>? onLoadingStarted;
+
+  /// The [MapLibreMap.onLoadingFinished] callback.
+  final MapEventCallback<MapEventLoadingFinished>? onLoadingFinished;
+
+  /// The [MapLibreMap.onSourceChanged] callback.
+  final MapEventCallback<MapEventSourceChanged>? onSourceChanged;
+
+  /// The [MapLibreMap.onTile] callback.
+  final MapEventCallback<MapEventTile>? onTile;
+
+  /// The [MapLibreMap.onRenderFrame] callback.
+  final MapEventCallback<MapEventRenderFrame>? onRenderFrame;
+
+  /// The [MapLibreMap.onRenderMap] callback.
+  final MapEventCallback<MapEventRenderMap>? onRenderMap;
+
+  /// The [MapLibreMap.onGlyphs] callback.
+  final MapEventCallback<MapEventGlyphs>? onGlyphs;
+
+  /// The [MapLibreMap.onSprite] callback.
+  final MapEventCallback<MapEventSprite>? onSprite;
+
+  /// The [MapLibreMap.onRenderingChanged] callback.
+  final MapEventCallback<MapEventRenderingChanged>? onRenderingChanged;
+
+  /// The [MapLibreMap.onResize] callback.
+  final MapEventCallback<MapEventResize>? onResize;
+
+  /// The [MapLibreMap.onContextLost] callback.
+  final MapEventCallback<MapEventContextLost>? onContextLost;
+
+  /// The [MapLibreMap.onContextRestored] callback.
+  final MapEventCallback<MapEventContextRestored>? onContextRestored;
+
+  /// The [MapLibreMap.onProjectionChanged] callback.
+  final MapEventCallback<MapEventProjectionChanged>? onProjectionChanged;
 
   @override
   State<MapLibreLayer> createState() => _MapLibreLayerState();
@@ -88,16 +196,18 @@ class _MapLibreLayerState extends State<MapLibreLayer> {
     _streamSub ??= fmController.mapEventStream.listen((event) {
       if (event case fm.MapEventWithMove()) {
         _controller?.moveCamera(
-          center: event.camera.center.toPosition(),
-          zoom: event.camera.zoom - 1,
-          bearing: -event.camera.rotation,
+          CameraUpdate.position(
+            center: event.camera.center.toPosition(),
+            zoom: event.camera.zoom - 1,
+            bearing: -event.camera.rotation,
+          ),
         );
       }
     });
 
     return MapLibreMap(
       options: MapOptions(
-        initCamera: InitialCamera.position(
+        initCamera: CameraUpdate.position(
           center: fmCamera.center.toPosition(),
           bearing: -fmCamera.rotation,
           zoom: fmCamera.zoom - 1,
@@ -113,7 +223,34 @@ class _MapLibreLayerState extends State<MapLibreLayer> {
       layers: widget.layers,
       paused: widget.paused,
       onStyleLoaded: widget.onStyleLoaded,
-      onEvent: widget.onEvent,
+      onClick: widget.onClick,
+      onDoubleClick: widget.onDoubleClick,
+      onSecondaryClick: widget.onSecondaryClick,
+      onLongClick: widget.onLongClick,
+      onDragStart: widget.onDragStart,
+      onDrag: widget.onDrag,
+      onDragEnd: widget.onDragEnd,
+      onPointerMove: widget.onPointerMove,
+      onPointerLeave: widget.onPointerLeave,
+      onCameraMoveStart: widget.onCameraMoveStart,
+      onCameraMove: widget.onCameraMove,
+      onCameraMoveEnd: widget.onCameraMoveEnd,
+      onIdle: widget.onIdle,
+      onError: widget.onError,
+      onStyleImageMissing: widget.onStyleImageMissing,
+      onLoadingStarted: widget.onLoadingStarted,
+      onLoadingFinished: widget.onLoadingFinished,
+      onSourceChanged: widget.onSourceChanged,
+      onTile: widget.onTile,
+      onRenderFrame: widget.onRenderFrame,
+      onRenderMap: widget.onRenderMap,
+      onGlyphs: widget.onGlyphs,
+      onSprite: widget.onSprite,
+      onRenderingChanged: widget.onRenderingChanged,
+      onResize: widget.onResize,
+      onContextLost: widget.onContextLost,
+      onContextRestored: widget.onContextRestored,
+      onProjectionChanged: widget.onProjectionChanged,
       onMapCreated: (controller) {
         _controller = controller;
         widget.onMapCreated?.call(controller);
