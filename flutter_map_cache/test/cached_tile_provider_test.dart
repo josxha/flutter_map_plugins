@@ -8,6 +8,10 @@ import 'package:test/test.dart';
 // Keep the original format.
 
 Future<void> main() async {
+  test('default hit cache on error codes include HTTP 404', () {
+    expect(CachedTileProvider.defaultHitCacheOnErrorCodes, [404]);
+  });
+
   test('create new instance', () {
     final store = MemCacheStore();
 
