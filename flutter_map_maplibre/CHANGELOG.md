@@ -1,3 +1,10 @@
+## 0.1.0-pre.2
+
+- Update `maplibre` and `maplibre_platform_interface` to
+  `^0.4.0-pre.2`.
+- Adapt camera synchronization to `CameraUpdate` and `CameraPosition`.
+- Expose each typed MapLibre event callback as an individual `MapLibreLayer` parameter.
+
 ## 0.1.0-pre.1
 
 - Use the OpenFreeMap liberty style as default style of `MapLibreLayer`

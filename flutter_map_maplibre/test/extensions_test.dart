@@ -13,8 +13,8 @@ void main() {
     expect(position.toLatLng(), latLng);
   });
 
-  test('MapCamera to flutter_map camera', () {
-    const camera = MapCamera(
+  test('CameraPosition to flutter_map camera', () {
+    const camera = CameraPosition(
       center: Geographic(lon: 10, lat: 20),
       zoom: 3,
       bearing: 30,
