@@ -1,5 +1,3 @@
-import 'dart:io' if (dart.library.html) 'dart:html';
-
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/rendering.dart';
@@ -52,7 +50,7 @@ class CachedTileProvider extends TileProvider {
   /// If a request fails with a status code in this list,
   /// the cached response (if available) will be used instead of treating
   /// the error as a complete failure.
-  static const List<int> defaultHitCacheOnErrorCodes = [HttpStatus.notFound];
+  static const List<int> defaultHitCacheOnErrorCodes = [404];
 
   @override
   bool get supportsCancelLoading => true;

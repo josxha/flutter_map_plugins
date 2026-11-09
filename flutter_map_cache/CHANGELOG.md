@@ -1,3 +1,8 @@
+## 2.1.2
+
+- Fix dart2wasm compatibility by removing the `dart:io` import from
+  `CachedTileProvider`.
+
 ## 2.1.1
 
 - Update lint rules to `very_good_analysis ^11.0.0`
