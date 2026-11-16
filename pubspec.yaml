@@ -16,6 +16,30 @@ workspace:
 dev_dependencies:
   melos: ^8.0.0
 
+# The MapLibreMap.camera parameter of maplibre/flutter-maplibre#691. Remove
+# these overrides once a maplibre release has it.
+dependency_overrides:
+  maplibre:
+    git:
+      url: https://github.com/maplibre/flutter-maplibre
+      ref: dac8b17ee1a8f6661e8aecc2234881886647858d
+      path: packages/maplibre
+  maplibre_native:
+    git:
+      url: https://github.com/maplibre/flutter-maplibre
+      ref: dac8b17ee1a8f6661e8aecc2234881886647858d
+      path: packages/maplibre_native
+  maplibre_platform_interface:
+    git:
+      url: https://github.com/maplibre/flutter-maplibre
+      ref: dac8b17ee1a8f6661e8aecc2234881886647858d
+      path: packages/maplibre_platform_interface
+  maplibre_web:
+    git:
+      url: https://github.com/maplibre/flutter-maplibre
+      ref: dac8b17ee1a8f6661e8aecc2234881886647858d
+      path: packages/maplibre_web
+
 melos:
   scripts:
     test:

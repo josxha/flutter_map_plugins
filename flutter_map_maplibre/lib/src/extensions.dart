@@ -43,11 +43,12 @@ extension CameraPositionExt on CameraPosition {
 
 /// Extension methods on [fm.MapCamera].
 extension FlutterMapCameraExt on fm.MapCamera {
-  /// Convert [fm.MapCamera] to the [CameraUpdate] that shows the same map in
-  /// MapLibre, see [CameraPositionExt.toFlutterMapCamera].
-  CameraUpdate toCameraUpdate() => CameraUpdate.position(
+  /// Convert [fm.MapCamera] to the [CameraPosition] that shows the same map
+  /// in MapLibre, see [CameraPositionExt.toFlutterMapCamera].
+  CameraPosition toCameraPosition() => CameraPosition(
     center: center.toPosition(),
     zoom: zoom - 1,
     bearing: -rotation,
+    pitch: 0,
   );
 }

@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart' as fm;
 import 'package:flutter_map_maplibre/src/extensions.dart';
 import 'package:flutter_map_maplibre/src/flutter_map_adapter.dart';
-import 'package:flutter_map_maplibre/src/platform/frame_timing.dart';
 import 'package:maplibre/maplibre.dart';
 
 /// Use the [MapLibreLayer] to embed [MapLibreMap] as a layer in
@@ -196,65 +195,10 @@ class MapLibreLayer extends StatefulWidget {
 }
 
 class _MapLibreLayerState extends State<MapLibreLayer> {
-  MapController? _controller;
-  fm.MapController? _fmController;
-  StreamSubscription<fm.MapEvent>? _streamSub;
-
-  /// The last camera that was sent to the MapLibre map.
-  fm.MapCamera? _sentCamera;
-
-  /// Send [camera] to the MapLibre map unless it was sent already.
-  void _syncCamera(fm.MapCamera camera) {
-    final controller = _controller;
-    if (controller == null) return;
-    final sent = _sentCamera;
-    if (sent != null &&
-        sent.center == camera.center &&
-        sent.zoom == camera.zoom &&
-        sent.rotation == camera.rotation) {
-      return;
-    }
-    _sentCamera = camera;
-    unawaited(controller.moveCamera(camera.toCameraUpdate()));
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final fmController = fm.MapController.of(context);
-    if (identical(fmController, _fmController)) return;
-    _fmController = fmController;
-    unawaited(_streamSub?.cancel());
-    // On multi-threaded skwasm, Flutter shows a frame one browser frame after
-    // it was built, and MapLibre GL JS draws a camera change made while
-    // Flutter builds a frame one browser frame later. Sending the camera in
-    // build shows the map and the flutter_map layers in the same browser
-    // frame. Everywhere else, the camera is sent as soon as flutter_map moves,
-    // so that the map renders as early as possible.
-    _streamSub = framesShownOneBrowserFrameLate
-        ? null
-        : fmController.mapEventStream.listen((event) {
-            if (event case fm.MapEventWithMove(:final camera)) {
-              _syncCamera(camera);
-            }
-          });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final fmCamera = fm.MapCamera.of(context);
-    // Catches every camera change, including the ones that flutter_map
-    // doesn't emit an event for, e.g. the first camera after the map was
-    // created.
-    _syncCamera(fmCamera);
-
     return MapLibreMap(
       options: MapOptions(
-        initCamera: CameraUpdate.position(
-          center: fmCamera.center.toPosition(),
-          bearing: -fmCamera.rotation,
-          zoom: fmCamera.zoom - 1,
-        ),
         style: widget.style,
         minZoom: widget.minZoom,
         maxZoom: widget.maxZoom,
@@ -262,9 +206,13 @@ class _MapLibreLayerState extends State<MapLibreLayer> {
         maxBounds: widget.maxBounds,
         gestures: const MapGestures.none(),
       ),
+      // The map shows the flutter_map camera of this build: on web in the
+      // same browser frame as the flutter_map layers.
+      camera: fm.MapCamera.of(context).toCameraPosition(),
       gestureRecognizers: const {},
       layers: widget.layers,
       paused: widget.paused,
+      onMapCreated: widget.onMapCreated,
       onStyleLoaded: widget.onStyleLoaded,
       onClick: widget.onClick,
       onDoubleClick: widget.onDoubleClick,
@@ -294,22 +242,7 @@ class _MapLibreLayerState extends State<MapLibreLayer> {
       onContextLost: widget.onContextLost,
       onContextRestored: widget.onContextRestored,
       onProjectionChanged: widget.onProjectionChanged,
-      onMapCreated: (controller) {
-        _controller = controller;
-        // The camera may have moved since the map took its initial camera.
-        _sentCamera = null;
-        if (_fmController case final fmController?) {
-          _syncCamera(fmController.camera);
-        }
-        widget.onMapCreated?.call(controller);
-      },
       children: widget.children,
     );
-  }
-
-  @override
-  void dispose() {
-    unawaited(_streamSub?.cancel());
-    super.dispose();
   }
 }
