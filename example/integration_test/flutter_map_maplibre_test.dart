@@ -64,6 +64,24 @@ void _expectAligned(List<(Offset, Offset)> samples) {
   }
 }
 
+/// Runs [body] as a test that [_testEnded] can recognize.
+void _testWidgets(String description, WidgetTesterCallback body) {
+  testWidgets(description, (tester) {
+    final test = _runningTest = Object();
+    return runZoned(() => body(tester), zoneValues: {#mapTest: test});
+  });
+}
+
+/// Identifies the running test, see [_testWidgets].
+Object? _runningTest;
+
+/// Whether the test that runs this code has already ended, for example
+/// because it failed. Its code must then stop pumping frames, because the
+/// frames belong to the next test, and the conflict would hide the error that
+/// failed the test.
+bool _testEnded(WidgetTester tester) =>
+    !tester.binding.inTest || Zone.current[#mapTest] != _runningTest;
+
 /// Pumps frames until [condition] holds, for up to [timeout] of real time.
 Future<void> _pumpUntil(
   WidgetTester tester,
@@ -73,8 +91,7 @@ Future<void> _pumpUntil(
 }) async {
   final stopwatch = Stopwatch()..start();
   while (!condition()) {
-    // Stop when the test has already failed, so that its error is reported.
-    if (!tester.binding.inTest) return;
+    if (_testEnded(tester)) return;
     if (stopwatch.elapsed > timeout) {
       fail('Timed out after $timeout${reason == null ? '' : ': $reason'}');
     }
@@ -86,7 +103,7 @@ Future<void> _pumpUntil(
 /// Pumps frames for [duration] of real time.
 Future<void> _pumpFor(WidgetTester tester, Duration duration) async {
   final stopwatch = Stopwatch()..start();
-  while (stopwatch.elapsed < duration && tester.binding.inTest) {
+  while (stopwatch.elapsed < duration && !_testEnded(tester)) {
     await tester.pump(const Duration(milliseconds: 16));
     await Future<void>.delayed(const Duration(milliseconds: 16));
   }
@@ -139,7 +156,7 @@ void main() {
       await _pumpUntil(tester, () => styleLoaded.isCompleted, reason: 'style');
     }
 
-    testWidgets('the MapLibre camera follows the flutter_map camera', (
+    _testWidgets('the MapLibre camera follows the flutter_map camera', (
       tester,
     ) async {
       await pumpMap(tester);
@@ -154,7 +171,7 @@ void main() {
       }, reason: 'camera');
     });
 
-    testWidgets('layers in its children stay on the map frame on screen', (
+    _testWidgets('layers in its children stay on the map frame on screen', (
       tester,
     ) async {
       final samples = <(Offset, Offset)>[];
@@ -233,7 +250,7 @@ void main() {
       );
     }
 
-    testWidgets('a drag moves the map as far as the pointer', (tester) async {
+    _testWidgets('a drag moves the map as far as the pointer', (tester) async {
       await pumpMap(tester);
       final mapFinder = find.byType(ml.MapLibreMap);
       final topLeft = tester.getTopLeft(mapFinder);
@@ -268,7 +285,7 @@ void main() {
       );
     });
 
-    testWidgets('flutter_map layers stay on the map frame on screen', (
+    _testWidgets('flutter_map layers stay on the map frame on screen', (
       tester,
     ) async {
       final samples = <(Offset, Offset)>[];
@@ -290,7 +307,7 @@ void main() {
       expect(samples.map((s) => s.$2).toSet().length, greaterThan(10));
     });
 
-    testWidgets('the flutter_map controller moves the MapLibre camera', (
+    _testWidgets('the flutter_map controller moves the MapLibre camera', (
       tester,
     ) async {
       await pumpMap(tester);
