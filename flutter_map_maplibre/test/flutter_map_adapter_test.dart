@@ -139,6 +139,40 @@ void main() {
     );
   });
 
+  testWidgets('a request can undo one the map does not show yet', (
+    tester,
+  ) async {
+    final builds = await pumpAdapter(tester);
+    final controller = builds.last.$2;
+    final state = platform.lastState!..moveCameraCalls.clear();
+
+    expect(controller.rotate(90), isTrue);
+    expect(controller.rotate(0), isTrue);
+
+    expect(state.moveCameraCalls.map((c) => c.bearing), [-90, 0]);
+  });
+
+  testWidgets('events carry the id of the request', (tester) async {
+    final builds = await pumpAdapter(tester);
+    final controller = builds.last.$2;
+    final events = <fm.MapEvent>[];
+    final sub = controller.mapEventStream.listen(events.add);
+    addTearDown(sub.cancel);
+
+    controller.move(const LatLng(5, 5), 3, id: 'selection');
+    platform.lastState!.showCamera(
+      const CameraPosition(
+        center: Geographic(lon: 5, lat: 5),
+        zoom: 2,
+        bearing: 0,
+        pitch: 0,
+      ),
+    );
+    await tester.pump();
+
+    expect(events.whereType<fm.MapEventMove>().single.id, 'selection');
+  });
+
   testWidgets('uses the FlutterMap controller inside a MapLibreLayer', (
     tester,
   ) async {

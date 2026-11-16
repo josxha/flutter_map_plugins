@@ -25,15 +25,33 @@ final class MapLibreFlutterMapController implements fm.MapController {
   final _events = StreamController<fm.MapEvent>.broadcast();
   fm.MapCamera? _camera;
 
+  /// Whether a camera change was requested that the map doesn't show yet.
+  bool _pending = false;
+
+  /// The id of the last requested camera change, for the events that report
+  /// it once the map shows it.
+  String? _pendingId;
+
   /// Set the camera of the map frame on screen. Emits a move or rotate event
   /// if it changed.
   void updateCamera(fm.MapCamera camera) {
     final old = _camera;
     _camera = camera;
-    if (old == null || _events.isClosed || !_events.hasListener) return;
+    if (old == null ||
+        (old.center == camera.center &&
+            old.zoom == camera.zoom &&
+            old.rotation == camera.rotation &&
+            old.nonRotatedSize == camera.nonRotatedSize)) {
+      return;
+    }
+    final id = _pendingId;
+    _pending = false;
+    _pendingId = null;
+    if (_events.isClosed || !_events.hasListener) return;
     if (old.center != camera.center || old.zoom != camera.zoom) {
       _events.add(
         fm.MapEventMove(
+          id: id,
           source: fm.MapEventSource.custom,
           oldCamera: old,
           camera: camera,
@@ -43,7 +61,7 @@ final class MapLibreFlutterMapController implements fm.MapController {
     if (old.rotation != camera.rotation) {
       _events.add(
         fm.MapEventRotate(
-          id: null,
+          id: id,
           source: fm.MapEventSource.custom,
           oldCamera: old,
           camera: camera,
@@ -85,11 +103,11 @@ final class MapLibreFlutterMapController implements fm.MapController {
         zoom,
       );
     }
-    return _moveTo(center: target, zoom: zoom);
+    return _moveTo(center: target, zoom: zoom, id: id);
   }
 
   @override
-  bool rotate(double degree, {String? id}) => _moveTo(rotation: degree);
+  bool rotate(double degree, {String? id}) => _moveTo(rotation: degree, id: id);
 
   @override
   ({bool moveSuccess, bool rotateSuccess}) rotateAroundPoint(
@@ -98,11 +116,11 @@ final class MapLibreFlutterMapController implements fm.MapController {
     String? id,
   }) {
     final camera = this.camera;
-    if (degree == camera.rotation) {
+    if (!_pending && degree == camera.rotation) {
       return (moveSuccess: false, rotateSuccess: false);
     }
     if (offset == null || offset == Offset.zero) {
-      return (moveSuccess: true, rotateSuccess: rotate(degree));
+      return (moveSuccess: true, rotateSuccess: rotate(degree, id: id));
     }
     final diff = degree - camera.rotation;
     final centerPoint = camera.projectAtZoom(camera.center);
@@ -111,7 +129,7 @@ final class MapLibreFlutterMapController implements fm.MapController {
       rotationCenter +
           (centerPoint - rotationCenter).rotate(diff * math.pi / 180),
     );
-    final moved = _moveTo(center: center, rotation: degree);
+    final moved = _moveTo(center: center, rotation: degree, id: id);
     return (moveSuccess: moved, rotateSuccess: moved);
   }
 
@@ -122,7 +140,7 @@ final class MapLibreFlutterMapController implements fm.MapController {
     double degree, {
     String? id,
   }) {
-    final moved = _moveTo(center: center, zoom: zoom, rotation: degree);
+    final moved = _moveTo(center: center, zoom: zoom, rotation: degree, id: id);
     return (moveSuccess: moved, rotateSuccess: moved);
   }
 
@@ -132,14 +150,19 @@ final class MapLibreFlutterMapController implements fm.MapController {
     return _moveTo(center: fitted.center, zoom: fitted.zoom);
   }
 
-  bool _moveTo({LatLng? center, double? zoom, double? rotation}) {
+  bool _moveTo({LatLng? center, double? zoom, double? rotation, String? id}) {
     final camera = _camera;
+    // A request that the map doesn't show yet may be overridden by one that
+    // goes back to the camera on screen, so only skip when none is pending.
     if (camera != null &&
+        !_pending &&
         (center == null || center == camera.center) &&
         (zoom == null || zoom == camera.zoom) &&
         (rotation == null || rotation == camera.rotation)) {
       return false;
     }
+    _pending = true;
+    _pendingId = id;
     unawaited(
       mapController.moveCamera(
         CameraUpdate.position(
