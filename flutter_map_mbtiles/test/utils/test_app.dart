@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_mbtiles/src/mbtiles_tile_provider.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:mbtiles/mbtiles.dart';
 
 class TestApp extends StatelessWidget {

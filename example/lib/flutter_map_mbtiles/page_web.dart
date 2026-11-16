@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// The `mbtiles` package does not support web.
 class FlutterMapMbTilesPage extends StatelessWidget {

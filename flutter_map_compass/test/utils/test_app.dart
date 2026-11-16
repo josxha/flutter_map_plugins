@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_compass/flutter_map_compass.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:material_ui/material_ui.dart';
 
 class TestApp extends StatelessWidget {
-  const TestApp({
+  const new({
     required this.mapController,
     required this.cupertinoCompassKey,
     required this.customCompassKey,

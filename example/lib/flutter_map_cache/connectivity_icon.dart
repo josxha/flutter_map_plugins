@@ -1,5 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ConnectivityIcon extends StatelessWidget {
   const new({super.key});

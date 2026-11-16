@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_map_plugins_example/flutter_map_cache/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_compass/page.dart';
 import 'package:flutter_map_plugins_example/flutter_map_maplibre/page.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_map_plugins_example/flutter_map_mbtiles/page.dart'
     if (dart.library.js_interop) 'package:flutter_map_plugins_example/flutter_map_mbtiles/page_web.dart';
 import 'package:flutter_map_plugins_example/flutter_map_pmtiles/page.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 void main() {
