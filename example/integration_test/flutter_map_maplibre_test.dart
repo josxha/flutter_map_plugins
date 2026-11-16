@@ -73,6 +73,8 @@ Future<void> _pumpUntil(
 }) async {
   final stopwatch = Stopwatch()..start();
   while (!condition()) {
+    // Stop when the test has already failed, so that its error is reported.
+    if (!tester.binding.inTest) return;
     if (stopwatch.elapsed > timeout) {
       fail('Timed out after $timeout${reason == null ? '' : ': $reason'}');
     }
@@ -84,7 +86,7 @@ Future<void> _pumpUntil(
 /// Pumps frames for [duration] of real time.
 Future<void> _pumpFor(WidgetTester tester, Duration duration) async {
   final stopwatch = Stopwatch()..start();
-  while (stopwatch.elapsed < duration) {
+  while (stopwatch.elapsed < duration && tester.binding.inTest) {
     await tester.pump(const Duration(milliseconds: 16));
     await Future<void>.delayed(const Duration(milliseconds: 16));
   }
