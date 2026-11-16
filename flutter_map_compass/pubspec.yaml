@@ -3,21 +3,23 @@ description: A simple compass for flutter_map. It shows the rotation of the map 
 repository: https://github.com/josxha/flutter_map_plugins
 issue_tracker: https://github.com/josxha/flutter_map_plugins/issues
 topics: [ flutter-map, map ]
-version: 1.1.2
+version: 1.2.0
 resolution: workspace
 funding:
   - https://paypal.me/joschaeckert
   - https://github.com/sponsors/josxha
 
 environment:
-  sdk: '>=3.12.0 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: '>=3.13.0 <4.0.0'
+  flutter: ">=3.47.0"
 
 dependencies:
   cupertino_icons: ^2.0.0
+  cupertino_ui: ^1.1.7
   flutter:
     sdk: flutter
   flutter_map: ">=6.0.0 <9.0.0"
+  material_ui: ^1.11.1
 
 dev_dependencies:
   flutter_test:

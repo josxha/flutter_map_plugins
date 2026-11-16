@@ -1,3 +1,10 @@
+## 1.2.0
+
+- Use `package:material_ui` and `package:cupertino_ui` instead of
+  `package:flutter/material.dart` and `package:flutter/cupertino.dart`,
+  which Flutter 3.50 deprecates
+- Bump minimum Flutter version to 3.47.0 and minimum Dart version to 3.13.0
+
 ## 1.1.2
 
 - Update lint rules to `very_good_analysis ^11.0.0`

@@ -2,6 +2,16 @@
 
 Append new decisions at the top. Format: date, decision, reason.
 
+## 2026-11-17: Flutter 3.50: material_ui and Gradle 9
+
+Flutter 3.50 deprecates `package:flutter/material.dart` in favour of
+`package:material_ui`, and its Gradle plugin requires Gradle 9.3.1. All code
+imports `package:material_ui/material_ui.dart` (`^1.11.1`, needs Flutter
+3.47), so `flutter_map_compass` requires Flutter 3.47 from 1.2.0; the
+mbtiles/pmtiles packages use it only in tests. The example uses Gradle 9.3.1,
+AGP 9.1.1 and Kotlin Gradle plugin 2.4.10 with `android.builtInKotlin=false`
+and `android.newDsl=false`, the setup that Flutter 3.50's migrator writes.
+
 ## 2026-10-31: Pre-release dependencies and release channels
 
 `flutter_map_maplibre` is released as a pre-release (`0.1.0-pre.1`) while it
@@ -60,7 +70,7 @@ constructor syntax (already needs Dart 3.13, as `flutter_map_maplibre` does).
 `maplibre` 0.4 needs iOS 15, macOS 14.3 and Swift Package Manager. The example
 uses those deployment targets and the root and example `pubspec.yaml` require
 Dart 3.13, because the workspace already requires it through
-`flutter_map_maplibre`. Gradle is on the latest 8.14.x patch release.
+`flutter_map_maplibre`. Gradle: see the Flutter 3.50 entry.
 
 ## 2026-10-31: CocoaPods is no longer used in the example
 
