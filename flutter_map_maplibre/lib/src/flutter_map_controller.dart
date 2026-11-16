@@ -25,8 +25,11 @@ final class MapLibreFlutterMapController implements fm.MapController {
   final _events = StreamController<fm.MapEvent>.broadcast();
   fm.MapCamera? _camera;
 
-  /// Whether a camera change was requested that the map doesn't show yet.
-  bool _pending = false;
+  /// The camera values of the last request. They differ from [_camera] while
+  /// the map doesn't show the request yet.
+  LatLng? _requestedCenter;
+  double? _requestedZoom;
+  double? _requestedRotation;
 
   /// The id of the last requested camera change, for the events that report
   /// it once the map shows it.
@@ -44,7 +47,6 @@ final class MapLibreFlutterMapController implements fm.MapController {
     // A resize alone doesn't show a requested camera change.
     final id = moved || rotated ? _pendingId : null;
     if (moved || rotated) {
-      _pending = false;
       _pendingId = null;
     }
     if (_events.isClosed || !_events.hasListener) return;
@@ -116,7 +118,7 @@ final class MapLibreFlutterMapController implements fm.MapController {
     String? id,
   }) {
     final camera = this.camera;
-    if (!_pending && degree == camera.rotation) {
+    if (!_changes(rotation: degree)) {
       return (moveSuccess: false, rotateSuccess: false);
     }
     if (offset == null || offset == Offset.zero) {
@@ -151,17 +153,12 @@ final class MapLibreFlutterMapController implements fm.MapController {
   }
 
   bool _moveTo({LatLng? center, double? zoom, double? rotation, String? id}) {
-    final camera = _camera;
-    // A request that the map doesn't show yet may be overridden by one that
-    // goes back to the camera on screen, so only skip when none is pending.
-    if (camera != null &&
-        !_pending &&
-        (center == null || center == camera.center) &&
-        (zoom == null || zoom == camera.zoom) &&
-        (rotation == null || rotation == camera.rotation)) {
+    if (!_changes(center: center, zoom: zoom, rotation: rotation)) {
       return false;
     }
-    _pending = true;
+    _requestedCenter = center ?? _requestedCenter;
+    _requestedZoom = zoom ?? _requestedZoom;
+    _requestedRotation = rotation ?? _requestedRotation;
     _pendingId = id;
     unawaited(
       mapController.moveCamera(
@@ -173,6 +170,19 @@ final class MapLibreFlutterMapController implements fm.MapController {
       ),
     );
     return true;
+  }
+
+  /// Whether a request for these values changes the camera: they differ from
+  /// the camera on screen, or from a request that the map may not show yet.
+  bool _changes({LatLng? center, double? zoom, double? rotation}) {
+    final camera = _camera;
+    if (camera == null) return true;
+    bool differs<T>(T? value, T shown, T? requested) =>
+        value != null &&
+        (value != shown || (requested != null && value != requested));
+    return differs(center, camera.center, _requestedCenter) ||
+        differs(zoom, camera.zoom, _requestedZoom) ||
+        differs(rotation, camera.rotation, _requestedRotation);
   }
 
   @override

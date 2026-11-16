@@ -152,6 +152,37 @@ void main() {
     expect(state.moveCameraCalls.map((c) => c.bearing), [-90, 0]);
   });
 
+  testWidgets('a camera change does not end a pending request', (tester) async {
+    final builds = await pumpAdapter(tester);
+    final controller = builds.last.$2;
+    final state = platform.lastState!..moveCameraCalls.clear();
+
+    expect(controller.rotate(90), isTrue);
+    state.showCamera(
+      const CameraPosition(
+        center: Geographic(lon: 1, lat: 1),
+        zoom: 2,
+        bearing: 0,
+        pitch: 0,
+      ),
+    );
+    await tester.pump();
+    expect(controller.rotate(0), isTrue);
+    // Once the map shows it, the same request changes nothing.
+    state.showCamera(
+      const CameraPosition(
+        center: Geographic(lon: 1, lat: 1),
+        zoom: 2,
+        bearing: 0,
+        pitch: 0,
+      ),
+    );
+    await tester.pump();
+    expect(controller.rotate(0), isFalse);
+
+    expect(state.moveCameraCalls.map((c) => c.bearing), [-90, 0]);
+  });
+
   testWidgets('a resize does not end a pending request', (tester) async {
     final builds = <(fm.MapCamera, fm.MapController)>[];
     Widget map(double width) => Directionality(
