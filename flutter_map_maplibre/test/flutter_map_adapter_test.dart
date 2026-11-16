@@ -152,6 +152,32 @@ void main() {
     expect(state.moveCameraCalls.map((c) => c.bearing), [-90, 0]);
   });
 
+  testWidgets('a resize does not end a pending request', (tester) async {
+    final builds = <(fm.MapCamera, fm.MapController)>[];
+    Widget map(double width) => Directionality(
+      textDirection: TextDirection.ltr,
+      child: Center(
+        child: SizedBox(
+          width: width,
+          height: 300,
+          child: MapLibreMap(
+            children: [FlutterMapAdapter(child: _Probe(builds))],
+          ),
+        ),
+      ),
+    );
+    await tester.pumpWidget(map(400));
+    final controller = builds.last.$2;
+    final state = platform.lastState!..moveCameraCalls.clear();
+
+    expect(controller.rotate(90), isTrue);
+    await tester.pumpWidget(map(500));
+    expect(builds.last.$1.nonRotatedSize, const Size(500, 300));
+    expect(controller.rotate(0), isTrue);
+
+    expect(state.moveCameraCalls.map((c) => c.bearing), [-90, 0]);
+  });
+
   testWidgets('events carry the id of the request', (tester) async {
     final builds = await pumpAdapter(tester);
     final controller = builds.last.$2;

@@ -37,18 +37,18 @@ final class MapLibreFlutterMapController implements fm.MapController {
   void updateCamera(fm.MapCamera camera) {
     final old = _camera;
     _camera = camera;
-    if (old == null ||
-        (old.center == camera.center &&
-            old.zoom == camera.zoom &&
-            old.rotation == camera.rotation &&
-            old.nonRotatedSize == camera.nonRotatedSize)) {
-      return;
+    if (old == null) return;
+    final moved = old.center != camera.center || old.zoom != camera.zoom;
+    final rotated = old.rotation != camera.rotation;
+    final resized = old.nonRotatedSize != camera.nonRotatedSize;
+    // A resize alone doesn't show a requested camera change.
+    final id = moved || rotated ? _pendingId : null;
+    if (moved || rotated) {
+      _pending = false;
+      _pendingId = null;
     }
-    final id = _pendingId;
-    _pending = false;
-    _pendingId = null;
     if (_events.isClosed || !_events.hasListener) return;
-    if (old.center != camera.center || old.zoom != camera.zoom) {
+    if (moved) {
       _events.add(
         fm.MapEventMove(
           id: id,
@@ -58,7 +58,7 @@ final class MapLibreFlutterMapController implements fm.MapController {
         ),
       );
     }
-    if (old.rotation != camera.rotation) {
+    if (rotated) {
       _events.add(
         fm.MapEventRotate(
           id: id,
@@ -68,7 +68,7 @@ final class MapLibreFlutterMapController implements fm.MapController {
         ),
       );
     }
-    if (old.nonRotatedSize != camera.nonRotatedSize) {
+    if (resized) {
       _events.add(
         fm.MapEventNonRotatedSizeChange(
           source: fm.MapEventSource.nonRotatedSizeChange,
