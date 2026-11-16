@@ -68,6 +68,10 @@ void _expectAligned(List<(Offset, Offset)> samples) {
 void _testWidgets(String description, WidgetTesterCallback body) {
   testWidgets(description, (tester) {
     final test = _runningTest = Object();
+    // Runs when the test ends, also when it fails while its code still runs.
+    addTearDown(() {
+      if (_runningTest == test) _runningTest = null;
+    });
     return runZoned(() => body(tester), zoneValues: {#mapTest: test});
   });
 }
@@ -138,7 +142,9 @@ void main() {
             children: [
               MapLibreLayer(
                 style: _style,
-                onMapCreated: created.complete,
+                onMapCreated: (controller) {
+                  if (!created.isCompleted) created.complete(controller);
+                },
                 onStyleLoaded: (_) {
                   if (!styleLoaded.isCompleted) styleLoaded.complete();
                 },
@@ -222,7 +228,9 @@ void main() {
               ),
               maxPitch: 0,
             ),
-            onMapCreated: created.complete,
+            onMapCreated: (controller) {
+              if (!created.isCompleted) created.complete(controller);
+            },
             onStyleLoaded: (_) {
               if (!styleLoaded.isCompleted) styleLoaded.complete();
             },
