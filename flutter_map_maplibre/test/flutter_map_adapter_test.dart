@@ -209,6 +209,44 @@ void main() {
     expect(state.moveCameraCalls.map((c) => c.bearing), [-90, 0]);
   });
 
+  testWidgets('events after a resize carry the id of the request', (
+    tester,
+  ) async {
+    final builds = <(fm.MapCamera, fm.MapController)>[];
+    Widget map(double width) => Directionality(
+      textDirection: TextDirection.ltr,
+      child: Center(
+        child: SizedBox(
+          width: width,
+          height: 300,
+          child: MapLibreMap(
+            children: [FlutterMapAdapter(child: _Probe(builds))],
+          ),
+        ),
+      ),
+    );
+    await tester.pumpWidget(map(400));
+    final controller = builds.last.$2;
+    final events = <fm.MapEvent>[];
+    final sub = controller.mapEventStream.listen(events.add);
+    addTearDown(sub.cancel);
+
+    controller.rotate(90, id: 'turn');
+    await tester.pumpWidget(map(500));
+    platform.lastState!.showCamera(
+      const CameraPosition(
+        center: Geographic(lon: 0, lat: 0),
+        zoom: 0,
+        bearing: -90,
+        pitch: 0,
+      ),
+    );
+    await tester.pump();
+
+    expect(events.whereType<fm.MapEventNonRotatedSizeChange>(), hasLength(1));
+    expect(events.whereType<fm.MapEventRotate>().single.id, 'turn');
+  });
+
   testWidgets('events carry the id of the request', (tester) async {
     final builds = await pumpAdapter(tester);
     final controller = builds.last.$2;
