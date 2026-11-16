@@ -197,7 +197,10 @@ class MapLibreLayer extends StatefulWidget {
 class _MapLibreLayerState extends State<MapLibreLayer> {
   @override
   Widget build(BuildContext context) {
-    return MapLibreMap(
+    // The map shows the flutter_map camera of this build: on web in the
+    // same browser frame as the flutter_map layers.
+    return MapLibreMap.withCamera(
+      camera: fm.MapCamera.of(context).toCameraPosition(),
       options: MapOptions(
         style: widget.style,
         minZoom: widget.minZoom,
@@ -206,9 +209,6 @@ class _MapLibreLayerState extends State<MapLibreLayer> {
         maxBounds: widget.maxBounds,
         gestures: const MapGestures.none(),
       ),
-      // The map shows the flutter_map camera of this build: on web in the
-      // same browser frame as the flutter_map layers.
-      camera: fm.MapCamera.of(context).toCameraPosition(),
       gestureRecognizers: const {},
       layers: widget.layers,
       paused: widget.paused,
