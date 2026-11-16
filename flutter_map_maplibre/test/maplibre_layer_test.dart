@@ -334,4 +334,15 @@ void main() {
     expect(call.zoom, closeTo(6, 0.0001));
     expect(call.bearing, closeTo(-90, 0.0001));
   });
+
+  testWidgets('sends each flutter_map camera once', (tester) async {
+    final controller = await pumpLayer(tester);
+    final state = platform.lastState!..moveCameraCalls.clear();
+
+    controller.move(const LatLng(30, 40), 7);
+    await tester.pump();
+    await tester.pump();
+
+    expect(state.moveCameraCalls, hasLength(1));
+  });
 }

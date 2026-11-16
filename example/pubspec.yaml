@@ -42,7 +42,12 @@ dependencies:
   #vector_map_tiles_pmtiles:
   #  path: ../vector_map_tiles_pmtiles
 
+  material_ui: any
 dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
   very_good_analysis: ^11.0.0
 
 flutter:

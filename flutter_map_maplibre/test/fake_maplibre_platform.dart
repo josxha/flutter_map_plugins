@@ -1,5 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:maplibre_platform_interface/maplibre_platform_interface.dart';
+// The inherited model that provides MapController.of and CameraPosition.of
+// to the children of a MapLibreMap.
+import 'package:maplibre_platform_interface/src/widget/inherited_model.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 /// A [MapLibrePlatform] that renders an empty box and records the camera
@@ -28,8 +31,30 @@ class FakeMapLibreMapState extends MapLibreMapState {
     widget.onMapCreated?.call(this);
   }
 
+  /// The camera of the map frame on screen, which [moveCamera] moves.
+  CameraPosition shownCamera = const CameraPosition(
+    center: Geographic(lon: 0, lat: 0),
+    zoom: 2,
+    bearing: 0,
+    pitch: 0,
+  );
+
   @override
-  Widget build(BuildContext context) => Stack(children: widget.children);
+  CameraPosition? get camera => shownCamera;
+
+  @override
+  CameraPosition getCamera() => shownCamera;
+
+  @override
+  Widget build(BuildContext context) => MapLibreInheritedModel(
+    mapController: this,
+    cameraPosition: shownCamera,
+    child: Stack(children: widget.children),
+  );
+
+  /// Show a map frame with [camera].
+  void showCamera(CameraPosition camera) =>
+      setState(() => shownCamera = camera);
 
   @override
   Future<void> moveCamera(CameraUpdate update) async {

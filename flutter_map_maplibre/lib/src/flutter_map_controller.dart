@@ -1,0 +1,167 @@
+import 'dart:async';
+import 'dart:math' as math;
+
+import 'package:flutter/widgets.dart';
+import 'package:flutter_map/flutter_map.dart' as fm;
+import 'package:flutter_map_maplibre/src/extensions.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:maplibre/maplibre.dart';
+
+/// A `flutter_map` [fm.MapController] that controls a [MapLibreMap].
+///
+/// `flutter_map` layers inside of a [MapLibreMap] get it from
+/// [fm.MapController.of], so that their camera calls move the MapLibre camera
+/// and their event listeners see the MapLibre camera changes.
+///
+/// Camera changes apply asynchronously: [camera] keeps returning the camera
+/// of the map frame on screen until the map shows the new one.
+final class MapLibreFlutterMapController implements fm.MapController {
+  /// Create a controller that moves the camera of [mapController].
+  new(this.mapController);
+
+  /// The controller of the [MapLibreMap].
+  MapController mapController;
+
+  final _events = StreamController<fm.MapEvent>.broadcast();
+  fm.MapCamera? _camera;
+
+  /// Set the camera of the map frame on screen. Emits a move or rotate event
+  /// if it changed.
+  void updateCamera(fm.MapCamera camera) {
+    final old = _camera;
+    _camera = camera;
+    if (old == null || _events.isClosed || !_events.hasListener) return;
+    if (old.center != camera.center || old.zoom != camera.zoom) {
+      _events.add(
+        fm.MapEventMove(
+          source: fm.MapEventSource.custom,
+          oldCamera: old,
+          camera: camera,
+        ),
+      );
+    }
+    if (old.rotation != camera.rotation) {
+      _events.add(
+        fm.MapEventRotate(
+          id: null,
+          source: fm.MapEventSource.custom,
+          oldCamera: old,
+          camera: camera,
+        ),
+      );
+    }
+    if (old.nonRotatedSize != camera.nonRotatedSize) {
+      _events.add(
+        fm.MapEventNonRotatedSizeChange(
+          source: fm.MapEventSource.nonRotatedSizeChange,
+          oldCamera: old,
+          camera: camera,
+        ),
+      );
+    }
+  }
+
+  @override
+  fm.MapCamera get camera =>
+      _camera ??
+      (throw StateError('The camera is not known before the first frame.'));
+
+  @override
+  Stream<fm.MapEvent> get mapEventStream => _events.stream;
+
+  @override
+  bool move(
+    LatLng center,
+    double zoom, {
+    Offset offset = Offset.zero,
+    String? id,
+  }) {
+    var target = center;
+    if (offset != Offset.zero) {
+      final camera = this.camera;
+      final point = camera.projectAtZoom(center, zoom);
+      target = camera.unprojectAtZoom(
+        camera.rotatePoint(point, point - offset),
+        zoom,
+      );
+    }
+    return _moveTo(center: target, zoom: zoom);
+  }
+
+  @override
+  bool rotate(double degree, {String? id}) => _moveTo(rotation: degree);
+
+  @override
+  ({bool moveSuccess, bool rotateSuccess}) rotateAroundPoint(
+    double degree, {
+    Offset? offset,
+    String? id,
+  }) {
+    final camera = this.camera;
+    if (degree == camera.rotation) {
+      return (moveSuccess: false, rotateSuccess: false);
+    }
+    if (offset == null || offset == Offset.zero) {
+      return (moveSuccess: true, rotateSuccess: rotate(degree));
+    }
+    final diff = degree - camera.rotation;
+    final centerPoint = camera.projectAtZoom(camera.center);
+    final rotationCenter = centerPoint + offset.rotate(camera.rotationRad);
+    final center = camera.unprojectAtZoom(
+      rotationCenter +
+          (centerPoint - rotationCenter).rotate(diff * math.pi / 180),
+    );
+    final moved = _moveTo(center: center, rotation: degree);
+    return (moveSuccess: moved, rotateSuccess: moved);
+  }
+
+  @override
+  ({bool moveSuccess, bool rotateSuccess}) moveAndRotate(
+    LatLng center,
+    double zoom,
+    double degree, {
+    String? id,
+  }) {
+    final moved = _moveTo(center: center, zoom: zoom, rotation: degree);
+    return (moveSuccess: moved, rotateSuccess: moved);
+  }
+
+  @override
+  bool fitCamera(fm.CameraFit cameraFit) {
+    final fitted = cameraFit.fit(camera);
+    return _moveTo(center: fitted.center, zoom: fitted.zoom);
+  }
+
+  bool _moveTo({LatLng? center, double? zoom, double? rotation}) {
+    final camera = _camera;
+    if (camera != null &&
+        (center == null || center == camera.center) &&
+        (zoom == null || zoom == camera.zoom) &&
+        (rotation == null || rotation == camera.rotation)) {
+      return false;
+    }
+    unawaited(
+      mapController.moveCamera(
+        CameraUpdate.position(
+          center: center?.toPosition(),
+          zoom: zoom == null ? null : zoom - 1,
+          bearing: rotation == null ? null : -rotation,
+        ),
+      ),
+    );
+    return true;
+  }
+
+  @override
+  void dispose() => unawaited(_events.close());
+}
+
+extension on Offset {
+  /// Rotates this offset by [radians] the same way as `flutter_map` does in
+  /// its `MapController.rotateAroundPoint`.
+  Offset rotate(double radians) {
+    final cos = math.cos(radians);
+    final sin = math.sin(radians);
+    return Offset(cos * dx + sin * dy, cos * dy - sin * dx);
+  }
+}
