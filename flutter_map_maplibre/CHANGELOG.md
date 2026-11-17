@@ -1,19 +1,13 @@
 ## 0.1.0-pre.3
 
-- `MapLibreLayer` builds the map with `MapLibreMap.withCamera` and the
-  `flutter_map` camera, so the map applies it while it builds: on web the
-  map and the `flutter_map` layers show in the same browser frame with every
-  renderer.
-- `FlutterMapAdapter` keeps one `flutter_map` controller for its layers
-  instead of creating one per frame, which slowed down gestures. Its
-  `MapController` now moves the MapLibre camera and emits the camera changes
-  on `mapEventStream`.
-- `FlutterMapAdapter` works inside `MapLibreLayer.children`: the layers are
-  drawn at the camera of the map frame on screen, so they no longer float
-  above the map while it moves.
-- Breaking: remove `MapControllerExt.toFlutterMapController()`, which returned
-  an unconnected controller.
-- Update `maplibre` and `maplibre_platform_interface` to `^0.4.0-pre.3`.
+- Update `maplibre` to `^0.4.0-pre.3`.
+- Breaking: remove `MapControllerExt.toFlutterMapController()`.
+- `MapLibreLayer`: the map and the `flutter_map` layers stay in sync while
+  the map moves on web.
+- `FlutterMapAdapter`: faster gestures, and `MapController.of(context)` moves
+  the MapLibre camera and emits its changes on `mapEventStream`.
+- `FlutterMapAdapter` can be used in `MapLibreLayer.children` to keep
+  `flutter_map` layers on the map while it moves.
 
 ## 0.1.0-pre.2
 
