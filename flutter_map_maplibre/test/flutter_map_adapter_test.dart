@@ -268,6 +268,43 @@ void main() {
     expect(events.whereType<fm.MapEventMove>().single.id, 'selection');
   });
 
+  testWidgets('events of a request come from the map controller', (
+    tester,
+  ) async {
+    final builds = await pumpAdapter(tester);
+    final controller = builds.last.$2;
+    final events = <fm.MapEvent>[];
+    final sub = controller.mapEventStream.listen(events.add);
+    addTearDown(sub.cancel);
+
+    controller.moveAndRotate(const LatLng(5, 5), 3, 20);
+    platform.lastState!.showCamera(
+      const CameraPosition(
+        center: Geographic(lon: 5, lat: 5),
+        zoom: 2,
+        bearing: -20,
+        pitch: 0,
+      ),
+    );
+    await tester.pump();
+    // A later camera change that nobody requested.
+    platform.lastState!.showCamera(
+      const CameraPosition(
+        center: Geographic(lon: 6, lat: 6),
+        zoom: 2,
+        bearing: -20,
+        pitch: 0,
+      ),
+    );
+    await tester.pump();
+
+    expect(events.map((e) => e.source), [
+      fm.MapEventSource.mapController,
+      fm.MapEventSource.mapController,
+      fm.MapEventSource.custom,
+    ]);
+  });
+
   testWidgets('uses the FlutterMap controller inside a MapLibreLayer', (
     tester,
   ) async {

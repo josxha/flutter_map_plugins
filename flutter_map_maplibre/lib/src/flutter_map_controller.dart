@@ -35,6 +35,9 @@ final class MapLibreFlutterMapController implements fm.MapController {
   /// it once the map shows it.
   String? _pendingId;
 
+  /// Whether a requested camera change is waiting for the map to show it.
+  var _pendingRequest = false;
+
   /// Set the camera of the map frame on screen. Emits a move or rotate event
   /// if it changed.
   void updateCamera(fm.MapCamera camera) {
@@ -45,26 +48,26 @@ final class MapLibreFlutterMapController implements fm.MapController {
     final rotated = old.rotation != camera.rotation;
     final resized = old.nonRotatedSize != camera.nonRotatedSize;
     // A resize alone doesn't show a requested camera change.
-    final id = moved || rotated ? _pendingId : null;
+    final showsRequest = (moved || rotated) && _pendingRequest;
+    final id = showsRequest ? _pendingId : null;
+    final source = showsRequest
+        ? fm.MapEventSource.mapController
+        : fm.MapEventSource.custom;
     if (moved || rotated) {
       _pendingId = null;
+      _pendingRequest = false;
     }
     if (_events.isClosed || !_events.hasListener) return;
     if (moved) {
       _events.add(
-        fm.MapEventMove(
-          id: id,
-          source: fm.MapEventSource.custom,
-          oldCamera: old,
-          camera: camera,
-        ),
+        fm.MapEventMove(id: id, source: source, oldCamera: old, camera: camera),
       );
     }
     if (rotated) {
       _events.add(
         fm.MapEventRotate(
           id: id,
-          source: fm.MapEventSource.custom,
+          source: source,
           oldCamera: old,
           camera: camera,
         ),
@@ -160,6 +163,7 @@ final class MapLibreFlutterMapController implements fm.MapController {
     _requestedZoom = zoom ?? _requestedZoom;
     _requestedRotation = rotation ?? _requestedRotation;
     _pendingId = id;
+    _pendingRequest = true;
     unawaited(
       mapController.moveCamera(
         CameraUpdate.position(
