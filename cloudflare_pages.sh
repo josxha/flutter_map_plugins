@@ -29,12 +29,8 @@ echo "▶ Building Flutter web"
 cd "$ROOT/example"
 flutter build web --release --wasm
 
-echo "▶ Copy header configuration"
-# required for the multi threaded WebAssembly renderer (skwasm)
-cat > build/web/_headers <<'HEADERS'
-/*
-  Cross-Origin-Embedder-Policy: credentialless
-  Cross-Origin-Opener-Policy: same-origin
-HEADERS
+# No COOP/COEP headers on purpose: without cross-origin isolation the wasm
+# build uses single-threaded skwasm, which keeps the flutter_map layers in sync
+# with the MapLibre map (see .agents/decision.md).
 
 echo "✅ Cloudflare Pages build finished successfully"

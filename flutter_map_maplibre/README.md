@@ -155,6 +155,12 @@ FlutterMap(
 );
 ```
 
+On web, the layers stay in sync with the map only with the single-threaded
+renderer. If you build with `--wasm`, don't serve the app with the
+`Cross-Origin-Opener-Policy` and `Cross-Origin-Embedder-Policy` headers. Those
+headers enable the multi-threaded renderer, which draws the `flutter_map`
+layers a frame or more after the map.
+
 > [!NOTE]
 > The zoom levels of MapLibre are one level lower than the zoom levels of
 > `flutter_map` (with its default 256px tiles). `MapLibreLayer` converts the

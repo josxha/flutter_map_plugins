@@ -36,8 +36,7 @@ both the production and the preview (Vorschau-Basis) tab: build command
 `npx wrangler deploy` (production) and `npx wrangler preview` (previews).
 Cloudflare's build image has no Flutter, so the script clones the Flutter SDK
 (`stable` branch, override with `FLUTTER_BRANCH`) and builds with `--wasm`. It
-writes a `_headers` file with the COOP/COEP headers that the multi threaded
-WebAssembly renderer needs. The GitHub Actions workflow still builds the web
+writes no COOP/COEP headers (see the 2026-11-17 decision). The GitHub Actions workflow still builds the web
 app to verify it, but no longer deploys. Firebase config and the deploy job
 were removed.
 
@@ -76,3 +75,15 @@ Dart 3.13, because the workspace already requires it through
 
 No Podfile is tracked and the Xcode workspace does not reference Pods. Stale
 `Pods-RunnerTests` references and the `update-ios-pods` workflow were removed.
+
+## 2026-11-17: Serve the web example without cross-origin isolation
+
+With COOP/COEP headers the `--wasm` build runs the multi-threaded skwasm
+renderer, which rasterizes Flutter frames on a worker. On real GPUs that often
+takes more than one browser frame, so `flutter_map` layers trail the MapLibre
+map (GL JS draws in the next browser frame) for both integration methods.
+Without the headers the build falls back to single-threaded skwasm, which
+presents Flutter and GL JS in the same frame. A test deployment confirmed the
+layers then move in sync with the map, so `cloudflare_pages.sh` no longer writes
+a `_headers` file and the `flutter_map_maplibre` README tells apps to do the
+same. Revisit if `maplibre_web` learns to wait for the worker's frame.

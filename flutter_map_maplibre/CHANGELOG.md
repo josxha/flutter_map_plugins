@@ -8,6 +8,8 @@
   the MapLibre camera and emits its changes on `mapEventStream`.
 - `FlutterMapAdapter` can be used in `MapLibreLayer.children` to keep
   `flutter_map` layers on the map while it moves.
+- Docs: on web, serve wasm builds without COOP/COEP headers to keep the
+  `flutter_map` layers in sync with the map.
 
 ## 0.1.0-pre.2
 
