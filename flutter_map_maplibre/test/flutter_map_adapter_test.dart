@@ -306,6 +306,35 @@ void main() {
     expect(rotate.id, 'turn');
   });
 
+  testWidgets('a pan in the frame of a requested rotation is not requested', (
+    tester,
+  ) async {
+    final builds = await pumpAdapter(tester);
+    final controller = builds.last.$2;
+    final events = <fm.MapEvent>[];
+    final sub = controller.mapEventStream.listen(events.add);
+    addTearDown(sub.cancel);
+
+    controller.rotate(30, id: 'turn');
+    // The frame that shows the rotation also shows a pan.
+    platform.lastState!.showCamera(
+      const CameraPosition(
+        center: Geographic(lon: 3, lat: 3),
+        zoom: 2,
+        bearing: -30,
+        pitch: 0,
+      ),
+    );
+    await tester.pump();
+
+    final move = events.whereType<fm.MapEventMove>().single;
+    expect(move.source, fm.MapEventSource.custom);
+    expect(move.id, isNull);
+    final rotate = events.whereType<fm.MapEventRotate>().single;
+    expect(rotate.source, fm.MapEventSource.mapController);
+    expect(rotate.id, 'turn');
+  });
+
   testWidgets('events of a request come from the map controller', (
     tester,
   ) async {

@@ -49,12 +49,15 @@ final class MapLibreFlutterMapController implements fm.MapController {
     final rotated = old.rotation != camera.rotation;
     final resized = old.nonRotatedSize != camera.nonRotatedSize;
     // Only a frame with the requested values shows the request: a resize or
-    // a camera change that nobody requested leaves it pending.
-    final showsRequest = (moved || rotated) && _shows(camera);
-    final id = showsRequest ? _pendingId : null;
-    final source = showsRequest
-        ? fm.MapEventSource.mapController
-        : fm.MapEventSource.custom;
+    // a camera change that nobody requested leaves it pending. Of that frame,
+    // only the event of a requested component reports the request.
+    final pending = _pending;
+    final showsRequest =
+        pending != null && (moved || rotated) && _shows(camera, pending);
+    final movedByRequest =
+        showsRequest && (pending.center != null || pending.zoom != null);
+    final rotatedByRequest = showsRequest && pending.rotation != null;
+    final id = _pendingId;
     if (showsRequest) {
       _pending = null;
       _pendingId = null;
@@ -62,14 +65,23 @@ final class MapLibreFlutterMapController implements fm.MapController {
     if (_events.isClosed || !_events.hasListener) return;
     if (moved) {
       _events.add(
-        fm.MapEventMove(id: id, source: source, oldCamera: old, camera: camera),
+        fm.MapEventMove(
+          id: movedByRequest ? id : null,
+          source: movedByRequest
+              ? fm.MapEventSource.mapController
+              : fm.MapEventSource.custom,
+          oldCamera: old,
+          camera: camera,
+        ),
       );
     }
     if (rotated) {
       _events.add(
         fm.MapEventRotate(
-          id: id,
-          source: source,
+          id: rotatedByRequest ? id : null,
+          source: rotatedByRequest
+              ? fm.MapEventSource.mapController
+              : fm.MapEventSource.custom,
           oldCamera: old,
           camera: camera,
         ),
@@ -178,10 +190,11 @@ final class MapLibreFlutterMapController implements fm.MapController {
     return true;
   }
 
-  /// Whether [camera] has the values of the pending request.
-  bool _shows(fm.MapCamera camera) {
-    final pending = _pending;
-    if (pending == null) return false;
+  /// Whether [camera] has the values of the [pending] request.
+  bool _shows(
+    fm.MapCamera camera,
+    ({LatLng? center, double? zoom, double? rotation}) pending,
+  ) {
     const epsilon = 1e-6;
     bool near(double? requested, double shown) =>
         requested == null || (requested - shown).abs() < epsilon;
