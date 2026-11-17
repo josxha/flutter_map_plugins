@@ -18,11 +18,11 @@ dependencies:
     sdk: flutter
   flutter_map: ^8.0.0
   latlong2: ">=0.9.0 <0.11.0"
-  maplibre: ^0.4.0-pre.2
+  maplibre: ^0.4.0-pre.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  maplibre_platform_interface: ^0.4.0-pre.2
+  maplibre_platform_interface: ^0.4.0-pre.3
   plugin_platform_interface: ^2.1.8
   very_good_analysis: ^11.0.0
