@@ -28,7 +28,7 @@ with the native MapLibre SDKs.
 ```yaml
 dependencies:
   flutter_map: ^8.0.0
-  flutter_map_maplibre: ^0.1.0-pre.2
+  flutter_map_maplibre: ^0.1.0-pre.3
   maplibre: ^0.4.0-pre.2
 ```
 
@@ -131,6 +131,36 @@ The following options of `MapLibreMap` are not configurable because
 `flutter_map` controls the camera: the camera pitch (tilt), the gestures and
 the initial camera.
 
+#### Keep flutter_map layers on the map while it moves
+
+MapLibre renders the map on its own thread. On all platforms except web the
+map image trails the `flutter_map` camera by a frame or two while the camera
+moves, so `flutter_map` layers placed after the `MapLibreLayer` float above
+the map during a pan or zoom. Wrap those layers with a `FlutterMapAdapter` and
+add them to the `children` of the `MapLibreLayer` instead. They are then drawn
+at the camera of the map frame on screen:
+
+```dart
+FlutterMap(
+  options: MapOptions(initialCenter: const LatLng(0, 0), initialZoom: 4),
+  children: [
+    MapLibreLayer(
+      children: [
+        FlutterMapAdapter(child: MarkerLayer(markers: markers)),
+      ],
+    ),
+    // widgets that don't move with the map, e.g. attributions
+    const OsmAttributionWidget(),
+  ],
+);
+```
+
+On web, the layers stay in sync with the map only with the single-threaded
+renderer. If you build with `--wasm`, don't serve the app with the
+`Cross-Origin-Opener-Policy` and `Cross-Origin-Embedder-Policy` headers. Those
+headers enable the multi-threaded renderer, which draws the `flutter_map`
+layers a frame or more after the map.
+
 > [!NOTE]
 > The zoom levels of MapLibre are one level lower than the zoom levels of
 > `flutter_map` (with its default 256px tiles). `MapLibreLayer` converts the
@@ -142,6 +172,9 @@ the initial camera.
 
 Wrap each `flutter_map` layer with a `FlutterMapAdapter` and add it to
 the `children` of `MapLibreMap`. All gesture inputs are handled by `maplibre`.
+The layers are drawn at the camera of the map frame on screen, and
+`MapController.of(context)` of `flutter_map` returns a controller that moves
+the MapLibre camera.
 
 ```dart
 @override

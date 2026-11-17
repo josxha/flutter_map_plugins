@@ -37,53 +37,71 @@ class _MapLibreFlutterMapPageState extends State<MapLibreFlutterMapPage> {
         ),
         children: [
           // uses the OpenFreeMap liberty style by default
-          const MapLibreLayer(),
-          const CircleLayer(
-            circles: [
-              CircleMarker(
-                point: LatLng(10, 20),
-                radius: 15,
-                color: Colors.blue,
-                borderColor: Colors.black,
-                borderStrokeWidth: 2,
+          MapLibreLayer(
+            // flutter_map layers in the children of the MapLibreLayer are
+            // drawn at the camera of the map frame on screen, so they stay
+            // on the map while it moves
+            children: [
+              const FlutterMapAdapter(
+                child: CircleLayer(
+                  circles: [
+                    CircleMarker(
+                      point: LatLng(10, 20),
+                      radius: 15,
+                      color: Colors.blue,
+                      borderColor: Colors.black,
+                      borderStrokeWidth: 2,
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-          const MarkerLayer(
-            rotate: true,
-            markers: [
-              Marker(
-                point: LatLng(15, 5),
-                width: 40,
-                height: 40,
-                child: Icon(Icons.location_on, color: Colors.red, size: 40),
-                alignment: Alignment.topCenter,
+              const FlutterMapAdapter(
+                child: MarkerLayer(
+                  rotate: true,
+                  markers: [
+                    Marker(
+                      point: LatLng(15, 5),
+                      width: 40,
+                      height: 40,
+                      child: Icon(
+                        Icons.location_on,
+                        color: Colors.red,
+                        size: 40,
+                      ),
+                      alignment: Alignment.topCenter,
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-          PolylineLayer(
-            polylines: [
-              Polyline(
-                points: const [
-                  LatLng(-20, -10),
-                  LatLng(-15, -15),
-                  LatLng(-20, -25),
-                ],
-                color: Colors.purple,
-                strokeWidth: 3,
+              FlutterMapAdapter(
+                child: PolylineLayer(
+                  polylines: [
+                    Polyline(
+                      points: const [
+                        LatLng(-20, -10),
+                        LatLng(-15, -15),
+                        LatLng(-20, -25),
+                      ],
+                      color: Colors.purple,
+                      strokeWidth: 3,
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-          PolygonLayer(
-            polygons: [
-              Polygon(
-                points: const [
-                  LatLng(8, -25),
-                  LatLng(-5, -23),
-                  LatLng(5, -10),
-                  LatLng(10, -15),
-                ],
-                color: Colors.pink.withValues(alpha: 0.8),
+              FlutterMapAdapter(
+                child: PolygonLayer(
+                  polygons: [
+                    Polygon(
+                      points: const [
+                        LatLng(8, -25),
+                        LatLng(-5, -23),
+                        LatLng(5, -10),
+                        LatLng(10, -15),
+                      ],
+                      color: Colors.pink.withValues(alpha: 0.8),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

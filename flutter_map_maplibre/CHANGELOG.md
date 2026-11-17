@@ -1,3 +1,16 @@
+## 0.1.0-pre.3
+
+- Update `maplibre` to `^0.4.0-pre.3`.
+- Breaking: remove `MapControllerExt.toFlutterMapController()`.
+- `MapLibreLayer`: the map and the `flutter_map` layers stay in sync while
+  the map moves on web.
+- `FlutterMapAdapter`: faster gestures, and `MapController.of(context)` moves
+  the MapLibre camera and emits its changes on `mapEventStream`.
+- `FlutterMapAdapter` can be used in `MapLibreLayer.children` to keep
+  `flutter_map` layers on the map while it moves.
+- Docs: on web, serve wasm builds without COOP/COEP headers to keep the
+  `flutter_map` layers in sync with the map.
+
 ## 0.1.0-pre.2
 
 - Update `maplibre` and `maplibre_platform_interface` to

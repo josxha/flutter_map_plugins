@@ -58,13 +58,17 @@ void main() {
     expect(platform.lastState!.widget.gestureRecognizers, isEmpty);
   });
 
-  testWidgets('initial camera follows the flutter_map camera', (tester) async {
+  testWidgets('the map shows the flutter_map camera from the start', (
+    tester,
+  ) async {
     await pumpLayer(tester);
-    final camera = platform.lastState!.widget.options.initCamera;
-    expect(camera, isA<ml.CameraUpdatePosition>());
-    final position = (camera! as ml.CameraUpdatePosition).center;
-    expect(position?.lat, 10);
-    expect(position?.lon, 20);
+    final camera = platform.lastState!.widget.camera;
+    expect(camera?.center.lat, closeTo(10, 1e-9));
+    expect(camera?.center.lon, closeTo(20, 1e-9));
+    // MapLibre zoom is one level lower and the bearing is inverted.
+    expect(camera?.zoom, closeTo(4, 1e-9));
+    expect(camera?.bearing, closeTo(-40, 1e-9));
+    expect(camera?.pitch, 0);
   });
 
   testWidgets('passes all typed event callbacks', (tester) async {
@@ -316,22 +320,19 @@ void main() {
     ], everyElement(isNull));
   });
 
-  testWidgets('moving the flutter_map camera moves the MapLibre camera', (
-    tester,
-  ) async {
+  testWidgets('the map camera follows the flutter_map camera', (tester) async {
     final controller = await pumpLayer(tester);
-    final state = platform.lastState!;
-    state.moveCameraCalls.clear();
 
     controller.moveAndRotate(const LatLng(30, 40), 7, 90);
     await tester.pump();
 
-    expect(state.moveCameraCalls, isNotEmpty);
-    final call = state.moveCameraCalls.last;
-    expect(call.center?.lat, closeTo(30, 0.0001));
-    expect(call.center?.lon, closeTo(40, 0.0001));
-    // MapLibre zoom is one level lower and the bearing is inverted.
-    expect(call.zoom, closeTo(6, 0.0001));
-    expect(call.bearing, closeTo(-90, 0.0001));
+    final camera = platform.lastState!.widget.camera;
+    expect(camera?.center.lat, closeTo(30, 1e-9));
+    expect(camera?.center.lon, closeTo(40, 1e-9));
+    expect(camera?.zoom, closeTo(6, 1e-9));
+    expect(camera?.bearing, closeTo(-90, 1e-9));
+    // The camera is applied by the map while it builds, not through the
+    // controller.
+    expect(platform.lastState!.moveCameraCalls, isEmpty);
   });
 }

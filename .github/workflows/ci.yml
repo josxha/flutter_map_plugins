@@ -203,3 +203,53 @@ jobs:
         with:
           name: flutter_map_plugins_example_web
           path: example/build/web
+  integration-test-linux:
+    runs-on: ubuntu-latest
+    name: Integration Tests Linux
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: ./example
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          cache: true
+      - name: Install GTK, Vulkan (lavapipe) and a virtual display
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build libgtk-3-dev libepoxy-dev \
+            libvulkan1 libvulkan-dev mesa-vulkan-drivers xvfb
+      - name: Get dependencies
+        run: flutter pub get
+      - name: Run integration tests
+        run: xvfb-run -a flutter test integration_test -d linux -r expanded
+  integration-test-web:
+    runs-on: ubuntu-latest
+    name: Integration Tests Web
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: ./example
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          cache: true
+      - uses: browser-actions/setup-chrome@v2
+        id: chrome
+        with:
+          install-chromedriver: true
+      - name: Get dependencies
+        run: flutter pub get
+      - name: Run integration tests
+        run: |
+          chromedriver --port=4444 &
+          flutter drive --driver test_driver/integration_test.dart \
+            --target integration_test/flutter_map_maplibre_test.dart \
+            -d web-server --browser-name chrome --headless \
+            --chrome-binary "${{ steps.chrome.outputs.chrome-path }}"

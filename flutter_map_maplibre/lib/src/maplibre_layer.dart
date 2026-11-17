@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart' as fm;
 import 'package:flutter_map_maplibre/src/extensions.dart';
+import 'package:flutter_map_maplibre/src/flutter_map_adapter.dart';
 import 'package:maplibre/maplibre.dart';
 
 /// Use the [MapLibreLayer] to embed [MapLibreMap] as a layer in
@@ -12,6 +13,14 @@ import 'package:maplibre/maplibre.dart';
 /// [fm.FlutterMap], and all gestures are handled by `flutter_map`. Therefore
 /// the camera pitch (tilt), the gesture options and the initial camera of
 /// [MapOptions] are not configurable.
+///
+/// The MapLibre map renders on its own thread, so on all platforms except web
+/// the map image trails the `flutter_map` camera by a frame or two while it
+/// moves. `flutter_map` layers that are placed after the [MapLibreLayer] in
+/// [fm.FlutterMap.children] are drawn at the latest camera and float above
+/// the map while it moves. Wrap them with a [FlutterMapAdapter] and add them
+/// to [children] instead: they are then drawn at the camera of the map frame
+/// on screen and stay on the map.
 class MapLibreLayer extends StatefulWidget {
   /// Create a new [MapLibreLayer] to use it as a layer in
   /// [fm.FlutterMap.children].
@@ -83,6 +92,9 @@ class MapLibreLayer extends StatefulWidget {
   final List<Layer> layers;
 
   /// The [MapLibreMap.children] list.
+  ///
+  /// Wrap `flutter_map` layers with a [FlutterMapAdapter] to draw them at the
+  /// camera of the map frame on screen.
   final List<Widget> children;
 
   /// Pauses the rendering of the map, see [MapLibreMap.paused].
@@ -183,35 +195,13 @@ class MapLibreLayer extends StatefulWidget {
 }
 
 class _MapLibreLayerState extends State<MapLibreLayer> {
-  MapController? _controller;
-  StreamSubscription<fm.MapEvent>? _streamSub;
-
   @override
   Widget build(BuildContext context) {
-    final fmCamera = fm.MapCamera.of(context);
-    final fmController = fm.MapController.of(context);
-    // final fmOptions = fm.MapOptions.of(context);
-
-    // sync the FlutterMap movement with MapLibreMap
-    _streamSub ??= fmController.mapEventStream.listen((event) {
-      if (event case fm.MapEventWithMove()) {
-        _controller?.moveCamera(
-          CameraUpdate.position(
-            center: event.camera.center.toPosition(),
-            zoom: event.camera.zoom - 1,
-            bearing: -event.camera.rotation,
-          ),
-        );
-      }
-    });
-
-    return MapLibreMap(
+    // The map shows the flutter_map camera of this build: on web in the
+    // same browser frame as the flutter_map layers.
+    return MapLibreMap.withCamera(
+      camera: fm.MapCamera.of(context).toCameraPosition(),
       options: MapOptions(
-        initCamera: CameraUpdate.position(
-          center: fmCamera.center.toPosition(),
-          bearing: -fmCamera.rotation,
-          zoom: fmCamera.zoom - 1,
-        ),
         style: widget.style,
         minZoom: widget.minZoom,
         maxZoom: widget.maxZoom,
@@ -222,6 +212,7 @@ class _MapLibreLayerState extends State<MapLibreLayer> {
       gestureRecognizers: const {},
       layers: widget.layers,
       paused: widget.paused,
+      onMapCreated: widget.onMapCreated,
       onStyleLoaded: widget.onStyleLoaded,
       onClick: widget.onClick,
       onDoubleClick: widget.onDoubleClick,
@@ -251,17 +242,7 @@ class _MapLibreLayerState extends State<MapLibreLayer> {
       onContextLost: widget.onContextLost,
       onContextRestored: widget.onContextRestored,
       onProjectionChanged: widget.onProjectionChanged,
-      onMapCreated: (controller) {
-        _controller = controller;
-        widget.onMapCreated?.call(controller);
-      },
       children: widget.children,
     );
-  }
-
-  @override
-  void dispose() {
-    _streamSub?.cancel();
-    super.dispose();
   }
 }
