@@ -1,12 +1,13 @@
 ## 0.1.0
 
-- First stable release for `maplibre` 0.4. It collects all changes of
-  `0.1.0-pre.1` to `0.1.0-pre.3`.
-- Update `maplibre` and `maplibre_platform_interface` to `^0.4.0`.
-
-## 0.1.0-pre.3
-
-- Update `maplibre` to `^0.4.0-pre.3`.
+- Update `maplibre` to `^0.4.0`.
+- Use the OpenFreeMap liberty style as default style of `MapLibreLayer`.
+- `MapLibreLayer` exposes all `MapLibreMap` parameters that make sense with
+  `flutter_map` (`style`, `minZoom`, `maxZoom`, `maxBounds`, `layers`, `paused`,
+  `onMapCreated`, `onStyleLoaded`) and each typed MapLibre event callback as an
+  individual parameter. Breaking: `initStyle` was renamed to `style` and takes
+  a `MapStyle`.
+- Adapt camera synchronization to `CameraUpdate` and `CameraPosition`.
 - Breaking: remove `MapControllerExt.toFlutterMapController()`.
 - `MapLibreLayer`: the map and the `flutter_map` layers stay in sync while
   the map moves on web.
@@ -16,22 +17,6 @@
   `flutter_map` layers on the map while it moves.
 - Docs: on web, serve wasm builds without COOP/COEP headers to keep the
   `flutter_map` layers in sync with the map.
-
-## 0.1.0-pre.2
-
-- Update `maplibre` and `maplibre_platform_interface` to
-  `^0.4.0-pre.2`.
-- Adapt camera synchronization to `CameraUpdate` and `CameraPosition`.
-- Expose each typed MapLibre event callback as an individual `MapLibreLayer` parameter.
-
-## 0.1.0-pre.1
-
-- Use the OpenFreeMap liberty style as default style of `MapLibreLayer`
-- `MapLibreLayer` exposes all `MapLibreMap` parameters that make sense with
-  `flutter_map` (`style`, `minZoom`, `maxZoom`, `maxBounds`, `layers`, `paused`,
-  `onMapCreated`, `onStyleLoaded`). `initStyle` was renamed to `style` and takes
-  a `MapStyle`.
-- Update `maplibre` to `^0.4.0-pre.1` (`0.4.x` versions included)
 
 ## 0.0.5
 
