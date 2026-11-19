@@ -28,8 +28,8 @@ with the native MapLibre SDKs.
 ```yaml
 dependencies:
   flutter_map: ^8.0.0
-  flutter_map_maplibre: ^0.1.0-pre.3
-  maplibre: ^0.4.0-pre.2
+  flutter_map_maplibre: ^0.1.0
+  maplibre: ^0.4.0
 ```
 
 2. Follow the platform specific

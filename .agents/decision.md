@@ -2,6 +2,13 @@
 
 Append new decisions at the top. Format: date, decision, reason.
 
+## 2026-11-19: flutter_map_maplibre 0.1.0 is stable and depends on maplibre ^0.4.0
+
+`maplibre` 0.4.0 is published as a stable version, so `flutter_map_maplibre`
+0.1.0 (and the example) depend on `^0.4.0` instead of a pre-release. This
+supersedes the pre-release channel decision of 2026-10-31 for this package,
+and `pub publish` no longer warns about pre-release dependencies.
+
 ## 2026-11-17: Flutter 3.50: material_ui and Gradle 9
 
 Flutter 3.50 deprecates `package:flutter/material.dart` in favour of
